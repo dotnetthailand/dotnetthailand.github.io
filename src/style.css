@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap');
+:root {
+    --card-color: #FFF;
+    --card-text-color: #000;
+    --bg-color: white;
+    --cyan-color: #00BCD4;
+    --block-quote-bg : #F9F9F9
+}
+
+html body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    background-color: var(--bg-color) !important;
+}
+
+.theme-toggle-button {
+    border: none;
+    text-align: center;
+    background-color: var(--cyan-color) !important;
+    z-index: 3;
+    display: block;
+    float: right;
+    position: fixed;
+    right: 30px;
+    top: 60px;
+    box-shadow: 2px 1px 3px 0px rgba(0, 1, 0, 0.50);
+}
+
+.theme-toggle-button:hover {
+    box-shadow: 3px 2px 5px 1px rgba(0, 1, 0, 0.50);
+}
+
+.dark {
+    background-color: #12181B;
+    color: #B2BECD;
+    --card-color: #414141;
+    --card-text-color: #FFF;
+    --bg-color: #12181B;
+    --block-quote-bg : #212121
+}
+
+.light {
+    background-color: #FFFFFF;
+    --bg-color: #FFF;
+    --card-color: #FFF;
+    --block-quote-bg : #F9F9F9
+}
+
+.card {
+    background-color: var(--card-color) !important;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    color: var(--card-text-color)
+}
+
+.card:hover {
+    box-shadow: 1px 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+.flexbox {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: fixed;
+    width: 400px;
+    z-index: 1;
+    overflow-x: hidden;
+}
+
+.author-img {
+    border: 2px solid var(--cyan-color) !important;
+}
+
+.post {
+    height: 100vh;
+}
+
+.post-prefix {
+    border-right: 1px solid #CCC
+}
+
+.post-content {
+    padding: 30px;
+}
+
+.post-content p {
+    margin-bottom: 2em
+}
+
+.post-content img {
+    width: 100%;
+    height: auto;
+}
+
+.post-content h2 {
+    font-weight: bold;
+    margin-bottom: 1em;
+}
+
+.post-content pre{
+    margin: 20px 0px 20px 0px
+}
+
+.about h2 {
+    font-weight: 600
+}
+
+blockquote {
+    padding: 15px;
+    font-weight: 100;
+    font-style: italic;
+    border-left: .5em solid var(--cyan-color);
+    background-color: var(--block-quote-bg)
+}
+
+@media only screen and (max-width: 600px) {
+    .theme-toggle-button {
+        top: 30px;
+        right: 20px;
+    }
+    .flexbox {
+        position: relative;
+        height: 100vh;
+        width: auto;
+        z-index: auto;
+        overflow-x: visible;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .flexbox {
+        position: relative;
+        height: 100vh;
+        width: auto;
+        z-index: auto;
+        overflow-x: visible;
+    }
+}
