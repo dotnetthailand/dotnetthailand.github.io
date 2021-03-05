@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `The 404 Blog`,
+    title: `.NET Thailand`,
     description: `Crafted for developers , hoping they can learn something valuable out of it.`,
     author: `@MrNullPointer`,
   },
@@ -9,7 +9,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-disqus`,
       options: {
-        shortname: `the404blog`
+        shortname: `.NET Thailand`
       }
     },
     {

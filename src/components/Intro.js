@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 function Intro() {
   return (
     <div className="container my-4">
-      <h2 className="card-title text-info font-weight-bold">The 404 Blog</h2>
+      <h2 className="card-title text-info font-weight-bold">.NET Thailand</h2>
       <p className="card-subtitle mt-2">Crafted for developers , hoping they can learn something valuable out of it.</p>
       <Link className="btn btn-info my-3" to="about">Know More</Link>
 
@@ -23,11 +23,11 @@ function Intro() {
           src="https://seeklogo.com/images/G/gatsby-logo-1A245AD37F-seeklogo.com.png"
           alt="build-with-icon-2" />
       </a>
-      <a href="https://www.netlify.com/">
+      <a href="https://github.com/">
         <img
           className="mr-4 mt-3"
           width="40px"
-          src="https://www.netlify.com/img/press/logos/logomark.png"
+          src="https://img.icons8.com/ios/344/github.png"
           alt="build-with-icon-3" />
       </a>
       <a href="https://www.markdownguide.org/">
@@ -36,18 +36,11 @@ function Intro() {
           src="https://img.icons8.com/office/40/000000/markdown.png"
           alt="build-with-icon-4" />
       </a>
-      <h6><br />Open Sourced on <a href="https://github.com">Github</a></h6>
-      {/* <hr />
-            <h4>Latest Posts</h4>
-            <ul class="list-group my-3">
-                <li className="list-group-item">Cras justo odio</li>
-                <li className="list-group-item">Dapibus ac facilisis in</li>
-                <li className="list-group-item">Morbi leo risus</li>
-                <li className="list-group-item">Porta ac consectetur ac</li>
-                <li className="list-group-item">Vestibulum at eros</li>
-            </ul> */}
+      <br />
+      <br />
+      <h6>open source on <a href="https://github.com/dotnetthailand">github.com/dotnetthailand</a></h6>
     </div>
-  )
-}
+  );
+};
 
-export default Intro
+export default Intro;

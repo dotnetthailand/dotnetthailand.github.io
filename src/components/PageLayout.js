@@ -27,8 +27,11 @@ function PageLayout({ children }) {
       </button>
       <main >{children}</main>
       <footer className={"text-center pt-4 " + theme}>
-        <h5>Created and Presented By <a className="font-weight-bold text-info" href="https://www.github.com/mohanmonu777">Mohan</a></h5>
-        <h6>Copyright © The 404 Blog | 2019</h6><br />
+        <h5>Created and Presented By
+          <a className="font-weight-bold text-info" href="https://facebook.com/groups/dotnetthailand">.NET Thailand group</a>
+        </h5>
+        <h6>Copyright ©.NET Thailand | 2021</h6>
+        <br />
       </footer>
     </div>
   )

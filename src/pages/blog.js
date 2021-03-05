@@ -25,7 +25,7 @@ const Blog = () => {
   return (
     <Page>
       <Helmet>
-        <title>Blog | The 404 Blog</title>
+        <title>Blog | .NET Thailand</title>
       </Helmet>
       <div className="container">
         <div className="col">

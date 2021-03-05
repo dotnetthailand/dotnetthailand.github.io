@@ -42,7 +42,7 @@ const Tags = () => {
   return (
     <Page>
       <Helmet>
-        <title>Tags | The 404 Blog</title>
+        <title>Tags | .NET Thailand</title>
       </Helmet>
       <div className='container'>
         <h1>Tags</h1>
