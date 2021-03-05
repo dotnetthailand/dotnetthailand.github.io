@@ -1,7 +1,7 @@
-import React from "react"
-import Card from "../components/Card"
-import { useStaticQuery, graphql, } from "gatsby"
-import Link from "gatsby-plugin-transition-link/AniLink";
+import React from 'react'
+import Card from '../components/Card'
+import { useStaticQuery, graphql, } from 'gatsby'
+import { Link } from 'gatsby';
 
 export default () => {
   const data = useStaticQuery(graphql`
@@ -20,9 +20,11 @@ export default () => {
           }
         }
       }      
-  `)
+    `
+  )
+
   return (
-    <div className="col-lg-8">
+    <div className='col-lg-8'>
       {
         data.allMarkdownRemark.edges.map(
           ({ node }) => (
@@ -37,7 +39,7 @@ export default () => {
           )
         )
       }
-      <Link fade className="my-3 float-right btn text-info shadow-sm" to="blog" duration={.5}>
+      <Link className='my-3 float-right btn text-info shadow-sm' to='blog'>
         View All →
       </Link>
     </div>

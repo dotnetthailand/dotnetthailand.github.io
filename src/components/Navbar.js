@@ -1,8 +1,5 @@
 import React from 'react'
-// //bootstrap
-// import 'bootstrap/dist/css/bootstrap.css'
-// import 'bootstrap/dist/js/bootstrap'
-import Link from 'gatsby-plugin-transition-link/AniLink';
+import { Link } from 'gatsby';
 
 const linkStyle = {
   color: '#00F0FF',
@@ -15,7 +12,7 @@ const activeStyle = {
 }
 
 const NavLink = ({ children, to }) => (
-  <Link to={to} activeStyle={activeStyle} style={linkStyle} fade duration={1}>
+  <Link to={to} activeStyle={activeStyle} style={linkStyle}>
     {children}
   </Link>
 )
