@@ -31,13 +31,15 @@ const Blog = () => {
         <div className="col">
           {
             data.allMarkdownRemark.edges.map(
-              ({ node }) => (<Card
-                slug={node.frontmatter.slug}
-                authorName={node.frontmatter.author}
-                title={node.frontmatter.title}
-                description={node.frontmatter.description}
-                timeStamp={node.frontmatter.date}
-              />)
+              ({ node }) => (
+                <Card key={node.title}
+                  slug={node.frontmatter.slug}
+                  authorName={node.frontmatter.author}
+                  title={node.frontmatter.title}
+                  description={node.frontmatter.description}
+                  timeStamp={node.frontmatter.date}
+                />
+              )
             )
           }
         </div>

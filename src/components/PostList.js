@@ -25,16 +25,19 @@ export default () => {
     <div className="col-lg-8">
       {
         data.allMarkdownRemark.edges.map(
-          ({ node }) => (<Card
-            slug={node.frontmatter.slug}
-            authorName={node.frontmatter.author}
-            title={node.frontmatter.title}
-            description={node.frontmatter.description}
-            timeStamp={node.frontmatter.date}
-          />)
+          ({ node }) => (
+            <Card
+              key={node.frontmatter.title}
+              slug={node.frontmatter.slug}
+              authorName={node.frontmatter.author}
+              title={node.frontmatter.title}
+              description={node.frontmatter.description}
+              timeStamp={node.frontmatter.date}
+            />
+          )
         )
       }
-      <Link fade className="my-3 float-right btn text-info shadow-sm" to="blog" duration = {.5}>
+      <Link fade className="my-3 float-right btn text-info shadow-sm" to="blog" duration={.5}>
         View All →
       </Link>
     </div>

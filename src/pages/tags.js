@@ -6,8 +6,8 @@ import { graphql, useStaticQuery } from 'gatsby';
 
 
 const Tags = () => {
-    const { allMarkdownRemark } = useStaticQuery(
-        graphql`
+  const { allMarkdownRemark } = useStaticQuery(
+    graphql`
         {
             allMarkdownRemark {
               edges {
@@ -21,50 +21,53 @@ const Tags = () => {
           }
           
         `
-    )
+  )
 
-    const posts = allMarkdownRemark.edges
+  const posts = allMarkdownRemark.edges
 
-    let TagArray = []
+  let TagArray = []
 
-    function getTagArray() {
-        posts.map(
-            ({node}, index) => {
-                var tag = node.frontmatter.tags
-                tag.forEach(
-                    item => TagArray.push(item)
-                )
-                return ""
-            }
+  function getTagArray() {
+    posts.map(
+      ({ node }, index) => {
+        var tag = node.frontmatter.tags
+        tag.forEach(
+          item => TagArray.push(item)
         )
-    }
-
-    getTagArray()
-
-    return (
-        <Page>
-            <Helmet>
-                <title>Tags | The 404 Blog</title>
-            </Helmet>
-            <div className="container">
-                <h1>Tags</h1>
-                {
-                    Array.from(new Set(TagArray)).map(
-                        (tagItem, index) => {
-                            return <Link
-                                fade
-                                duration = {.5}
-                                to={"/tags/" + tagItem}
-                                className="btn mr-4 btn-info my-3">
-                                #{tagItem}
-                            </Link>
-                        }
-                    )
-                }
-            </div>
-
-        </Page>
+        return ""
+      }
     )
+  }
+
+  getTagArray()
+
+  return (
+    <Page>
+      <Helmet>
+        <title>Tags | The 404 Blog</title>
+      </Helmet>
+      <div className="container">
+        <h1>Tags</h1>
+        {
+          Array.from(new Set(TagArray)).map(
+            (tagItem, index) => {
+              return (
+                <Link
+                  key={tagItem}
+                  fade
+                  duration={.5}
+                  to={"/tags/" + tagItem}
+                  className="btn mr-4 btn-info my-3">
+                  #{tagItem}
+                </Link>
+              )
+            }
+          )
+        }
+      </div>
+
+    </Page>
+  )
 }
 
 export default Tags

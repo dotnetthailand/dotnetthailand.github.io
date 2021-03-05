@@ -8,7 +8,7 @@ const TagList = ({ tags }) => {
             <div>
                 {
                     tags.map(
-                        tag => (<Link to={"/tags/" + tag} className="mr-3 btn my-2 btn-info">#{tag}</Link>)
+                        tag => (<Link key={tag} to={"/tags/" + tag} className="mr-3 btn my-2 btn-info">#{tag}</Link>)
                     )
                 }
             </div>
