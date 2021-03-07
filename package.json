@@ -93,6 +93,7 @@
   "scripts": {
     "start": "gatsby develop",
     "build": "gatsby build --prefix-paths",
+    "clean": "gatsby clean",
     "format": "prettier --ignore-path \".gitignore\" --write \"**/*.{js,jsx,css,json}\"",
     "lint": "eslint --fix \"**/*.{js,jsx}\""
   },
