@@ -59,62 +59,20 @@ const plugins = [
   {
     resolve: 'gatsby-plugin-mdx',
     options: {
-      remarkPlugins: [require('remark-emoji'), require('remark-abbr')],
       gatsbyRemarkPlugins: [
         {
-          resolve: 'gatsby-remark-mermaid',
+          resolve: "gatsby-remark-images",
           options: {
-            language: config.features.mermaid.language,
-            theme: config.features.mermaid.theme,
-            viewport: {
-              width: config.features.mermaid.width,
-              height: config.features.mermaid.height,
-            },
-            mermaidOptions: config.features.mermaid.options,
-          },
-        },
-        'gatsby-remark-graphviz',
-        {
-          resolve: require.resolve(`./plugins/gatsby-remark-sectionize-toc`),
-          options: {
-            maxDepth: config.features.toc.depth,
-          },
+            maxWidth: 1035,
+            sizeByPixelDensity: true
+          }
         },
         {
-          resolve: 'gatsby-remark-images',
-          options: {
-            maxWidth: 1050,
-            quality: 75,
-            showCaptions: true,
-            disableBgImageOnAlpha: true,
-            withWebp: true,
-          },
-        },
-        'gatsby-remark-copy-linked-files',
-        {
-          resolve: 'gatsby-remark-jargon',
-          options: { jargon: require('./src/utils/jargon-config.js') },
-        },
-        {
-          resolve: `gatsby-remark-embed-snippet`,
-          options: {
-            directory: `${__dirname}/snippets/`,
-          },
-        },
-        {
-          resolve: `gatsby-remark-embedder`,
-          options: {
-            customTransformers: [
-              // Your custom transformers
-            ],
-            services: {
-              // The service-specific options by the name of the service
-            },
-          },
-        },
+          resolve: 'gatsby-remark-copy-linked-files'
+        }
       ],
-      extensions: ['.mdx', '.md'],
-    },
+      extensions: [".mdx", ".md"]
+    }
   },
   {
     resolve: `gatsby-plugin-gtag`,

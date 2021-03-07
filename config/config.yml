@@ -1,8 +1,8 @@
 ---
 metadata:
-  name: BooGi
-  short_name: BooGi
-  description: BooGi - awesome GitBook-like documentation generator using Gatsby
+  name: .NET Thailand 2
+  short_name: .NET Thailand
+  description: .NET Thailand community
   language: en
   pathPrefix: "/"
   siteImage:
@@ -14,8 +14,8 @@ header:
   logoLink: "/"
   helpUrl: ""
   links:
-    - text: BooGi
-      link: https://github.com/filipowm/boogi
+    - text: .NET Thailand community
+      link: https://www.facebook.com/groups/dotnetthailand
       external: true
     - text: Gatsby
       link: https://www.gatsbyjs.org
@@ -47,8 +47,6 @@ sidebar:
       path: "/developing"
       title: ":computer: Developing"
   links:
-    - text: BooGi
-      link: https://github.com/filipowm/boogi
     - text: React
       link: https://reactjs.org
   ignoreIndex: false
@@ -64,16 +62,15 @@ pwa:
     icon: "/assets/favicon.png"
 
 social:
-  github: https://github.com/filipowm/boogi
-  linkedin: https://www.linkedin.com/in/mateusz-filipowicz-437b4768/
-  twitter: twitter url
+  github: https://www.github.com/dotnetthailand
+  facebook: https://www.facebook.com/groups/dotnetthailand
 
 features:
   darkMode:
-    enabled: true  
-    default: false
+    enabled: true
+    default: true
   editOnRepo:
-    location: https://github.com/filipowm/boogi 
+    location: https://github.com/dotnetthailand/dotnetthailand.github.io
     type: github
     editable: true
   mermaid:
@@ -111,7 +108,7 @@ features:
     generator: "boogi"
   scrollTop: true
   search:
-    enabled: true
+    enabled: false # Temporary disable search engine
     engine: 'algolia'
     placeholder: 'Search'
     startComponent: 'input' # icon
@@ -129,7 +126,7 @@ features:
   toc:
     show: true
     depth: 4
-  fullScreenMode: 
+  fullScreenMode:
     enabled: true
     hideHeader: true
     hideToc: true
