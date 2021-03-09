@@ -30,25 +30,19 @@ sidebar:
   #   - "/configuration/basic"
   #   - "/configuration/advanced"
   # expanded:
+  # Table of content
   groups:
     - order: 1
-      path: "/gettingstarted"
-      title: ":rocket: Getting Started"
-    - order: 2
-      path: "/configuration"
-      title: ":wrench: Configuration"
-    - order: 3
-      path: "/editing"
-      title: ":writing_hand: Editing Content"
-    - order: 4
-      path: "/deployment"
-      title: ":rocket: Deployment"
-    - order: 5
-      path: "/developing"
-      title: ":computer: Developing"
+      path: "/faq"
+      # https://emojipedia.org/github/
+      title: ":question: .NET FAQ"
+
   links:
+    - text: .NET Thailand
+      link: https://www.facebook.com/groups/dotnetthailand
     - text: React
       link: https://reactjs.org
+
   ignoreIndex: false
   poweredBy:
     trademark: "/assets/gatsby.png"

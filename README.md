@@ -38,14 +38,14 @@ yarn start
 
 ## Road map
 - [ ] Migrate contents
-- [ ]
-- [ ]
+- [ ] .NET FAQ
+- [ ] .NET Road map
+- [ ] Useful libraries
 
 ## TODO
 - [ ] Missing Emoji :wave:
-- [ ]
-- [ ]
-
+- [ ] favicon
+- [ ] PWA
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
