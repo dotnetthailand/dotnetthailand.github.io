@@ -15,6 +15,7 @@ import LinkCard from './linkCard';
 import { blockquote, pre, table, list } from '../../styles';
 import { useTheme } from 'emotion-theming';
 import emoji from '../../utils/emoji';
+import CheckListItem from './CheckListItem';
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -32,7 +33,7 @@ const Header = (level, props) => {
   });
 };
 
-const Table = ({...props}) => (
+const Table = ({ ...props }) => (
   <div css={{ display: 'grid' }}>
     <div css={{ overflowX: 'auto' }}>
       <table css={table(useTheme())} {...props} />
@@ -70,11 +71,11 @@ export default {
   blockquote: (props) => <blockquote css={blockquote(useTheme())} {...props} />,
   p: (props) => <p className="paragraph" {...props} />,
   pre: (props) => <pre css={pre} {...props} />,
-  table: (props) => <Table {...props}/>,
+  table: (props) => <Table {...props} />,
   em: emphasis,
   img: (props) => (
     <a href={props.src} target="_blank" rel="noopener noreferrer">
-      <img loading={'lazy'} {...props} />
+      <img alt='' loading={'lazy'} {...props} />
     </a>
   ),
   code: CodeBlock,
@@ -89,5 +90,6 @@ export default {
   LinkCard,
   ImageCard,
   DownloadCard,
+  CheckListItem,
   ...Highlights,
 };

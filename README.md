@@ -49,3 +49,7 @@ yarn start
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
+- Markdown content inside component not show https://awsm.page/mdx/mdx-markdown-inside-a-react-component/
+
+## Useful information
+- This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes
