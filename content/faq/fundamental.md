@@ -3,4 +3,4 @@ title: Fundamental
 tocDepth: 1
 ---
 
-## Hello world
+## Collection of FAQ in fundamental areas of .NET

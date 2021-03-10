@@ -1,7 +1,7 @@
 ---
-title: Async/Await in .NET
-showMetadata: false
-editable: false
+title: Async/Await
+showMetadata: true
+editable: true
 showToc: false
 ---
 
@@ -83,8 +83,7 @@ Lambda expression supports async keyword, you can put async before Lambda parame
 
 <CheckListItem>
 
-`Task.Run` without await leads to "fire and forget" behavior.
-Use it for CPU Bound task. It will execute code in a thread of ThreadPool.
+`Task.Run` without `await` leads to **fire and forget** behavior. It will execute code in a thread of ThreadPool.
 Prefer `Task.Run` over `Task.Factory.StartNew` and over `new Task()`
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/task-run.md)
 
