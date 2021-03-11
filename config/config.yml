@@ -32,10 +32,15 @@ sidebar:
   # expanded:
   # Table of content
   groups:
-    - order: 1
+    - order: 0
       path: "/faq"
       # https://emojipedia.org/github/
       title: ":question: .NET FAQ"
+
+    - order: 1
+      path: "/programming-cookbook"
+      # https://emojipedia.org/github/
+      title: ":blue_book: Programming cookbook"
 
   links:
     - text: .NET Thailand
@@ -56,7 +61,7 @@ pwa:
     icon: "/assets/favicon.png"
 
 social:
-  github: https://www.github.com/dotnetthailand
+  github: https://github.com/dotnetthailand/dotnetthailand.github.io
   facebook: https://www.facebook.com/groups/dotnetthailand
 
 features:
