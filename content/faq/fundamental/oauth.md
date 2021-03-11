@@ -87,7 +87,7 @@ sequenceDiagram
   user ->> client: Log in to a client application
   client ->> authorization_server: Connect to an authorization server with client ID and redirect URI.
   authorization_server ->> user: Show a form to a user to log in and then ask a user to allow permissions (scopes).
-  user --> authorization_server: Get approval from a user that a client app can access user's resources.
+  user ->> authorization_server: Get approval from a user that a client app can access user's resources.
   authorization_server ->> client: Save an authorization code temporary and redirect to a redirect URI with an authorization code.
   client ->> authorization_server: Send HTTP POST with an authorization code to request tokens
   authorization_server ->> client: Verify the correctness of authorization code clientID, redirectURI. Then send access token and refresh token back.
@@ -112,15 +112,13 @@ sequenceDiagram
   autonumber
   participant user as user (resource owner)
   participant client as client (application)
-  participant verify as code verify
-  participant challenge as code challenge
   participant authorization_server as authorization server
   participant resource_server as resource server
 
   user ->> client: Log in to a client application
   client ->> authorization_server: Create code verify, code challenge and connect to an authorization server with client ID, redirect URI, code challenge and code challenge method.
   authorization_server ->> user: Show a form to a user to log in and then ask a user to allow permissions (scopes).
-  user --> authorization_server: Get approval from a user that a client can access user's resources.
+  user ->> authorization_server: Get approval from a user that a client can access user's resources.
   authorization_server ->> client: Save an authorization code and code challenge temporary and redirect to a redirect URI with an authorization code.
   client ->> authorization_server: Send HTTP POST with an authorization code and code verify to request tokens.
   authorization_server ->> client: Verify the correctness of code verify, code challenge, authorization code clientID, redirectURI and send access token and refresh token back.
