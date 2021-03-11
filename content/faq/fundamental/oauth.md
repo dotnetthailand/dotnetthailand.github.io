@@ -92,6 +92,7 @@ sequenceDiagram
   client ->> authorization_server: Send HTTP POST with an authorization code to request tokens
   authorization_server ->> client: Verify the correctness of authorization code clientID, redirectURI. Then send access token and refresh token back.
   client ->> resource_server: Save tokens and request an API to access a user's resources with an access token in HTTP header.
+  resource_server ->> client: Verify an access token and send response data back to a client
 ```
 - If someone can steal client ID and redirectURI, one can't get an authorization code because it requires a user to log in allow permission.
 - However, a hacker can fake a redirect URI and an authorization code especially on mobile device.
@@ -124,6 +125,7 @@ sequenceDiagram
   client ->> authorization_server: Send HTTP POST with an authorization code and code verify to request tokens.
   authorization_server ->> client: Verify the correctness of code verify, code challenge, authorization code clientID, redirectURI and send access token and refresh token back.
   client ->> resource_server: Save tokens and request an API to access a user's resources with an access token in HTTP header.
+  resource_server ->> client: Verify an access token and send response data back to a client
 
 ```
 # Authorization code flow with PKCE has some extra work as following
