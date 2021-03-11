@@ -1,11 +1,9 @@
-// 08:46
 require('dotenv').config();
 const { getSearchPlugins } = require('./src/utils/search');
 const configManager = require('./src/utils/config');
 const path = require('path');
 const emoji = require('./src/utils/emoji');
 const _ = require('lodash');
-const { truncate } = require('lodash');
 
 const config = configManager.read();
 configManager.generate(__dirname + '/.generated.config.js', config);
@@ -60,6 +58,18 @@ const plugins = [
     resolve: 'gatsby-plugin-mdx',
     options: {
       gatsbyRemarkPlugins: [
+        {
+          resolve: 'gatsby-remark-mermaid',
+          options: {
+            language: config.features.mermaid.language,
+            theme: config.features.mermaid.theme,
+            viewport: {
+              width: config.features.mermaid.width,
+              height: config.features.mermaid.height,
+            },
+            mermaidOptions: config.features.mermaid.options,
+          },
+        }, // End gatsby-remark-mermaid config
         {
           resolve: "gatsby-remark-images",
           options: {

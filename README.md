@@ -37,21 +37,24 @@ yarn start
 - Change some contents of `content/index.mdx` and you will find browser auto reload and show what you have changed.
 
 ## Road map
-- [ ] Migrate contents
-- [ ] .NET FAQ
+- [x] Migrate contents from .NET FAQ and Awesome .NET Thailand
 - [ ] .NET Road map from cheat sheet project
 - [ ] Useful libraries
 
 ## TODO
+- [x] Fix Chrome local and supporting Mermaid
+- [ ] Improve Mermaid text font
 - [ ] Missing Emoji :wave:
 - [ ] favicon
 - [ ] PWA
 - [ ] Ask to load a new content popup
 - [ ] Hover content header to show anchor like Markdown in GitHub
+- [ ] An image loss quality because it is get transformed
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
 - Markdown content inside component not show https://awsm.page/mdx/mdx-markdown-inside-a-react-component/
+- Fail
 
 ## Useful information
 - This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes

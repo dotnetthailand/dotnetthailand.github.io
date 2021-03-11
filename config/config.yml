@@ -73,8 +73,9 @@ features:
     type: github
     editable: true
   mermaid:
-    language: "mermaid"
-    theme: "dark"
+    language: mermaid
+    # Supported theme are "dark", "neutral", "forrest", or "default"
+    theme: default
     options:
     width: 400
     height: 300
