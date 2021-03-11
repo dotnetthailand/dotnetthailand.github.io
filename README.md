@@ -39,7 +39,7 @@ yarn start
 ## Road map
 - [ ] Migrate contents
 - [ ] .NET FAQ
-- [ ] .NET Road map
+- [ ] .NET Road map from cheat sheet project
 - [ ] Useful libraries
 
 ## TODO
@@ -47,7 +47,7 @@ yarn start
 - [ ] favicon
 - [ ] PWA
 - [ ] Ask to load a new content popup
-- [ ] 
+- [ ] Hover content header to show anchor like Markdown in GitHub
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
