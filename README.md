@@ -46,6 +46,8 @@ yarn start
 - [ ] Missing Emoji :wave:
 - [ ] favicon
 - [ ] PWA
+- [ ] Ask to load a new content popup
+- [ ] 
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file

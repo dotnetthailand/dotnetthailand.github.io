@@ -1,8 +1,8 @@
 {
-  "name": "BooGi",
-  "description": "Generate GitBook-like modern docs/tutorial websites using Gatsby",
-  "author": "Mateusz Filipowicz <matfilipowicz@gmail.com>",
-  "homepage": "https://boogi.netlify.app/",
+  "name": "dotnet-thailand",
+  "description": "An official website for .NET Thailand community",
+  "author": ".NET Thailand admin team",
+  "homepage": "https://www.dotnetthailand.com",
   "keywords": [
     "gatsby",
     "gatsby-starter",
@@ -15,6 +15,13 @@
     "static-site-generator"
   ],
   "version": "1.0.1",
+  "scripts": {
+    "start": "gatsby develop",
+    "build": "gatsby build --prefix-paths",
+    "clean": "gatsby clean",
+    "format": "prettier --ignore-path \".gitignore\" --write \"**/*.{js,jsx,css,json}\"",
+    "lint": "eslint --fix \"**/*.{js,jsx}\""
+  },
   "dependencies": {
     "@babel/plugin-proposal-export-default-from": "7.10.4",
     "@emotion/core": "10.0.34",
@@ -90,13 +97,6 @@
   },
   "license": "MIT",
   "main": "n/a",
-  "scripts": {
-    "start": "gatsby develop",
-    "build": "gatsby build --prefix-paths",
-    "clean": "gatsby clean",
-    "format": "prettier --ignore-path \".gitignore\" --write \"**/*.{js,jsx,css,json}\"",
-    "lint": "eslint --fix \"**/*.{js,jsx}\""
-  },
   "devDependencies": {
     "babel-eslint": "10.1.0",
     "eslint": "7.11.0",
