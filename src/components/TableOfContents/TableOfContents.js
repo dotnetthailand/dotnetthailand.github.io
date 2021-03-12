@@ -12,7 +12,6 @@ const Sidebar = styled.aside`
   background-color: ${(props) => props.theme.tableOfContents.background};
   display: ${(props) => props.show ? 'block' : 'none'};
   min-width: 260px;
-  height: 100vh;
   overflow: auto;
   padding: 50px 15px 0 5px;
   position: sticky;

@@ -22,9 +22,10 @@ const Wrapper = styled.div`
   overflow-wrap: anywhere;
   justify-content: space-between;
   position: relative;
+  min-height: calc(100vh - 77px);
 
   ${onMobile} {
-    min-height: 95vh;
+    min-height: calc(100vh - 61px);
   }
 `;
 
