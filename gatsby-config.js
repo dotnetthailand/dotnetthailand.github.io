@@ -79,7 +79,10 @@ const plugins = [
         },
         {
           resolve: 'gatsby-remark-copy-linked-files'
-        }
+        },
+      ],
+      remarkPlugins: [
+        require("remark-grid-tables"), // https://github.com/hennessyevan/gatsby-remark-grid-tables/issues/1#issuecomment-614870957
       ],
       extensions: [".mdx", ".md"]
     }

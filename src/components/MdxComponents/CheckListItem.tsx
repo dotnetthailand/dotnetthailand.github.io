@@ -1,5 +1,5 @@
 import React, { useState, FC } from 'react';
-import { MDXProvider } from "@mdx-js/react"
+import { MDXProvider } from '@mdx-js/react'
 
 // TODO use emotion object statyle
 //import styled from '@emotion/styled';
