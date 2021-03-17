@@ -64,7 +64,8 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors); // eslint-disable-line no-console
           reject(result.errors);
         }
-        actions.createPage({
+
+        createPage({
           path: `/404.html`,
           component: path.join(process.cwd(), 'src/pages/404.js'),
         });

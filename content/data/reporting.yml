@@ -1,0 +1,49 @@
+reports:
+  - name: FastReports
+    url: https://github.com/FastReports/FastReport
+    exportPDF: true
+    free: true
+    openSource: true
+    designerTool:
+
+  - name: Jasper Report Server
+    url: https://community.jaspersoft.com/project/jasperreports-server
+    exportPDF: true
+    free: true
+    openSource: true
+    designerTool: iReport Designer
+
+  - name: MaltReport
+    url: https://github.com/oldrev/maltreport
+    exportPDF: true
+    free: true
+    openSource: true
+    designerTool:
+
+  - name: SQL Server Reporting Services (SSRS)
+    url: https://docs.microsoft.com/en-us/sql/reporting-services/create-deploy-and-manage-mobile-and-paginated-reports?view=sql-server-ver15
+    exportPDF: true
+    free: false
+    openSource: false
+    designerTool: SQL Server Data Tools (SSDT)
+
+  - name: DevExpress XtraReports
+    url: https://docs.devexpress.com/XtraReports/119717/web-reporting/aspnet-core-reporting
+    exportPDF: true
+    free: false
+    openSource: false
+    designerTool:
+
+  - name: Telerik Report
+    url: https://docs.telerik.com/reporting/knowledge-base/adding-reporting-net-core-mvc
+    exportPDF: true
+    free: false
+    openSource: false
+    designerTool:
+
+  - name: Bold Reports
+    url: https://www.boldbi.com/
+    exportPDF: true
+    free: false
+    openSource: false
+    designerTool:
