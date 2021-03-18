@@ -14,7 +14,7 @@ showToc: true
 - Most workflow commands use the echo command in a specific format, while others are invoked by writing to a file.
 - Use in `jobs.<job_id>.steps[*].run`.
 
-# Setting an environment variables
+# Setting an environment variable
 - We can define environment variables at workflow level, job level and step level.
 - We can set environment variable with a workflow command in `jobs.<job_id>.steps[*].run` e.g.
 ```
@@ -76,19 +76,20 @@ jobs:
     if: github.repository == username/repository-name
 ```
 
-# Conditional set environment variable.
+# Conditional set environment variables
 - Useful for switching variables based on a current branch/environment
 - https://github.community/t/possible-to-use-conditional-in-the-env-section-of-a-job/135170/3
-
-# Use run a job based on a condition with if expression
-
-- https://github.blog/changelog/2019-10-01-github-actions-new-workflow-syntax-features/
 
 # Ternary workflow expression
 
 ```
 ${{ github.ref == env.MAIN_BRANCH && secrets.PRO_PUBLISH_PROFILE || secrets.DEV_PUBLISH_PROFILE }}
 ```
+
+# Run a job based on a condition with if expression
+
+- https://github.blog/changelog/2019-10-01-github-actions-new-workflow-syntax-features/
+
 
 # Find more virtual environments
 - Use as value of ``
