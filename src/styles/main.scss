@@ -9,7 +9,7 @@
 
 html,
 body {
-  font-family: -apple-system, BlinkMacSystemFont,  'Roboto', 'Roboto Light', 'Segoe UI','Oxygen',
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto', 'Roboto Light', 'Segoe UI', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   font-size: 16px;
@@ -100,4 +100,38 @@ img {
   font-style: italic;
   margin-top: 5px;
   font-size: 14px;
+}
+
+// Use of RS CSS naming convention
+.comparison-table {
+  display: block; // So important to make scroll-x work and parent to have width
+  width: 100%;
+  overflow-x: auto;
+
+  // tr {
+  //   width: 100%;
+  //   display: flex;
+  //   flex-direction: row;
+  //   flex-grow: 1;
+  //   justify-content: stretch;
+  // }
+
+  th {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  td,
+  th {
+    padding: 5px;
+    min-width: 100px;
+  }
+}
+
+._center {
+  text-align: center;
+}
+
+._no-wrap {
+  white-space: nowrap;
 }

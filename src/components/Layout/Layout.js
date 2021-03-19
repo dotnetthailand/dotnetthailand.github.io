@@ -29,7 +29,9 @@ const Wrapper = styled.div`
   }
 `;
 
+// We add width 100% to make horizontal scroll of responsive table
 const Content = styled('main')`
+  width: 100%;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
