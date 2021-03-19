@@ -104,17 +104,8 @@ img {
 
 // Use of RS CSS naming convention
 .comparison-table {
-  display: block; // So important to make scroll-x work and parent to have width
+  // We can't use display block because it make tr not fit 100% https://stackoverflow.com/a/36606652/1872200
   width: 100%;
-  overflow-x: auto;
-
-  // tr {
-  //   width: 100%;
-  //   display: flex;
-  //   flex-direction: row;
-  //   flex-grow: 1;
-  //   justify-content: stretch;
-  // }
 
   th {
     text-align: center;
@@ -125,6 +116,33 @@ img {
   th {
     padding: 5px;
     min-width: 100px;
+  }
+
+  @media only screen and (max-width: 576px) {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border: 1px solid #fff;
+    }
+
+    td {
+      // text-align: left;
+      // min-width:auto;
+      white-space: pre-wrap;
+      display: flex;
+    }
+
+    td:before {
+      content: attr(data-column);
+      flex-basis: 170px;
+      flex-shrink: 0;
+      text-align: left;
+    }
   }
 }
 
