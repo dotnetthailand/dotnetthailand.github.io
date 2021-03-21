@@ -14,3 +14,6 @@ showToc: true
 - [LearnTo Think Algorithm](https://learnalgorithm.com/) โดย The Chun
   คอร์สเรียนที่จะพาคุณไปพัฒนาฝีมือด้าน Problem Solving ผ่านเนื้อหา Data Structure & Algorithm ตลอด 21วันเต็ม เพื่อให้คุณเป็นนักพัฒนาและนักแก้ปัญหาที่เก่งมากขึ้น
 - [Grokking Algorithms Video Edition](https://learning.oreilly.com/videos/grokking-algorithms-video/9781617292231VE)
+- [วิดีโอการทำ Leetcode](https://www.youtube.com/playlist?list=PLm3A9eDaMzum0utChSxo2mei2KGVaHAOm) โดย Thanaphoom Babparn
+มีทั้งหมด 78 วิดีโอ เน้น Java code เป็นหลัก ความยากในระดับ Easy และ Medium
+

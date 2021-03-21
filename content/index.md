@@ -1,8 +1,7 @@
 ---
-title: 'About .NET Thailand'
+title: About .NET Thailand
 showMetadata: false
 editable: true
-showToc: false
 ---
 
 .NET Thailand (https://www.dotnetthailand.com) เป็น website ที่เกิดขึ้นจากการรวบรวม FAQ คำถามที่ถามบ่อยๆ
