@@ -1,7 +1,7 @@
 ---
 title: 'About .NET Thailand'
 showMetadata: false
-editable: false
+editable: true
 showToc: false
 ---
 
@@ -14,7 +14,7 @@ showToc: false
 
 ทีมงาน admin กลุ่ม .NET Thailand
 
-### ❗ การเปิดอ่านเนื้อหาในโทรศัพท์มือถือ
+## ❗ การเปิดอ่านเนื้อหาในโทรศัพท์มือถือ
 
 1. เลือกเมนู (Hamburger button) ที่อยู่มุมบนขวาของจอ
 2. หน้าต่างเมนูหลักก็จะแสดงขึ้นมา จากนั้นเราก็สามารถคลิกเลือกดูเมนูย่อยและเนื้อหาอื่นๆ ได้ตามต้องการ

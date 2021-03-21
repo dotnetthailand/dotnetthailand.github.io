@@ -29,18 +29,22 @@ sidebar:
   #   - "/introduction"
   #   - "/configuration/basic"
   #   - "/configuration/advanced"
-  # expanded:
+  expanded: false
+
   # Table of content
   groups:
     - order: 0
-      path: "/faq"
+      path: /faq
       # https://emojipedia.org/github/
       title: ":question: .NET FAQ"
 
     - order: 1
-      path: "/programming-cookbook"
-      # https://emojipedia.org/github/
+      path: /programming-cookbook
       title: ":blue_book: Programming cookbook"
+
+    - order: 2
+      path: /web-frameworks
+      title: ":globe_with_meridians: Web Frameworks"
 
   links:
     - text: .NET Thailand
