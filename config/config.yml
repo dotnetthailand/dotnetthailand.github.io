@@ -44,7 +44,11 @@ sidebar:
 
     - order: 2
       path: /web-frameworks
-      title: ":globe_with_meridians: Web Frameworks"
+      title: ":fire: Web Frameworks"
+
+    - order: 3
+      path: /cloud-hosting
+      title: ":globe_with_meridians: Cloud & Hosting"
 
   links:
     - text: .NET Thailand
