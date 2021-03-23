@@ -43,17 +43,21 @@ yarn start
 
 ## TODO
 - [x] Fix Chrome local and supporting Mermaid
-- [ ] Improve Mermaid text font
-- [ ] Missing Emoji :wave:
-- [ ] favicon
+- [ ] Improve Mermaid too small font and hard to read on a mobile phone
+- [ ] Missing Emoji in a content :wave:
+- [ ] favicon of .NET Thailand
 - [ ] PWA
-- [ ] Ask to load a new content popup
-- [ ] Hover content header to show anchor like Markdown in GitHub
+- [ ] Disable ask to load a new content popup, implicit load new content
+- [ ] Hover content header to show anchor like Markdown in GitHu and
+- [ ] Broken table of content in a Makrdown page
 - [ ] An image loss quality because it is get transformed
+- [ ] Caching issue when disable JavaScript and the website not load in a browser
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
 - Markdown content inside component not show https://awsm.page/mdx/mdx-markdown-inside-a-react-component/
+- Failed to launch the browser process: error while loading shared libraries: libnss3.so: No such file or directory.
+  Follow the steps in the following link. https://github.com/alixaxel/chrome-aws-lambda/issues/164#issuecomment-754621407
 
 
 ## How to create a custom React component and use it in .mdx file
