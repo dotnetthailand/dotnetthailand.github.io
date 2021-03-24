@@ -1,5 +1,5 @@
 ---
-title: Debugging in Visual Studio
+title: Chrome DevTools
 showMetadata: true
 editable: true
 showToc: true
