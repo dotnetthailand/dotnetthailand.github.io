@@ -47,6 +47,10 @@ sidebar:
       title: ":fire: Web Frameworks"
 
     - order: 3
+      path: /databases
+      title: ":floppy_disk: databases"
+
+    - order: 4
       path: /cloud-hosting
       title: ":globe_with_meridians: Cloud & Hosting"
 
