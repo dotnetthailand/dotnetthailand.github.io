@@ -1,5 +1,7 @@
 ---
 title: Libraries & Frameworks
+showMetadata: true
+editable: true
 ---
 
 List of suggested .NET libraries & frameworks. Inspired by [Awesome .NET](https://github.com/quozd/awesome-dotnet)

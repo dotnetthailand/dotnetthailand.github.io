@@ -1,6 +1,8 @@
 ---
 title: Docker
-tocDepth: 1
+showMetadata: true
+editable: true
+
 ---
 
 ## Collection of FAQ about Docker

@@ -1,6 +1,8 @@
 ---
 title: Fundamental
-tocDepth: 1
+showMetadata: true
+editable: true
+
 ---
 
 ## Collection of FAQ in fundamental areas of .NET
