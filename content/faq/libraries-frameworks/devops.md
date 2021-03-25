@@ -58,7 +58,7 @@ showToc: true
 
 #### On-Cloud
 
-  - [Azure DevOps Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops) On-Cloud
+  - [Azure DevOps Pipelines](https://docs.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops) and [Template](https://github.com/microsoft/azure-pipelines-yaml) On-Cloud
   - [Git Actions](https://docs.github.com/en/actions) On-Cloud
   - [Travis CI](https://docs.travis-ci.com/) On-Cloud
   - [Circle CI](https://circleci.com/docs/) On-Cloud
