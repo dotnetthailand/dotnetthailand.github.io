@@ -9,11 +9,11 @@ showToc: true
 รวม shared web hosting สำหรับ ASP.NET CORE MVC (.NET Core 3.1)
 ราคาถูก ช่วงราคา 5-10 USD ต่อเดือน ราคารวม SQL Server database
 
-- https://www.asphostportal.com/Windows-Cloud-Hosting-Plans (มี SG data center)
-- https://www.smarterasp.net/
-- https://www.accuwebhosting.com/web-hosting/windows-web-hosting/classic-servers
-- https://www.interserver.net/webhosting/windows-hosting.html
-- https://www.hostgator.com/windows-hosting/shared-compare
+- https://www.smarterasp.net/ : [4.8 ⭐ on Trustpilot](https://www.trustpilot.com/review/smarterasp.net)
+- https://www.accuwebhosting.com/web-hosting/windows-web-hosting/classic-servers : [4.3 ⭐ on Trustpilot](https://www.trustpilot.com/review/www.accuwebhosting.com)
+- https://www.interserver.net/webhosting/windows-hosting.html : [4.8 ⭐ on Trustpilot](https://www.trustpilot.com/review/interserver.net)
+- https://www.asphostportal.com/Windows-Cloud-Hosting-Plans (มี SG data center) : [2.6 ⭐ on Trustpilot](https://www.trustpilot.com/review/asphostportal.com)
+- https://www.hostgator.com/windows-hosting/shared-compare : [3.3 ⭐ on Trustpilot](https://www.trustpilot.com/review/hostgator.com)
 
 ## Reference
 - https://dottutorials.net/best-fast-cheap-windows-hosting-asp-net-core/
