@@ -4,6 +4,6 @@ showMetadata: true
 editable: true
 ---
 
-## Collection of FAQ about debugging
+# Collection of FAQ about debugging
 - Debugging in VS Code
 - Debugging in Visual Studio

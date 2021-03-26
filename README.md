@@ -52,6 +52,8 @@ yarn start
 - [ ] Broken table of content in a Makrdown page
 - [ ] An image loss quality because it is get transformed
 - [ ] Caching issue when disable JavaScript and the website not load in a browser
+- [ ] The first toggled item cannot be collapsed.
+- [ ] Add Facebook Comments Plugin to all content pages
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
