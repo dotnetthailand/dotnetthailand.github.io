@@ -3,7 +3,7 @@ title: Markdown
 showMetadata: true
 editable: true
 showToc: true
-order: 6
+order: 5
 ---
 
 # Syntax highlighting

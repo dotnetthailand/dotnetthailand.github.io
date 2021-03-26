@@ -3,7 +3,7 @@ title: Git Cookbook
 showMetadata: true
 editable: true
 showToc: true
-order: 3
+order: 2
 ---
 
 # To untrack all files that already added to a repository and then add to .gitignore later.
