@@ -1,15 +1,13 @@
 import React from 'react';
-import report from '../../../content/data/reporting.yml'
 import styled from '@emotion/styled';
-
 
 const Wrapper = styled.div`
   overflow-x: auto;
   width: 100%;
   `;
 
-const ReportingComparisonTable = () => {
-
+const FeatureAsColumnComparisonTable = ({ reports }) => {
+  console.dir(reports);
   return (
     <Wrapper>
       <table className='comparison-table'>
@@ -24,7 +22,7 @@ const ReportingComparisonTable = () => {
           </tr>
         </thead>
         <tbody>
-          {report.reports.map((report, index) =>
+          {reports.map((report, index) =>
             <tr key={`report_index_${index}`}>
               <td data-column='Report name' className='_no-wrap'>{report.name}</td>
               <td data-column='URL' className='_center'>
@@ -44,4 +42,4 @@ const ReportingComparisonTable = () => {
   )
 };
 
-export default ReportingComparisonTable;
+export default FeatureAsColumnComparisonTable;

@@ -5,18 +5,20 @@ editable: true
 showToc: true
 ---
 
-# จะใช้ Report อะไรดี
+import { reportData } from '../../../src/components/StaticData'
 
-<ReportingComparisonTable></ReportingComparisonTable>
+# จะใช้ Report อะไรดี
+<FeatureAsColumnComparisonTable reports={reportData()}></FeatureAsColumnComparisonTable>
 
 # PDF libraries
+
 - [ITextSharp](https://github.com/itext/itextsharp) Free only for open source project
 - [WkHtmlToPdf](https://github.com/codaxy/wkhtmltopdf) C# wrapper utility around wkhtmltopdf console tool
 
 # Intertesting topics
+
 - [Host Jasper Report in ASP.NET (.NET Framework)](https://github.com/codesanook/Codesanook.Examples/blob/master/Codesanook.Examples.AspNetMvc/Controllers/ReportController.cs) PoC project that host Java Jasper in ASP.NET MVC (.NET Framework) project
 - .NET Core สามารถใช้งาน Crystal Report ในการ export PDF ได้ไหมครับ หรือใช้ได้แค่เฉพาะ .NET Framework?
   - ใช้ Crystal Report กับ .NET Core ไม่ได้ครับ
   - [Is it possible to display Crystal Report in ASP.Net Core Application](https://forums.asp.net/post/6236009.aspx)
   - [SAP Crystal Reports 2016 Supported Platforms (PAM)](https://www.sap.com/documents/2016/04/3050374d-6a7c-0010-82c7-eda71af511fa.html)
-

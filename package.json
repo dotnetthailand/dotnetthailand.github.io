@@ -72,6 +72,7 @@
     "gatsby-transformer-gitinfo": "1.1.0",
     "gatsby-transformer-remark": "2.8.28",
     "gatsby-transformer-sharp": "2.5.13",
+    "gatsby-transformer-yaml": "^3.1.0",
     "is-absolute-url": "3.0.3",
     "lodash": "4.17.20",
     "lodash.flatten": "4.4.0",

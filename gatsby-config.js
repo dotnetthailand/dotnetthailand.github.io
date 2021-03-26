@@ -115,6 +115,10 @@ const plugins = [
       stripQueryString: true,
     },
   },
+  {
+    // https://www.gatsbyjs.com/plugins/gatsby-transformer-yaml/
+    resolve: `gatsby-transformer-yaml`,
+  },
 ];
 
 if (config.features.pageProgress && config.features.pageProgress.enabled) {
