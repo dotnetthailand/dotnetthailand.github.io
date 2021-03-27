@@ -1,9 +1,9 @@
 import React, { useState, FC } from 'react';
 import { MDXProvider } from '@mdx-js/react'
 
-// TODO use emotion object statyle
-//import styled from '@emotion/styled';
-//import { css } from '@emotion/core';
+// TODO use emotion object style
+// import styled from '@emotion/styled';
+// import { css } from '@emotion/core';
 
 const CheckListItem: FC = (props) => {
 

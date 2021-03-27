@@ -54,6 +54,8 @@ yarn start
 - [ ] Caching issue when disable JavaScript and the website not load in a browser
 - [ ] The first toggled item cannot be collapsed.
 - [ ] Add Facebook Comments Plugin to all content pages
+- [ ] Enable search
+- [ ] Remove only first 100 contributors.
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file

@@ -17,6 +17,7 @@ import { useTheme } from 'emotion-theming';
 import emoji from '../../utils/emoji';
 import CheckListItem from './CheckListItem';
 import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
+import Contributors from './Contributors';
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -93,5 +94,6 @@ export default {
   DownloadCard,
   CheckListItem,
   FeatureAsColumnComparisonTable,
+  Contributors,
   ...Highlights,
 };

@@ -2,6 +2,8 @@ const path = require('path');
 const startCase = require('lodash.startcase');
 const chokidar = require(`chokidar`);
 const { touch } = require('./src/utils/fileUtils');
+const axios = require('axios');
+
 
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
@@ -141,4 +143,50 @@ exports.onPreBootstrap = () => {
   watcher.on(`change`, () => {
     touch('./gatsby-config.js');
   });
+};
+
+
+exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
+  const { createNode } = actions;
+  // fetch raw data
+  const fetchContributors = () => axios.get(
+    'https://api.github.com/repos/dotnetthailand/dotnetthailand.github.io/contributors?page=1&per_page=100',
+    {
+      headers: {
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    }
+  );
+
+  // await for results
+  const res = await fetchContributors();
+
+  // map into these results and create nodes
+  res.data.map((contributor) => {
+    // Create your node object
+    const userNode = {
+      // Required fields
+      id: createNodeId(`contributor-${contributor.id}`),
+      parent: null,
+      children: [],
+      internal: {
+        type: `Contributor`, // name of the graphQL query --> allRandomUser {}
+        // contentDigest will be added just after
+        // but it is required
+        contentDigest: createContentDigest(contributor),
+      },
+
+      // Other fields that you want to query with graphQl
+      login: contributor.login,
+      avatar_url: contributor.avatar_url,
+      contributions: contributor.contributions,
+      html_url: contributor.html_url
+    }
+
+    // Create node with the gatsby createNode() API
+    createNode(userNode);
+  });
+
+
+  return;
 };
