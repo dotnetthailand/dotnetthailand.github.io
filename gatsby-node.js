@@ -4,7 +4,6 @@ const chokidar = require(`chokidar`);
 const { touch } = require('./src/utils/fileUtils');
 const axios = require('axios');
 
-
 exports.createSchemaCustomization = ({ actions }) => {
   const { createTypes } = actions;
 
@@ -145,7 +144,6 @@ exports.onPreBootstrap = () => {
   });
 };
 
-
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
   const { createNode } = actions;
   // fetch raw data
@@ -161,18 +159,16 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
   // await for results
   const res = await fetchContributors();
 
-  // map into these results and create nodes
+  // Map return result and create nodes
   res.data.map((contributor) => {
-    // Create your node object
+    // Create a node object
     const userNode = {
       // Required fields
       id: createNodeId(`contributor-${contributor.id}`),
       parent: null,
       children: [],
       internal: {
-        type: `Contributor`, // name of the graphQL query --> allRandomUser {}
-        // contentDigest will be added just after
-        // but it is required
+        type: `Contributor`, // name of the graphQL query --> allContributor
         contentDigest: createContentDigest(contributor),
       },
 
@@ -186,7 +182,6 @@ exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => 
     // Create node with the gatsby createNode() API
     createNode(userNode);
   });
-
 
   return;
 };

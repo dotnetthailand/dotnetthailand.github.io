@@ -35,7 +35,8 @@ const Contributors = () => {
     <div css={style}>
       { contributors.map(contributor => {
         return (
-          <a key={contributor.id} href={contributor.html_url}>
+          // eslint-disable-next-line react/jsx-no-target-blank
+          <a key={contributor.id} href={contributor.html_url} target='_blank'>
             <img alt={contributor.login} src={contributor.avatar_url} />
             <span>{contributor.login}</span>
           </a>
