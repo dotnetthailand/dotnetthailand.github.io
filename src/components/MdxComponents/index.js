@@ -18,6 +18,7 @@ import emoji from '../../utils/emoji';
 import CheckListItem from './CheckListItem';
 import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
 import Contributors from './Contributors';
+import AlliedWebsites from './AlliedWebsites';
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -95,5 +96,6 @@ export default {
   CheckListItem,
   FeatureAsColumnComparisonTable,
   Contributors,
+  AlliedWebsites,
   ...Highlights,
 };

@@ -1,0 +1,18 @@
+- name: Codesanook
+  url: https://www.codesanook.com
+  # https://stackoverflow.com/a/21699210/1872200
+  about: >-
+    codesanook.com "โค้ดสนุก" สังคมแห่งการเรียนรู้
+    และแบ่งปันความรู้ด้าน programming/coding
+    สังคมที่ต้องการสร้างแนวคิดที่ว่า "programming/coding ไม่ใช่เรื่องยาก แต่เป็นเรื่องที่สนุก"
+    เช่นเดียวกับคำว่า "codesanook สนุกไปกับการเขียนโค้ด"
+
+- name: SEEDWEBS
+  url: https://seedwebs.com/
+  about: ให้บริการเว็บพร้อมใช้ ปรับแต่งได้อิสระ
+
+- name: ASST. PROF. THANNOB ARIBARG
+  url: http://www.thannob.com/
+  about: >-
+    Personal blog of ASST. PROF. Thannob Aribarg, the lecturer in computer science at
+    the College of Digital Innovation and Information Technology (DIIT), Rangsit University.
