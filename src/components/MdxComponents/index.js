@@ -19,6 +19,7 @@ import CheckListItem from './CheckListItem';
 import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
 import Contributors from './Contributors';
 import AlliedWebsites from './AlliedWebsites';
+import FeatureAsRowComparisonTable from './FeatureAsRowComparisonTable';
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -97,5 +98,6 @@ export default {
   FeatureAsColumnComparisonTable,
   Contributors,
   AlliedWebsites,
+  FeatureAsRowComparisonTable,
   ...Highlights,
 };

@@ -5,10 +5,11 @@ editable: true
 showToc: true
 ---
 
-import { reportData } from '../../../src/components/StaticData'
+import { reportData } from '../../../src/components/StaticData';
 
 # จะใช้ Report อะไรดี
-<FeatureAsColumnComparisonTable reports={reportData()}></FeatureAsColumnComparisonTable>
+
+<FeatureAsColumnComparisonTable data={reportData()} />
 
 # PDF libraries
 

@@ -1,10 +1,12 @@
 import { useStaticQuery, graphql } from 'gatsby';
+
 // https://www.gatsbyjs.cn/docs/use-static-query/#composing-custom-usestaticquery-hooks
 const reportData = () => {
   const { allReportingYaml } = useStaticQuery(graphql`
-    query queryReports {
+    query queryReportYAML {
       allReportingYaml {
         nodes {
+          id
           name
           openSource
           designerTool
@@ -19,4 +21,4 @@ const reportData = () => {
   return allReportingYaml.nodes;
 };
 
-export { reportData };
+export default reportData;

@@ -1,0 +1,11 @@
+- feature: Number of concurrent jobs for a private project
+  actions: |
+    For free plan, 20 concurrent jobs
+    https://docs.github.com/en/actions/reference/usage-limits-billing-and-administration#usage-limits
+  pipelines: |
+    only one job, not support concurrent (Microsoft hosted, private repo, free option)
+    https://docs.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-much-do-parallel-jobs-cost
+
+- feature: Maximum time for each job
+  actions: 6 hours for each job and 72 hours for each workflow
+  pipelines: 1 hour

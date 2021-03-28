@@ -6,8 +6,7 @@ const Wrapper = styled.div`
   width: 100%;
   `;
 
-const FeatureAsColumnComparisonTable = ({ reports }) => {
-  console.dir(reports);
+const FeatureAsColumnComparisonTable = ({ data }) => {
   return (
     <Wrapper>
       <table className='comparison-table'>
@@ -22,7 +21,7 @@ const FeatureAsColumnComparisonTable = ({ reports }) => {
           </tr>
         </thead>
         <tbody>
-          {reports.map((report, index) =>
+          {data.map((report, index) =>
             <tr key={`report_index_${index}`}>
               <td data-column='Report name' className='_no-wrap'>{report.name}</td>
               <td data-column='URL' className='_center'>
