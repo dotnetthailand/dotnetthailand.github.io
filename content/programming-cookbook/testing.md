@@ -1,6 +1,8 @@
 ---
 title: Testing
+showMetadata: true
 editable: true
+showToc: true
 order: 6
 ---
 
@@ -10,3 +12,5 @@ order: 6
 - PlaywrightSharp
 - Spock
 - xUnit
+
+# Basic of unit test that can apply to all frameworks

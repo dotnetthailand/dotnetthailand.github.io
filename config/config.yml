@@ -54,6 +54,10 @@ sidebar:
       path: /cloud-hosting
       title: ":globe_with_meridians: Cloud & Hosting"
 
+    - order: 5
+      path: /to-other-languages
+      title: ":bicyclist: To other languages"
+
   links:
     - text: .NET Thailand
       link: https://www.facebook.com/groups/dotnetthailand
