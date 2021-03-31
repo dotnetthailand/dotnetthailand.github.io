@@ -80,6 +80,7 @@ export const pre = css`
 
 export const anchor = (theme) => css`
   transition: color 0.15s;
+  word-wrap: break-word;
   color: ${theme.colors.primary};
   &:hover {
     color: ${theme.colors.primaryDark};
