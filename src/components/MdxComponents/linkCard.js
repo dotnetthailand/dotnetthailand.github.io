@@ -21,6 +21,7 @@ const LinkPath = styled.div`
   font-size: 9pt;
   padding-left: 16px;
   text-align: right;
+  overflow-wrap: break-word;
 `;
 
 const Title = styled.div`
