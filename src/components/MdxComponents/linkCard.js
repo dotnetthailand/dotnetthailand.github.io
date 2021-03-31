@@ -19,9 +19,9 @@ const LinkCard = styled(Card)`
 const LinkPath = styled.div`
   color: ${(props) => decreaseIntensivity(props.theme.colors.fontLight, 0.25)};
   font-size: 9pt;
-  word-wrap: break-word;
   padding-left: 16px;
   text-align: right;
+  overflow-wrap: break-word;
 `;
 
 const Title = styled.div`
