@@ -55,9 +55,13 @@ jobs:
           yarn run test
 ```
 
+## Result in GitHub PR checks
+
+![Result in GitHub PR checks](images/result-in-github-pr-checks.jpg)
+
+# Run xUnit unit test
+Coming soon
+
 ## Useful links
 - https://github.blog/2020-08-03-github-actions-improvements-for-fork-and-pull-request-workflows/
 - https://github.community/t/will-github-actions-support-pull-request-events-from-a-fork-to-a-private-base-repository/17471/56
-
-
-# Run xUnit unit test

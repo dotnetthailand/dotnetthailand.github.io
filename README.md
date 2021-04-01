@@ -55,7 +55,8 @@ yarn start
 - [ ] The first toggled item cannot be collapsed.
 - [ ] Add Facebook Comments Plugin to all content pages
 - [ ] Enable search
-- [ ] Remove only first 100 contributors.
+- [ ] Remove limit only first 100 contributors, use pagination.
+- [ ] Add Jest unit test and GitHub workflow
 
 ## Trouble shooting
 - 404 after deployment, you may miss CNAME file
@@ -65,8 +66,7 @@ yarn start
 
 
 ## How to create a custom React component and use it in .mdx file
--
-
+- TODO
 
 ## Useful information
 - This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes
