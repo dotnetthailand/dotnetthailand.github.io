@@ -98,8 +98,7 @@ ${{ github.ref == env.MAIN_BRANCH && secrets.PRO_PUBLISH_PROFILE || secrets.DEV_
 
 # Find more virtual environments
 
-- Use as value of ``
-  https://github.com/actions/virtual-environments
+- https://github.com/actions/virtual-environments
 
 # An action
 
@@ -146,4 +145,33 @@ jobs:
     if: ${{needs.prejob.outputs.envvalue=='false'}} # check env value in job level expression now.
     runs-on: [ubuntu-latest]
     steps:
+```
+
+# You can use a step's name with step's uses
+- https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
+
+# Specific branch name pattern to trigger an action
+
+- Match on a specific branch
+```yaml
+on:
+  push:
+    branches:
+      - '*'         # matches every branch that doesn't contain a '/'
+      - '*/*'       # matches every branch containing a single '/'
+      - '**'        # matches every branch
+      - '!master'   # excludes master
+```
+
+- Match all branches
+```yaml
+on: push
+on: [push, pull_request]
+```
+- Ignore branches
+```yaml
+on:
+  push:
+    branches-ignore:
+      - master
 ```
