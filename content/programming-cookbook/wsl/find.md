@@ -1,5 +1,5 @@
 ---
-title: Install .NET on WSL2
+title: find command
 showMetadata: true
 editable: true
 showToc: true
