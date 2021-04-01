@@ -18,7 +18,7 @@ import emoji from '../../utils/emoji';
 import CheckListItem from './CheckListItem';
 import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
 import Contributors from './Contributors';
-import AlliedWebsites from './AlliedWebsites';
+import FriendsWebsites from './FriendsWebsites';
 import FeatureAsRowComparisonTable from './FeatureAsRowComparisonTable';
 
 const idFromHeader = (props) => {
@@ -97,7 +97,7 @@ export default {
   CheckListItem,
   FeatureAsColumnComparisonTable,
   Contributors,
-  AlliedWebsites,
+  FriendsWebsites,
   FeatureAsRowComparisonTable,
   ...Highlights,
 };

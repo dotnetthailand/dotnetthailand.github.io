@@ -6,6 +6,8 @@ showToc: true
 order: 2
 ---
 
+*Friend of .NET Thailand*
+
 <Info>Sorted by name alphabetically</Info>
 
-<AlliedWebsites />
+<FriendsWebsites />

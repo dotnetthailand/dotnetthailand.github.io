@@ -14,14 +14,14 @@ header:
   logoLink: "/"
   helpUrl: ""
   links:
-    - text: .NET Thailand community
+    - text: Home
+      link: "/"
+      external: false
+    - text: .NET Thailand group
       link: https://www.facebook.com/groups/dotnetthailand
       external: true
-    - text: Gatsby
-      link: https://www.gatsbyjs.org
-      external: true
-    - text: Docs
-      link: "/"
+    - text: Credit to our contributors
+      link: "/credit"
       external: false
 sidebar:
   enabled: true

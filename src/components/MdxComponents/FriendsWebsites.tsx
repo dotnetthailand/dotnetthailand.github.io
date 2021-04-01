@@ -9,14 +9,13 @@ const style = css`
   h1{
     font-size: 1em;
   }
-
 `;
 
-const AlliedWebsites = () => {
+const FriendsWebsites = () => {
 
-  const { allAlliedWebsitesYaml } = useStaticQuery(graphql`
-    query queryAlliedWebsites {
-      allAlliedWebsitesYaml(sort: {fields: name, order: ASC}) {
+  const { allFriendsWebsitesYaml } = useStaticQuery(graphql`
+    query queryFriendsWebsites {
+      allFriendsWebsitesYaml(sort: {fields: name, order: ASC}) {
         nodes {
           name
           url
@@ -28,10 +27,10 @@ const AlliedWebsites = () => {
     }
   `);
 
-  const alliedWebsites = allAlliedWebsitesYaml.nodes;
+  const friendsWebsites = allFriendsWebsitesYaml.nodes;
   return (
     <div>
-      { alliedWebsites.map(website => {
+      { friendsWebsites.map(website => {
         return (
           <div key={website.id} css={style} >
             <h1>{website.name}</h1>
@@ -47,4 +46,4 @@ const AlliedWebsites = () => {
   )
 };
 
-export default AlliedWebsites;
+export default FriendsWebsites;
