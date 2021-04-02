@@ -10,7 +10,7 @@
 - name: SEEDWEBS
   url: https://seedwebs.com/
   about: ให้บริการเว็บพร้อมใช้ ปรับแต่งได้อิสระ
-  
+
 - name: KubeOps Skills
   url: https://www.kubeops.guru
   about: We are Cloud Native Developer Experts highly specialized in container technology and site reliability engineering.
@@ -20,3 +20,11 @@
   about: >-
     Personal blog of ASST. PROF. Thannob Aribarg, the lecturer in computer science at
     the College of Digital Innovation and Information Technology (DIIT), Rangsit University.
+
+- name: ลุงวิศวกร สอนคำนวณ - Uncle Engineer
+  url: https://www.uncle-engineer.com/
+  about: Practical engineering skills in daily life
+
+- name: Will Fuqua
+  url: https://fuqua.io/blog/
+  about: Personal blog of Will Fuqua, Head of Engineering at Jetabroad.
