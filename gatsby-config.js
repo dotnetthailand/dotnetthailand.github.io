@@ -71,6 +71,12 @@ const plugins = [
           },
         }, // End gatsby-remark-mermaid config
         {
+          resolve: require.resolve(`./plugins/gatsby-remark-sectionize-toc`),
+          options: {
+            maxDepth: config.features.toc.depth,
+          },
+        },
+        {
           resolve: "gatsby-remark-images",
           options: {
             maxWidth: 1035,
