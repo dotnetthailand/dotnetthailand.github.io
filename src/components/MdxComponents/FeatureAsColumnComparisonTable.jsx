@@ -3,13 +3,54 @@ import styled from '@emotion/styled';
 
 const Wrapper = styled.div`
   overflow-x: auto;
-  width: 100%;
   `;
+
+const ComparisonTable = styled.div`
+  // Use of RS CSS naming convention
+  // We can't use display block because it make tr not fit 100% https://stackoverflow.com/a/36606652/1872200
+  width: 100%;
+
+  th {
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  td,
+  th {
+    padding: 5px;
+    min-width: 100px;
+  }
+
+  @media only screen and (max-width: 576px) {
+    thead {
+      display: none;
+    }
+
+    tr {
+      display: flex;
+      flex-direction: column;
+      margin: 10px;
+      border: 1px solid #fff;
+    }
+
+    td {
+      white-space: pre-wrap;
+      display: flex;
+    }
+
+    td:before {
+      content: attr(data-column);
+      flex-basis: 170px;
+      flex-shrink: 0;
+      text-align: left;
+    }
+  }
+`;
 
 const FeatureAsColumnComparisonTable = ({ data }) => {
   return (
     <Wrapper>
-      <table className='comparison-table'>
+      <ComparisonTable>
         <thead>
           <tr>
             <th>Report name</th>
@@ -36,7 +77,7 @@ const FeatureAsColumnComparisonTable = ({ data }) => {
             </tr>
           )}
         </tbody>
-      </table>
+      </ComparisonTable>
     </Wrapper>
   )
 };

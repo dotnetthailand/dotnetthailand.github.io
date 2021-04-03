@@ -102,50 +102,6 @@ img {
   font-size: 14px;
 }
 
-// Use of RS CSS naming convention
-.comparison-table {
-  // We can't use display block because it make tr not fit 100% https://stackoverflow.com/a/36606652/1872200
-  width: 100%;
-
-  th {
-    text-align: center;
-    white-space: nowrap;
-  }
-
-  td,
-  th {
-    padding: 5px;
-    min-width: 100px;
-  }
-
-  @media only screen and (max-width: 576px) {
-    thead {
-      display: none;
-    }
-
-    tr {
-      display: flex;
-      flex-direction: column;
-      margin: 10px;
-      border: 1px solid #fff;
-    }
-
-    td {
-      // text-align: left;
-      // min-width:auto;
-      white-space: pre-wrap;
-      display: flex;
-    }
-
-    td:before {
-      content: attr(data-column);
-      flex-basis: 170px;
-      flex-shrink: 0;
-      text-align: left;
-    }
-  }
-}
-
 ._center {
   text-align: center;
 }

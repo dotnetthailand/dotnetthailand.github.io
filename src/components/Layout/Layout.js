@@ -29,9 +29,9 @@ const Wrapper = styled.div`
   }
 `;
 
-// We add width 100% to make horizontal scroll of responsive table
+// We add min-width 1% to make flex-item not expand if it's child content wider than available space
 const Content = styled('main')`
-  width: 100%;
+  min-width: 1%;
   display: flex;
   flex-grow: 1;
   flex-direction: column;
