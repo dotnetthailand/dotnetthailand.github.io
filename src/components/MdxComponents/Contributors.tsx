@@ -8,12 +8,18 @@ const style = css`
   flex-wrap: wrap;
 
   a {
-    width: 100px;
-    text-align: center;
-    margin: 5px;
+    display: flex;
+    align-items: center;
+    width: 250px;
+    padding: 16px;
 
     & > img {
       border-radius: 50%;
+    }
+
+    & > span {
+      text-align: left;
+      padding-left: 8px;
     }
   }
 `;
@@ -41,7 +47,12 @@ const Contributors = () => {
         return (
           // eslint-disable-next-line react/jsx-no-target-blank
           <a key={contributor.id} href={contributor.html_url} target='_blank'>
-            <img alt={contributor.login} src={contributor.avatar_url} />
+            <img
+              alt={contributor.login}
+              src={contributor.avatar_url}
+              width="100px"
+              height="100px"
+            />
             <span>{contributor.login}</span>
           </a>
         );
