@@ -11,6 +11,10 @@ const style = css`
     width: 100px;
     text-align: center;
     margin: 5px;
+
+    & > img {
+      border-radius: 50%;
+    }
   }
 `;
 
