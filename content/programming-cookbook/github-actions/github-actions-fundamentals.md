@@ -175,3 +175,6 @@ on:
     branches-ignore:
       - master
 ```
+
+# Path, useful for monorepo
+- https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths

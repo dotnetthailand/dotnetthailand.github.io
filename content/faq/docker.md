@@ -4,7 +4,7 @@ showMetadata: true
 editable: true
 ---
 
-# Collection of FAQ about Docker
+# Collection of Docker FAQ
 - Docker image
 - Docker container
 - Docker run
