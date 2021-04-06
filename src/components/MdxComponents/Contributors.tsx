@@ -1,8 +1,9 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
+import { useTheme } from 'emotion-theming';
 
-const style = css`
+const style = theme => css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -12,6 +13,12 @@ const style = css`
     align-items: center;
     width: 250px;
     padding: 16px;
+    color: ${theme.colors.primary};
+    transition: ${theme.transitions.hover};
+
+    &:hover {
+      color: ${theme.header.font.hover};
+    }
 
     & > img {
       border-radius: 50%;
@@ -27,6 +34,8 @@ const style = css`
 `;
 
 const Contributors = () => {
+
+  const theme = useTheme();
 
   const { allContributor } = useStaticQuery(graphql`
     query queryContributors {
@@ -44,7 +53,7 @@ const Contributors = () => {
 
   const contributors = allContributor.nodes;
   return (
-    <div css={style}>
+    <div css={style(theme)}>
       { contributors.map(contributor => {
         return (
           // eslint-disable-next-line react/jsx-no-target-blank
