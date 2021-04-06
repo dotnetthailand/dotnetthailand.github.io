@@ -15,6 +15,8 @@ const style = css`
 
     & > img {
       border-radius: 50%;
+      width: 100px;
+      height: 100px;
     }
 
     & > span {
@@ -50,8 +52,6 @@ const Contributors = () => {
             <img
               alt={contributor.login}
               src={contributor.avatar_url}
-              width="100px"
-              height="100px"
             />
             <span>{contributor.login}</span>
           </a>
