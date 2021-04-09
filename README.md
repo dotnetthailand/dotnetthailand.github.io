@@ -49,8 +49,8 @@ yarn start
 - [ ] PWA
 - [ ] Disable ask to load a new content popup, implicit load new content
 - [ ] Hover content header to show anchor like Markdown in GitHu and
-- [ ] Broken table of content in a Makrdown page
-- [ ] An image loss quality because it is get transformed
+- [x] Broken table of content in a Markdown page
+- [ ] An image lose quality because it is get transformed
 - [ ] Caching issue when disable JavaScript and the website not load in a browser
 - [ ] The first toggled item cannot be collapsed.
 - [ ] Add Facebook Comments Plugin to all content pages

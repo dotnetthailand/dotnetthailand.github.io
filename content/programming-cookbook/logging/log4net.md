@@ -3,7 +3,6 @@ title: log4net
 showMetadata: true
 editable: true
 showToc: true
-order: 3
 ---
 
 # How to setup log4net
@@ -11,13 +10,15 @@ order: 3
 - Create a new .NET Framework console project. This can be applied to .NET Core
 
 - Install log4net Nuget package.
+
 ```
 install-package log4net
 
 ```
 
 - Set up the main class.
-```
+
+```c#
   // Import log4net classes.
   using log4net;
   using log4net.Config;
@@ -43,7 +44,7 @@ install-package log4net
 
 # Rolling file appender
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8" ?>
 <log4net>
 	<!--
@@ -84,7 +85,9 @@ install-package log4net
 	</root>
 </log4net>
 ```
+
 # Example file structure of the project
+
 - Project folder
   - ProjectName.csproj
   - Program.cs
@@ -92,3 +95,11 @@ install-package log4net
   - packages.config
 
 # Logging level
+
+โดย logging message จะถูกแบ่งออกเป็น 6 ระดับ เรียงตามความสำคัญมากสูง ไปต่ำสุด
+- **FATAL**	Highest	Very severe error events that will presumably lead the application to abort.
+- **ERROR**	Error events that might still allow the application to continue running.
+- **WARN** Potentially harmful situations which still allow the application to continue running.
+- **INFO** Informational messages that highlight the progress of the application at coarse-grained level.
+- **DEBUG** Fine-grained informational events that are most useful to debug an application.
+- **TRACE**	Lowest	Finest-grained informational events.

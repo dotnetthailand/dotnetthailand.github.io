@@ -178,3 +178,9 @@ on:
 
 # Path, useful for monorepo
 - https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths
+
+
+# Retention period of GitHub Actions
+- For public repositories: you can change this retention period to anywhere between 1 day or 90 days.
+- For private, internal, and GitHub Enterprise repositories: you can change this retention period to anywhere between 1 day or 400 days.
+- REF: https://docs.github.com/en/github/administering-a-repository/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-repository
