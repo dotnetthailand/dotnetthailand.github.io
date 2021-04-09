@@ -1,5 +1,5 @@
 ---
-title: find command
+title: Find command
 showMetadata: true
 editable: true
 showToc: true

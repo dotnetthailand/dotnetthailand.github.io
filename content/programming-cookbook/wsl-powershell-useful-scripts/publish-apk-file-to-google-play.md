@@ -3,7 +3,6 @@ title: Publish APK file to Google Play
 showMetadata: true
 editable: true
 showToc: true
-order: 6
 ---
 
 # Publish APK file to Google Play with command line tool
@@ -33,13 +32,13 @@ order: 6
 - apkup is a tool to publish an apk file to Google play
 - Install apkup globally with
 
-```
+```shell
 yarn global add apkup
 ```
 
 - Use with minimum parameters to publish an apk file and make it ready for production.
 
-```
+```shell
 apkup --key service-account-key.json --apk app.apk --release-notes "en-US=Your English release note" --track production
 
 ```

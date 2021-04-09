@@ -5,13 +5,15 @@ editable: true
 showToc: true
 ---
 
-# Convert end of line CRLF to LF
+# Powershell
+## Convert end of line CRLF to LF
+
 
 ```PowerShell
 $path = ".\file-name.txt"; (Get-Content $path -Raw).Replace("rn", "`n") | Set-Content $Path -NoNewline -Force
 ```
 
-# Find all folders contain a specific file name
+## Find all folders contain a specific file name
 - For example, find yarn.lock and are not in node_modules folder
 
 ```PowerShell
