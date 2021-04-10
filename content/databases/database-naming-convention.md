@@ -28,7 +28,7 @@ editable: true
   It means any instance in the set is representative of the set.
 - Table represents a collection of entity. Then we don't need to emphasize it by plural naming.
 - Consistent foreign key name with table prefix pattern e.g. `customer_id` not `customers_id`.
-- If you want to identify a collection in an application, you can use a plural, or better, use an appropriate modifier, such as EmployeeList or EmployeeArray.
+- If you want to identify a collection in an application, you can use a plural name such as `customers`.
 
 ## Which one should I use?
 
