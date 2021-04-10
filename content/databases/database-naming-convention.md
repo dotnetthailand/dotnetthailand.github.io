@@ -16,18 +16,17 @@ editable: true
 - Use singular table name when pointing to a database record is more natural than plural name. e.g.
   `select customer.name` and `select customers.name`
   - For plural table name, you can use table alias e.g. `select customer.name from customers as customer`.
-- It avoids confusion of english pluralization:
+- It avoids confusion of English pluralization:
   - activity becomes activities
   - person becomes people
   - data remains data
+  - history remains history (uncountable noun, only singular form)
 - It avoids confusion when use a link table.
   - Orders and Products tables would give OrderProducts or OrdersProducts. Neither sounds correct.
-- It avoids confusion for some table name, e.g. history table.
-  - Orders -> OrdersHistory or OrdersHistories
 - When using singular, you can consider using the set theory to a table.
   It means any instance in the set is representative of the set.
 - Table represents a collection of entity. Then we don't need to emphasize it by plural naming.
-- Consistent foreign key name with table prefix pattern e.g. `customer_id` not `customers_id`.
+- Consistent foreign key column's name with table prefix pattern e.g. `customer_id` not `customers_id`.
 - If you want to identify a collection in an application, you can use a plural name such as `customers`.
 
 ## Which one should I use?
