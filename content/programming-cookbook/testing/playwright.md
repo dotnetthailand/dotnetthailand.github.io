@@ -98,7 +98,8 @@ describe('Homepage', () => {
 
 ```
 
-- This test will launch `http://todomvc.com` with Webkit (Safari engine) and log network request information to a console.
+- This test will launch `http://todomvc.com` with Webkit (Safari engine).
+- Verify if page's title matches TodoMVC.
 - By default Playwright will launch in headless mode so you won't see UI of a browser.
 - You can make Playwright launch your browser by use this option `webkit.launch({ headless: false })`.
 
