@@ -10,12 +10,12 @@ showToc: true
 - Here is what it looks like:
 ```
 /src/components/__tests__/ComponentA.test.tsx
-/src/components/__tests__/ComponentA.test.tsx
-/src/components/ComponetA.tsx
+/src/components/__tests__/ComponentB.test.tsx
+/src/components/ComponentA.tsx
 /src/components/ComponentB.tsx
 ```
 - With this structure we get these benefits:
-  - Easy to find a test file of a production file, less switching between two files
+  - Easy to find a test file of production code, less switching between files.
   - Do not need to make a folder structure of test to match a folder structure of production file.
   - Easy to check if a production file has test or not.
   - Easy to maintain and put other related test files, e.g mock, snapshot inside __tests__ folder
