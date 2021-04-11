@@ -47,7 +47,6 @@ showToc: true
 ## .toEqual
 - Use .toEqual to compare recursively all properties of object instances (also known as "deep" equality). It calls Object.is to compare primitive values.
 - .toEqual won't perform a deep equality check for two errors. Only the message property of an Error is considered for equality. It is recommended to use the .toThrow matcher for testing against errors
--
 
 ## .toBe VS .toEqual
 ```js

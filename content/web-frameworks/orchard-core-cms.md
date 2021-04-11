@@ -1,5 +1,5 @@
 ---
-title: Orchard CMS
+title: OrchardCore CMS
 showMetadata: true
 editable: true
 ---
