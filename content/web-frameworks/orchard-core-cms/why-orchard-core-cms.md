@@ -36,6 +36,11 @@ showToc: true
   - ASP.NET Core MVC
   - TypeScript/ReactJS/VueJS
   - Hot reload, auto compile and reload browser during development
+- ต้องการระบบที่รองรับฐานข้อมูลเหล่านี้
+  - SQL Server
+  - MySQL
+  - Postgres
+  - Sqlite
 
 # แนวคิดการพัฒนา module ใน OrchardCore CMS
 - ใน Orchard จะมี concept ของ content part, content type, content item
