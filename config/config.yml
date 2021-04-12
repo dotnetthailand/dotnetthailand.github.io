@@ -47,8 +47,8 @@ sidebar:
       title: ":fire: Web Frameworks"
 
     - order: 3
-      path: /databases
-      title: ":floppy_disk: databases"
+      path: /storage
+      title: ":floppy_disk: storage"
 
     - order: 4
       path: /cloud-hosting

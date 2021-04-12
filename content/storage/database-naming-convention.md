@@ -28,6 +28,7 @@ editable: true
 - Table represents a collection of entity. Then we don't need to emphasize it by plural naming.
 - Consistent foreign key column's name with table prefix pattern e.g. `customer_id` not `customers_id`.
 - If you want to identify a collection in an application, you can use a plural name such as `customers`.
+- For ORM e.g. Enitiy Framwork (EF), you can access an entity as `dbContext.DbSet<Customer>` which is consistent with a singular table name.
 
 ## Which one should I use?
 
