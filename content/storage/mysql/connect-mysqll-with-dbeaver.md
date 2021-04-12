@@ -1,5 +1,5 @@
 ---
-title: MySQL Docker
+title: Connect MySQL with DBeaver
 showMetadata: true
 editable: true
 showToc: true
