@@ -1,11 +1,12 @@
 # .NET Thailand official website
 
-![image](https://user-images.githubusercontent.com/344784/114385147-d33a4b00-9bb9-11eb-8aaa-ef0a3ccf4d96.png)
+![dotnetthailand.com logo](src/images/dotnet-thailand-logo.png)
+
 [https://www.dotnetthailand.com](https://www.dotnetthailand.com)
 
 ## How to contribute
 
-![image](https://user-images.githubusercontent.com/344784/114358058-ad527d80-9b9c-11eb-873a-7699ad03f4fe.png)
+![how to contribute flow diagram](src/images/how-to-contribute.png)
 
 ### 1. Create Issue
 [Create a new issue](https://github.com/dotnetthailand/dotnetthailand.github.io/issues/new). Please describe your intention and details of what you want to do. You can see [our previous issues](https://github.com/dotnetthailand/dotnetthailand.github.io/issues) for example. Create issue is easy, make it simple. When you have idea, create it. It does not need to be perfect from start. 
