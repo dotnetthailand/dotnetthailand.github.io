@@ -19,11 +19,10 @@ const comparisonTableStyle = theme => css`
   }
 
   th, td {
-    padding: 12px 15px;
+    padding: 10px 10px;
   }
 
   th {
-    background-color: #CCC;
     min-width: 150px;
     position: sticky;
     top: 0;
@@ -32,6 +31,7 @@ const comparisonTableStyle = theme => css`
   }
 
   tbody tr{
+    padding: 10px 0;
     &:nth-child(even) {
       background-color: ${theme.table.evenRow};
     }
@@ -68,7 +68,6 @@ const comparisonTableStyle = theme => css`
 
     td:first-child {
       text-align: center;
-      background: #efefef;
       width: 100%;
       font-weight: bold;
     }
