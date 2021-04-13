@@ -1,11 +1,56 @@
+# GitHub Actions VS Azure DevOps Pipelines data
 - feature: Number of concurrent jobs for a private project
-  actions: |
+  actions: >
     For free plan, 20 concurrent jobs
     https://docs.github.com/en/actions/reference/usage-limits-billing-and-administration#usage-limits
-  pipelines: |
+  pipelines: >
     only one job, not support concurrent (Microsoft hosted, private repo, free option)
     https://docs.microsoft.com/en-us/azure/devops/pipelines/licensing/concurrent-jobs?view=azure-devops&tabs=ms-hosted#how-much-do-parallel-jobs-cost
 
 - feature: Maximum time for each job
   actions: 6 hours for each job and 72 hours for each workflow
   pipelines: 1 hour
+
+- feature: Total build time for a month (private repo)
+  actions: >
+    2,000 minutes (33 hours, 20 minutes)
+    https://docs.github.com/en/github/setting-up-and-managing-billing-and-payments-on-github/about-billing-for-github-actions#about-billing-for-github-actions
+  pipelines: 1,800 minutes (30 hours)
+
+- feature: Deploy to App Service container with a custom image and Azure container registry
+  actions: https://docs.microsoft.com/en-us/azure/app-service/deploy-container-github-action?tabs=publish-profile
+  pipelines: https://docs.microsoft.com/en-us/azure/devops/pipelines/targets/webapp-on-container-linux?view=azure-devops&tabs=dotnet-core%2Cyaml
+
+- feature: Number of extensions
+  actions: >
+    7,241 Actions (Feb 18th, 2021)
+    https://github.com/marketplace?type=actions
+  pipelines: >
+    1,182 Pipelines (Feb 18th, 2021)
+    https://marketplace.visualstudio.com/search?target=AzureDevOps&category=Azure%20Pipelines&sortBy=Installs
+
+- feature: Code example to deploy ASP.NET Core MVC to Azure App Service (Code)
+  actions: https://github.com/codesanook/CoreMvcAppService/blob/develop/.github/workflows/github-actions-app-service.yml
+  pipelines: https://github.com/codesanook/CoreMvcAppService/blob/develop/azure-pipelines-app-service.yml
+
+- feature:  Supported languages for creating an extension
+  actions: >
+    Support container based action so you can use any languages.
+    https://docs.github.com/en/actions/creating-actions/creating-a-docker-container-action
+  pipelines: Typescript or PowerShell
+
+- feature: Code scanning
+  actions: Built-in code scanning and can integrate with 3rd party security gates
+  pipelines: Only integrate with 3rd party security gates
+
+- feature: Automation purpose
+  actions: GitHub Actions can be used to automate make code reviews, branch management, and issue tracking.
+  pipelines: Azure Pipelines are primarily used to automate CI/CD
+
+- feature: Conditional expression syntax
+  actions: ${{ env.str == 'ABC' && env.num == 123 }}
+  pipelines: and(eq(variables.str, 'ABC'), eq(variables.num, 123))
+
+- feature: Build, Release
+  actions:  GitHub Packages give a good integration experience if already used GitHub repository
+  pipelines: Azure Artifacts supports granular permissions control, auditing, and anonymous access
