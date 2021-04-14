@@ -11,6 +11,7 @@ import { onMobile } from '../../styles/responsive';
 const Sidebar = styled.div`
   margin-left: ${(props) => props.theme.layout.leftMargin};
   height: 100%;
+  min-height: 0;
   display: flex;
   overflow-y: hidden;
   align-items: stretch;
@@ -28,8 +29,6 @@ const SidebarMain = styled.div`
   display: block;
   padding: 0;
   padding-top: 32px;
-  overflow: hidden;
-  -webkit-overflow-scrolling: hidden;
   &:hover,
   &:focus {
     overflow-y: overlay;
