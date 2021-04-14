@@ -9,7 +9,7 @@ showToc: true
 
 - [idb](https://github.com/jakearchibald/idb) IndexedDB with promise
 - [Dexie.js](https://github.com/dfahlander/Dexie.js) a wrapper library for indexedDB
--
+- [PouchDB](https://github.com/pouchdb/pouchdb) Enable applications to store data locally while offline, then synchronize it with CouchDB and compatible servers when the application is back online.
 
 # Useful links
 
