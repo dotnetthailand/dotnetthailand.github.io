@@ -10,7 +10,7 @@ import { onMobile } from '../../styles/responsive';
 
 const Sidebar = styled.div`
   margin-left: ${(props) => props.theme.layout.leftMargin};
-  height: calc(100vh - 100px);
+  height: 100%;
   display: flex;
   overflow-y: hidden;
   align-items: stretch;
@@ -21,6 +21,7 @@ const Sidebar = styled.div`
 `;
 
 const SidebarMain = styled.div`
+  flex: 1 1 0;
   overflow-y: auto;
   width: 100%;
   margin: 0;
@@ -37,6 +38,7 @@ const SidebarMain = styled.div`
 `;
 
 const PoweredByWrapper = styled.div`
+  flex: 0 1 auto;
   display: block;
   padding: 0;
   position: relative;
