@@ -35,6 +35,9 @@ const SidebarMain = styled.div`
     overflow-y: overlay;
     -webkit-overflow-scrolling: touch;
   }
+  ${onMobile} {
+    flex: 0 1 auto;
+  }
 `;
 
 const PoweredByWrapper = styled.div`
