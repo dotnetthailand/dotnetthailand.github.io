@@ -29,11 +29,6 @@ const SidebarMain = styled.div`
   display: block;
   padding: 0;
   padding-top: 32px;
-  &:hover,
-  &:focus {
-    overflow-y: overlay;
-    -webkit-overflow-scrolling: touch;
-  }
   ${onMobile} {
     flex: 0 1 auto;
   }

@@ -43,11 +43,6 @@ const MainContentScrollable = styled.div`
   display: flex;
   flex-direction: row;
   overflow-y: auto;
-  &:hover,
-  &:focus {
-    overflow-y: overlay;
-    -webkit-overflow-scrolling: touch;
-  }
 `;
 
 // We add min-width 1% to make flex-item not expand if it's child content wider than available space
