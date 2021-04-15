@@ -46,6 +46,12 @@ dbUp:
   connectionTimeoutSec: 30
   scripts:
     - folder: migration
+      filter: "^(?!_)[\w-]+\.sql$"
+      # Explain ^(?!_)[\w-]+\.sql$ pattern
+      # Match a string that does not start with _
+      # then match a-z, A-Z, 0-9, _ or - as a file name
+      # then match ending with .sql as a file extension.
+
 ```
 
 - This configuration make dbpub to connect a database on to MySQL server.
