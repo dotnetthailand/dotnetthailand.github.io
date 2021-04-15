@@ -5,10 +5,9 @@ metadata:
   description: .NET Thailand community
   language: en
   pathPrefix: "/"
-  siteImage:
+  siteImage: "/assets/dotnetthailand-ogimage-dark.png"
   favicon: "/assets/favicon.png"
   themeColor: "#ff0000"
-  ogImage: "/assets/dotnetthailand-ogimage-dark.png"
 header:
   enabled: true
   logo: "/assets/code.svg"
