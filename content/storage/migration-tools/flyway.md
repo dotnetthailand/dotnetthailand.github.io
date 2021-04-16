@@ -79,3 +79,7 @@ Undo migrations assume the whole migration succeeded and should now be undone. T
 An alternative approach which we find preferable is to maintain backwards compatibility between the DB and all versions of the code currently deployed in production. This way a failed migration is not a disaster. The old version of the application is still compatible with the DB, so you can simply roll back the application code, investigate, and take corrective measures.
 
 This should be complemented with a proper, well tested, backup and restore strategy. It is independent of the database structure, and once it is tested and proven to work, no migration script can break it. For optimal performance, and if your infrastructure supports this, we recommend using the snapshot technology of your underlying storage solution. Especially for larger data volumes, this can be several orders of magnitude faster than traditional backups and restores.
+
+From [Flyway undo Important notes](https://flywaydb.org/documentation/command/undo#important-notes)
+
+
