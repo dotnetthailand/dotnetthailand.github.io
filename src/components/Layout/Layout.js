@@ -29,6 +29,22 @@ const Wrapper = styled.div`
   }
 `;
 
+const MainContentWrapper = styled.div`
+  width: 100%;
+  flex-grow: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow-y: hidden;
+  min-height: 0;
+`;
+
+const MainContentScrollable = styled.div`
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  overflow-y: auto;
+`;
+
 // We add min-width 1% to make flex-item not expand if it's child content wider than available space
 const Content = styled('main')`
   min-width: 1%;
@@ -121,8 +137,12 @@ const Layout = ({ children, location }) => {
           ) : (
             ''
           )}
-          <Content>{children}</Content>
-          <TableOfContents show={! (config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
+          <MainContentWrapper>
+            <MainContentScrollable>
+              <Content>{children}</Content>
+              <TableOfContents show={! (config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
+            </MainContentScrollable>
+          </MainContentWrapper>
         </Wrapper>
       </MDXProvider>
     </ThemeProvider>

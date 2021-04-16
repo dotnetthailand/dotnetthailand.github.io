@@ -11,6 +11,7 @@ import { onMobile } from '../../styles/responsive';
 const Sidebar = styled.div`
   margin-left: ${(props) => props.theme.layout.leftMargin};
   height: 100%;
+  min-height: 0;
   display: flex;
   overflow-y: hidden;
   align-items: stretch;
@@ -21,22 +22,20 @@ const Sidebar = styled.div`
 `;
 
 const SidebarMain = styled.div`
+  flex: 1 1 0;
   overflow-y: auto;
   width: 100%;
   margin: 0;
   display: block;
   padding: 0;
   padding-top: 32px;
-  overflow: hidden;
-  -webkit-overflow-scrolling: hidden;
-  &:hover,
-  &:focus {
-    overflow-y: overlay;
-    -webkit-overflow-scrolling: touch;
+  ${onMobile} {
+    flex: 0 1 auto;
   }
 `;
 
 const PoweredByWrapper = styled.div`
+  flex: 0 1 auto;
   display: block;
   padding: 0;
   position: relative;

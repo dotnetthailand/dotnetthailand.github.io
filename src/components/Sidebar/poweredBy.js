@@ -15,6 +15,7 @@ const Trademark = styled(({ className, trademark }) => {
       color: ${(props) => props.theme.navigationSidebar.poweredBy.hover};
     }
     width: 25px;
+    height: 25px;
   }
 `;
 const PoweredText = styled(({ className, text }) => (
