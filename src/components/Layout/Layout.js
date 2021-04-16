@@ -22,28 +22,17 @@ const Wrapper = styled.div`
   overflow-wrap: anywhere;
   justify-content: space-between;
   position: relative;
-  min-height: calc(100vh - 77px);
   background-color: ${(props) => props.theme.content.background};
-  
-  ${onMobile} {
-    min-height: calc(100vh - 61px);
-  }
 `;
 
 const MainContentWrapper = styled.div`
-  width: 100%;
-  flex: 1 1 auto;
   display: flex;
-  flex-direction: column;
-  overflow-y: hidden;
-  min-height: 0;
-`;
-
-const MainContentScrollable = styled.div`
-  flex: 1 1 0;
-  display: flex;
-  flex-direction: row;
   overflow-y: auto;
+  ${onMobile} {
+    height: calc(100vh - 61px);
+  }
+  flex: 1 1 auto;
+  height: calc(100vh - 77px);
 `;
 
 // We add min-width 1% to make flex-item not expand if it's child content wider than available space
@@ -138,10 +127,8 @@ const Layout = ({ children, location }) => {
             ''
           )}
           <MainContentWrapper>
-            <MainContentScrollable>
               <Content>{children}</Content>
               <TableOfContents show={! (config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
-            </MainContentScrollable>
           </MainContentWrapper>
         </Wrapper>
       </MDXProvider>
