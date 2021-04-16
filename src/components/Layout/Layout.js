@@ -23,7 +23,8 @@ const Wrapper = styled.div`
   justify-content: space-between;
   position: relative;
   min-height: calc(100vh - 77px);
-
+  background-color: ${(props) => props.theme.content.background};
+  
   ${onMobile} {
     min-height: calc(100vh - 61px);
   }
@@ -31,7 +32,7 @@ const Wrapper = styled.div`
 
 const MainContentWrapper = styled.div`
   width: 100%;
-  flex-grow: 1 1 auto;
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
@@ -52,7 +53,6 @@ const Content = styled('main')`
   flex-grow: 1;
   flex-direction: column;
   padding: 50px 70px;
-  background-color: ${(props) => props.theme.content.background};
 
   ${onTablet} {
     padding: 30px;
