@@ -1,5 +1,5 @@
 ---
-title: Deploy to Azure App Service
+title: Deploy Apps to Azure App Service
 showMetadata: true
 editable: true
 showToc: true

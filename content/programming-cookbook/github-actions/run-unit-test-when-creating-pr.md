@@ -3,7 +3,7 @@ title: Run unit test when creating a PR
 showMetadata: true
 editable: true
 showToc: true
-order: 6
+order: 1
 ---
 
 # Run Jest unit test

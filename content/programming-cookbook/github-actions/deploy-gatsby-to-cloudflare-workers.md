@@ -1,12 +1,14 @@
 ---
-title: Deploy to Cloudflare Workers
+title: Deploy Gatsby to Cloudflare Workers
 showMetadata: true
 editable: true
 showToc: true
-order: 3
+order: 1
 ---
 
-# Simple GitHub Actions workflow
+# Simple GitHub Actions workflow to Cloudflare Workers
+
+This workflow is very useful for private GitHub repository because GitHub pages does support for free private repo.
 
 ```
 name: Publish Gatsby to Cloudflare Workers static page

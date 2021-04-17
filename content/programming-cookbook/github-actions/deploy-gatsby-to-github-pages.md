@@ -1,13 +1,13 @@
 ---
-title: Deploy to GitHub Pages
+title: Deploy Gatsby to GitHub Pages
 showMetadata: true
 editable: true
 showToc: true
-order: 2
+order: 1
 ---
 
-# Simple GitHub Actions workflow
-```
+# Simple GitHub Actions workflow to deploy Gatsby to GitHub page
+```yaml
 # https://github.com/enriikke/gatsby-gh-pages-action/blob/main/README.md
 name: Publish Gatsby to GitHub pages
 

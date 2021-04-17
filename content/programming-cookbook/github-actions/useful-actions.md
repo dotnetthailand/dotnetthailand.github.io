@@ -3,7 +3,7 @@ title: Useful Actions
 showMetadata: true
 editable: true
 showToc: true
-order: 4
+order: 1
 ---
 
 # actions/upload-artifact

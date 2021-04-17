@@ -3,33 +3,29 @@ title: GitHub Actions fundamentals
 showMetadata: true
 editable: true
 showToc: true
-order: 0
+order: 0 # Set order of this document to 0 because we want it on the top and leave other document in the same level to 1.
 ---
 
 # Reference for Workflow syntax (YAML)
-
 - https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions
 
 # Workflow commands for GitHub Actions
-
 - https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions
 - Actions can communicate with the runner machine to set environment variables, output values used by other actions, add debug messages to the output logs, and other tasks.
 - Most workflow commands use the echo command in a specific format, while others are invoked by writing to a file.
 - Use in `jobs.<job_id>.steps[*].run`.
 
 # Setting an environment variable
-
 - We can define environment variables at workflow level, job level and step level.
 - We can set environment variable with a workflow command in `jobs.<job_id>.steps[*].run` e.g.
 
 ```yaml
-run: |
+  - run: |
+    # literal value
+    echo "action_state=yellow" >> $GITHUB_ENV
 
-  # literal value
-  echo "action_state=yellow" >> $GITHUB_ENV
-
-  # value from a secret
-  echo "SLACK_WEBHOOK=${{ secrets.SLACK_WEBHOOK }}" >> $GITHUB_ENV
+    # value from a secret
+    echo "SLACK_WEBHOOK=${{ secrets.SLACK_WEBHOOK }}" >> $GITHUB_ENV
 ```
 
 # Context and expression syntax for GitHub Actions
@@ -52,11 +48,10 @@ ${{ env.VARIABLE_NAME }}
 ```
 
 # Useful predefined contexts
-
-- github.sha
+- **github.sha** The commit SHA that triggered the workflow run.
+- **github.ref** The branch or tag ref that triggered the workflow run.
 
 # Environment variables
-
 - https://docs.github.com/en/actions/reference/environment-variables
 - To use the value of an environment variable in a workflow file, you should use the `env` context.
 - If you want to use the value of an environment variable inside a runner,
@@ -73,7 +68,6 @@ run: echo "Hello $FIRST_NAME at ${{ env.DAY_OF_WEEK }}"
 ```
 
 # Run job on a specific repository only
-
 ```yaml
 jobs:
   job_id:
@@ -82,26 +76,21 @@ jobs:
 ```
 
 # Conditional set environment variables
-
 - Useful for switching variables based on a current branch/environment
 - https://github.community/t/possible-to-use-conditional-in-the-env-section-of-a-job/135170/3
 
 # Ternary workflow expression
-
 ```yaml
 ${{ github.ref == env.MAIN_BRANCH && secrets.PRO_PUBLISH_PROFILE || secrets.DEV_PUBLISH_PROFILE }}
 ```
 
 # Run a job based on a condition with if expression
-
 - https://github.blog/changelog/2019-10-01-github-actions-new-workflow-syntax-features/
 
 # Find more virtual environments
-
 - https://github.com/actions/virtual-environments
 
 # An action
-
 - An action is unit of code.
 - You can use an action defined in the same repository as the workflow, a public repository, or in a published Docker container image.
 - Version of the action:
@@ -117,7 +106,6 @@ steps:
 ```
 
 # Known issues:
-
 - Workflow level environment variables can't be used at job level, it can only be used in step level.
 - https://github.community/t/how-to-set-and-access-a-workflow-variable/17335/6?u=aaronamm
 - Workaround is:
@@ -151,7 +139,6 @@ jobs:
 - https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps
 
 # Specific branch name pattern to trigger an action
-
 - Match on a specific branch
 ```yaml
 on:
@@ -179,8 +166,15 @@ on:
 # Path, useful for monorepo
 - https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#onpushpull_requestpaths
 
-
 # Retention period of GitHub Actions
 - For public repositories: you can change this retention period to anywhere between 1 day or 90 days.
 - For private, internal, and GitHub Enterprise repositories: you can change this retention period to anywhere between 1 day or 400 days.
 - REF: https://docs.github.com/en/github/administering-a-repository/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-repository
+
+# Change working directory
+- At step level:
+```yaml
+  - name: Clean temp directory
+    run: rm -rf *
+    working-directory: ./temp
+```
