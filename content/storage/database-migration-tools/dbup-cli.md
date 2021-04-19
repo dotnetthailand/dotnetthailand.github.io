@@ -8,6 +8,13 @@ showToc: true
 # How to setup and use DbUp Command Line Interface (dbup-cli)
 
 # Setup dbup-cli
+- Here is for Ubuntu 18.04. For other OS, please check https://docs.microsoft.com/en-us/dotnet/core/install/.
+- Add package repository.
+```
+wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+```
+
 - Install .NET
 ```
 sudo apt-get update; \
@@ -16,18 +23,18 @@ sudo apt-get update; \
   sudo apt-get install -y dotnet-sdk-5.0
 ```
 
-- Install dbup-cli as a global tool
+- Install dbup-cli as a global tool.
 ```
 dotnet tool install --global dbup-cli
 ```
 
-- Check if you install dbup-cli properly
+- Check if you install dbup-cli properly.
 ```
 dbup --version
 ```
 # Initialize dbup
 - Create a new folder with name `migration`.
-- CD to `migration` folder
+- CD to `migration` folder.
 - Run the following command to initialize dbup-cli.
 ```
 dbup init
@@ -62,7 +69,7 @@ dbUp:
 - We use `schema-versions` folder to store our schema version files.
 
 # Create a schema version file
-- Create `schema-versions` folder in the same level as `dbpub.yml`
+- Create `schema-versions` folder in the same level as `dbpub.yml`.
 - Create some schema version files which container raw SQL statement in `schema-versions` folder.
 - Here is the example of file structure.
 ```sh
@@ -84,6 +91,7 @@ dbup upgrade
 - Schema versions will be applied in order by name alphabetically.
 - A schema file name starting with `_` will be ignored.
 - Check your database to see if there is some changes from a schema version file and you should find `SchemaVersions` table that stores an information of a version file that has already been applied to your database.
+- If there is no schema version file to be applied, dbup won't create `SchemaVersions` table.
 
 # Schema version as a plain SQL file
 - สร้าง schema version แบบ SQL file ตรงนี้อาจจะไม่ portable เพราะมี specific database vendors

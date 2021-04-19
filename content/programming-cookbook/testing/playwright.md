@@ -170,3 +170,105 @@ Done in 8.15s.
 - I tested this code on Windows and it works well for built-in Webkit that is bundled with Playwright.
 - If the code does not work on your computer, please configure the code to use `chromiume` or `firefox`.
 
+
+# Use React component name as a selector
+Normally, we prefer to use CSS selector when getting an element to perform a action.
+However, for we sometimes use CSS in React component e.g. style-components, emotion libraries.
+Therefore, out CSS class name is auto-generated and we can't use it as a selector.
+
+We can add `data-test-id` attribute to our component but we already have why don't we use it.
+Here are overview of how we use `data-test-id` and `component name` selector.
+
+## Use data-test-id attribute
+- Add data-test-id attribute to React component that we are going to test.
+- Use attribute selector `[data-test-id="component"]` to get a component.
+- Use `babel-plugin-jsx-remove-data-test-id` to remove `data-test-id` attribute from a production build.
+- If we have a tester who is responsible for creating an automated test,
+  it is possible that a developer can forget to add `data-test-id` attribute.
+
+## Use React component name
+- Add `resq` library to a page that we are going to test and use it to query element with React component name.
+- [cypress-react-selector](https://github.com/abhinaba-ghosh/cypress-react-selector#readme) uses `resq` under the hood to retrieve HTML nodes.
+- Do not need to install any special Webpack plugin.
+- A tester can use `react-devtools` to inspect React component name and use it as a selector.
+
+## Code example
+- Given, we have React component name like this:
+```ts
+import { useState } from 'react';
+import { css } from '@emotion/react'
+
+function App() {
+  const [counter, setCounter] = useState(0);
+
+  const handleButtonClick = () => {
+    const valueToAdd = 1;
+    setCounter(previous => previous + valueToAdd);
+  }
+
+  const style = css`
+    border: 1px solid #ccc;
+  `;
+
+  return (
+    <div css={style}>
+      <p>
+        counter value:  <span>{counter}</span>
+      </p>
+      <button onClick={handleButtonClick}>Click me</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- The example of that script to click a button and assert counter value
+```ts
+import { chromium } from 'playwright';
+import { RESQNode } from 'resq';
+
+declare global {
+  interface Window {
+    resq: {
+      resq$: (componentName: string, element: HTMLElement) => RESQNode
+    }
+  }
+}
+
+// Uppercase name for a test suite
+describe('Page with React component', () => {
+  test('should get correct value after click button inside React component', async () => {
+    // Arrange
+    const browser = await chromium.launch();
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto('http://localhost:3000');
+
+    // React Element Selector Query (RESQ) helps us query React components and children by component name or HTML selector.
+    // We need to have it on a page that we are going to test.
+    // Therefore, we add req script to that page.
+    // More info https://github.com/baruchvlz/resq
+    await page.addScriptTag({ path: require.resolve('resq') });
+
+    const reactComponentName = 'App';
+    const rootElementHandle = await page.waitForSelector('#root');
+
+    const result = await rootElementHandle.evaluateHandle((node: HTMLElement, componentName) => {
+      const component = window.resq.resq$(componentName, node);
+      return component.node; // div with CSS prop node
+    }, reactComponentName);
+    const tag = result.asElement();
+    const button = await tag.$('button');
+
+    // Actual
+    await button.click();
+
+    // Assert
+    const counter = await tag.$('span');
+    const value = await counter.evaluate(element => element.innerText);
+    expect(Number(value)).toBe(1);
+    await browser.close();
+  });
+});
+```
