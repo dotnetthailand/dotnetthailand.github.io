@@ -1,5 +1,5 @@
 ---
-title: Migration tools
+title: Database migration tools
 showMetadata: true
 editable: true
 ---

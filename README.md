@@ -4,7 +4,7 @@
 
 [https://www.dotnetthailand.com](https://www.dotnetthailand.com)
 
-## How to contribute
+## How to contribute to this project
 
 ![how to contribute flow diagram](src/images/how-to-contribute.png)
 
@@ -25,16 +25,14 @@ Once things ready, set `Assignees` to member(s) who wish to work on the issue. T
 to boost up collaboration that makes things better and more enjoyable✨
 
 ### 3. Fork, Commits, Push, and Create PR
-Fork this repository to your own GitHub account and then clone it to your local machine.
-
+- Fork this repository to your own GitHub account and then clone it to your local machine.
 - Create a new branch, name it to what you are going to change/add. Please use `kebab-case` naming.
-
   ```sh
   git checkout -b your-branch-name
   ```
+
 - Start your work, commit the code.
 - Push your changes to your origin.
-
   ```sh
   git push origin -u your-branch-name
   ```
@@ -42,13 +40,13 @@ Fork this repository to your own GitHub account and then clone it to your local 
 - Create a new Pull Request (PR) targeting the `main` branch of `dotnetthailand.github.io`
 
 ### 4. Reviews, Discuss, Push more commits
-Waiting for reviewing. push more commit if needed to fix your PR from PR's feedback, commit, and push your code again.
-
+- Waiting for reviewing. push more commits if needed to fix your work from PR's feedback.
+- Commit, and push your code again.
   ```sh
   git push
   ```
 
-Then waiting for your PR to be merged.
+### 5. Then waiting for your PR to be merged.
 ---
 
 ## How run this project locally
@@ -66,7 +64,7 @@ yarn start
 - Open a browser and navigate to http://localhost:8000.
 - Change some contents of `content/index.mdx` and you will find browser auto reload and show what you have changed.
 
-## Trouble shooting
+## Trouble shooting if you have any issue while running the project
 - 404 after deployment, you may miss CNAME file
 - Markdown content inside component not show https://awsm.page/mdx/mdx-markdown-inside-a-react-component/
 - Failed to launch the browser process: error while loading shared libraries: libnss3.so: No such file or directory.
