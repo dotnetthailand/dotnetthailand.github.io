@@ -7,7 +7,7 @@ showToc: true
 
 # Visual Studio
 
-- Example JSON data
+## Example JSON data
 ```json
 {
     "id": 1,
@@ -15,15 +15,13 @@ showToc: true
     "lastname": "Parker"
 }
 ```
-
-- Create your .cs class
-- Copy your JSON data
-- Select Edit => Paste Special => Paste JSON As Classes
+## Steps
+1. Create your .cs class
+2. Copy your JSON data
+3. Select Edit => Paste Special => Paste JSON As Classes
 ![Paste JSON As Classes](images/json-to-csharp-classes.png)
 
-
-- Result
-
+## Result
 ```c#
 using System;
 
