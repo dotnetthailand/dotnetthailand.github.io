@@ -21,4 +21,8 @@ puts markdown.to_html
 ```
 ~~~
 
-- Find more supported language identifiers. https://github.com/github/linguist/blob/master/lib/linguist/languages.yml
+- Find more supported language identifiers. https://github.com/github/linguist/blob/master/lib/linguist/languages.yml and use `ace_mode` key
+
+# Useful links
+- https://docs.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting
+- https://ace.c9.io/ Amazon Cloud Editor
