@@ -3,5 +3,5 @@ title: CSS & Sass
 showMetadata: true
 editable: true
 showToc: true
-order: 7
+order: 1
 ---

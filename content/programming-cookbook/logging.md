@@ -1,7 +1,7 @@
 ---
 title: Logging
 editable: true
-order: 4
+order: 1
 ---
 
 # Collection of useful logging configuration

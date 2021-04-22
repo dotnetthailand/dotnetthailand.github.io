@@ -24,9 +24,9 @@ docker-compose.yml
 - Create additional database user.
 - Configure health checking.
 - Use name volumes to not loss data when remove container.
-- Use initialize database script
-- Use custom configuration to save use lower case table name.
-- Use commands to set database character
+- Use initialize database script.
+- Use custom configuration to use lower case table name.
+- Use commands to set database character.
 - Create a bridge network name that can used by other containers.
   This can be useful when using `docker run` to launch a container and attach a compose network.
 
@@ -85,10 +85,10 @@ networks:
 ```
 
 # lower-case-table-names.cnf
-- Use lower case table name to prevent case sensitive problem on Linux machine.
+- Use lower case table name to prevent case sensitive problem on a Linux machine.
 - More details https://stackoverflow.com/a/6134059/1872200.
 - Server Command Options https://stackoverflow.com/a/15453913/1872200
-- Alternatively you can use command: [ --lower_case_table_names=1 ] in docker-compose.yml.
+- Alternatively, you can use command: [ --lower_case_table_names=1 ] in docker-compose.yml.
 
 ```
 [mysqld]
@@ -109,7 +109,7 @@ CREATE TABLE users (
   last_name VARCHAR(50) NOT NULL,
   date_of_birth DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 INSERT INTO users VALUES (NULL, 'Jose', 'Realman', '2018-01-01');
 
@@ -126,7 +126,7 @@ GRANT ALL PRIVILEGES ON `my-database`.* TO 'my-user'@'%';
 
 ```
 
-- If you want to create a user manually, use the following command
+- If you want to create a user manually, use the following command.
 ```SQL
   CREATE USER 'my-user'@'localhost' IDENTIFIED BY 'the_secure_password';
 
