@@ -8,8 +8,9 @@ showToc: true
 - https://stackoverflow.com/a/65948871/1872200
 - https://www.typescriptlang.org/docs/handbook/2/everyday-types.html#differences-between-type-aliases-and-interfaces
 
-Type or Interface for React props
+# Type or Interface for React props
 - https://dev.to/reyronald/typescript-types-or-interfaces-for-react-component-props-1408
+- https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/#more-advice
 
 Types declarations are almost always more concise than their interface counterparts because of their syntax, and they can also be more composable thanks to the possibility of unions. If the prop object you are typing is really small you can get away with inlining it in the function declaration too, which you wouldn't be able to do if you are strictly sticking to interfaces.
 

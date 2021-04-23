@@ -13,7 +13,14 @@ Actions are standalone commands that are combined into steps to create a job. Ac
 - Use to upload artifacts built from your workflow, this allows you to share data between jobs and store data once a workflow is complete.
 - https://github.com/actions/upload-artifact
 - Artifacts are retained for 90 days by default. https://docs.github.com/en/actions/reference/usage-limits-billing-and-administration#artifact-and-log-retention-policy
-- We can't specify an artifact as the package path for the Azure deployment action (azure/webapps-deploy).
+- *** We can't specify an artifact as the package path for the Azure deployment action (azure/webapps-deploy).
+```yaml
+- name: Upload artifact
+  uses: actions/upload-artifact@v2
+  with:
+    name: release
+    path: ${{ env.BUILD_DIR }}
+```
 
 # SpicyPizza/create-envfile@v1
 - Github Action to create a .env file with Github Secrets
