@@ -33,22 +33,28 @@ CMD ["World"]
 docker build -t my-custom-image .
 ```
 
-- List the created image.
+- List images.
 
 ```sh
 docker image ls
 ```
 
-- Launch a container.
+- Launch a container with default arguments.
 
 ```sh
 docker run my-custom-image
+
+// Output
+Hello world
 ```
 
-- output
+- Launch a container with override arguments.
 
 ```sh
-Hello world
+docker run my-custom-image .NET TH
+
+// Output
+Hello .NET TH
 ```
 
 # Command in a Docker compose file
@@ -60,6 +66,7 @@ If the image also has an ENTRYPOINT, the command you provide here is passed as a
 # Maintainers
 
 - KubeOps
+- Yosapol Jitrak
 
 # Useful links
 
