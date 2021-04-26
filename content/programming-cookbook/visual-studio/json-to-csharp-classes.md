@@ -3,9 +3,8 @@ title: JSON to C# Classes
 showMetadata: true
 editable: true
 showToc: true
+order: 2
 ---
-
-# Visual Studio
 
 ## Example JSON data
 ```json

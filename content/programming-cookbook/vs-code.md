@@ -1,9 +1,9 @@
 ---
-title: Tips & Tricks
+title: VS Code
 showMetadata: true
 editable: true
 showToc: true
-order: 8
+order: 9
 ---
 
-# Tips & Tricks
+# VS Code
