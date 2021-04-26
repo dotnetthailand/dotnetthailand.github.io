@@ -122,16 +122,12 @@ jobs:
         run: |
           docker build --tag ${{ env.DOCKER_IMAGE_NAME }} --target release .
           docker push ${{ env.DOCKER_IMAGE_NAME }}
-      # Before downloading a publish profile, make sure that you have set WEBSITE_WEBDEPLOY_USE_SCM
-      # in App Service Configuration to true
-      # configure port number
-      # https://docs.microsoft.com/en-us/azure/app-service/configure-custom-container?pivots=container-linux#configure-port-number
-      # WEBSITES_PORT
-      # connection string
+
+      # Before downloading a publish profile,
+      # please make sure you have set WEBSITE_WEBDEPLOY_USE_SCM in App Service configuration to true.
       - uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_CONTAINER_PUBLISH_PROFILE }}
           images: ${{ env.DOCKER_IMAGE_NAME }}
-
 ```
