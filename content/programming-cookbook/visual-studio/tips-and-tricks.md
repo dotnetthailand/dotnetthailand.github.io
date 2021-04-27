@@ -1,9 +1,9 @@
 ---
-title: VS Code
+title: Tips & Tricks
 showMetadata: true
 editable: true
 showToc: true
-order: 9
 ---
 
-# VS Code
+# Collection
+- JSON to C# Classes

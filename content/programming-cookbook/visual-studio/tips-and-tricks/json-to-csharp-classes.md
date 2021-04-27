@@ -3,7 +3,6 @@ title: JSON to C# Classes
 showMetadata: true
 editable: true
 showToc: true
-order: 2
 ---
 
 ## Example JSON data
@@ -18,7 +17,7 @@ order: 2
 1. Create your .cs class
 2. Copy your JSON data
 3. Select Edit => Paste Special => Paste JSON As Classes
-![Paste JSON As Classes](images/json-to-csharp-classes.png)
+![Paste JSON As Classes](../images/json-to-csharp-classes.png)
 
 ## Result
 ```c#

@@ -6,4 +6,5 @@ showToc: true
 order: 8
 ---
 
-# Visual Studio
+# Collection
+- Tips & Tricks
