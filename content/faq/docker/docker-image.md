@@ -1,5 +1,5 @@
 ---
-title: Docker image
+title: Docker Images
 showMetadata: true
 editable: true
 showToc: true

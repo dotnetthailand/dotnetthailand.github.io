@@ -178,3 +178,8 @@ on:
     run: rm -rf *
     working-directory: ./temp
 ```
+
+# Yarn is already installed on Ubuntu runner
+- https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md#package-management
+- https://github.com/actions/virtual-environments/blob/main/images/linux/scripts/installers/nodejs.sh
+- https://classic.yarnpkg.com/en/docs/cli/workspaces/#toc-yarn-workspaces-run
