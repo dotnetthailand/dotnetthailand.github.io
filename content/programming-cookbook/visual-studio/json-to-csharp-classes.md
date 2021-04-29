@@ -5,8 +5,6 @@ editable: true
 showToc: true
 ---
 
-# Visual Studio
-
 ## Example JSON data
 ```json
 {
