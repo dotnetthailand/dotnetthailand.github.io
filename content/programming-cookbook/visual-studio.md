@@ -3,8 +3,8 @@ title: Visual Studio
 showMetadata: true
 editable: true
 showToc: true
-order: 8
+order: 1
 ---
 
-# Collection
+# Visual Studio
 - Tips & Tricks
