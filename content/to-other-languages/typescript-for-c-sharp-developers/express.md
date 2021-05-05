@@ -6,9 +6,10 @@ showToc: true
 ---
 
 # Global exception handler
-## Useful content
+## Useful links
 - [Error Handling from Express document](https://expressjs.com/en/guide/error-handling.html)
 - [Central Error Handling in Express](https://dev.to/nedsoft/central-error-handling-in-express-3aej)
+- [Default error message in Express](https://github.com/expressjs/express/blob/master/examples/error-pages/views/500.ejs#L3)
 
 ## Example code
 - Custom Error class
