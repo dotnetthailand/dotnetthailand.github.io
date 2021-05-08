@@ -1,12 +1,12 @@
 ---
-title: Create a custom module
+title: Create a custom OrchardCore CMS module
 showMetadata: true
 editable: true
 showToc: true
 order: 1
 ---
 
-# How to create a new custom module in OrchardCore
+# How to create a new custom module in OrchardCore CMS
 
 # Introduction
 
