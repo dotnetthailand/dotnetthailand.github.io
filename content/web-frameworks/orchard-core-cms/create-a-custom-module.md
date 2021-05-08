@@ -637,6 +637,9 @@ screenshot of event content item details page
 I hope this tutorial will help you understand how to create a custom OrchardCore module and content part.
 Thanks.
 
+## Full source code
+- [https://github.com/codesanook/orchard-examples](https://github.com/codesanook/orchard-examples)
+
 ## References & useful links
 - Content adjusted from https://docs.orchardproject.net/en/latest/Documentation/Writing-a-content-part
 - [A closer look at Content Types, Drivers, Shapes and Placement](http://www.ideliverable.com/blog/a-closer-look-at-content-types-drivers-shapes-and-placement)
