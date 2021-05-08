@@ -275,7 +275,7 @@ public override IDisplayResult Display(MapPart part, BuildPartDisplayContext con
 
 ---
 
-### Update MapPartViewModel
+## Update MapPartViewModel
 - Open MapPartViewModel.cs in `Modules/Codesanook.Map/ViewModels/MapPartViewModel.cs` and update the content as following:
 ```cs
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -325,7 +325,7 @@ public override IDisplayResult Display(MapPart part, BuildPartDisplayContext con
 }
 ```
 
-### Edit MapPart.cshtml
+## Edit MapPart.cshtml
 - We will use MapPart.cshtml as view template of a shape in details page.
 - Rename MapPart.liquid in `Modules/Codesanook.Map/Views` to MapPart.cshtml.
 - We use Razor instead of Liquid template.
@@ -381,7 +381,7 @@ public override IDisplayResult Display(MapPart part, BuildPartDisplayContext con
 <a href="{{ Model.ContentItem | display_url }}>{{ Model.ContentItem.ContentItemId }}</a>
 ```
 
-### Make MapPart editable
+## Make MapPart editable
 - Open MapPartDisplayDriver.cs and update Edit method to:
 ```cs
 public override IDisplayResult Edit(MapPart part, BuildPartEditorContext context)
@@ -498,7 +498,7 @@ namespace Codesanook.Map.Drivers
 
 ```
 
-### Update a Startup.cs of Codesanook.Map project
+## Update a Startup.cs of Codesanook.Map project
 - Update `Modules/Codesanook.Map/Startup.cs` as the following code to simplify our Startup class:
 ```cs
 using Microsoft.Extensions.DependencyInjection;
@@ -522,7 +522,7 @@ namespace Codesanook.Map
 }
 ```
 
-### Create an Event content type
+## Create an Event content type
 - We have a Migrations.cs at root of the module project.
 - We have generated code which already create a part for us.
 - We use `contentDefinitionManager.AlterPartDefinition` to create a part with a name matches our part model.
@@ -558,7 +558,7 @@ namespace Codesanook.Map
 }
 ```
 
-### Remove unused files from Codesanook.Map project
+## Remove unused files from Codesanook.Map project
 
 - Remove Handlers folder and files inside, we don't need them for our project.
 - Remove MapPartDisplayDriver.GetMapPartSettings method.
@@ -573,28 +573,32 @@ screenshot of the current project structure
 
 ## Enable the module that contains Map part
 
-Now we have a MapPart is ready to use.
-In our example, we are going to create the Event content type.
-We can attach the Map content part to the content type via code or UI in the admin panel.
-To simplify our example, we will start by using admin panel but you can do it with code as well.
-
-Before using Map part, we need to enable Codesanook.Map module.
-- Go to admin panel on left-hand side menu > click Configuration > Features > Search "Map" > Click `Enable` button.
+- Now we have a MapPart is ready to use.
+- In our example, we are going to create the Event content type.
+- We can attach the Map content part to the content type via code or UI in the admin panel.
+- To simplify our example, we will start by using admin panel.
+- Before using Map part, we need to enable Codesanook.Map module.
+- Go to admin panel, on left-hand side menu:
+  1. Click Configuration.
+  2. Click Features.
+  3. Search "map".
+  4. Click `Enable` button.
 
 ![step to enable a module](./images/steps-to-enable-module.png)
 
-
-- Verify if you have Map part ready to use by clicking Content menu > Content Definition > Content Parts.
-- Search "Map" and verify if you have Map content part.
+- Verify if our Map part is ready to use:
+  1. Click Content menu.
+  2. Click Content Definition.
+  3. Click Content Parts.
+  4. Search "map" and verify if you have Map content part.
 
 content part is ready to use
-
 ![content part is ready to use](./images/content-part-is-ready-to-use.png)
 
 ## Create an Event content type and attach the Map part
 - In admin panel.
 - On the left-hand side menu.
-- Click Content > Content Definition > Content Type.
+- Click Content > Content Definition > Content Types.
 - On top right corner of the screen, click `Create new type` button > Name it "Event" > Click `Create` button.
 - You will be redirected to a page to add parts to Event content type.
 - Check following parts:
@@ -602,7 +606,7 @@ content part is ready to use
   - [x] Title
   - [x] Html Body
   - [x] Map
-- Click Save.
+- Click Save button.
 - Now you are redirected to edit content type page.
 - Keep Creatable, Listable Draftable checked.
 - At the button of the screen, you can sort the order of parts by drag and drop.
@@ -614,16 +618,17 @@ screenshot of Event content type definition
 
 ## Create a new **Event content item**
 
-- On left-hand side menu > Click Content menu > Content Items
+- On left-hand side menu > Click Content menu > Content Items.
 - Click New button at top right of the screen > Select Event.
 - Then you will see a form to create a new event, fill information to all fields
   - Title
   - HtmlBody content (It uses shortcode by default)
-  - Lat Long to e.g. lat -25.344, lng 131.036
+  - Latitude e.g. -25.344
+  - Longitude e.g. 131.036
 
 - Click Publish button.
-- Then an event that you have just created will show in the list.
-- Click View to view an Event on frontend.
+- Then the event that you have just created will show in the list.
+- Click View button to view the event on frontend.
 
 screenshot of event content item details page
 ![screenshot of event content item details page](./images/event-content-item-details-page.png)
