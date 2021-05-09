@@ -10,6 +10,7 @@ showToc: true
 
 # NoSQL databases
 - [Firebase Realtime Database](https://firebase.google.com/pricing) 1GB
+- [MongoDb](https://www.mongodb.com/cloud/atlas) 500MB
 
 # Cache/Message queue
 - [Heroku Redis](https://elements.heroku.com/addons/heroku-redis) 25MB
