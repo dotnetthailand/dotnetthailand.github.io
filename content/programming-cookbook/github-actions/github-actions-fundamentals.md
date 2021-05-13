@@ -183,3 +183,14 @@ on:
 - https://github.com/actions/virtual-environments/blob/main/images/linux/Ubuntu1804-README.md#package-management
 - https://github.com/actions/virtual-environments/blob/main/images/linux/scripts/installers/nodejs.sh
 - https://classic.yarnpkg.com/en/docs/cli/workspaces/#toc-yarn-workspaces-run
+
+# Change a default shell
+- You can use default run to set default shell to all steps
+- It can be at workflow level (`defaults.run`) or job level (`jobs.<job_id>.defaults.run`).
+
+```
+defaults:
+  run:
+    shell: powershell
+```
+- More supported shell https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell
