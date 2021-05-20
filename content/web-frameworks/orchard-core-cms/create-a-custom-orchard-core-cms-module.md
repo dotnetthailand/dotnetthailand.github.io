@@ -122,11 +122,11 @@ dotnet new occms --name Codesanook.Web
 ```
 *Note* Codesanook.Web is our main web project and it references `OrchardCore.Application.Cms.Targets` package.
 
-- Create a folder name `Modules` and CD to it.
-- Then create a custom module with dotnet tool.
+- Next, create a folder name `Modules` for adding a new module and CD to it.
+- Then, create a custom module with dotnet tool.
 - You can a new module with any name that represents a feature that you are going to create.
 - In this example, we are going to create `Codesanook.Map` module for providing Map part which can be used in event content type.
-```
+```sh
 mkdir Modules
 cd Modules
 dotnet new ocmodulecms --name Codesanook.Map --AddPart True --PartName Map
@@ -135,9 +135,10 @@ dotnet new ocmodulecms --name Codesanook.Map --AddPart True --PartName Map
 
 
 ### Reference Codesanook.Map to Codesanook.Web project
-- CD to `Codesanook.Web` folder
+- CD back to `Codesanook.Web` folder.
 - Then reference Codesanook.Map with dotnet command.
 ```sh
+cd ../Codesanook.Web
 dotnet add reference ../Modules/Codesanook.Map/Codesanook.Map.csproj
 ```
 ---
@@ -158,6 +159,21 @@ orchard-examples/
   |--Codesanook.Map/
 ```
 
+### Add preview package source
+- At root of the project create `nuget.config` file.
+- Add the following code to the file.
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <clear />
+    <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
+    <add key="OrchardCorePreview" value="https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json" />
+  </packageSources>
+  <disabledPackageSources />
+</configuration>
+```
+- *Waring* We do not suggest you to use the dev packages in production.
 
 ### Restore all Nuget packages and a website
 - Use VS Code integrated terminal by typing **ctrl+`**
@@ -166,7 +182,8 @@ orchard-examples/
 dotnet restore
 ```
 *Note* Please make sure you save all changes before running the command.
-- Wait until we have restored all packages. Then run:
+- Wait until we have restored all packages successfully.
+- Then run:
 ```
 dotnet watch run
 ```
@@ -644,3 +661,4 @@ Thanks.
 - Content adjusted from https://docs.orchardproject.net/en/latest/Documentation/Writing-a-content-part
 - [A closer look at Content Types, Drivers, Shapes and Placement](http://www.ideliverable.com/blog/a-closer-look-at-content-types-drivers-shapes-and-placement)
 - [Code Generation Templates](https://docs.orchardcore.net/en/dev/docs/getting-started/templates/)
+- [Add preview package source](https://docs.orchardcore.net/en/dev/docs/getting-started/preview-package-source/)

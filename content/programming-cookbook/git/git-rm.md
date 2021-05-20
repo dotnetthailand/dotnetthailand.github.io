@@ -6,7 +6,9 @@ showToc: true
 ---
 
 # Untrack all files that already added to a repository
-- Commit any code changes, and then run this command:
+- Optionally, commit any code changes
+- Add file/folder that you want to ignore to .gitignore file
+- Then run the following command:
 ```
 git rm -r --cached .
 ```
@@ -28,7 +30,7 @@ git add .
 ```
 git log
 ```
-*This will show all file all ignored file are mark as deleted*
+*This will show all ignored file are mark as deleted*
 
 - Create a new commit:
 ```
