@@ -43,18 +43,22 @@ sidebar:
       title: ":blue_book: Programming cookbook"
 
     - order: 2
+      path: /testing
+      title: ":heavy_check_mark: Testing"
+
+    - order: 3
       path: /web-frameworks
       title: ":fire: Web Frameworks"
 
-    - order: 3
+    - order: 4
       path: /storage
       title: ":floppy_disk: storage"
 
-    - order: 4
+    - order: 5
       path: /cloud-hosting
       title: ":globe_with_meridians: Cloud & Hosting"
 
-    - order: 5
+    - order: 6
       path: /to-other-languages
       title: ":bicyclist: To other languages"
 
