@@ -5,8 +5,6 @@ editable: true
 showToc: true
 ---
 
-
-
 # หากคุณมีปัญหาหรือรู้สึกเบื่อเหนื่อยกับเรื่องเหล่านี้
 
 - เบื่อกับการเตรียม environment ในการ dev หรือต้องมานั่งทำเอกสารเพื่อบอก team ว่าต้องใช้ Nodejs v. ไหน หรือ dotnet sdk version ไหน
@@ -64,7 +62,7 @@ ref: https://code.visualstudio.com/docs/remote/containers
 
 ![alt text][devcontainer]
 
-5. ตัว *devcontainer.json* หน้าตาตอนเปิดครั้งก็จะประมาณนี้
+5. ตัว *devcontainer.json* หน้าตาตอนเปิดครั้งแรกก็จะประมาณนี้
 
 ```json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
