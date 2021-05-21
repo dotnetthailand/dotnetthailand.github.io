@@ -13,7 +13,7 @@ showToc: true
 - เพื่อนในทีมไม่ได้แม่นเรื่อง Docker แต่อยากให้เขาได้เริ่มใช้งาน
 - อยากให้คนในทีมใช้ extensions ใน vscode ใน project เหมือนๆกัน
 
-# dotnetthailand ขอเสนอ [Remote Development extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
+# .NET Thailand. ขอเสนอ [Remote Development extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack)
 
 สิ่งที่ต้องเตรียมก็มี (เครื่องเปล่าเปิดซิงก็ทำตามได้ หรือมีอะไรลงไปแล้วก็ข้ามๆไป)
 
@@ -24,7 +24,7 @@ showToc: true
 
 # ก่อนไปลุยทำความเข้าใจมันนิดว่ามันทำงานยังไง
 
-![alt text][architecture]
+![][architecture]
 
 ref: https://code.visualstudio.com/docs/remote/containers
 
@@ -51,16 +51,16 @@ ref: https://code.visualstudio.com/docs/remote/containers
 1. แน่นอน clone code ลงมา (หรือจะสร้าง folder เปล่าก็ได้)
 2. เปิด VS Code ปกติเราจะสั่งเปิด folder อย่าเพิ่งจิ้มให้กด cmd + P บน Mac (ผู้เขียนลืม Windows ไปแล้ว) แล้วเลือก *Remote-Containers: Open Folder in Container...*
 
-![alt text][open]
+![][open]
 
 3. ตัว web นี้ based on Node ก็แน่นอนเลือก Node ซิ และเลือกเป็น v 14 ด้วยนะ v 16 ผู้เขียนลองแล้ว build ไม่ผ่าน :P
 
-![alt text][selectNode]
-![alt text][v14]
+![][selectNode]
+![][v14]
 
 4. รอไปซักพักนึงเพราะมันจะ build image ให้ในเครื่องเราแล้วจะ start ขึ้นมาให้แล้วเราจะเจอ folder *.devcontainer* พร้อมอีก 2 files ข้างใน
 
-![alt text][devcontainer]
+![][devcontainer]
 
 5. ตัว *devcontainer.json* หน้าตาตอนเปิดครั้งแรกก็จะประมาณนี้
 
@@ -98,7 +98,7 @@ ref: https://code.visualstudio.com/docs/remote/containers
 
 และเจ้า file นี่แหละที่จะมาเป็นตัวช่วยเราที่จะบังคับให้คนอื่นใช้ extensions ตามเราได้รวมถึงคำสั่ง command ที่อยากให้ run ตอน start container เสร็จ อย่างของผู้เขียน ก็ uncomment "postCreateCommand" บรรทัดนั้นไว้ เพราะ project นี้เขาใช้ yarn นะจ๊ะ ส่วนของการเพิ่ม extensions สามารถทำได้โดยเข้าไปเพิ่ม extension ตามปกติแล้วสั่ง *Add to devcontainer.json*
 
-![alt text][saveextension]
+![][saveextension]
 
 6. ตรงขั้นนี้เนื่องจากจำเป็นต้อง install Yarn และ Gastby ด้วยแต่เราจะไม่สั่ง run install เองแต่จะให้มัน install เพื่อเป็น based อยู่ใน image สำหรับเครื่องเราเลย เพราะฉะนั้น เปิดตัว *.devcontainer/Dockerfile* มาแก้ไขนิดนึงต่อท้ายสุด
 
@@ -115,7 +115,7 @@ RUN su node -c "npm install -g yarn gatsby-cli"
 
 10. แล้วผู้เขียน ก็ทำการเขียนเนื้อหาที่อันนี้นี่แหละ
 
-![alt text][done]
+![][done]
 
 ## เพิ่มเติมนิดนึง
 
