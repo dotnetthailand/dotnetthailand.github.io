@@ -64,7 +64,7 @@ ref: https://code.visualstudio.com/docs/remote/containers
 
 ![alt text][devcontainer]
 
-5. ตัว *devcontainer.json* หน้าตาตอนเปิดครั้งก็จะประมาณนี้
+5. ตัว *devcontainer.json* หน้าตาตอนเปิดครั้งแรกก็จะประมาณนี้
 
 ```json
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
