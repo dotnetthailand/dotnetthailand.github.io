@@ -17,11 +17,11 @@ Let's setup!
 ## Steps
 1. Go to Extensions and install SonarLint (We use Visual Studio 2019)
    Visual Studio will need to close and install
-![Code Analysis](images/code-analysis-1.png)
+![](images/code-analysis-1.png)
 2. Open project and go to Analyze => Run Code Analysis => On Solution
-![Code Analysis](images/code-analysis-2.png)
+![](images/code-analysis-2.png)
 3. When done.
    Go to Error List tab.
-![Code Analysis](images/code-analysis-3.png)
+![](images/code-analysis-3.png)
 
 ## Let's fix it!
