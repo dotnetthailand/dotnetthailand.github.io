@@ -9,3 +9,4 @@ editable: true
 - Docker container
 - Docker run
 - Docker compose
+- Docker machine
