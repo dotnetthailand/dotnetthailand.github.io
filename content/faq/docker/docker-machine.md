@@ -4,13 +4,14 @@ showMetadata: true
 editable: true
 showToc: true
 ---
+
 # The Docker Machine for AWS.
 
 Docker machine is a tool that lets you install Docker Engine on your virtual host or event Remote host at your cloud provider.
 
 By the way, This content will be talking about AWS cloud providers.
 
-It feels tedious when you want quickly spin up the prototype application using Docker. You might create and install tons of prerequisites. This thing is going to be fine if you have a lot of time. By the way, you don't have much time. What'd you like to do?
+It feels tedious when you want quickly spin up the prototype application using Docker. You might create and install tons of prerequisites about AWS EC2 After you spawned your machine. You will use a secure shell with credentials to access and install the packages onto your issued instance. This thing is going to be fine if you have a lot of time. By the way, you don't have much time. What'd you like to do?
 
 Exactly, Docker Machine will help you a lot. So I will describe some tips starting from the beginning.
 
@@ -34,7 +35,6 @@ docker-machine create ${YOUR_MACHINE_NAME} \
 --amazonec2-security-group security-my-awesome-ec2-project \
 --amazonec2-vpc-id \
 --amazonec2-subnet-id subnet-1 \
---amazonec2-subnet-id subnet-2 \
 --amazonec2-private-address-only \
 --amazonec2-zone b \
 --amazonec2-zone c \
@@ -50,15 +50,14 @@ docker-machine create my-awesome-ec2-project \
 --driver amazonec2 \
 ```
 
-This line allowed you to create a new instance Ubuntu machine, describing which region to settle down.
+This line allowed you to create a new instance Ubuntu machine. By the way, If you've already configured the AWS Access Key and Secret Key for using at the AWS CLI's local machine. The Docker Machine command will bring on those kinds of secret keys from your system automatically.
 
-By the way, If you've already configured the AWS Access Key and Secret Key for using at the AWS CLI's local machine. The Docker Machine command will bring on those kinds of secret keys from your system automatically.
+Up next
 
 ```sh
 --amazonec2-open-port 27017 \
 --amazonec2-open-port 80 \
 ```
-
 
 The definition of this parameter opens port 27017 and port 80. In addition, these arguments set the security group for HTTP on our ec2 instance.
 
@@ -94,11 +93,13 @@ NAME                          ACTIVE   DRIVER      STATE     URL                
 my-awesome-project   -        amazonec2   Running   tcp://127.0.0.1:2376           v20.10.5
 ```
 
-Finally, It's time to connect and access for playing around with your machine. You can use the command eval that makes a secure connection between your local computer and the virtual server onto AWS EC2.
+After that, It's time to connect and access for playing around with your machine. You can use the command eval that makes a secure connection between your local computer and the virtual server onto AWS EC2.
 
 Example
 ```sh
 $ eval $(docker-machine env my-awesome-project)
 ```
+
+Finally, If you've connected with your remote server. You can feel free to use every docker's commands by executing onto the remote server.
 
 In a word, The Docker machine has a massive impact and saves your time in the purpose of spring your project that makes either experimental your proof of your business and concept or It good enough for the small production project. Moreover, the Docker-Machine so friendly and intuitive for using with non-Dev-Ops. Although you are a Front-End developer, You should prepare some servers for delivering your project.
