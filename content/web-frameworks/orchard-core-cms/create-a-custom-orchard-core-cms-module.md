@@ -3,7 +3,7 @@ title: Create a custom OrchardCore CMS module
 showMetadata: true
 editable: true
 showToc: true
-order: 1
+order: 2
 ---
 
 # How to create a new custom module in OrchardCore CMS
@@ -133,7 +133,6 @@ dotnet new ocmodulecms --name Codesanook.Map --AddPart True --PartName Map
 ```
 *Note* **Part** suffix is appended automatically to the end of the supplied PartName.
 
-
 ### Reference Codesanook.Map to Codesanook.Web project
 - CD back to `Codesanook.Web` folder.
 - Then reference Codesanook.Map with dotnet command.
@@ -175,7 +174,7 @@ orchard-examples/
 ```
 - *Waring* We do not suggest you to use the dev packages in production.
 
-### Restore all Nuget packages and a website
+### Restore all Nuget packages and run a website
 - Use VS Code integrated terminal by typing **ctrl+`**
 - CD to `Codesanook.Web` and run the following command.
 ```
