@@ -51,7 +51,7 @@ module.exports = {
     filename: '[name].js',
   },
   resolve: {
-    extensions: ['.scss'],git reset --soft HEAD~1
+    extensions: ['.scss']
   },
   module: {
     rules: [
