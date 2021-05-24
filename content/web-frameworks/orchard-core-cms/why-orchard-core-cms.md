@@ -1,12 +1,12 @@
 ---
-title: Why OrchardCore CMS?
+title: Why Orchard Core CMS?
 showMetadata: true
 editable: true
 showToc: true
 order: 0
 ---
 
-# ลองพิจาณาเลือกใช้ OrchardCore CMS ถ้าคุณ:
+# ลองพิจาณาเลือกใช้ Orchard Core CMS ถ้าคุณ:
 - กำลังมองหา free open source software CMS เพื่อพัฒนา multi-purpose website
 - ระบบที่สามารถให้ user ทำการ log in เข้าไปแก้ไข content ได้เลย
 - ต้องการต่อยอดจากระบบที่มีโครงสร้างพื้นฐานที่มีหน้า admin, theme, user system, function พื้นฐานอื่นๆ ที่จำเป็น

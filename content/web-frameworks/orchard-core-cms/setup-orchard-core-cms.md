@@ -58,6 +58,7 @@ code .
   <disabledPackageSources />
 </configuration>
 ```
+- *Waring* We do not suggest you to use the dev packages in production.
 
 # Project file structure
 ```

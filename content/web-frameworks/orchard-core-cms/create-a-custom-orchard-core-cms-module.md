@@ -1,12 +1,12 @@
 ---
-title: Create a custom OrchardCore CMS module
+title: Create a custom Orchard Core CMS module
 showMetadata: true
 editable: true
 showToc: true
 order: 2
 ---
 
-# How to create a new custom module in OrchardCore CMS
+# How to create a new custom module in Orchard Core CMS
 
 # Introduction
 
@@ -114,7 +114,7 @@ dotnet new -i OrchardCore.ProjectTemplates::1.0.0-rc2-* --nuget-source https://n
 ```
 - Create a folder that you want to save OrchardCore CMS source code and CD to it.
 - In this example, I will use `orchard-examples` to store all source code.
-- Then, use dotnet command to create OrchardCore CMS project with name `Codesanook.Web`.
+- Then, use dotnet command to create Orchard Core CMS project with name `Codesanook.Web`.
 ```sh
 mkdir orchard-examples
 cd orchard-examples
