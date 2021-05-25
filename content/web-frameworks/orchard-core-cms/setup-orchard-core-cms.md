@@ -25,9 +25,11 @@ sudo apt-get update; \
 dotnet --list-sdks
 ```
 - It should return `5.0.202 [/usr/share/dotnet/sdk]` or a newer version of .NET 5.
-- Then, use the following command to install a new project template.
+
+# Install Orchard Template
+- Then, use the following command to install a new project template (In this case, it'll use [nightly build](https://github.com/OrchardCMS/OrchardCore/#build-status) for OrchardCore).
 ```sh
-dotnet new -i OrchardCore.ProjectTemplates::1.0.0-rc2-* --nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json
+dotnet new -i "OrchardCore.ProjectTemplates::1.0.0-rc2-*" --nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json
 ```
 
 - Use dotnet command to create OrchardCore CMS project with name `Orchard.Web`.
@@ -107,3 +109,23 @@ dotnet run
 
 # Example of admin page
 ![](images/orchard-core-cms-admin-page.png)
+
+# All Orchard Core Cms Template
+
+You can use `dotnet new` for listing all installed templates, and you can select by using `Short Name` of the template: 
+
+```
+Templates                                     Short Name      Language    Tags
+--------------------------------------------  --------------  ----------  ----------------------
+Orchard Core Cms Module                       ocmodulecms     [C#]        Web/Orchard Core/CMS
+Orchard Core Cms Web App                      occms           [C#]        Web/Orchard Core/CMS
+Orchard Core Theme                            octheme         [C#]        Web/Orchard Core/CMS
+Orchard Core Mvc Module                       ocmodulemvc     [C#]        Web/Orchard Core/Mvc
+Orchard Core Mvc Web App                      ocmvc           [C#]        Web/Orchard Core/Mvc
+```
+
+For exmaple:
+**Orchard Core Cms Web App**:  to create a new Orchard Core CMS website project.
+```
+dotnet new occms --name [PROJECT_NAME]
+```
