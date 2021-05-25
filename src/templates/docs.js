@@ -104,8 +104,8 @@ const LastUpdated = styled(({ className, time, name }) => {
 export default class MDXRuntimeTest extends React.Component {
   componentDidMount() {
     if (window.location.hash) {
-      const element = document.getElementById(window.location.hash.substring(1));
-      element.scrollIntoView(true);
+      const element = document.getElementById(decodeURI(window.location.hash.substring(1)));
+      element?.scrollIntoView(true);
     }
   }
 
