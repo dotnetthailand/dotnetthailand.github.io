@@ -57,17 +57,7 @@ https://medium.com/@happymishra66/execution-context-in-javascript-319dd72e8e2c
 
 # Getting Started
 
-## TypeScript for React
-
-**Create React App**
-
-https://create-react-app.dev/docs/adding-typescript/
-
-**Nextjs**
-
-## TypeScript for Node.js
-
-https://nextjs.org/docs/basic-features/typescript
+## Node.js
 
 # Single File Execution
 
