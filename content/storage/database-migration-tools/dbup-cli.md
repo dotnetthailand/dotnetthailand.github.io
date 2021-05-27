@@ -57,11 +57,11 @@ dbUp:
   connectionTimeoutSec: 30
   scripts:
     - folder: schema-versions
-      filter: /^(?!_)[\w\s-]+\.sql$/
+      filter: /^(?!_)[\w\s\-\.]+\.sql$/
       # To use Regular Expression, you must surround the filter by forward-slashes.
-      # Explain ^(?!_)[\w-]+\.sql$ pattern
+      # Explain the Regex pattern:
       # Match a string that does not start with _ (negative look ahead)
-      # then match a-z, A-Z, 0-9, _, space and - as a file name
+      # then match a-z, A-Z, 0-9, _, space, - and . as a file name
       # then match a string ending with .sql as a file extension.
 ```
 - This configuration makes dbpub to connect to a database on MySQL server.
