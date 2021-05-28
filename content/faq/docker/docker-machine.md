@@ -21,7 +21,7 @@ If you want to know more about Docker-Machine and how does it work, please click
 
 In this article, I'd like to introduce you to the real-world usage of Docker Machine relies on the AWS EC2.
 
-First thing first, Install your docker machine to your machine. Please follow this link.
+First thing first, Install your  Docker-Machine to your machine. Please follow this link.
 
 [https://docs.docker.com/machine/install-machine/](https://docs.docker.com/machine/install-machine/)
 
@@ -38,6 +38,7 @@ docker-machine create ${YOUR_MACHINE_NAME} \
 --amazonec2-private-address-only \
 --amazonec2-zone b \
 --amazonec2-zone c \
+--amazonec2-monitoring \
 --amazonec2-instance-type t3a.medium
 ```
 
@@ -50,7 +51,9 @@ docker-machine create my-awesome-ec2-project \
 --driver amazonec2 \
 ```
 
-This line allowed you to create a new instance Ubuntu machine. By the way, If you've already configured the AWS Access Key and Secret Key for using at the AWS CLI's local machine. The Docker Machine command will bring on those kinds of secret keys from your system automatically.
+This line allowed you to create a new instance of [Ubuntu 16.04 LTS](https://cloud-images.ubuntu.com/locator/ec2/) by default. In contrast, you can use your favorite operating system or your AMI instance from the AWS WebServices using by argument name `--amazonec2-ami`. That AMI has become an operating system as a root for your EC2 Device.
+
+Then, If you already configure the AWS Access Key and Secret Key for using at the AWS CLI's local machine. The Docker Machine command will supply those keys from your AWS configuration file in your system automatically.
 
 Up next
 
@@ -100,6 +103,6 @@ Example
 $ eval $(docker-machine env my-awesome-project)
 ```
 
-Finally, If you've connected with your remote server. You can feel free to use every docker's commands by executing onto the remote server.
+Finally, If you've connected with your remote server. You can use any docker commands these are executing onto the EC2 remote server.
 
 In a word, The Docker machine has a massive impact and saves your time in the purpose of spring your project that makes either experimental your proof of your business and concept or It good enough for the small production project. Moreover, the Docker-Machine so friendly and intuitive for using with non-Dev-Ops. Although you are a Front-End developer, You should prepare some servers for delivering your project.
