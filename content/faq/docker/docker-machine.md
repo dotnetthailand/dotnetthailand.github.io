@@ -30,6 +30,8 @@ In the next step, Copy and Paste this command onto your terminal.
 ```sh
 docker-machine create ${YOUR_MACHINE_NAME} \
 --driver amazonec2 \
+--amazonec2-access-key AKI******* \
+ --amazonec2-secret-key 8T93C*******
 --amazonec2-region ap-southeast-1 \
 --amazonec2-open-port 27017 \
 --amazonec2-security-group security-my-awesome-ec2-project \
@@ -49,11 +51,20 @@ Yeah, you may already know what's this line does.
 ```sh
 docker-machine create my-awesome-ec2-project \
 --driver amazonec2 \
+--amazonec2-access-key AKI******* \
+ --amazonec2-secret-key 8T93C******* \
 ```
 
-This line allowed you to create a new instance of [Ubuntu 16.04 LTS](https://cloud-images.ubuntu.com/locator/ec2/) by default. In contrast, you can use your favorite operating system or your AMI instance from the AWS WebServices using by argument name `--amazonec2-ami`. That AMI has become an operating system as a root for your EC2 Device.
+This line allowed you to create a new instance of [Ubuntu 16.04 LTS](https://cloud-images.ubuntu.com/locator/ec2/) by default. On the other hand, you can use your favorite operating system or your AMI instance from the AWS WebServices using by argument name `--amazonec2-ami`. That AMI has become an operating system as a root for your EC2 Device.
 
-Then, If you already configure the AWS Access Key and Secret Key for using at the AWS CLI's local machine. The Docker Machine command will supply those keys from your AWS configuration file in your system automatically.
+Next, you can see those lines like this. You can use your `access keys` and `secret key` for signing programmatic requests to the AWS CLI or AWS API. In case, These keys authorized the Docker-Machine CLI for creating a new EC2 Device onto AWS.
+
+```sh
+--amazonec2-access-key AKI******* \
+ --amazonec2-secret-key 8T93C******* \
+```
+
+
 
 Up next
 
