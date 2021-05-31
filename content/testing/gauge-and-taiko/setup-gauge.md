@@ -7,20 +7,20 @@ order: 1
 ---
 
 # Requirement
-- Node.js version >= 10.16.3 (LTS) You can install it from
+- Node.js version >= 10.16.3 (LTS). Follow the instruction in the link below to install Node.js.
   - [How to Install Node.js with Ubuntu apt-get](https://github.com/nodesource/distributions/blob/master/README.md#debinstall)
 - Yarn & Gauge
-  - You can install theme from a terminal.
-  - Install Yarn:
+  - Open a new shell.
+  - Install Yarn with the following command:
   ```sh
   sudo npm install -g yarn
   ```
-  - Install Gauge as a global tool.
+  - Install Gauge as a global tool with the following command.
   ```sh
   sudo npm install -g @getgauge/cli
   ```
-  - It will take a several minute since installing Gauge needs to download Chromium.
-  - Gauge works cross platform but for using Linux, you need to use sudo when install it.
+  - It will take a several minutes since installing Gauge needs Chromium.
+  - Gauge works cross platforms but for using Linux, you need to use sudo when install it.
 
 # Verify all requirement
 - Open a new shell and execute the following commands:
@@ -38,7 +38,8 @@ mkdir gauge-example
 cd gauge-example
 gauge init ts
 ```
-- Optionally, you can change a folder name (project name) to any name that you like.
+- Optionally, you can change a folder name (project name) to any name that you want.
+- *Tip* use `gauge init js` to create a Gauge project with JavaScript template.
 - Install all Node.js packages with yarn.
 ```
 yarn install
