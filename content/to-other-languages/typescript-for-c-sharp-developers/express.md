@@ -6,22 +6,21 @@ showToc: true
 ---
 
 # Global exception handler
-## Useful links
-- [Error Handling from Express document](https://expressjs.com/en/guide/error-handling.html)
-- [Central Error Handling in Express](https://dev.to/nedsoft/central-error-handling-in-express-3aej)
-- [Default error message in Express](https://github.com/expressjs/express/blob/master/examples/error-pages/views/500.ejs#L3)
 
 ## Example code
-- Custom Error class
+
+### Custom Error class.
+- Default to 500 error code.
 ```ts
 // HttpError.ts
 export default class HttpError extends Error {
-  constructor(public message: string, public statusCode: number) {
+  constructor(public message: string, public statusCode: number = 500) {
     super(message);
   }
 }
 ```
-- Custom error handler
+
+### Custom error handler
 - Define it as a last middleware, after other app.use() and routes calls.
 ```ts
 // app.ts
@@ -43,3 +42,13 @@ app.use((err, req, res, next) => {
   );
 });
 ```
+
+## Known issues
+- Starting with Express 5, route handlers and middleware that return a Promise will call next(value) automatically when they reject or throw an error.
+- You can install Express 5 with `yarn add express@next`.
+
+## Useful links
+- [Error Handling from Express document](https://expressjs.com/en/guide/error-handling.html)
+- [Central Error Handling in Express](https://dev.to/nedsoft/central-error-handling-in-express-3aej)
+- [Default error message in Express](https://github.com/expressjs/express/blob/master/examples/error-pages/views/500.ejs#L3)
+
