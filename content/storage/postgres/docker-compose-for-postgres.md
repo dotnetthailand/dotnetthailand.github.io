@@ -18,7 +18,6 @@ version: "3.8" # https://docs.docker.com/compose/compose-file/compose-file-v3/
 
 # .NET connection string value:
 #  Host=localhost;Port=5432;Database=my-db;Username=postgres;Password=12345Abc$
-
 services:
   postgres:
     # https://hub.docker.com/_/postgres
@@ -32,6 +31,7 @@ services:
     ports:
       - 5432:5432
     volumes:
+      - pgdata:/var/lib/postgresql/data
       - ./init:/docker-entrypoint-initdb.d
     networks:
       - compose_network
@@ -39,9 +39,7 @@ services:
 # Create name volumes managed by Docker to not lose data when remove a container
 # https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
 volumes:
-  mssql_data:
-  mssql_log:
-  mssql_backup:
+  pgdata:
 
 networks:
   compose_network:
@@ -94,8 +92,6 @@ tree . -a
 └── init
     └── 1.create-user-table.sql
 ```
-
-
 
 #  Useful Docker compose commands
 - To launch a container.
