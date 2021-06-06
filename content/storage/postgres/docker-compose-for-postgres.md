@@ -106,7 +106,7 @@ tree . -a
 docker-compose up
 ```
 
-- To launch a container as a daemon
+- To launch a container as a background process
 ```sh
 docker-compose up -d
 ```
