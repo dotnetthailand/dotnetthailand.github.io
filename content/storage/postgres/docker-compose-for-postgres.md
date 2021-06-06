@@ -40,7 +40,7 @@ services:
 # https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
 
 # You can also specify a volume driver such as pxd (Portworx) to achieve high performance read/write for container storage volumes.
-https://docs.portworx.com/install-with-other/rancher/rancher-1.x/
+# https://docs.portworx.com/install-with-other/rancher/rancher-1.x/
 volumes:
   pgdata:
     driver: pxd
@@ -95,7 +95,7 @@ COMPOSE_PROJECT_NAME=db-compose
 tree . -a
 .
 ├── .env
-├── docker-compose.[yml / yaml]
+├── docker-compose.[yml/yaml]
 └── init
     └── 1.create-user-table.sql
 ```
