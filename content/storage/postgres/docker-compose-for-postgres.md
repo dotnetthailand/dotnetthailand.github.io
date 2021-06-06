@@ -46,7 +46,7 @@ volumes:
     driver: pxd
     external: false # If external set to false, the Portworx volume would be automactically created if the volume is not exist.
     driver_opts:
-       size: 7 # 7 GB
+       size: 7 # 7 GB size of storage volume
        repl: 3 # Replicate data across 3 storage volumes
 networks:
   compose_network:
