@@ -5,14 +5,14 @@ editable: true
 ---
 
 To use Postgres Docker compose, we need to create required files and add contents to theme.
-- main docker-compose.yml
+- main docker-compose.[yml/yaml]
 - initialize database file
 - .env file
 
-# docker-compose.yml
-- Example content of docker-compose.yml
+# docker-compose.[yml/yaml]
+- Example content of docker-compose.[yml/yaml]
 ```yml
-# docker-compose.yml
+# docker-compose.[yml/yaml]
 
 version: "3.8" # https://docs.docker.com/compose/compose-file/compose-file-v3/
 
@@ -38,9 +38,16 @@ services:
 
 # Create name volumes managed by Docker to not lose data when remove a container
 # https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
+
+# You can also specify a volume driver such as pxd (Portworx) to achieve high performance read/write for container storage volumes.
+https://docs.portworx.com/install-with-other/rancher/rancher-1.x/
 volumes:
   pgdata:
-
+    driver: pxd
+    external: false # If external set to false, the Portworx volume would be automactically created if the volume is not exist.
+    driver_opts:
+       size: 7 # 7 GB
+       repl: 3 # Replicate data across 3 storage volumes
 networks:
   compose_network:
 ```
@@ -88,24 +95,29 @@ COMPOSE_PROJECT_NAME=db-compose
 tree . -a
 .
 ├── .env
-├── docker-compose.yml
+├── docker-compose.[yml / yaml]
 └── init
     └── 1.create-user-table.sql
 ```
 
 #  Useful Docker compose commands
-- To launch a container.
+- To launch a container
 ```sh
 docker-compose up
 ```
 
-- To remove a container with its volumes.
+- To launch a container as a daemon
+```sh
+docker-compose up -d
+```
+
+- To remove a container with its volumes
 ```sh
 docker-compose down --volumes
 ```
 
 # Connect a database server
-- Use these value to connect to a server server
+- Use these value to connect to a database server (Postgres)
   - Host=localhost
   - Port=5432
   - Database=my-db
