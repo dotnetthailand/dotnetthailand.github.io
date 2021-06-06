@@ -10,40 +10,46 @@ order: 1
 - Launch a new shell.
 - Use the following commands to install .NET 5 on Ubuntu Linux.
 ```sh
-wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
+$ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 
-sudo apt-get update; \
+$ sudo dpkg -i packages-microsoft-prod.deb
+
+$ sudo apt-get update; \
   sudo apt-get install -y apt-transport-https && \
   sudo apt-get update && \
   sudo apt-get install -y dotnet-sdk-5.0
 ```
 
-- To in stall .NET on other platforms, please check https://docs.microsoft.com/en-us/dotnet/core/install/.
-- Check .NET SDK version.
+- To install .NET on other platforms, please check https://docs.microsoft.com/en-us/dotnet/core/install/.
+- Check .NET SDK version with a command:
 ```
-dotnet --list-sdks
+$ dotnet --list-sdks
 ```
-- It should return `5.0.202 [/usr/share/dotnet/sdk]` or a newer version of .NET 5.
+- It should return `5.0.202 [/usr/share/dotnet/sdk]` or a newer version of .NET Framework.
 
 # Install Orchard Template
-- Then, use the following command to install a new project template (In this case, it'll use [nightly build](https://github.com/OrchardCMS/OrchardCore/#build-status) for OrchardCore).
+- Use the following command to install a new project template
+  It'll use [nightly build](https://github.com/OrchardCMS/OrchardCore/#build-status) packages.
 ```sh
 dotnet new -i "OrchardCore.ProjectTemplates::1.0.0-rc2-*" --nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json
 ```
-
-- Use dotnet command to create OrchardCore CMS project with name `Orchard.Web`.
-- You can change a name to any name that you want.
+- Create a new folder with name `orchard-example` as a root folder of your project.
+- Inside the root folder, create a folder `src` to store the project's source code.
+- CD To `orchard-example/src`.
+- Use `dotnet new occms` command to create OrchardCore CMS project with name `Orchard.Web`.
+- You can change a project's name to any name that you want.
 ```sh
-dotnet new occms --name Orchard.Web
+$ mkdir -p orchard-example/src
+$ cd orchard-example/src
+$ dotnet new occms --name Orchard.Web
 ```
 
 # Open the project with VS Code
-- CD to `Orchard.Web` folder.
-- Open the project with VS Code.
+- CD the root folder (`codesanook-example`).
+- Launch VS Code.
 ```sh
-cd Orchard.Web
-code .
+$ cd orchard-example
+$ code .
 ```
 
 # Add preview package source
@@ -60,35 +66,33 @@ code .
   <disabledPackageSources />
 </configuration>
 ```
-- *Waring* We do not suggest you to use the dev packages in production.
+- *Waring*, we do not suggest you to use the dev packages in production.
 
 # Project file structure
-```
-Orchard.Web/
-├── NLog.config
-├── Orchard.Web.csproj
-├── Program.cs
-├── Properties
-│   └── launchSettings.json
-├── Startup.cs
-├── appsettings.json
-├── nuget.config
-└── wwwroot
+```sh
+$ tree -I "bin|obj" orchard-example
+orchard-example
+└── src
+    └── Orchard.Web
+        ├── NLog.config
+        ├── Orchard.Web.csproj
+        ├── Program.cs
+        ├── Properties
+        │   └── launchSettings.json
+        ├── Startup.cs
+        ├── appsettings.json
+        └── wwwroot
 ```
 
-# Restore all Nuget packages and run a website
+# Launch a website
 - Use VS Code integrated terminal by typing **ctrl+`**
-- Run the following command at the root of the project.
-``` sh
-dotnet restore
+- CD to `src/Orchard.Web` folder.
+- Run the project with the following command.
 ```
-
+$ dotnet run
+```
 *Note* Please make sure you save all changes before running the command.
-- Wait until we have restored all packages successfully.
-- Then run:
-```
-dotnet run
-```
+- FYI, `dotnet run` automatically download all Nuget packages so you don't need to explicitly run `dotnet restore` https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run#implicit-restore.
 
 # Set up new Orchard CMS website
 - Open a browser and navigate to http://localhost:5000.
@@ -112,7 +116,7 @@ dotnet run
 
 # All Orchard Core Cms Template
 
-You can use `dotnet new` for listing all installed templates, and you can select by using `Short Name` of the template: 
+You can use `dotnet new` for listing all installed templates, and you can select by using `Short Name` of the template:
 
 ```
 Templates                                     Short Name      Language    Tags
