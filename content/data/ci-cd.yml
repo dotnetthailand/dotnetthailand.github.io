@@ -30,8 +30,8 @@
     https://marketplace.visualstudio.com/search?target=AzureDevOps&category=Azure%20Pipelines&sortBy=Installs
 
 - feature: Code example to deploy ASP.NET Core MVC to Azure App Service (Code)
-  actions: https://github.com/codesanook/CoreMvcAppService/blob/develop/.github/workflows/github-actions-app-service.yml
-  pipelines: https://github.com/codesanook/CoreMvcAppService/blob/develop/azure-pipelines-app-service.yml
+  actions: https://github.com/codesanook/codesanook-ef-note/blob/main/.github/workflows/deploy-to-app-service-code.yml
+  pipelines: https://github.com/codesanook/codesanook-ef-note/blob/main/azure-devops-pipelines-app-service-code.yml
 
 - feature:  Supported languages for creating an extension
   actions: >
