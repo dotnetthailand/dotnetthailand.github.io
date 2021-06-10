@@ -1,11 +1,12 @@
 ---
-title: Data Structure & Algorithm
+title: Data Structures & Algorithms
 showMetadata: true
 editable: true
 showToc: true
 ---
 
-[จะเริ่มต้นฝึกแก้โจทย์ Algorithm ยังไงดี (+ แนะนำเว็บ) | The CHUN](https://www.youtube.com/watch?v=iVTtDJptnXk)
+# Useful resources
+- [จะเริ่มต้นฝึกแก้โจทย์ Algorithm ยังไงดี (+ แนะนำเว็บ) | The CHUN](https://www.youtube.com/watch?v=iVTtDJptnXk)
 
 # Courses
 - วิดีโอโดยอาจารย์ Vacharapat Mettanant คณะวิศวกรรมศาสตร์ศรีราชา มหาวิทยาลัยเกษตรศาสตร์
