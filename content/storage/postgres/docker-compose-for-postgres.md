@@ -5,19 +5,18 @@ editable: true
 ---
 
 To use Postgres Docker compose, we need to create required files and add contents to theme.
-- main docker-compose.yml
+- main docker-compose.[yml/yaml]
 - initialize database file
 - .env file
 
-# docker-compose.yml
-- Example content of docker-compose.yml
+# docker-compose.[yml/yaml]
+- Example content of docker-compose.[yml/yaml]
 ```yml
-# docker-compose.yml
+# docker-compose.[yml/yaml]
 
-version: "3.8" # https://docs.docker.com/compose/compose-file/compose-file-v3/
+# https://docs.docker.com/compose/compose-file/compose-file-v3/
+version: "3.8"
 
-# .NET connection string value:
-#  Host=localhost;Port=5432;Database=my-db;Username=postgres;Password=12345Abc$
 services:
   postgres:
     # https://hub.docker.com/_/postgres
@@ -32,7 +31,7 @@ services:
       - 5432:5432
     volumes:
       - pgdata:/var/lib/postgresql/data
-      - ./init:/docker-entrypoint-initdb.d
+      - ./init:/docker-entrypoint-initdb.d # Files will be executed in alphabetical order.
     networks:
       - compose_network
 
@@ -47,6 +46,7 @@ networks:
 
 # Initialize a database
 - Put SQL files in `init` folder.
+- Files will be executed in alphabetical order.
 - Example content of `init/1.create-user-table.sql`
 ```sql
 -- init/1.create-user-table.sql
@@ -79,7 +79,7 @@ id	first_name	last_name	date_of_birth
 # .env
 
 # https://docs.docker.com/compose/reference/envvars/#compose_project_name
-# Explicit prefix volume with this value or use -P with a docker run commmand
+# Explicitly set volume's prefix or use -P with a docker run command.
 COMPOSE_PROJECT_NAME=db-compose
 ```
 
@@ -88,26 +88,47 @@ COMPOSE_PROJECT_NAME=db-compose
 tree . -a
 .
 ├── .env
-├── docker-compose.yml
+├── docker-compose.[yml/yaml]
 └── init
     └── 1.create-user-table.sql
 ```
 
+# Optionally, set high performance Docker volume
+- You can also specify a volume driver such as pxd (Portworx) to achieve high performance read/write for container storage volumes.
+- To use pxd driver, you need to install it by following instruction in
+https://docs.portworx.com/install-with-other/docker/standalone/
+- Update volumes in docker-compose.[yml/yaml] to:
+```yml
+volumes:
+  pgdata:
+    driver: pxd
+    external: false # If external set to false, the Portworx volume would be automatically created if the volume is not exist.
+    driver_opts:
+      size: 7 # 7 GB maximum size of storage volume
+      repl: 3 # Replicate data across 3 storage volumes
+```
+
 #  Useful Docker compose commands
-- To launch a container.
+- To launch a container
 ```sh
 docker-compose up
 ```
 
-- To remove a container with its volumes.
+- To launch a container as a background process
+```sh
+docker-compose up -d
+```
+
+- To remove a container with its volumes
 ```sh
 docker-compose down --volumes
 ```
 
 # Connect a database server
-- Use these value to connect to a server server
+- Use these value to connect to a database server (Postgres)
   - Host=localhost
   - Port=5432
   - Database=my-db
   - Username=postgres
   - Password=12345Abc$
+- .NET connection string value: `Host=localhost;Port=5432;Database=my-db;Username=postgres;Password=12345Abc$`
