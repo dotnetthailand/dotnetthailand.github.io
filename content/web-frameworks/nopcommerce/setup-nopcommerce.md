@@ -70,6 +70,23 @@ docker-compose up
 - You can manage your products on products page.
 ![](images/nopcommerce-admin-products-page.png)
 
+
+# Where are pictures stored?
+- By default, nopCommerce store pictures in database
+- You can find a setting at http://localhost:8080/Admin/Setting/Media.
+- You can also query data with:
+```sql
+  SELECT p.Id, p.MimeType, p.SeoFilename, b.BinaryData
+  FROM Picture p
+  INNER JOIN PictureBinary b
+  ON p.Id = b.PictureId;
+```
+
+# How to connect to nopCommerce container?
+```
+docker exec -it nopcommerce_compose_web /bin/sh
+```
+
 # Learn more about nopCommerce
 - [nopCommerce Documentation
 ](https://docs.nopcommerce.com/en/index.html)
