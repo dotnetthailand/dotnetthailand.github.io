@@ -112,6 +112,7 @@ services:
       - MSSQL_DATA_DIR=/var/opt/mssql/data
       - MSSQL_LOG_DIR=/var/opt/mssql/log
       - MSSQL_BACKUP_DIR=/var/opt/mssql/backup
+      - MSSQL_COLLATION=Thai_CI_AS
 
     networks:
       - compose_network
