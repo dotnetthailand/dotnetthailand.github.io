@@ -4,9 +4,9 @@ showMetadata: true
 editable: true
 ---
 
-To use Postgres Docker compose, we need to create required files and add contents to theme.
+To use Postgres Docker compose, we need to create required files and add contents to them.
 - main docker-compose.[yml/yaml]
-- initialize database file
+- initialize a database file
 - .env file
 
 # docker-compose.[yml/yaml]
