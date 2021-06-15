@@ -12,7 +12,7 @@ To use nopCommerce Docker compose, we need to create required files and add cont
 - .env file
 
 # Dockerfile
-- SQL Server for Linux image does not have built in database intiliazation like MySQL or Postgres. Therefore, we need to create a custom image.
+- SQL Server for Linux image does not have built in database initialization like MySQL or Postgres. Therefore, we need to create a custom image.
 - We use an existing `mcr.microsoft.com/mssql/server:2019-CU11-ubuntu-18.04` image as a based image.
 - Example content of `Dockerfile`
 ```sh
@@ -36,7 +36,7 @@ ENTRYPOINT ["./entrypoint.sh"]
 ```
 
 # entrypoint.sh
-- entrypoint.sh is any entry point script that will be run when we luanch a container
+- entrypoint.sh is any entry point script that will be run when we launch a container
 - This fill does two things, run `initialize.sh` script and start a SQL server instance.
 ```sh
 #!/bin/bash
@@ -71,7 +71,7 @@ echo -e "\033[31mDone initialize a database"
 
 ```
 
-- We use `init-db.sql` to store all SQL statements that will be exected after a SQL server instance is ready.
+- We use `init-db.sql` to store all SQL statements that will be executed after a SQL server instance is ready.
 - Example content of init-db.sql:
 ```sql
 -- init-db.sql
