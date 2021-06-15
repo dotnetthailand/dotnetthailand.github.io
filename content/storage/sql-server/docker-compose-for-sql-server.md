@@ -1,10 +1,10 @@
 ---
-title: Docker compose for nopCommerce
+title: Docker compose for SQL Server
 showMetadata: true
 editable: true
 ---
 
-To use nopCommerce Docker compose, we need to create required files and add contents to them.
+To use SQL Server Docker compose, we need to create required files and add contents to them.
 - Dockerfile, a custom docker image
 - entrypoint.sh
 - initialize.sh and init-db.sql for initializing a database
@@ -75,7 +75,7 @@ echo -e "\033[31mDone initialize a database"
 - Example content of init-db.sql:
 ```sql
 -- init-db.sql
-CREATE DATABASE nopcommerce;
+CREATE DATABASE my-db;
 
 ```
 
@@ -88,17 +88,6 @@ CREATE DATABASE nopcommerce;
 version: "3.8"
 
 services:
-  web:
-    image: nopcommerceteam/nopcommerce:4.40.3
-    container_name: ${COMPOSE_PROJECT_NAME:?err}_web
-    ports:
-      - 8080:80
-    volumes:
-      # https://github.com/nopSolutions/nopCommerce/blob/develop/Dockerfile#L72
-      #- nopcommerce_data:/app/App_Data
-      - nopcommerce_data:/app
-    networks:
-      - compose_network
 
   db:
     build:
@@ -133,7 +122,6 @@ volumes:
   mssql_data:
   mssql_log:
   mssql_backup:
-  nopcommerce_data:
 
 networks:
   compose_network:
@@ -148,10 +136,11 @@ networks:
 
 # https://docs.docker.com/compose/reference/envvars/#compose_project_name
 # Explicitly set volume's prefix or use -P with a docker run command.
-COMPOSE_PROJECT_NAME=nopcommerce_compose
+COMPOSE_PROJECT_NAME=sql_server_compose
 
 ```
-# File structure of our nopCommerce Docker compose
+
+# File structure of our SQL server Docker compose
 ```sh
 tree . -a
 .
@@ -162,3 +151,12 @@ tree . -a
 ├── init-db.sql
 └── initialize.sh
 ```
+
+# Connect to a database server
+- Use these values to connect to a database server:
+  - Host=localhost
+  - Port=1433 (default port number, you can ignore)
+  - Database=my-db
+  - Username=sa
+  - Password=12345Abc$
+- .NET connection string value: `Server=localhost,1433; Database=my-db; User Id=sa; Password=12345Abc$;`

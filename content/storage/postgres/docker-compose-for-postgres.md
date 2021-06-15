@@ -124,8 +124,8 @@ docker-compose up -d
 docker-compose down --volumes
 ```
 
-# Connect a database server
-- Use these value to connect to a database server (Postgres)
+# Connect to a database server
+- Use these values to connect to a database server (Postgres):
   - Host=localhost
   - Port=5432
   - Database=my-db
