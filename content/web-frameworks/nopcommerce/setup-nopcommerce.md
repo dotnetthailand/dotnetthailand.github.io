@@ -41,7 +41,7 @@ docker-compose up
   - For Server name, enter **db**.
   - For Database name, enter **nopcommerce**.
   - For SQL Username, enter **sa**.
-  - For SQL Password, enter **12345Abc$**
+  - For SQL Password, enter **12345Abc$** (You can change this password in docker-compose.yml.)
 
 ![](images/nopcommerce-installation-page.png)
 
@@ -54,6 +54,7 @@ docker-compose up
 # Start a website
 - In fact, nopCommerce tries to restart a website after installation is completed, but this does work in Docker context. Therefore, you need to manually restart a container.
 - Stop and start Docker containers. Kill Docker containers by pressing `CTRL+C` and then run `docker-compose up` again.
+- Wait for a while until a website is ready.
 - Open a browser and navigate to [http://localhost:8080](http://localhost:8080)
 - You will find a home page of nopCommerce with some sample products.
 ![](images/nopcommerce-home-page.png)
