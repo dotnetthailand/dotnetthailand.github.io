@@ -1,5 +1,5 @@
 ---
-title: MySQL Docker
+title: Docker compose for MySQL
 showMetadata: true
 editable: true
 showToc: true

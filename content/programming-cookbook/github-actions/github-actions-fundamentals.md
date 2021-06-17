@@ -171,7 +171,23 @@ on:
 - For private, internal, and GitHub Enterprise repositories: you can change this retention period to anywhere between 1 day or 400 days.
 - REF: https://docs.github.com/en/github/administering-a-repository/configuring-the-retention-period-for-github-actions-artifacts-and-logs-in-your-repository
 
-# Change working directory
+# Change a working directory
+- To all steps, at workflow level:
+```yaml
+defaults:
+  run:
+    working-directory: ./temp
+```
+
+- At job level:
+```yaml
+jobs:
+  job1:
+    defaults:
+      run:
+        working-directory: ./temp
+```
+
 - At step level:
 ```yaml
   - name: Clean temp directory
@@ -187,7 +203,6 @@ on:
 # Change a default shell
 - You can use default run to set default shell to all steps
 - It can be at workflow level (`defaults.run`) or job level (`jobs.<job_id>.defaults.run`).
-
 ```
 defaults:
   run:

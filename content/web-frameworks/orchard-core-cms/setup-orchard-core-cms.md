@@ -8,10 +8,9 @@ order: 1
 
 # Install .NET 5
 - Launch a new shell.
-- Use the following commands to install .NET 5 on Ubuntu Linux.
+- Use the following commands to install .NET 5 on Ubuntu Linux 18.04.
 ```sh
-$ wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-
+$ wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 $ sudo dpkg -i packages-microsoft-prod.deb
 
 $ sudo apt-get update; \
@@ -20,7 +19,7 @@ $ sudo apt-get update; \
   sudo apt-get install -y dotnet-sdk-5.0
 ```
 
-- To install .NET on other platforms, please check https://docs.microsoft.com/en-us/dotnet/core/install/.
+- To install .NET on other platforms/versions, please check https://docs.microsoft.com/en-us/dotnet/core/install/.
 - Check .NET SDK version with a command:
 ```
 $ dotnet --list-sdks
@@ -128,7 +127,7 @@ Orchard Core Mvc Module                       ocmodulemvc     [C#]        Web/Or
 Orchard Core Mvc Web App                      ocmvc           [C#]        Web/Orchard Core/Mvc
 ```
 
-For exmaple:
+For example:
 **Orchard Core Cms Web App**:  to create a new Orchard Core CMS website project.
 ```
 dotnet new occms --name [PROJECT_NAME]

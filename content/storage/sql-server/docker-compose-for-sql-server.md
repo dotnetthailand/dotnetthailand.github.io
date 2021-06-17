@@ -128,6 +128,7 @@ networks:
   compose_network:
 
 ```
+- We set `MSSQL_PID=Express` to configure SQL Server to Express edition.
 
 # .env file
 - We can control prefix of our volumes/networks by specific a value of COMPOSE_PROJECT_NAME

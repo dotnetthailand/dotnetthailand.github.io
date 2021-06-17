@@ -94,7 +94,7 @@ Let's create a new module for Map part.
 - Use the following commands to install .NET 5 on Ubuntu Linux.
 
 ```sh
-wget https://packages.microsoft.com/config/ubuntu/20.10/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
 sudo dpkg -i packages-microsoft-prod.deb
 
 sudo apt-get update; \
