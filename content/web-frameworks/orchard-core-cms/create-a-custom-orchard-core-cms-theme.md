@@ -3,7 +3,7 @@ title: Create a custom Orchard Core CMS theme
 showMetadata: true
 editable: true
 showToc: true
-order: 1
+order: 2
 ---
 
 # Setup a new Orchard project

@@ -75,7 +75,19 @@ echo -e "\033[31mDone initialize a database"
 - Example content of init-db.sql:
 ```sql
 -- init-db.sql
-CREATE DATABASE my-db;
+
+CREATE DATABASE [my-db];
+USE [my-db];
+
+CREATE TABLE [User] (
+  Id INT NOT NULL IDENTITY(1,1),
+  FirstName VARCHAR(50) NOT null,
+  LastName VARCHAR(50) NOT NULL,
+  DateOfBirth DATETIME NOT NULL
+  CONSTRAINT PK_User_Id PRIMARY KEY (Id ASC)
+);
+
+INSERT INTO [User] VALUES ('Jose', 'Realman', '2018-01-01');
 
 ```
 
@@ -93,6 +105,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    image: custom-sql-server-2019
     container_name: ${COMPOSE_PROJECT_NAME:?err}_db
     ports:
       - 1433:1433
