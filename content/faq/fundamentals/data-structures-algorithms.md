@@ -19,4 +19,6 @@ showToc: true
 มีทั้งหมด 78 วิดีโอ เน้น Java code เป็นหลัก ความยากในระดับ Easy และ Medium
 - [โครงสร้างข้อมูล ฉบับวาจาจาวา](https://www.youtube.com/playlist?list=PL0ROnaCzUGB7xfdsHWOGxlZvq7_qpAmyH) โดย รศ.ดร.สมชาย ประสิทธิ์จูตระกูล ภาควิชาวิศวกรรมคอมพิวเตอร์จุฬาลงกรณ์มหาวิทยาลัย
 - [การออกแบบและวิเคราะห์อัลกอริทึม](https://www.youtube.com/playlist?list=PL0ROnaCzUGB65_YkASLAEmcW_mtxFtq4m) โดย รศ.ดร.สมชาย ประสิทธิ์จูตระกูล ภาควิชาวิศวกรรมคอมพิวเตอร์จุฬาลงกรณ์มหาวิทยาลัย
+- [CS50 2020 - Lecture 5 - Data Structures by professor David J. Malan, Harvard university](https://www.youtube.com/watch?v=2T-A_GFuoTo)
+
 
