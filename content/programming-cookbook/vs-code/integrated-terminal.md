@@ -6,8 +6,8 @@ showToc: true
 ---
 
 
-# How to split a terminal vertically
+# How to split a terminal
 
 `alt + click` or `ctrl + shift + 5`
 
-![](images/vertically-split-a-terminal.png)
+![](images/split-a-terminal.png)
