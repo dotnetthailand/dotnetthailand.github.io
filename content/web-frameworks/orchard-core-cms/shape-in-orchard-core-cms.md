@@ -68,3 +68,26 @@ Views
 
 ```
 
+# Create a shape without ViewModel in DisplayDriver class
+
+We usually use `DisplayDriverBase.Initialize<TModel>` to create a ShapeResult for a content part.
+However, this method requires a view model which sometime we don't need it.
+
+We can use other methods to create ShapeResult. For example:
+
+```c#
+var shapeResult = Dynamic(nameof(FooPart)).Location("Detail", "Content");
+```
+
+```c#
+return Factory(
+    nameof(FooPart),
+    async context => await context.New.FooPart()
+).Location("Detail", "Content");
+```
+
+# Useful code reference
+- https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore.Modules/OrchardCore.Demo/ContentElementDisplays/TestContentElementDisplayDriver.cs
+- https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore/OrchardCore.DisplayManagement/Views/ShapeResult.cs
+- https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore/OrchardCore.DisplayManagement/Implementation/DefaultShapeFactory.cs
+- https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore/OrchardCore.DisplayManagement/Handlers/DisplayDriverBase.cs

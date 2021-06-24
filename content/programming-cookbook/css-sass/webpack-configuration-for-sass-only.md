@@ -5,15 +5,15 @@ editable: true
 showToc: true
 ---
 
-# Initialize Node.js project
-- Create a project folder and initialize a project with the following command.
+# Initialize Node.js project.
+- Create a project folder and initialize a project with the following command:
 ```sh
-mkdir sass-webpack-project
-cd sass-webpack-project
-yarn init -y
+$ mkdir sass-webpack-project
+$ cd sass-webpack-project
+$ yarn init -y
 ```
 - You can change a folder's name to any name as you want.
-- You will have auto generated `package.json` file in a current working directory.
+- You will have auto generated `package.json` file in the current working directory.
 
 # Add required packages to the project.
 ```sh
@@ -27,10 +27,10 @@ mini-css-extract-plugin \
 webpack-remove-empty-scripts
 ```
 
-# Create Webpack configuration file
+# Create Webpack configuration file.
 - Create `webpack.config.js` at the same level as package.json
-- We will use Webpack version 5 configuration.
-- Add the following content to `webpack.config.js`.
+- Please note that we will use Webpack version 5 configuration.
+- Add the following content to `webpack.config.js`:
 ```js
 // This Webpack is only for building Sass (.scss) to CSS
 const path = require('path');
@@ -48,7 +48,7 @@ module.exports = {
   },
   mode: 'development',
   output: {
-    path: path.resolve(__dirname, 'wwwroot/styles'), // output dir must be absolute path
+    path: path.resolve(__dirname, 'wwwroot/styles'), // An output dir must be an absolute path.
     filename: '[name].js',
   },
   resolve: {
@@ -74,18 +74,18 @@ module.exports = {
     new RemoveEmptyScriptsPlugin({ verbose: true }),
     new MiniCssExtractPlugin({
       // Configure the output of CSS.
-      // It is relative to output dir, only relative path work, absolute path does not work.
-      filename: "[name].css",
+      // It is relative to output dir. Only relative path works, absolute path does not work.
+      filename: '[name].css',
     }),
   ],
 };
 
 ```
 - You can change an entry point and an output folder to match your environment.
-- In this example, our entry point file is `src/scss/style.scss`.
+- In this example, our entry point file is `src/scss/style.scss` and output is `wwwroot/styles/style.css`.
 - This configuration uses `RemoveEmptyScriptsPlugin` to remove unnecessary output JavaScript file.
 
-# Build with Webpack
+# Build with Webpack.
 - Add a custom script to `package.json`.
 ```json
   "scripts": {
@@ -94,17 +94,17 @@ module.exports = {
     "watch": "webpack --watch"
   },
 ```
-
+- Please make sure you have SCSS file as an entry point file.
 - Build the project with the following command.
 ```sh
 yarn dev
 ```
 
-# Check your CSS output file.
+# Check your output CSS file.
 - You will find your output `.css` file in an output folder that you specify in `webpack.config.js`.
 - For our example, the output file is in `wwwroot/styles` folder.
 
-# Project structure
+# Our project structure
 ```
 sass-webpack-project/
 ├── package.json
