@@ -92,6 +92,4 @@ void loop() {
 
 A few seconds later, you should see LED on a board starts to blink.
 
-
-
-
+![](images/arduino-blink.gif)
