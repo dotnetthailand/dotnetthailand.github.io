@@ -47,13 +47,31 @@ $ sudo snap install dotnet-sdk --channel=6.0/beta --classic
 
 ## Create a new ASP.NET Core minimal APIs project
 - Run:
-```
+```sh
 $ dotnet-sdk.dotnet new web -o MinimalApi
 ```
 - This will create a new ASP.NET Core minimal API inside `MinimalApi` folder.
-- CD to `MinimalApi` folder and open it with VS Code with command `code .`.
+- CD to `MinimalApi` folder and open VS Code with the command `code .`.
+```sh
+$ cd MinimalApi
+$ code .
+```
 
-## Run a project
+## Current project structure
+- Optionally, you can check project file structure with `tree` command.
+```sh
+$ tree MinimalApi -I 'bin|obj'
+MinimalApi
+├── MinimalAPI.csproj
+├── Program.cs
+├── Properties
+│   └── launchSettings.json
+├── appsettings.Development.json
+└── appsettings.json
+```
+
+
+## Run the project
 - In VS Code, open an integrated terminal and run:
 ```sh
 $ dotnet-sdk.dotnet run
@@ -68,9 +86,10 @@ $ dotnet-sdk.dotnet add package Microsoft.EntityFrameworkCore.InMemory --version
 ```
 
 ## Create a single file todo app API
-- Replace content of `Program.cs` with the following source code:
+- Replace contents of `Program.cs` with the following source code:
 
 ```js
+// Program.cs
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
@@ -207,6 +226,7 @@ $ dotnet-sdk.dotnet run
   - Use http://localhost:5000/todos with HTTP POST to add a new todo item.
   - Use http://localhost:5000/todos/{id} with HTTP PUT to update an existing todo item.
   - Use http://localhost:5000/todos/{id} with HTTP DELETE to delete an existing todo item.
+
 
 # Useful information and credit
 - Jose Barbosa for his amazing repository https://github.com/kidchenko/dot-net-min-api.
