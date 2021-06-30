@@ -109,3 +109,12 @@ img {
 ._no-wrap {
   white-space: nowrap;
 }
+
+// for Limit text length to number of lines example
+._text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; // number of lines to show
+  -webkit-box-orient: vertical;
+}

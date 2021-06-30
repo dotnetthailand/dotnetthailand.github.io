@@ -20,6 +20,7 @@ import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
 import Contributors from './Contributors';
 import FriendsWebsites from './FriendsWebsites';
 import FeatureAsRowComparisonTable from './FeatureAsRowComparisonTable';
+import LimitTextToNumberOfLines from './LimitTextToNumberOfLines';
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -99,5 +100,6 @@ export default {
   Contributors,
   FriendsWebsites,
   FeatureAsRowComparisonTable,
+  LimitTextToNumberOfLines,
   ...Highlights,
 };
