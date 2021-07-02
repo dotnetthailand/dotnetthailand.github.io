@@ -3,7 +3,13 @@ import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
 const mainContainer = theme => css`
-  min-height: 30vh;
+  max-width: 800px;
+  margin: auto;
+  min-height: 40vh;
+  @media (min-width: 576px) {
+    min-height: 30vh;
+  }
+
   display: flex;
   flex-direction: column;
   border: 1px dotted ${theme.colors.font};
