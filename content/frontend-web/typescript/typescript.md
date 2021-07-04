@@ -1,5 +1,5 @@
 ---
-title: TypeScript for C# developers
+title: TypeScript
 showMetadata: false
 editable: true
 showToc: true
