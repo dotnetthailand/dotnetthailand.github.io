@@ -1,5 +1,5 @@
 ---
-title: Email server
+title: Email services
 showMetadata: true
 editable: true
 showToc: false

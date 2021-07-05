@@ -5,7 +5,7 @@ editable: true
 showToc: false
 ---
 
-# Mesage queue
+# Message queue
 - RabbitMQ
 - Azure Service Bus
 

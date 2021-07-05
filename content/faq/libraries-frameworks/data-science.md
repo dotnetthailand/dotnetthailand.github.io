@@ -5,7 +5,6 @@ editable: true
 showToc: true
 ---
 
-
 ## Business Intelligence
 
 - SQL Server Integration Services (SSIS)
