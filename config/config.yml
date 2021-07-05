@@ -39,26 +39,30 @@ sidebar:
       title: ":question: .NET FAQ"
 
     - order: 1
-      path: /programming-cookbook
-      title: ":blue_book: Programming cookbook"
-
-    - order: 2
-      path: /testing
-      title: ":heavy_check_mark: Testing"
-
-    - order: 3
       path: /web-frameworks
       title: ":fire: Web Frameworks"
 
-    - order: 4
+    - order: 2
       path: /storage
       title: ":floppy_disk: storage"
+
+    - order: 3
+      path: /testing
+      title: ":heavy_check_mark: Testing"
+
+    - order: 4
+      path: /frontend-web
+      title: ":iphone: Front-end Web"
 
     - order: 5
       path: /cloud-hosting
       title: ":globe_with_meridians: Cloud & Hosting"
 
     - order: 6
+      path: /programming-cookbook
+      title: ":blue_book: Programming cookbook"
+
+    - order: 7
       path: /to-other-languages
       title: ":bicyclist: To other languages"
 
