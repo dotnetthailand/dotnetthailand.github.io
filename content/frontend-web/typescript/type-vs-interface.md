@@ -3,6 +3,7 @@ title: Type VS Interface
 showMetadata: false
 editable: true
 showToc: true
+order: 2
 ---
 
 - https://stackoverflow.com/a/65948871/1872200
