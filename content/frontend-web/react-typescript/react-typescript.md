@@ -3,7 +3,27 @@ title: React TypeScript
 showMetadata: false
 editable: true
 showToc: true
+order: 1
 ---
+
+## Prerequisite
+- HTML, JavaScript, CSS
+- Basic React
+- JS ES6+ 
+  - Object Destructuring
+  - Arrow Function
+
+## Additional resources
+
+- [MDN Web Docs](https://developer.mozilla.org/en-US/) - Basic HTML, CSS, JavaScript
+- [React Docs](https://reactjs.org/docs/getting-started.html)
+- [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
+
+## Awesome TypeScript resources
+
+- [React & Redux in TypeScript - Complete Guide](https://github.com/piotrwitek/react-redux-typescript-guide)
+- [React TypeScript Cheatsheets](https://react-typescript-cheatsheet.netlify.app/)
+
 
 # Setup TypeScript with React
 
@@ -81,8 +101,8 @@ Local dev setups:
 Add `allowSyntheticDefaultImports": true` in your `tsconfig.json`, you can use more familiar imports:
 
 ```typescript
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react';
+import ReactDOM from 'react-dom';
 ```
 
 # Basic React with TypeScript
@@ -118,7 +138,7 @@ Hooks are [supported in `@types/react` from v16.8 up](https://github.com/Definit
 Type inference works very well for simple values:
 
 ```tsx
-const [val, toggle] = React.useState(false);
+const [val, toggle] = useState(false);
 // `val` is inferred to be a boolean
 // `toggle` only takes booleans
 ```
@@ -140,6 +160,26 @@ function DelayedEffect(props: { timerMs: number }) {
   );
   // bad example! setTimeout implicitly returns a number
   // because the arrow function body isn't wrapped in curly braces
+  return null;
+}
+```
+
+### Asynchronous useEffect
+
+อันนี้เป็นตัวอย่างการ fetch ข้อมูลครั้งแรกเมื่อ Component ถูกโหลดนะครับ
+
+```ts
+function AsyncUseEffect() {
+
+  useEffect(
+    () => asyncFetch(),
+    []
+  );
+
+  const asyncFetch = async () => {
+      const result = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+      console.log(result);
+  }
   return null;
 }
 ```
@@ -177,3 +217,5 @@ interface AppProps {
 
 # Ref
 - [React TypeScript Cheat sheet](https://react-typescript-cheatsheet.netlify.app/)
+
+
