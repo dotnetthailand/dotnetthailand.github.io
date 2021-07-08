@@ -7,17 +7,11 @@ order: 1
 ---
 
 ## Prerequisite
-- HTML, JavaScript, CSS
-- Basic React
+- Basic HTML, JavaScript, CSS ([MDN Web Docs](https://developer.mozilla.org/en-US/)
+- Basic [React](https://reactjs.org/docs/getting-started.html), [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
 - JS ES6+ 
   - Object Destructuring
   - Arrow Function
-
-## Additional resources
-
-- [MDN Web Docs](https://developer.mozilla.org/en-US/) - Basic HTML, CSS, JavaScript
-- [React Docs](https://reactjs.org/docs/getting-started.html)
-- [Thinking in React](https://reactjs.org/docs/thinking-in-react.html)
 
 ## Awesome TypeScript resources
 
