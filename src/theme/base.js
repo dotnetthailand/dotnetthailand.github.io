@@ -87,7 +87,7 @@ const search = (colors) => ({
   background: colors.background,
   mark: {
     font: colors.font,
-    background: colors.primary,
+    background: colors.searchHighlight,
   },
   font: {
     base: colors.font,

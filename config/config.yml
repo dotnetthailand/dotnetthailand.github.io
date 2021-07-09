@@ -132,18 +132,18 @@ features:
     generator: "boogi"
   scrollTop: true
   search:
-    enabled: false # Temporary disable search engine
-    engine: 'algolia'
+    enabled: true
+    engine: 'localsearch'
     placeholder: 'Search'
-    startComponent: 'input' # icon
-    excerptSize: 8000
-    debounceTime: 380
+    startComponent: 'icon' # icon
+    excerptSize: 100000
+    debounceTime: 450
     snippetLength: 23
-    hitsPerPage: 10
+    hitsPerPage: 8
     showStats: true
     pagination:
       enabled: true
-      totalPages: 10
+      totalPages: 3
       showPrevious: true
       showNext: true
   showMetadata: true
