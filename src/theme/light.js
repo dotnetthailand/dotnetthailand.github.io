@@ -8,6 +8,7 @@ const colors = {
   font: '#333334',
   fontDark: '#121213',
   background: '#F5F7F9',
+  searchHighlight: '#a3d3ff',
   mainBackground: '#fefefe',
   border: '#DBDDDF',
   hover: defaultColors.blue,
