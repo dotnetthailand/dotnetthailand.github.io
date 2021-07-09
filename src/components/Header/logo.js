@@ -55,14 +55,6 @@ const LogoWrapper = styled.div`
 
 const Logo = styled(({ className, link, img, title }) => {
   const theme = useTheme();
-  /*
-    Note: Disable first word bold
-  */
-  // let split = title.split(' ');
-  // split[0] = '<strong>' + split[0];
-  // const last = split.length < 3 ? 0 : split.length - 2;
-  // split[last] = split[last] + '</strong>';
-  // const title2 = split.join(' ');
   return (
     <div className={className}>
       <LogoWrapper>

@@ -13,6 +13,7 @@ import { globalHistory } from '@reach/router';
 import { hiddenMobile, visibleMobile, visibleTablet, hiddenTablet } from '../../styles';
 import { onMobile, onTablet, isMobile } from '../../styles/responsive';
 import { FullScreenClose, FullScreenEnter, FullScreenHeader } from './fullscreen';
+import logoImg from 'images/dotnetthailand-logo.svg';
 
 const isSearchEnabled = config.features.search && config.features.search.enabled;
 
@@ -229,7 +230,6 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
         },
       } = data;
       const logoLink = logo.link !== '' ? logo.link : '/';
-      const logoImg = require('images/dotnetthailand-logo.svg');
       const [darkMode, setDarkMode] = useState(false);
       useEffect(() => {
         setDarkMode(themeProvider.current.retrieveActiveTheme());
