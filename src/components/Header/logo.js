@@ -14,15 +14,15 @@ const logoStyle = (theme) => css`
     min-height: 40px;
   }
   img {
-    width: 55px;
+    height: 40px;
     margin-right: 16px;
     display: inline-block;
     ${onTablet} {
-      width: 50px;
+      height: 40px;
     }
     ${onMobile} {
       margin-right: 8px;
-      width: 45px;
+      height: 32px;
     }
   }
 
@@ -55,17 +55,12 @@ const LogoWrapper = styled.div`
 
 const Logo = styled(({ className, link, img, title }) => {
   const theme = useTheme();
-  let split = title.split(' ');
-  split[0] = '<strong>' + split[0];
-  const last = split.length < 3 ? 0 : split.length - 2;
-  split[last] = split[last] + '</strong>';
-  const title2 = split.join(' ');
   return (
     <div className={className}>
       <LogoWrapper>
         <Link to={link} css={logoStyle(theme)}>
           <img css={{display: 'inline-block'}} src={img} alt={'logo'} loading={'lazy'} />
-          <span css={{display: 'inline-block'}} dangerouslySetInnerHTML={{ __html: title2 }} />
+          <span css={{display: 'inline-block'}} dangerouslySetInnerHTML={{ __html: title }} />
         </Link>
       </LogoWrapper>
     </div>
