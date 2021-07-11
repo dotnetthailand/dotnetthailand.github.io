@@ -16,41 +16,45 @@ To understand how to develop Orchard extension, we need to understand these term
 `Content item`, `Content type`, `Content part` and `Content field`.
 
 ### Content item
-
-**Content item** is a single piece of content, often associate with a single URL (address) on the site.
+**Content item** is a single piece of content, often associate with a single URL on the site.
 Examples of content items are pages, blog posts or products.
 With OOP concept, you can think it is **an instance of a class**.
 
 ### Content type
-
-**Content type** is like a class of content item.
+**Content type** is like a template of content item.
 Before creating a content type, we must define a content type first.
+With OOP concept, you can think it is **a class**.
 
-Those three examples that we mentioned before have these content types: page, blog post and product type.
-In other words what we call a blog post is just an item of type blog post.
+Those three content item examples that we mentioned before have these content types: page, blog post and product type.
+In other words what we call a product is just an item of product type.
 
 ### Content part
 
-In Orchard, a content type is built from multiple smaller parts, are conveniently called content parts.
+A content type is built from multiple smaller parts which called content parts.
 A content part is an atom of content that is enough to build a specific coherent behavior and it can be reused across content types.
-You can think it is group of reusable properties and we creates a new content type from multiple content parts.
+With OOP concept, you can think it is a set of reusable properties and we creates a new content type from multiple content parts.
 
 Example of content parts are:
-- Title part for providing title to content item
-- Autoroute part for proving a custom URL for your content item.
-- HtmlBody part for Providing an HTML Body for your content item.
+- Title part for providing a title to a content item
+- Autoroute part for proving a custom URL to a content item.
+- HtmlBody part for providing an HTML Body to a content item.
 
 ### Content field
 
 A Content field is a piece of information that can be added to a content type.
 It has a name and a type that is specific to a content type.
-A content type can have multiple content fields but can have only one content part.
+A content type can have multiple same content fields with but can have only one unique content part.
 
 For example, a product content type can have a text field representing its SKU,
 a numeric field representing its price, and another numeric field representing its weight.
 Each of these fields probably only makes sense on a product type.
 
----
+## How content part, content type and content item work together
+```mermaid
+graph TB
+  content-parts["content part A <br/> content part B <br/> content part C <br/> (each part is similar to a set of properties in OOP)"] -->|Combine content parts to define a new content type.| content-type["content type <br/> (similar to a class in OOP)"]
+  content-type -->|Create a new content item from a content type.| content-item["content item <br/> (similar to an instance in OOP)"]
+```
 
 # Create a custom module
 
@@ -72,11 +76,13 @@ It will consist of these parts:
 - Title part
 - HtmlBody part
 - Map part
-- To do we can add date field
 
-Autoroute, Title, HtmlBody are existing parts in Orchard CMS.
+Autoroute, Title, HtmlBody are existing content parts in Orchard CMS.
 They are in OrchardCore.Autoroute, OrchardCore.Title, OrchardCore.Html projects (modules) respectively.
 However, we don't have a built-in Map part so we need create a new one.
+
+
+![](images/content-components.drawio.png)
 
 ---
 

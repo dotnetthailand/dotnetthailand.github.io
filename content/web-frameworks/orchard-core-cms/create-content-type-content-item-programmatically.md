@@ -9,13 +9,13 @@ order: 2
 
 # Prerequisite
 - We assume that you have a basic knowledge of how to create a custom Orchard Core CMS module. If not, you can learn it by following this content
-[orchard-core-cms/create-a-custom-orchard-core-cms-module](orchard-core-cms/create-a-custom-orchard-core-cms-module).
+["Create a custom Orchard Core CMS module"](/web-frameworks/orchard-core-cms/create-a-custom-orchard-core-cms-module).
 - Code example of how to create a custom module is at [https://github.com/codesanook/orchard-examples](https://github.com/codesanook/orchard-examples).
 - We assume that we've already created a map part and its required components, e.g. driver, models, views.
 - This content will be focusing on how to create an event content type and an event content item from a map part programmatically.
 
 # Update a migration file
-- We are going to update our existing `Migration.cs` in this content [orchard-core-cms/create-a-custom-orchard-core-cms-module](orchard-core-cms/create-a-custom-orchard-core-cms-module).
+- We are going to update our existing `Migration.cs` in ["Create a custom Orchard Core CMS module"](/web-frameworks/orchard-core-cms/create-a-custom-orchard-core-cms-module) content.
 - However, you can apply this technique to create a content type and a content item programmatically for your requirement.
 - Here is the example code after updating:
 
