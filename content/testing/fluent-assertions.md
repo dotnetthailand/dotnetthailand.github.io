@@ -10,9 +10,9 @@ showToc: true
 ```c#
 public class Todo
 {
-    public int id  { get; set; }
-    public string title  { get; set; }
-    public bool completed  { get; set; }
+    public int ID  { get; set; }
+    public string Title  { get; set; }
+    public bool Completed  { get; set; }
 }
 
 public class TodoList
@@ -20,29 +20,29 @@ public class TodoList
 
     public IEnumerable<Todo> GetTodoList()
     {
-        return new Todo[]
+        return new []
         {
             new Todo{
-                id = 0,
-                title = "Shopping",
-                completed = false
+                ID = 0,
+                Title = "Shopping",
+                Completed = false
             },
             new Todo{
-                id = 1,
-                title = "Running",
-                completed = true
+                ID = 1,
+                Title = "Running",
+                Completed = true
             },
             new Todo{
-                id = 2,
-                title = "Reading a book",
-                completed = false
+                ID = 2,
+                Title = "Reading a book",
+                Completed = false
             }
         };
     }
 }
 ```
 
-ถ้าใช้ xunit อย่างเดียว อาจจะยุ่งยาก ลองใช้ [FluentAssertions](https://www.nuget.org/packages/FluentAssertions)
+ถ้าใช้ xUnit อย่างเดียว อาจจะยุ่งยาก ลองใช้ [FluentAssertions](https://www.nuget.org/packages/FluentAssertions)
 
 # Getting Started
 
@@ -66,26 +66,26 @@ public class TodoList
         {
 
             var todoList = new TodoList();
-            var expected =  new Todo[]
+            var expected =  new []
             {
                 new Todo{
-                    id = 0,
-                    title = "Shopping",
-                    completed = false
+                    ID = 0,
+                    Title = "Shopping",
+                    Completed = false
                 },
                 new Todo{
-                    id = 1,
-                    title = "Running",
-                    completed = true
+                    ID = 1,
+                    Title = "Running",
+                    Completed = true
                 },
                 new Todo{
-                    id = 2,
-                    title = "Reading a book",
-                    completed = false
+                    ID = 2,
+                    Title = "Reading a book",
+                    Completed = false
                 }
             };
             
-            var result = controller.GetTodoList();
+            var result = todoList.GetTodoList();
             result.Should().BeEquivalentTo(expected);
         }
     }
