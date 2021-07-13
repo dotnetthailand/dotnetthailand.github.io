@@ -13,19 +13,33 @@ $ cd sass-webpack-project
 $ yarn init -y
 ```
 - You can change a folder's name to any name as you want.
-- You will have auto generated `package.json` file in the current working directory.
+- You will have an auto generated `package.json` file in the current working directory.
 
 # Add required packages to the project.
 ```sh
 yarn add --dev \
-node-sass \
-sass-loader \
-webpack \
-webpack-cli \
-css-loader \
-mini-css-extract-plugin \
-webpack-remove-empty-scripts
+  sass \
+  sass-loader \
+  webpack \
+  webpack-cli \
+  css-loader \
+  mini-css-extract-plugin \
+  webpack-remove-empty-scripts
 ```
+
+### Note
+- If you use [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/), you can install npm packages with `yarn workspace your-package-name add --dev space-separated-value-of-npm-packages`, e.g.
+```sh
+yarn workspace your-package-name add --dev \
+  sass \
+  sass-loader \
+  webpack \
+  webpack-cli \
+  css-loader \
+  mini-css-extract-plugin \
+  webpack-remove-empty-scripts
+```
+- We use `sass` package in this example because `node-sass` has been deprecated.
 
 # Create Webpack configuration file.
 - Create `webpack.config.js` at the same level as package.json
@@ -100,12 +114,16 @@ module.exports = {
 yarn dev
 ```
 
+### Note
+- If you use [Yarn Workspaces](https://classic.yarnpkg.com/en/docs/workspaces/), you can build your package with `yarn workspace your-package-name dev`, e.g.
+
 # Check your output CSS file.
 - You will find your output `.css` file in an output folder that you specify in `webpack.config.js`.
 - For our example, the output file is in `wwwroot/styles` folder.
 
 # Our project structure
 ```
+$ tree -I 'node_modules' sass-webpack-project
 sass-webpack-project/
 ├── package.json
 ├── src
@@ -118,7 +136,7 @@ sass-webpack-project/
 └── yarn.lock
 ```
 
-For the example code of this articles, you can checkout [source code via Github](https://github.com/mildronize/web-starter-collection/tree/master/webpack5-sass-only-starter)
+For the example code of this articles, you can checkout from [source code via Github](https://github.com/mildronize/web-starter-collection/tree/master/webpack5-sass-only-starter)
 
 # Other related starter examples
 - [sass starter](https://github.com/mildronize/web-starter-collection/tree/master/sass-starter) -  Using Sass only without webpack
