@@ -75,11 +75,11 @@ However, this method requires a view model which sometime we don't need it.
 
 We can use other methods to create ShapeResult. For example:
 
-```c#
+```cs
 var shapeResult = Dynamic(nameof(FooPart)).Location("Detail", "Content");
 ```
 
-```c#
+```cs
 return Factory(
     nameof(FooPart),
     async context => await context.New.FooPart()

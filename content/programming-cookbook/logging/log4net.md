@@ -18,7 +18,7 @@ install-package log4net
 
 - Set up the main class.
 
-```c#
+```cs
   // Import log4net classes.
   using log4net;
   using log4net.Config;

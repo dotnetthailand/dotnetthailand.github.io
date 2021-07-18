@@ -1,8 +1,14 @@
 import * as React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
+import Prism from "prism-react-renderer/prism";
 import theme from 'prism-react-renderer/themes/dracula';
 import Loadable from 'react-loadable';
 import LoadingProvider from './loading';
+
+/** Check if load Prism from browser or server */
+(typeof global !== "undefined" ? global : window).Prism = Prism;
+
+require("prismjs/components/prism-csharp");
 
 /** Removes the last token from a code example if it's empty. */
 function cleanTokens(tokens) {
