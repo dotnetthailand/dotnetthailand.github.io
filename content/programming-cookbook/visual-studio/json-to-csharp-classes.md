@@ -20,7 +20,7 @@ showToc: true
 ![Paste JSON As Classes](images/json-to-csharp-classes.png)
 
 ## Result
-```c#
+```cs
 using System;
 
 namespace Ex.Models

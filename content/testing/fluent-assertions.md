@@ -7,7 +7,7 @@ showToc: true
 
 สมมติว่าเรามี Data Structure ดังนี้ คำถามคือเราจะ Assert อย่างไร
 
-```c#
+```cs
 public class Todo
 {
     public int ID  { get; set; }
@@ -54,7 +54,7 @@ public class TodoList
 
 2. เรียก `using FluentAssertions;` แล้วเราสามารถใช้งาน [FluentAssertions](https://www.nuget.org/packages/FluentAssertions) ได้เลย
 
-    ```c#
+    ```cs
     using Xunit;
     using FluentAssertions;
 
@@ -84,7 +84,7 @@ public class TodoList
                     Completed = false
                 }
             };
-            
+
             var result = todoList.GetTodoList();
             result.Should().BeEquivalentTo(expected);
         }

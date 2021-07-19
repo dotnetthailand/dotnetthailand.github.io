@@ -50,7 +50,7 @@ install-package NLog
 
 - Set up the main class.
 
-```c#
+```cs
   // Import NLog classes.
   using NLog;
 
