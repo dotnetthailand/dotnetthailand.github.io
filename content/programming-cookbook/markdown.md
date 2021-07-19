@@ -20,8 +20,30 @@ markdown = Redcarpet.new("Hello World!")
 puts markdown.to_html
 ```
 ~~~
-
 - Find more supported language identifiers. https://github.com/github/linguist/blob/master/lib/linguist/languages.yml and use `ace_mode` key
+
+# Syntax highlight in .NET Thailand website
+- For C#, please use `cs`, `csharp` or `dotnet`. [REF](https://github.com/PrismJS/prism/blob/master/components/prism-csharp.js#L367)
+- For example:
+~~~
+```cs
+// Hello World! program
+// Program.cs file
+using System;
+
+namespace HelloWorld
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+
+```
+~~~
 
 # Useful links
 - https://docs.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting

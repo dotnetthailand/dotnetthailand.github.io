@@ -5,6 +5,14 @@ editable: true
 showToc: true
 ---
 
+## Prerequisite
+- Create an Azure Account.
+- Setup Azure CLI.
+- Log in with Azure CLI.
+- Create a resource group.
+- To learn these steps, please check [Azure CLI content](/cloud-hosting/azure/azure-cli).
+
+
 ## Create Azure SQL server
 ```sh
 $ az sql server create \
@@ -26,14 +34,6 @@ $ az sql server firewall-rule create \
   --end-ip-address 0.0.0.0
 ```
 
-## Delete a server
-```sh
-$ az sql server delete \
-  --name <server-name> \
-  --resource-group <resource-group> \
-  --yes
-```
-
 ## Create the cheapest Azure SQL database
 ```sh
 $ az sql db create \
@@ -53,10 +53,21 @@ $ az sql db create \
 - Valid value of **--backup-storage-redundancy** are `Local, Zone and Geo`.
 - [More details for Azure SQL database](https://docs.microsoft.com/en-us/cli/azure/sql/db?view=azure-cli-latest).
 
+
+# Other useful commands
+
 ## List all existing databases on a specific server
 ```sh
 $ az sql db list \
   --server <server-name> \
   --resource-group <resource-group> \
   --output table
+```
+
+## Delete a server
+```sh
+$ az sql server delete \
+  --name <server-name> \
+  --resource-group <resource-group> \
+  --yes
 ```

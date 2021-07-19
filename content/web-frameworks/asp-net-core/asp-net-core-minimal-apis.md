@@ -88,7 +88,7 @@ $ dotnet-sdk.dotnet add package Microsoft.EntityFrameworkCore.InMemory --version
 ## Create a single file todo app API
 - Replace contents of `Program.cs` with the following source code:
 
-```js
+```cs
 // Program.cs
 using System;
 using Microsoft.AspNetCore.Builder;
