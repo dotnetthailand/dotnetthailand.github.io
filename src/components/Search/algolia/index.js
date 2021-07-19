@@ -15,6 +15,7 @@ import styled from '@emotion/styled';
 import SearchStatus from '../Status';
 import Pagination from './pagination';
 import Stats from './stats';
+import AlgoliaLogo from './AlgoliaLogo';
 
 const Root = styled.div`
   position: relative;
@@ -86,6 +87,7 @@ class Algolia extends React.Component {
               )}
             </Index>
           </HitsWrapper>
+          <AlgoliaLogo />
         </div>
         {showResults && config.features.search.pagination.enabled ? (
           <Pagination

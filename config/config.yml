@@ -133,10 +133,10 @@ features:
   scrollTop: true
   search:
     enabled: true
-    engine: 'localsearch'
+    engine: 'algolia'
     placeholder: 'Search'
     startComponent: 'icon' # icon
-    excerptSize: 100000
+    excerptSize: 20000
     debounceTime: 450
     snippetLength: 23
     hitsPerPage: 8
