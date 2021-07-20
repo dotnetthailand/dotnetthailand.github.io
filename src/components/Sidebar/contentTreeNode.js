@@ -25,10 +25,15 @@ const activeNode = (theme) => css`
   }
 `;
 
-const ContentLink = styled(({ className, link, children }) => (
-  <Link to={link} className={className}>
-    {children}
-  </Link>
+const ContentLink = styled(({ className, link, children, hasChildren }) => (
+    hasChildren?
+      <div className={className}>
+        {children}
+      </div>
+      :
+      <Link to={link} className={className}>
+        {children}
+      </Link>
 ))`
   color: ${(props) => props.theme.navigationSidebar.font.base};
   flex: 1;
@@ -39,9 +44,9 @@ const ContentLink = styled(({ className, link, children }) => (
   border-radius: 1px;
 `;
 
-const NodeContent = styled(({ className, text, link, children }) => (
+const NodeContent = styled(({ className, text, link, children, hasChildren }) => (
   <li className={className}>
-    {text && <ContentLink link={link}>{text}</ContentLink>}
+    {text && <ContentLink link={link} hasChildren={hasChildren}>{text}</ContentLink>}
     {children}
   </li>
 ))`
@@ -53,13 +58,16 @@ const NodeContent = styled(({ className, text, link, children }) => (
   align-content: stretch;
   justify-content: space-between;
   > a,
-  > button {
+  > button,
+  > div {
     transition: ${(props) => props.theme.transitions.hover};
   }
   &:hover {
     > a,
-    > button {
+    > button,
+    > div {
       background-color: ${(props) => props.theme.navigationSidebar.row.hover};
+      cursor: pointer;
     }
   }
 `;
@@ -137,7 +145,8 @@ const ContentTreeNode = ({ className, toggle, collapsed, url, title, location, c
         >
         <NodeContent
           text={text}
-          link={hasChildren? '#': url}
+          hasChildren={hasChildren}
+          link={url}
           className={className}
           css={active ? activeNode(theme) : ''}
         >
