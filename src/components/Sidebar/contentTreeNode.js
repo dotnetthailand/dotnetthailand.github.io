@@ -93,7 +93,7 @@ const NestedContentTreeNode = styled(
 
 const NodeCollapseButton = styled(({ className, isCollapsed, collapse }) => {
   return (
-    <button onClick={collapse} aria-label="collapse" className={className}>
+    <button /*onClick={collapse}*/ aria-label="collapse" className={className}>
       {!isCollapsed ? <OpenedSvg /> : <ClosedSvg />}
     </button>
   );
@@ -122,6 +122,8 @@ const ContentTreeNode = ({ className, toggle, collapsed, url, title, location, c
       location.pathname === url + '/' ||
       location.pathname === config.metadata.pathPrefix + url);
   const collapse = () => {
+    console.log("test click", url);
+    if(typeof toggle !== "function") return;
     toggle(url);
   };
   const theme = useTheme();
@@ -129,18 +131,23 @@ const ContentTreeNode = ({ className, toggle, collapsed, url, title, location, c
   const text = emoji.emojify(title);
   return (
     <>
-      <NodeContent
-        text={text}
-        link={url}
-        className={className}
-        css={active ? activeNode(theme) : ''}
-      >
-        {title && hasChildren ? (
-          <>
-            <NodeCollapseButton isCollapsed={isCollapsed} collapse={collapse} />
-          </>
-        ) : null}
-      </NodeContent>
+      <div
+        aria-label="collapse"
+        onClick={collapse}
+        >
+        <NodeContent
+          text={text}
+          link={hasChildren? '#': url}
+          className={className}
+          css={active ? activeNode(theme) : ''}
+        >
+          {title && hasChildren ? (
+            <>
+              <NodeCollapseButton isCollapsed={isCollapsed} collapse={collapse}/>
+            </>
+          ) : null}
+        </NodeContent>
+      </div>
 
       {!isCollapsed ? (
         <NestedContentTreeNode collapsed={collapsed} location={location} setCollapsed={toggle}>
