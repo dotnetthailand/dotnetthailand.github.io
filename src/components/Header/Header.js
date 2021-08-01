@@ -14,6 +14,7 @@ import { hiddenMobile, visibleMobile, visibleTablet, hiddenTablet } from '../../
 import { onMobile, onTablet, isMobile } from '../../styles/responsive';
 import { FullScreenClose, FullScreenEnter, FullScreenHeader } from './fullscreen';
 import logoImg from 'images/dotnetthailand-logo.svg';
+import logoImgOnDarkBg from 'images/dotnetthailand-logo-dark-background.svg';
 
 const isSearchEnabled = config.features.search && config.features.search.enabled;
 
@@ -106,7 +107,11 @@ const SearchOpener = ({ open, forcedComponent, ...props }) => {
     case 'input':
       opener = (
         <SearchWrapper css={hiddenMobile} style={{ marginRight: '10px' }} {...props}>
-          <SearchInput style={{marginTop: '0', marginBottom: '0'}} onChange={(e) => (e.target.value = '')} onFocus={open} />
+          <SearchInput
+            style={{ marginTop: '0', marginBottom: '0' }}
+            onChange={(e) => (e.target.value = '')}
+            onFocus={open}
+          />
         </SearchWrapper>
       );
       break;
@@ -276,7 +281,7 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
             ''
           )}
           <HeaderWrapper show={show}>
-            <Logo link={logoLink} img={logoImg} />
+            <Logo link={logoLink} img={darkMode ? logoImgOnDarkBg : logoImg} />
             <TopNavigation css={hiddenMobile}>
               <Navigation links={headerLinks} />
             </TopNavigation>
