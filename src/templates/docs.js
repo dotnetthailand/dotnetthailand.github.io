@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import styled from '@emotion/styled';
-import { Layout, EditOnRepo, PreviousNext, Seo } from '$components';
+import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment } from '../components';
 import config from 'config';
 import emoji from '../utils/emoji';
 import { onMobile, onTablet } from '../styles/responsive';
@@ -164,7 +164,7 @@ export default class MDXRuntimeTest extends React.Component {
         <ContentWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </ContentWrapper>
-        <div className="fb-comments" data-href={this.props.location.href} data-width="100%" data-numposts="10" data-order-by="reverse_time"> </div>
+        <FacebookComment url={this.props.location.href} />
         {(config.features.previousNext.enabled === true &&
           mdx.frontmatter.showPreviousNext !== false) ||
           mdx.frontmatter.showPreviousNext ? (
