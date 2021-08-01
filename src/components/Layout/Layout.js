@@ -108,7 +108,7 @@ const Layout = ({ children, location }) => {
             </Slide>
           </div>
           <Header
-            show={! (config.features.fullScreenMode.hideHeader && fullscreenMode)}
+            show={!(config.features.fullScreenMode.hideHeader && fullscreenMode)}
             location={location}
             setShowSearch={setShowSearch}
             themeProvider={themeProviderRef}
@@ -122,13 +122,13 @@ const Layout = ({ children, location }) => {
         {config.features.scrollTop === true ? <ScrollTop /> : ''}
         <Wrapper>
           {config.sidebar.enabled === true ? (
-            <Sidebar show={! (config.features.fullScreenMode.hideSidebar && fullscreenMode)} location={location} css={hiddenMobile} />
+            <Sidebar show={!(config.features.fullScreenMode.hideSidebar && fullscreenMode)} location={location} css={hiddenMobile} />
           ) : (
             ''
           )}
           <MainContentWrapper>
-              <Content>{children}</Content>
-              <TableOfContents show={! (config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
+            <Content>{children}</Content>
+            <TableOfContents show={!(config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
           </MainContentWrapper>
         </Wrapper>
       </MDXProvider>

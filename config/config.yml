@@ -155,3 +155,5 @@ features:
     hideHeader: true
     hideToc: true
     hideSidebar: true
+  facebookSDK:
+    appId: '891898928268139'

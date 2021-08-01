@@ -42,4 +42,13 @@ $ az webapp create \
 ## Deploy a project
 - You can use our [GitHub Actions workflow script](https://www.dotnetthailand.com/programming-cookbook/github-actions/deploy-dotnet-app-to-azure-app-service) to deploy your project to Azure App Service that you've just created.
 
+# Get FTPS Credentials
+- Go to Azure portal.
+- Select your app service.
+- In app service that you have selected, select `Deployment Center`.
+- Click `FTPS credentials` tab.
+- You will find all required information to make an FTPS connection.
+  - FTPS endpoint
+  - Username
+  - Password
 

@@ -144,7 +144,7 @@ export default class MDXRuntimeTest extends React.Component {
             )}
           </TitleWrapper>
           {(config.features.showMetadata === true && mdx.frontmatter.showMetadata !== false) ||
-          mdx.frontmatter.showMetadata === true ? (
+            mdx.frontmatter.showMetadata === true ? (
             <div css={{ display: 'block' }}>
               {mdx.parent.fields ? (
                 <LastUpdated
@@ -164,9 +164,10 @@ export default class MDXRuntimeTest extends React.Component {
         <ContentWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </ContentWrapper>
+
         {(config.features.previousNext.enabled === true &&
           mdx.frontmatter.showPreviousNext !== false) ||
-        mdx.frontmatter.showPreviousNext ? (
+          mdx.frontmatter.showPreviousNext ? (
           <div css={{ padding: '30px 0' }}>
             <PreviousNext mdx={mdx} />
           </div>
