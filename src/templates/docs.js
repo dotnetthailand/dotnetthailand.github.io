@@ -164,7 +164,7 @@ export default class MDXRuntimeTest extends React.Component {
         <ContentWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </ContentWrapper>
-        <div className="fb-like" data-share="true" data-width="450" data-show-faces="true"></div>
+        <div className="fb-comments" data-href={this.props.location.href} data-width="100%" data-numposts="10" data-order-by="reverse_time"> </div>
         {(config.features.previousNext.enabled === true &&
           mdx.frontmatter.showPreviousNext !== false) ||
           mdx.frontmatter.showPreviousNext ? (
