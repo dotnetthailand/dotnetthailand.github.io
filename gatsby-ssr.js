@@ -1,6 +1,8 @@
 // Configuration is from .generated.config.js which created by gatsby-config.js
 // To change value, edit config.yml.
 import config from 'config';
+import { stripIndent } from 'common-tags';
+
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
   // https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
@@ -13,15 +15,15 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 
 function createFacebookSDK() {
   return {
-    __html: `
+    __html: stripIndent`
         window.fbAsyncInit = function() {
           FB.init({
-            appId            : '${config.features.facebookSDK.appId}',
-            autoLogAppEvents : true,
-            xfbml            : true,
-            version          : 'v11.0'
+            appId      : '${config.features.facebookSDK.appId}',
+            xfbml      : true,
+            version    : 'v11.0'
           });
-          console.log('FB SDK initialized');
+          FB.AppEvents.logPageView();
+          console.log('fb loaded');
         };
 
         (function(d, s, id){
