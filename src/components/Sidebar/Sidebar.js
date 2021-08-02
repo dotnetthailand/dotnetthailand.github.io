@@ -9,7 +9,7 @@ import { scrollbar } from '../../styles';
 import { onMobile } from '../../styles/responsive';
 
 const Sidebar = styled.div`
-  margin-left: ${(props) => props.theme.layout.leftMargin};
+  margin-left: 20px;
   height: 100%;
   min-height: 0;
   display: flex;

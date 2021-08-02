@@ -7,7 +7,7 @@ const colors = {
   primaryDark: defaultColors.blueDark,
   font: '#333334',
   fontDark: '#121213',
-  background: '#F5F7F9',
+  background: '#ffffff',
   searchHighlight: '#a3d3ff',
   mainBackground: '#fefefe',
   border: '#DBDDDF',
