@@ -7,7 +7,7 @@ order: 2
 ---
 
 # Prerequisite
-- To learn localization in Orchard Core CMS, we will use an existing example from [Create a custom Orchard Core CMS theme content](/web-frameworks/orchard-core-cms/create-a-custom-orchard-core-cms-theme.md).
+- To learn localization in Orchard Core CMS, we will use an existing example from [Create a custom Orchard Core CMS theme content](/web-frameworks/orchard-core-cms/create-a-custom-orchard-core-cms-theme).
 - Here is the current project structure.
 ```sh
 $ tree -I 'bin|obj|App_Data|Localization|wwwroot' orchard-example

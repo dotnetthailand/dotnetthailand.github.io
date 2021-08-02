@@ -12,8 +12,11 @@ showToc: true
 $ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
 ```
 
-## How to update
-- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#update
+## Update to the latest version
+```sh
+$ az upgrade
+```
+- Learn more https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#update
 
 ## How to uninstall
 - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#uninstall
@@ -45,6 +48,6 @@ $ az account set --subscription <subscription name or id>
 ```sh
 $ az group create --location <location-name> --name <resource-group-name>
 ```
-- To list all location, use `az account list-locations`.
-- To list all existing groups of the default subscription, use `az group list --output table`.
+- To list all locations, use `az account list-locations`.
+- To list all existing resource groups of the default subscription, use `az group list --output table`.
 - [More details for Azure resource group](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest)
