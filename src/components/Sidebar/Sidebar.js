@@ -119,6 +119,7 @@ const Divider = styled((props) => (
 `;
 const ContentNavigation = ({ show, className, location }) => {
   const edges = getNavigationData();
+  console.log(edges);
   return (
     <NavigationWrapper className={className} show={show}>
       <SidebarMain css={scrollbar}>
