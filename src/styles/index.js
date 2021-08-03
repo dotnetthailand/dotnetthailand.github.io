@@ -161,21 +161,18 @@ export const table = (theme) => css`
 
 export const scrollbar = css`
   &::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    background-color: #f5f5f5;
+    border-radius: 50px;
   }
 
   &::-webkit-scrollbar {
-    width: 10px;
-    background-color: #f5f5f5;
+    width: 7px;
   }
 
   &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #555;
+    border-radius: 50px;
+    background-color: #c8c6c4;
   }
+
 `;
 
 export const skipParagraph = css`

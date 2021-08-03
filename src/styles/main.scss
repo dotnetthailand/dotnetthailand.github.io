@@ -17,7 +17,8 @@ body {
 }
 
 body {
-  font-family: 'Roboto';
+  // font-family: 'Roboto';
+  font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
 
 a {
@@ -44,7 +45,7 @@ img {
 
 .heading1 {
   font-size: 26px;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.5;
   margin-bottom: 16px;
   margin-top: 32px;
@@ -52,7 +53,7 @@ img {
 
 .heading2 {
   font-size: 24px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1.5;
   margin-bottom: 16px;
   margin-top: 32px;

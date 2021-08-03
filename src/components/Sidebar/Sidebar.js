@@ -9,7 +9,7 @@ import { scrollbar } from '../../styles';
 import { onMobile } from '../../styles/responsive';
 
 const Sidebar = styled.div`
-  margin-left: ${(props) => props.theme.layout.leftMargin};
+  margin-left: 20px;
   height: 100%;
   min-height: 0;
   display: flex;
@@ -119,6 +119,7 @@ const Divider = styled((props) => (
 `;
 const ContentNavigation = ({ show, className, location }) => {
   const edges = getNavigationData();
+  console.log(edges);
   return (
     <NavigationWrapper className={className} show={show}>
       <SidebarMain css={scrollbar}>
