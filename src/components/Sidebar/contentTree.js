@@ -9,14 +9,17 @@ import emoji from '../../utils/emoji';
 import { onMobile } from '../../styles/responsive';
 
 // initialize Icons for Fluent UI
-initializeIcons();
+// Load Font Icons from locally, not from MS Cdn
+// By fix issue: failed load font icon on production
+// Ref: https://dev.to/lybekk/how-to-use-fluent-ui-icons-in-gatsby-277e
+initializeIcons('/assets/fluenticons/');
 
 // Official Way to customize Fluent UI CSS
 const navStyles = props => {
   const { isGroup } = props;
   return {
     chevronButton:[
-      // Add custom css class for override group elemnt
+      // Add custom css class for override group element
       isGroup && 'is-group'
     ]
   }
