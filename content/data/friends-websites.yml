@@ -48,3 +48,7 @@
 - name: Thang Chung - GitHub Repository
   url: https://github.com/thangchung
   about: Codespace by cloud-native developer and architect guy from Vietnam
+
+- name: .NET Bangkok Meetup
+  url: https://www.meetup.com/dotnet-bkk
+  about: Monthly meetup about .NET in Bangkok.
