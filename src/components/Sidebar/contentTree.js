@@ -10,6 +10,18 @@ import { onMobile } from '../../styles/responsive';
 
 initializeIcons();
 
+// Official Way to customize Fluent UI CSS
+const navStyles = props => {
+  const { isGroup } = props;
+  return {
+    chevronButton:[
+      // Add custom css class for override group elemnt
+      isGroup && 'is-group'
+    ]
+  }
+}
+
+// Override Fluent UI CSS (Not good way)
 const style = (theme) => css`
   width: 280px;
   ${onMobile} {
@@ -19,7 +31,7 @@ const style = (theme) => css`
   margin-right: 10px;
 
   .ms-Nav-compositeLink{
-    background-color: white;
+    background: none;
 
     a, a:visited{
       color: ${theme.navigationSidebar.font.base};
@@ -28,14 +40,31 @@ const style = (theme) => css`
     &.is-selected button{
       background: none;
     }
+    &.is-selected {
+      background-color: ${theme.navigationSidebar.backgroundActive};
+    }
+    &:hover{
+      background-color: ${theme.navigationSidebar.backgroundHover};
+    }
   }
 
   .ms-Nav-chevronButton{
     font-size: 16px;
+    color: ${theme.navigationSidebar.font.base};
+
+    // Not official css class, overriding from above.
+    &.is-group{
+      border-bottom: 1px solid ${theme.navigationSidebar.divider} !important;
+    }
   }
 
-  .ms-Nav-navItem:hover{
-    background-color: #f3f2f1;
+  .ms-Nav-navItem .ms-Nav-link:hover{
+    color: ${theme.navigationSidebar.font.hover}
+  }
+
+  .ms-Nav-link
+   {
+    background: none !important;
   }
 `;
 
@@ -114,6 +143,7 @@ const ContentTree = ({ edges, location }) => {
     <>
       <div css={style(theme)}>
         <Nav
+          styles={navStyles}
           ariaLabel="Nav menu"
           groups={treeData}
           linkAs={linkAs}

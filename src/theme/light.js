@@ -13,6 +13,9 @@ const colors = {
   border: '#DBDDDF',
   hover: defaultColors.blue,
   shadow: defaultColors.gray + '33',
+  backgroundHover: '#f3f2f1',
+  backgroundActive: '#F3F2F1',
+  divider: '#edebe9'
 };
 
 export default {

@@ -15,6 +15,9 @@ const colors = {
   border: '#323234',
   hover: defaultColors.red,
   shadow: defaultColors.gray + '33',
+  backgroundHover: '#f3f2f1',
+  backgroundActive: '#F3F2F1',
+  divider: '#edebe9'
 };
 
 const pageLayout = {
@@ -45,18 +48,12 @@ const content = (colors) => ({
 const navigationSidebar = (colors) => ({
   backgroundSecondary: colors.background,
   backgroundPrimary: colors.background,
+  backgroundHover: colors.backgroundHover,
+  backgroundActive: colors.backgroundActive,
   border: colors.border,
-  row: {
-    hover: colors.border,
-    active: colorfn(colors.white).mix(colorfn(colors.background)).whiten(3.5).hex(),
-    activeBorder: colors.border,
-    collapseHover: colors.hover,
-  },
+  divider: colors.divider,
   font: {
-    group: decreaseIntensivity(colors.font, 0.25),
     base: colors.font,
-    nested: decreaseIntensivity(colors.font, 0.25),
-    active: colors.primary,
     hover: colors.primary,
   },
   poweredBy: {
