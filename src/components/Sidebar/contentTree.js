@@ -8,6 +8,7 @@ import { initializeIcons } from '@fluentui/react/lib/Icons';
 import emoji from '../../utils/emoji';
 import { onMobile } from '../../styles/responsive';
 
+// initialize Icons for Fluent UI
 initializeIcons();
 
 // Official Way to customize Fluent UI CSS
@@ -22,7 +23,7 @@ const navStyles = props => {
 }
 
 // Override Fluent UI CSS (Not good way)
-const style = (theme) => css`
+const style = theme => css`
   width: 280px;
   ${onMobile} {
     width: 100%;
@@ -54,7 +55,7 @@ const style = (theme) => css`
 
     // Not official css class, overriding from above.
     &.is-group{
-      border-bottom: 1px solid ${theme.navigationSidebar.divider} !important;
+      border-bottom: 1px solid ${theme.navigationSidebar.divider};
     }
   }
 
@@ -62,32 +63,20 @@ const style = (theme) => css`
     color: ${theme.navigationSidebar.font.hover}
   }
 
-  .ms-Nav-link
-   {
+  .ms-Nav-link{
     background: none !important;
   }
 `;
 
-const extractFirstLevelGroupId = (pathname) => {
-  const trimLastSlash = pathname.replace(/\/$/, '');
-  const trimFirstSlash = trimLastSlash.replace(/^\//, '');
-  return trimFirstSlash.substr(0, trimFirstSlash.indexOf('/')); 
-}
+const extractLevelGroupID = pathname => pathname.replace(/(^\/|\/$)/g, '').split('/');
 
-const extractSecondLevelGroupId = (pathname) => {
-  const trimLastSlash = pathname.replace(/\/$/, '');
-  const trimFirstSlash = trimLastSlash.replace(/^\//, '');
-  const removedFirstLevel = trimFirstSlash.substr(trimFirstSlash.indexOf('/')).replace(/^\//, ''); 
-  return removedFirstLevel.substr(0, removedFirstLevel.indexOf('/')); 
-}
-
-const calculateNavigationFluentUi = (calculatedNavigation, pathname) => {
-  console.log(pathname);
+const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
   const navLinkGroups = [];
   calculatedNavigation.children.map(sourceNavGroup => {
 
-    const isAccessByUrl = sourceNavGroup.title === '' ? false 
-      : sourceNavGroup.id === extractFirstLevelGroupId(pathname) ? false : true;
+    const isAccessByUrl = 
+      sourceNavGroup.title === '' ? false : 
+      sourceNavGroup.id !== extractLevelGroupID(pathname)[0];
     
     const navLinkGroup = {
       name: emoji.emojify(sourceNavGroup.title),
@@ -95,9 +84,9 @@ const calculateNavigationFluentUi = (calculatedNavigation, pathname) => {
       links: [],
       key: sourceNavGroup.id,
     }
-    sourceNavGroup.children.map( sourceNav => {
 
-     const isAccessByUrl = sourceNav.url.indexOf(extractSecondLevelGroupId(pathname)) > 0 ? true : false;
+    sourceNavGroup.children.map( sourceNav => {
+     const isAccessByUrl = sourceNav.url.indexOf(extractLevelGroupID(pathname)[1]) > 0;
       const navLinkGroupTmp = {
         name: sourceNav.title,
         url: sourceNav.url,
@@ -122,9 +111,8 @@ const calculateNavigationFluentUi = (calculatedNavigation, pathname) => {
 }
 
 const ContentTree = ({ edges, location }) => {
-  const [treeData] = useState(() => calculateNavigationFluentUi(calculateNavigation(edges), location.pathname));
+  const [treeData] = useState(() => calculateNavigationFluentUI(calculateNavigation(edges), location.pathname));
   const theme = useTheme();
-  console.log(location);
   const onRenderLink = (link, linkRender) => {
     return () => ({ link, linkRender });
   };
