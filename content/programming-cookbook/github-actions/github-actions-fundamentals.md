@@ -209,3 +209,6 @@ defaults:
     shell: powershell
 ```
 - More supported shell https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#using-a-specific-shell
+
+# How to apt-get install in a GitHub Actions workflow?
+- https://stackoverflow.com/a/58002908/1872200

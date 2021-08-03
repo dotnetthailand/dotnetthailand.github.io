@@ -7,12 +7,12 @@ order: 1
 ---
 
 # Deploy .NET app to Azure App Service code
-- When pushing code to a main branch triggers a workflow.
-- If project has Yarn Workspaces, build all Node.js packages.
-- Use dotnet publish to build a project and publish to Azure App Service.
-- Code from https://github.com/codesanook/codesanook-ef-note/blob/main/.github/workflows/deploy-to-app-service-code.yml
+- Pushing code to a main branch triggers a workflow.
+- If a project has Yarn Workspaces, build all Node.js packages.
+- Use `dotnet publish` to build and publish a project to Azure App Service.
+- Original Code is from https://github.com/codesanook/codesanook-ef-note/blob/main/.github/workflows/deploy-to-app-service-code.yml
 ```yaml
-#
+# .github/workflows/deploy-to-app-service-code.yml
 name: Deploy ASP.NET Core MVC app to Azure App Service Code
 
 on:
