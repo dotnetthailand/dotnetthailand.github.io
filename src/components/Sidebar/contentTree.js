@@ -27,7 +27,7 @@ const navStyles = props => {
 
 // Override Fluent UI CSS (Not good way)
 const style = theme => css`
-  width: 280px;
+  width: ${theme.layout.leftWidth};
   ${onMobile} {
     width: 100%;
   }
@@ -59,7 +59,12 @@ const style = theme => css`
     // Not official css class, overriding from above.
     &.is-group{
       border-bottom: 1px solid ${theme.navigationSidebar.divider};
+      /* font-weight: 500; */
     }
+  }
+
+  .ms-Nav-groupContent{
+    margin-left: 15px;
   }
 
   .ms-Nav-navItem .ms-Nav-link:hover{
@@ -82,7 +87,7 @@ const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
       sourceNavGroup.id !== extractLevelGroupID(pathname)[0];
     
     const navLinkGroup = {
-      name: emoji.emojify(sourceNavGroup.title),
+      name: `${emoji.emojify(sourceNavGroup.title)}`,
       collapseByDefault: isAccessByUrl,
       links: [],
       key: sourceNavGroup.id,
