@@ -59,7 +59,6 @@ const style = theme => css`
     // Not official css class, overriding from above.
     &.is-group{
       border-bottom: 1px solid ${theme.navigationSidebar.divider};
-      /* font-weight: 500; */
     }
   }
 
@@ -87,7 +86,7 @@ const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
       sourceNavGroup.id !== extractLevelGroupID(pathname)[0];
     
     const navLinkGroup = {
-      name: `${emoji.emojify(sourceNavGroup.title)}`,
+      name: emoji.emojify(sourceNavGroup.title),
       collapseByDefault: isAccessByUrl,
       links: [],
       key: sourceNavGroup.id,
