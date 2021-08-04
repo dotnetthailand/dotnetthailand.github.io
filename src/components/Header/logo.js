@@ -69,7 +69,7 @@ const Logo = styled(({ className, link, img, title }) => {
   min-width: ${(props) => props.theme.layout.leftWidth};
   display: flex;
   align-items: center;
-  border-right: 1px solid ${(props) => props.theme.header.border};
+  padding-right: 80px;
   ${onMobile} {
     border-right: none;
     min-width: auto;

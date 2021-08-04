@@ -27,7 +27,7 @@ const navStyles = props => {
 
 // Override Fluent UI CSS (Not good way)
 const style = theme => css`
-  width: 280px;
+  width: ${theme.layout.leftWidth};
   ${onMobile} {
     width: 100%;
   }
@@ -60,6 +60,10 @@ const style = theme => css`
     &.is-group{
       border-bottom: 1px solid ${theme.navigationSidebar.divider};
     }
+  }
+
+  .ms-Nav-groupContent{
+    margin-left: 15px;
   }
 
   .ms-Nav-navItem .ms-Nav-link:hover{
