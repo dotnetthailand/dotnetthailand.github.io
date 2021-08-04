@@ -49,10 +49,7 @@ const plugins = [
     },
   },
   {
-    resolve: `gatsby-transformer-gitinfo`,
-    options: {
-      include: /\.mdx?$/i, // Only .md files
-    },
+    resolve: `gatsby-transformer-gitinfo`
   },
   {
     resolve: 'gatsby-plugin-mdx',
