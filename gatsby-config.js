@@ -94,16 +94,20 @@ const plugins = [
     }
   },
   {
-    resolve: `gatsby-plugin-gtag`,
+    // NOTE: This plugin only works in production mode!
+    // To test your Global Site Tag is installed and firing events correctly run: gatsby build && gatsby serve.
+    resolve: 'gatsby-plugin-google-gtag', // https://www.gatsbyjs.com/plugins/gatsby-plugin-google-gtag
     options: {
-      // your google analytics tracking id
-      trackingId: config.metadata.gaTrackingId,
-      // Puts tracking script in the head instead of the body
-      head: true,
-      // enable ip anonymization
-      anonymize: false,
+      trackingIds: [
+        config.metadata.gaTrackingId, // Google Analytics / GA
+      ],
+      // This object is used for configuration specific to this plugin
+      pluginConfig: {
+        // Puts tracking script in the head instead of the body
+        head: true,
+      },
     },
-  },
+  }, // End of gatsby-plugin-google-gtag
   {
     resolve: 'gatsby-plugin-root-import',
     options: {

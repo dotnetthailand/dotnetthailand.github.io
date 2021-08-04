@@ -4,10 +4,11 @@ metadata:
   short_name: .NET Thailand
   description: .NET Thailand community
   language: en
-  pathPrefix: "/"
+  pathPrefix: "/" # https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/
   siteImage: "/assets/dotnetthailand-ogimage-dark.png"
   favicon: "/assets/favicon.png"
   themeColor: "#ff0000"
+  gaTrackingId: G-SN113NSYTB
 header:
   enabled: true
   logo: "/assets/code.svg"
