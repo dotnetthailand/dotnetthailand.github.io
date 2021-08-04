@@ -31,9 +31,8 @@ yarn start
   Follow the steps in the following link. https://github.com/alixaxel/chrome-aws-lambda/issues/164#issuecomment-754621407
 
 ## To do
-- We use GitHub Issues to track our to do items.
-- Please check the following link if you would like to contribute to the project.
-- https://github.com/dotnetthailand/dotnetthailand.github.io
+- We use [GitHub Issues](https://github.com/dotnetthailand/dotnetthailand.github.io/issues/new) to track our to do items.
+- Please check [the following link](./CONTRIBUTING.md) if you would like to contribute to the project.
 
 ## Useful information
 - This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes
