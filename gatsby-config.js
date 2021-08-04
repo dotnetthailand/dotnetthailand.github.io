@@ -101,7 +101,10 @@ const plugins = [
       trackingIds: [
         config.metadata.gaTrackingId, // Google Analytics / GA
       ],
-      // This object is used for configuration specific to this plugin
+      gtagConfig: {
+        send_page_view: true, //https://developers.google.com/analytics/devguides/collection/gtagjs/pages
+      },
+
       pluginConfig: {
         // Puts tracking script in the head instead of the body
         head: true,
