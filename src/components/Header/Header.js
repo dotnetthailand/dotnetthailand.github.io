@@ -177,21 +177,16 @@ const MobileMenuToggle = styled(({ open, toggle, className, ...props }) => {
   const theme = useTheme();
   return (
     <div className={className} {...props}>
-      {/* Hack with offset -7px on toggle menu, remove when fix scrollbar issue */}
-      <div css={{
-        marginRight: open?'-7px':'0'
-      }}>
-        <ButtonIcon
-          title={'Open menu'}
-          background={theme.header.icons.background}
-          hoverStroke={theme.header.icons.hover}
-          fill={'transparent'}
-          stroke={open? theme.header.icons.hover : theme.header.icons.stroke}
-          icon={open? X: Menu}
-          onClick={toggle}
-          {...props}
-        />
-      </div>
+      <ButtonIcon
+        title={'Open menu'}
+        background={theme.header.icons.background}
+        hoverStroke={theme.header.icons.hover}
+        fill={'transparent'}
+        stroke={open? theme.header.icons.hover : theme.header.icons.stroke}
+        icon={open? X: Menu}
+        onClick={toggle}
+        {...props}
+      />
     </div>
   );
 })`
