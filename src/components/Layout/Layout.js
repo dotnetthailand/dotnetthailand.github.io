@@ -26,13 +26,15 @@ const Wrapper = styled.div`
 `;
 
 const MainContentWrapper = styled.div`
+  margin-top: 81px;
   display: flex;
   overflow-y: auto;
   ${onMobile} {
+    margin-top: 61px;
     height: calc(100vh - 61px);
   }
   flex: 1 1 auto;
-  height: calc(100vh - 77px);
+  height: calc(100vh - 81px);
 `;
 
 // We add min-width 1% to make flex-item not expand if it's child content wider than available space
@@ -104,7 +106,11 @@ const Layout = ({ children, location }) => {
             }}
           >
             <Slide right delay={0} duration={400} when={showSearch}>
-              <SearchSidebar ref={searchSidebarRef} onVisibleChange={setSearchVisible} closeSelf={closeSearch} />
+              <SearchSidebar
+                ref={searchSidebarRef}
+                onVisibleChange={setSearchVisible}
+                closeSelf={closeSearch}
+              />
             </Slide>
           </div>
           <Header
@@ -122,13 +128,21 @@ const Layout = ({ children, location }) => {
         {config.features.scrollTop === true ? <ScrollTop /> : ''}
         <Wrapper>
           {config.sidebar.enabled === true ? (
-            <Sidebar show={!(config.features.fullScreenMode.hideSidebar && fullscreenMode)} location={location} css={hiddenMobile} />
+            <Sidebar
+              show={!(config.features.fullScreenMode.hideSidebar && fullscreenMode)}
+              location={location}
+              css={hiddenMobile}
+            />
           ) : (
             ''
           )}
-          <MainContentWrapper>
+          <MainContentWrapper id="scroll-to-top-main-content">
             <Content>{children}</Content>
-            <TableOfContents show={!(config.features.fullScreenMode.hideToc && fullscreenMode)} location={location} css={hiddenTablet} />
+            <TableOfContents
+              show={!(config.features.fullScreenMode.hideToc && fullscreenMode)}
+              location={location}
+              css={hiddenTablet}
+            />
           </MainContentWrapper>
         </Wrapper>
       </MDXProvider>

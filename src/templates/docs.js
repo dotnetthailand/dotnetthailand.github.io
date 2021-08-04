@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment } from '../components';
 import config from 'config';
 import emoji from '../utils/emoji';
-import { onMobile, onTablet } from '../styles/responsive';
+import { onMobile, onTablet, isMobile} from '../styles/responsive';
 
 const Title = styled.h1`
   font-size: 24pt
@@ -132,7 +132,7 @@ export default class MDXRuntimeTest extends React.Component {
         <PageTitle>
           <TitleWrapper>
             <Title>{docTitle}</Title>
-            {docsLocation && ((editable && mdx.frontmatter.editable !== false) || mdx.frontmatter.editable === true) ? (
+            {!isMobile() && docsLocation && ((editable && mdx.frontmatter.editable !== false) || mdx.frontmatter.editable === true) ? (
               <EditOnRepo
                 location={docsLocation}
                 branch={gitBranch.name}

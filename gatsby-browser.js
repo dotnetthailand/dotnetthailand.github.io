@@ -1,8 +1,4 @@
 export const onServiceWorkerUpdateReady = () => {
-  const answer = window.confirm(
-    `This tutorial has been updated. ` + `Reload to display the latest version?`
-  );
-  if (answer === true) {
-    window.location.reload();
-  }
+  // Auto reload to display the latest version, when service worker update ready.
+  window.location.reload();
 };

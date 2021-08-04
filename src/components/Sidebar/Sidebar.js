@@ -28,6 +28,7 @@ const SidebarMain = styled.div`
   margin: 0;
   display: block;
   padding: 0;
+  margin-top: 80px;
   padding-top: 32px;
   ${onMobile} {
     flex: 0 1 auto;
@@ -117,13 +118,12 @@ const Divider = styled((props) => (
     border-bottom: 1px solid ${(props) => props.theme.navigationSidebar.border};
   }
 `;
-const ContentNavigation = ({ show, className, location }) => {
+const ContentNavigation = ({ show, className, location, menuOpen }) => {
   const edges = getNavigationData();
-  console.log(edges);
   return (
     <NavigationWrapper className={className} show={show}>
-      <SidebarMain css={scrollbar}>
-        <ContentTree edges={edges} location={location} />
+      <SidebarMain css={scrollbar} id="sidebar-main-scrollbar">
+        <ContentTree edges={edges} location={location} menuOpen={menuOpen}/>
         {config.sidebar.links && config.sidebar.links.length > 0 ? (
           <>
             <Divider />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { calculateNavigation } from '../';
@@ -113,7 +113,7 @@ const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
   return navLinkGroups;
 }
 
-const ContentTree = ({ edges, location }) => {
+const ContentTree = ({ edges, location, menuOpen }) => {
   const [treeData] = useState(() => calculateNavigationFluentUI(calculateNavigation(edges), location.pathname));
   const theme = useTheme();
   const onRenderLink = (link, linkRender) => {
@@ -123,12 +123,24 @@ const ContentTree = ({ edges, location }) => {
   const linkAs = props => {
     // Ref: https://codesandbox.io/s/93olj3k1xr?file=/src/component/ContextMenuNav.js:2431-2435
     return (
-      <Link to={props.link.url} {...props} >
+      <Link  id={props.link.key} to={props.link.url} {...props} >
         {props.link.name}
       </Link>
     );
 
   }
+
+  const handleLinkClick = () => {
+    const element = document.getElementById('scroll-to-top-main-content');
+    element?.scrollTo(0,0)
+  };
+
+  useEffect(()=> {
+    const sidebarElements = document.getElementsByClassName('ms-Nav-compositeLink is-selected');
+    if(sidebarElements.length > 0) {
+      sidebarElements[0].scrollIntoView({block: "center", inline: "nearest"});
+    }
+  },[menuOpen]);
 
   return (
     <>
@@ -139,10 +151,10 @@ const ContentTree = ({ edges, location }) => {
           groups={treeData}
           linkAs={linkAs}
           onRenderLink={onRenderLink}
+          onLinkClick={handleLinkClick}
           selectedKey={location.pathname.replace(/\/$/, '')}
         />
       </div>
-
     </>
   );
 };

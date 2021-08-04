@@ -3,7 +3,10 @@ import styled from '@emotion/styled';
 import Arrow from 'images/up-arrow.inline.svg';
 import { onMobile, onTablet } from '../../styles/responsive';
 
-const scrollToTop = () => window.scrollTo(0, 0);
+const scrollToTop = () => {
+  const element = document.getElementById('scroll-to-top-main-content');
+  element?.scrollTo(0,0)
+};
 
 const ScrollTop = styled(({ className }) => {
   return (

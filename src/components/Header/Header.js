@@ -46,9 +46,10 @@ const HeaderWrapper = styled.header`
   box-shadow: 0 3px 8px 0 ${(props) => props.theme.header.shadow};
   border-bottom: 1px solid ${(props) => props.theme.header.border};
   padding: 10px 0;
-  position: relative;
+  position: fixed;
   overflow: hidden;
-  z-index: 1;
+  width: 100%;
+  z-index: 10;
   ${onTablet} {
     padding: 10px;
   }
@@ -106,7 +107,11 @@ const SearchOpener = ({ open, forcedComponent, ...props }) => {
     case 'input':
       opener = (
         <SearchWrapper css={hiddenMobile} style={{ marginRight: '10px' }} {...props}>
-          <SearchInput style={{marginTop: '0', marginBottom: '0'}} onChange={(e) => (e.target.value = '')} onFocus={open} />
+          <SearchInput
+            style={{ marginTop: '0', marginBottom: '0' }}
+            onChange={(e) => (e.target.value = '')}
+            onFocus={open}
+          />
         </SearchWrapper>
       );
       break;
@@ -305,21 +310,20 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
               {DarkModeButton}
               <MobileMenuToggle toggle={toggleMenuOpen} open={menuOpen} />
             </ButtonsWrapper>
-
-            {isMobile() ? (
-              <MobileNavigation css={visibleMobile} show={menuOpen}>
-                <Sidebar location={location} show={true} />
-
-                <Navigation links={headerLinks} />
-
-                <SocialButtonsWrapper css={visibleMobile}>
-                  {SocialButtons(iconBaseProps, config.social)}
-                </SocialButtonsWrapper>
-              </MobileNavigation>
-            ) : (
-              ''
-            )}
           </HeaderWrapper>
+
+          {isMobile() ? (
+            <MobileNavigation css={visibleMobile} show={menuOpen}>
+              <Sidebar location={location} show={true} menuOpen={menuOpen}/>
+              <Navigation links={headerLinks} />
+
+              <SocialButtonsWrapper css={visibleMobile}>
+                {SocialButtons(iconBaseProps, config.social)}
+              </SocialButtonsWrapper>
+            </MobileNavigation>
+          ) : (
+            ''
+          )}
         </>
       );
     }}
