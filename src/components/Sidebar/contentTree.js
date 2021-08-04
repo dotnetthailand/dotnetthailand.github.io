@@ -137,7 +137,9 @@ const ContentTree = ({ edges, location, menuOpen }) => {
 
   useEffect(()=> {
     const sidebarElements = document.getElementsByClassName('ms-Nav-compositeLink is-selected');
-    if(sidebarElements.length > 0) sidebarElements[0].scrollIntoView({block: "center", inline: "nearest"});
+    if(sidebarElements.length > 0) {
+      sidebarElements[0].scrollIntoView({block: "center", inline: "nearest"});
+    }
   },[menuOpen]);
 
   return (
