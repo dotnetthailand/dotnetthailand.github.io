@@ -5,7 +5,7 @@ import config from 'config';
 import Logo from './logo';
 import Navigation from './navigation';
 import { ButtonIcon, DarkModeSwitch, SearchInput, Sidebar } from '../';
-import { HelpCircle, Menu, Search } from 'react-feather';
+import { HelpCircle, Menu, Search, X } from 'react-feather';
 import { useTheme } from 'emotion-theming';
 import SocialButtons from './social';
 import { Rss } from '../Buttons';
@@ -14,6 +14,7 @@ import { hiddenMobile, visibleMobile, visibleTablet, hiddenTablet } from '../../
 import { onMobile, onTablet, isMobile } from '../../styles/responsive';
 import { FullScreenClose, FullScreenEnter, FullScreenHeader } from './fullscreen';
 import logoImg from 'images/dotnetthailand-logo.svg';
+import logoImgOnDark from 'images/dotnetthailand-logo-dark-background.svg';
 
 const isSearchEnabled = config.features.search && config.features.search.enabled;
 
@@ -176,16 +177,21 @@ const MobileMenuToggle = styled(({ open, toggle, className, ...props }) => {
   const theme = useTheme();
   return (
     <div className={className} {...props}>
-      <ButtonIcon
-        title={'Open menu'}
-        background={theme.header.icons.background}
-        hoverStroke={theme.header.icons.hover}
-        fill={'transparent'}
-        stroke={open === true ? theme.header.icons.hover : theme.header.icons.stroke}
-        icon={Menu}
-        onClick={toggle}
-        {...props}
-      />
+      {/* Hack with offset -7px on toggle menu, remove when fix scrollbar issue */}
+      <div css={{
+        marginRight: open?'-7px':'0'
+      }}>
+        <ButtonIcon
+          title={'Open menu'}
+          background={theme.header.icons.background}
+          hoverStroke={theme.header.icons.hover}
+          fill={'transparent'}
+          stroke={open? theme.header.icons.hover : theme.header.icons.stroke}
+          icon={open? X: Menu}
+          onClick={toggle}
+          {...props}
+        />
+      </div>
     </div>
   );
 })`
@@ -281,7 +287,7 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
             ''
           )}
           <HeaderWrapper show={show}>
-            <Logo link={logoLink} img={logoImg} />
+            <Logo link={logoLink} img={darkMode ? logoImgOnDark : logoImg} />
             <TopNavigation css={hiddenMobile}>
               <Navigation links={headerLinks} />
             </TopNavigation>
