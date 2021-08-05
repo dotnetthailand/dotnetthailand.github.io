@@ -1,6 +1,6 @@
 ---
 title: Migrate Class Component to Functional Component
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 order: 3

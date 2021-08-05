@@ -1,6 +1,6 @@
 ---
 title: React Design Pattern
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 order: 2
