@@ -8,7 +8,7 @@ metadata:
   siteImage: "/assets/dotnetthailand-ogimage-dark.png"
   favicon: "/assets/favicon.png"
   themeColor: "#ff0000"
-  gaTrackingId: G-SN113NSYTB
+  uaTrackingId: UA-204153201-1
 header:
   enabled: true
   logo: "/assets/code.svg"
