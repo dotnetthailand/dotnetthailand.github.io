@@ -90,6 +90,8 @@ social:
   facebook: https://www.facebook.com/groups/dotnetthailand
 
 features:
+  content:
+    rootPath: content
   darkMode:
     enabled: true
     default: false
@@ -97,6 +99,7 @@ features:
     location: https://github.com/dotnetthailand/dotnetthailand.github.io
     type: github
     editable: true
+    repo: dotnetthailand/dotnetthailand.github.io
   mermaid:
     language: mermaid
     # Supported theme are "dark", "neutral", "forrest", or "default"

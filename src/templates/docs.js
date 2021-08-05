@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import styled from '@emotion/styled';
-import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment } from '../components';
+import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment, Authors } from '../components';
 import config from 'config';
 import emoji from '../utils/emoji';
 import { onMobile, onTablet, isMobile} from '../styles/responsive';
@@ -83,24 +83,6 @@ const ReadingTime = styled(({ className, time }) => (
   font-size: 12px;
 `;
 
-const LastUpdated = styled(({ className, time, name }) => {
-  return (
-    <span className={className}>
-      Last update:{' '}
-      <i>
-        <b>{time}</b>
-      </i>{' '}
-      by
-      <i>
-        <b> {name}</b>
-      </i>
-    </span>
-  );
-})`
-  font-size: 12px;
-  display: block;
-`;
-
 export default class MDXRuntimeTest extends React.Component {
   componentDidMount() {
     if (window.location.hash) {
@@ -117,7 +99,7 @@ export default class MDXRuntimeTest extends React.Component {
     const {
       mdx,
       site: {
-        siteMetadata: { docsLocation, docsLocationType, editable },
+        siteMetadata: { docsLocation, docsLocationType, editable, docsRepo, contentRootPath },
       },
       gitBranch,
     } = data;
@@ -126,18 +108,20 @@ export default class MDXRuntimeTest extends React.Component {
     const metaTitle = mdx.frontmatter.metaTitle;
     const docTitle = emoji.emojify(mdx.fields.title);
     const headTitle = metaTitle ? metaTitle : emoji.clean(docTitle);
+    console.log(mdx.parent.relativePath ,docsRepo , docsLocationType , contentRootPath);
     return (
       <Layout {...this.props}>
         <Seo frontmatter={mdx.frontmatter} url={this.props.location.href} title={headTitle} />
         <PageTitle>
           <TitleWrapper>
             <Title>{docTitle}</Title>
-            {!isMobile() && docsLocation && ((editable && mdx.frontmatter.editable !== false) || mdx.frontmatter.editable === true) ? (
+            {!isMobile() && docsLocation && contentRootPath && ((editable && mdx.frontmatter.editable !== false) || mdx.frontmatter.editable === true) ? (
               <EditOnRepo
                 location={docsLocation}
                 branch={gitBranch.name}
                 path={mdx.parent.relativePath}
                 repoType={docsLocationType}
+                contentRootPath={contentRootPath}
               />
             ) : (
               ''
@@ -146,15 +130,14 @@ export default class MDXRuntimeTest extends React.Component {
           {(config.features.showMetadata === true && mdx.frontmatter.showMetadata !== false) ||
             mdx.frontmatter.showMetadata === true ? (
             <div css={{ display: 'block' }}>
-              {mdx.parent.fields ? (
-                <LastUpdated
-                  time={mdx.parent.fields.gitLogLatestDate}
-                  name={mdx.parent.fields.gitLogLatestAuthorName}
-                  email={mdx.parent.fields.gitLogLatestAuthorEmail}
-                />
-              ) : (
-                ''
-              )}
+              {mdx.parent.relativePath && docsRepo && docsLocationType && contentRootPath &&
+                <Authors 
+                  path={mdx.parent.relativePath}
+                  repo={docsRepo}
+                  repoType={docsLocationType}
+                  contentRootPath={contentRootPath}
+                  locationPathname={this.props.location.pathname}
+                  />}
               <ReadingTime time={mdx.timeToRead * 2} />
             </div>
           ) : (
@@ -185,8 +168,10 @@ export const pageQuery = graphql`
       siteMetadata {
         title
         docsLocation
+        docsRepo
         docsLocationType
         editable
+        contentRootPath
       }
     }
     mdx(fields: { id: { eq: $id } }) {
@@ -201,11 +186,6 @@ export const pageQuery = graphql`
       parent {
         ... on File {
           relativePath
-          fields {
-            gitLogLatestAuthorName
-            gitLogLatestAuthorEmail
-            gitLogLatestDate(fromNow: true)
-          }
         }
       }
       frontmatter {

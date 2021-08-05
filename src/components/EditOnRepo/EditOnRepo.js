@@ -71,9 +71,7 @@ const EditButton = styled(({ className, icon, link, text }) => {
   }
 `;
 
-const rootDir = 'content';
-
-const EditOnRepo = ({ repoType, branch, location, path }) => {
+const EditOnRepo = ({ repoType, branch, location, path, contentRootPath }) => {
   let icon = null;
   let link = `${location}/${path}`;
   let text = 'Edit on ';
@@ -85,17 +83,17 @@ const EditOnRepo = ({ repoType, branch, location, path }) => {
       const host = splitted[2];
       // it does not support contexts
       const repo = splitted.slice(3).join('/');
-      link = `${protocol}//${host}/-/ide/project/${repo}/blob/${branch}/-/${rootDir}/${path}`;
+      link = `${protocol}//${host}/-/ide/project/${repo}/blob/${branch}/-/${contentRootPath}/${path}`;
       text += 'GitLab';
       break;
     case 'github':
       icon = require('images/github.svg');
-      link = `${location}/edit/${branch}/${rootDir}/${path}`;
+      link = `${location}/edit/${branch}/${contentRootPath}/${path}`;
       text += 'Github';
       break;
     case 'bitbucket':
       icon = require('images/bitbucket.svg');
-      link = `${location}/src/${branch}/${rootDir}/${path}?mode=edit&spa=0&at=${branch}`;
+      link = `${location}/src/${branch}/${contentRootPath}/${path}?mode=edit&spa=0&at=${branch}`;
       text += 'Bitbucket';
       break;
     default:
