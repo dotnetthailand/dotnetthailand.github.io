@@ -84,6 +84,8 @@ pwa:
     display: standalone
     crossOrigin: anonymous
     icon: "/assets/favicon.png"
+    name: .NET Thailand
+    short_name: .NET Thailand
 
 social:
   github: https://github.com/dotnetthailand/dotnetthailand.github.io
