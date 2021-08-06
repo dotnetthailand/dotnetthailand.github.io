@@ -1,12 +1,9 @@
-
 import React, { useEffect, useState } from 'react';
-import { IPersonaSharedProps, Persona, PersonaSize } from '@fluentui/react/lib/Persona';
 import { Stack } from '@fluentui/react/lib/Stack';
-import { TooltipHost, ITooltipHostStyles } from '@fluentui/react/lib/Tooltip';
-import { useId } from '@fluentui/react-hooks';
 import { format } from 'date-fns';
 import styled from '@emotion/styled';
 import axios from 'axios';
+import Person from './Person';
 
 /*
 Require: config.features.editOnRepo.editable = true
@@ -23,7 +20,7 @@ interface IAuthorsProps {
   timeToRead: number;
 }
 
-interface IAuthorInfo {
+export interface IAuthorInfo {
   username?: string;
   name: string;
   commitsCount: number;
@@ -122,39 +119,5 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
     content: "•";
   }
 `;
-
-interface IPersonProps{
-  author: IAuthorInfo
-}
-
-const Person = ({author}: IPersonProps) => {
-  const tooltipId = useId('tooltip');
-  const calloutProps = { gapSpace: 0 };
-  const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
-
-  return (
-    <a key={author.username} href={author.profileUrl} target="_blank" rel="noreferrer">
-      <TooltipHost
-        content={author.name}
-        id={tooltipId}
-        calloutProps={calloutProps}
-        styles={hostStyles}
-      >
-        <Persona
-          styles={{
-            root: {
-              margin: 3
-            },
-          }}
-          imageUrl={author.avatarUrl}
-          text={author.name}
-          size={PersonaSize.size40}
-          hidePersonaDetails={true}
-          imageAlt={author.name}
-        />
-      </TooltipHost>
-    </a>
-  )
-}
 
 export default PageMetadata;
