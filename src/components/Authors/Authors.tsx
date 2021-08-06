@@ -9,7 +9,7 @@ Require: config.features.editOnRepo.editable = true
 We collect `Author` field, ref: https://stackoverflow.com/a/6755848/4540808
 */
 
-export interface IAuthorsProps{
+interface IAuthorsProps{
   className: string;
   path: string;
   repoType: string;
@@ -18,11 +18,11 @@ export interface IAuthorsProps{
   locationPathname: string;
 }
 
-export interface IAuthorInfo{
+interface IAuthorInfo{
   username?: string; 
   name: string;
-  commits: number;
-  url: string;
+  commitsCount: number;
+  profileUrl: string;
 }
 
 const initAuthorList :IAuthorInfo[] = [];
@@ -41,34 +41,40 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
       }
     }
     const response = await axios.get(contributorsGithubAPI,axiosConfig);
-    console.log(response.data);
-
-    const authors: Record<string, IAuthorInfo> = {};
-    response.data.map( commit => {
-      // Get Github username or Email.
-      const author = commit?.author?.login || commit?.commit?.author.email;
-      if(!author) return;
-      console.log(commit);
-      if (author in authors){
-        authors[author].commits ++;
-      } else{
-        authors[author] = {
+    const allAuthors: IAuthorInfo[] = response.data
+      // Map all commit to duplicated authors.
+      .map(commit => {
+        return {
+          // Get Github username or Email, sometime we can't get author from the API.
+          username: commit?.author?.login || commit?.commit?.author.email,
           name: commit?.commit?.author.name,
-          commits: 1,
-          url: commit?.author?.html_url ||  commit?.html_url,
-        }
-      } 
-    });
+          profileUrl: commit?.author?.html_url || commit?.html_url,
+          commitsCount: 1, // default to 1
+        };
+      })
+      // Remove author if username is undefined 
+      .filter(currentAuthor => currentAuthor.username);
 
-    const authorListTmp:IAuthorInfo[] = [];
-    for (const [key, value] of Object.entries(authors)) {
-      authorListTmp.push({
-        ...value,
-        username: key
-      });
-    }
-    authorListTmp.sort((a, b) => (a.commits < b.commits) ? 1 : -1);
-    setAuthorList([...authorListTmp]);
+    // Create a unique author and increase commits count if an author has more than one commit.
+    const uniqueAuthors = allAuthors.reduce((authors, currentAuthor) => {
+      const usernameKey = currentAuthor.username;
+      const uniqueAuthor = authors[usernameKey];
+      if (uniqueAuthor) {
+        uniqueAuthor.commitsCount++;
+      } else {
+        authors[usernameKey] = currentAuthor;
+      }
+
+      return authors;
+    }, {} as Record<string, IAuthorInfo>);
+
+    // Flatting to array of author and sort by commits number descending
+    const sortedByCommitsCountAuthors = Object.entries(uniqueAuthors)
+      .map(([, author]) => author)
+      .sort((a, b) => (a.commitsCount < b.commitsCount) ? 1 : -1)
+
+    // Set to React state
+    setAuthorList([...sortedByCommitsCountAuthors]);
 
     // Last update
     const lastCommitDate = response.data[0].commit.author.date;
@@ -84,7 +90,7 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
     <span className={className}>
      Last update: {lastUpdate}<br/>
      Authors: {authorList.map((author, authorIndex) => (
-       <span key={author.username}><a href={author.url} target="_blank" rel="noreferrer">{author.name}</a>
+       <span key={author.username}><a href={author.profileUrl} target="_blank" rel="noreferrer">{author.name}</a>
        {authorList.length -1 === authorIndex? '' : ', '}
        </span>
      ))}
