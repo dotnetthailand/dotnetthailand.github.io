@@ -1,33 +1,36 @@
-
 import React, { useEffect, useState } from 'react';
+import { Stack } from '@fluentui/react/lib/Stack';
 import { format } from 'date-fns';
 import styled from '@emotion/styled';
 import axios from 'axios';
+import Person from './Person';
 
 /*
 Require: config.features.editOnRepo.editable = true
 We collect `Author` field, ref: https://stackoverflow.com/a/6755848/4540808
 */
 
-interface IAuthorsProps{
+interface IAuthorsProps {
   className: string;
   path: string;
   repoType: string;
   repo: string;
   contentRootPath: string;
   locationPathname: string;
+  timeToRead: number;
 }
 
-interface IAuthorInfo{
-  username?: string; 
+export interface IAuthorInfo {
+  username?: string;
   name: string;
   commitsCount: number;
   profileUrl: string;
+  avatarUrl: string;
 }
 
-const initAuthorList :IAuthorInfo[] = [];
+const initAuthorList: IAuthorInfo[] = [];
 
-const Authors = styled(({ className, path,  repoType, repo, contentRootPath, locationPathname}: IAuthorsProps) => {
+const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath, locationPathname, timeToRead }: IAuthorsProps) => {
   const [authorList, setAuthorList] = useState(initAuthorList);
   const [lastUpdate, setLastUpdate] = useState('');
   if (repoType.toLowerCase() !== 'github') return <></>;
@@ -40,7 +43,7 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
         'Accept': 'application/vnd.github.v3+json'
       }
     }
-    const response = await axios.get(contributorsGithubAPI,axiosConfig);
+    const response = await axios.get(contributorsGithubAPI, axiosConfig);
     const allAuthors: IAuthorInfo[] = response.data
       // Map all commit to duplicated authors.
       .map(commit => {
@@ -49,6 +52,7 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
           username: commit?.author?.login || commit?.commit?.author.email,
           name: commit?.commit?.author.name,
           profileUrl: commit?.author?.html_url || commit?.html_url,
+          avatarUrl: commit?.author?.avatar_url,
           commitsCount: 1, // default to 1
         };
       })
@@ -71,35 +75,35 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
     // Flatting to array of author and sort by commits number descending
     const sortedByCommitsCountAuthors = Object.entries(uniqueAuthors)
       .map(([, author]) => author)
-      .sort((a, b) => (a.commitsCount < b.commitsCount) ? 1 : -1)
+      .sort((a, b) => (a.commitsCount < b.commitsCount) ? 1 : -1);
 
     // Set to React state
-    setAuthorList([...sortedByCommitsCountAuthors]);
+    setAuthorList(sortedByCommitsCountAuthors);
 
     // Last update
     const lastCommitDate = response.data[0].commit.author.date;
-    setLastUpdate(format(new Date(lastCommitDate),"MMM dd, yyyy"));
+    setLastUpdate(format(new Date(lastCommitDate), 'MMM dd, yyyy'));
   }
 
-  useEffect(()=> {
+  useEffect(() => {
     setAuthorList([]);
     fetchContributors();
   }, [locationPathname]);
-  
+
   return (
     <span className={className}>
-     Last update: {lastUpdate}<br/>
-     Authors: {authorList.map((author, authorIndex) => (
-       <span key={author.username}><a href={author.profileUrl} target="_blank" rel="noreferrer">{author.name}</a>
-       {authorList.length -1 === authorIndex? '' : ', '}
-       </span>
-     ))}
+      <div className='page-metadata'>{lastUpdate}</div>
+      {timeToRead !== 0 && <div className='page-metadata'>{timeToRead} minutes to read</div>}
+      <Stack horizontal wrap>
+        {authorList.map(author => <Person author={author} />)}
+      </Stack>
     </span>
   );
 
 })`
-  font-size: 12px;
-  display: block;
+  font-size: 16px;
+  display: flex;
+  align-items:center;
 
   a, a:active, a:visited { 
     color: ${(props) => props.theme.colors.primary}
@@ -108,5 +112,12 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
   a:hover {
     color: ${(props) => props.theme.colors.primaryDark}
   }
+
+  .page-metadata:after{
+    padding-left: 6px;
+    padding-right: 6px;
+    content: "•";
+  }
 `;
-export default Authors;
+
+export default PageMetadata;
