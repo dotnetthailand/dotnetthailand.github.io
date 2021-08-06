@@ -8,7 +8,7 @@ interface IPersonProps {
 }
 
 const Person = ({ author }: IPersonProps) => {
-  const tooltipId = useId('tooltip');
+  const tooltipId = useId(author.username);
   const calloutProps = { gapSpace: 0 };
   const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
 
