@@ -137,8 +137,6 @@ const ContentTree = ({ edges, location, menuOpen }) => {
   }
 
   const handleLinkClick = () => {
-    const element = document.getElementById('scroll-to-top-main-content');
-    element?.scrollTo(0,0)
     // Debounce click nav state to prevent unnecessarily moving to active nav button
     setNavClickStatus(true);
     setTimeout(() => setNavClickStatus(false), 200);
@@ -158,11 +156,14 @@ const ContentTree = ({ edges, location, menuOpen }) => {
   useEffect(()=> {
     // Prevent unnecessarily moving to active nav button
     if(!navClickStatus) {
-      // This active should be executed only other event route path changed, such as search feature.
+      // This active should be executed only other event route path changed, such as clicking item on search result.
       // Make sure every time that the route path is changed, then go to the active Nav button.
       setTreeData(calculateNavigationFluentUI(memoizedCalculatedNavigation, location.pathname));
       setTimeout(() => goToActiveNav(), 200);
     }
+    
+    // When the route path is changed, scroll the content to top, such as clicking item on search result, clicking on nav menu.
+    document.getElementById('scroll-to-top-main-content')?.scrollTo(0,0);
   },[location.pathname]);
 
   return (
