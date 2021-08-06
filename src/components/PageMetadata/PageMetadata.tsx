@@ -82,7 +82,7 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
 
     // Last update
     const lastCommitDate = response.data[0].commit.author.date;
-    setLastUpdate(format(new Date(lastCommitDate), "MMM dd, yyyy"));
+    setLastUpdate(format(new Date(lastCommitDate), 'MMM dd, yyyy'));
   }
 
   useEffect(() => {
