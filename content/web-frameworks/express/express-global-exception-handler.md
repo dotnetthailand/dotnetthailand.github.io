@@ -1,6 +1,6 @@
 ---
 title: Express global exception handler
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 ---

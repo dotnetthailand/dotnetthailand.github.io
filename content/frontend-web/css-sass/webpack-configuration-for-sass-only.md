@@ -1,6 +1,6 @@
 ---
 title: Webpack configuration for Sass only
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 ---

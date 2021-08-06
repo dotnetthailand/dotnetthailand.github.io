@@ -1,6 +1,6 @@
 ---
 title: F# for C# developers
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 ---
