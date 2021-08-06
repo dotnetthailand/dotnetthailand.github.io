@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { calculateNavigation } from '../';
@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 import { Nav } from '@fluentui/react/lib/Nav';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 import emoji from '../../utils/emoji';
+import { syncFunction } from '../../utils/utils';
 import { onMobile } from '../../styles/responsive';
 
 // initialize Icons for Fluent UI
@@ -118,7 +119,9 @@ const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
 }
 
 const ContentTree = ({ edges, location, menuOpen }) => {
-  const [treeData] = useState(() => calculateNavigationFluentUI(calculateNavigation(edges), location.pathname));
+  const memoizedCalculatedNavigation = useMemo(() => calculateNavigation(edges));
+  const [navClickStatus, setNavClickStatus] = useState(false);
+  const [treeData, setTreeData] = useState(() => calculateNavigationFluentUI(memoizedCalculatedNavigation, location.pathname));
   const theme = useTheme();
   const onRenderLink = (link, linkRender) => {
     return () => ({ link, linkRender });
@@ -135,16 +138,34 @@ const ContentTree = ({ edges, location, menuOpen }) => {
   }
 
   const handleLinkClick = () => {
-    const element = document.getElementById('scroll-to-top-main-content');
-    element?.scrollTo(0,0);
+    // Debounce click nav state to prevent unnecessarily moving to active nav button
+    setNavClickStatus(true);
+    setTimeout(() => setNavClickStatus(false), 200);
   };
 
-  useEffect(()=> {
+  const goToActiveNav = () => {
     const sidebarElements = document.getElementsByClassName('ms-Nav-compositeLink is-selected');
     if(sidebarElements.length > 0) {
       sidebarElements[0].scrollIntoView({block: "center", inline: "nearest"});
     }
+  }
+
+  useEffect(()=> {
+    goToActiveNav();
   },[menuOpen]);
+  
+  useEffect(()=> {
+    // Prevent unnecessarily moving to active nav button
+    if(!navClickStatus) {
+      // This active should be executed only other event route path changed, such as clicking item on search result.
+      // Make sure every time that the route path is changed, then go to the active Nav button.
+      syncFunction(() => setTreeData(calculateNavigationFluentUI(memoizedCalculatedNavigation, location.pathname)))
+        .then(() => goToActiveNav());
+    }
+
+    // When the route path is changed, scroll the content to top, such as clicking item on search result, clicking on nav menu.
+    document.getElementById('scroll-to-top-main-content')?.scrollTo(0,0);
+  },[location.pathname]);
 
   return (
     <>
