@@ -87,8 +87,10 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
   return (
     <span className={className}>
      Last update: {lastUpdate}<br/>
-     Authors: {authorList.map(author => (
-       <span key={author.username}><a href={author.url} target="_blank" rel="noreferrer">{author.name}</a>, </span>
+     Authors: {authorList.map((author, authorIndex) => (
+       <span key={author.username}><a href={author.url} target="_blank" rel="noreferrer">{author.name}</a>
+       {authorList.length -1 === authorIndex? '' : ', '}
+       </span>
      ))}
     </span>
   );
