@@ -76,10 +76,6 @@ const Authors = styled(({ className, path,  repoType, repo, contentRootPath, loc
   }
 
   useEffect(()=> {
-    fetchContributors();
-  }, []);
-
-  useEffect(()=> {
     setAuthorList([]);
     fetchContributors();
   }, [locationPathname]);
