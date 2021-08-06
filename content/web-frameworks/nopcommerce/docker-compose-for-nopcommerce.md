@@ -89,14 +89,13 @@ version: "3.8"
 
 services:
   web:
-    image: nopcommerceteam/nopcommerce:4.40.3
+    image: nopcommerceteam/nopcommerce:4.40.4
     container_name: ${COMPOSE_PROJECT_NAME:?err}_web
     ports:
       - 8080:80
     volumes:
       # https://github.com/nopSolutions/nopCommerce/blob/develop/Dockerfile#L72
-      #- nopcommerce_data:/app/App_Data
-      - nopcommerce_data:/app
+      - nopcommerce_data:/app/App_Data
     networks:
       - compose_network
 
