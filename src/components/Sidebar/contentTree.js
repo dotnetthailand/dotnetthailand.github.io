@@ -136,7 +136,7 @@ const ContentTree = ({ edges, location, menuOpen }) => {
 
   const handleLinkClick = () => {
     const element = document.getElementById('scroll-to-top-main-content');
-    element?.scrollTo(0,0)
+    element?.scrollTo(0,0);
   };
 
   useEffect(()=> {

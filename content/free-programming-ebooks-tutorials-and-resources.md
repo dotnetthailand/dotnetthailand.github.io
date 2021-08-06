@@ -1,6 +1,6 @@
 ---
 title: รวมฟรีหนังสือ, วิดีโอ และแหล่งความรู้การเขียนโปรแกรมแบบ
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 order: 3

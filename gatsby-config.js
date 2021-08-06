@@ -49,9 +49,6 @@ const plugins = [
     },
   },
   {
-    resolve: `gatsby-transformer-gitinfo`
-  },
-  {
     resolve: 'gatsby-plugin-mdx',
     options: {
       gatsbyRemarkPlugins: [
@@ -241,8 +238,10 @@ module.exports = {
     title: config.metadata.name,
     description: config.metadata.description,
     docsLocation: config.features.editOnRepo.location,
+    docsRepo: config.features.editOnRepo.repo,
     docsLocationType: config.features.editOnRepo.type,
     editable: config.features.editOnRepo.editable,
+    contentRootPath: config.features.content.rootPath,
     siteImage: config.metadata.siteImage,
     favicon: config.metadata.favicon,
     logo: {

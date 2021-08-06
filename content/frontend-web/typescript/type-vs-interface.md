@@ -1,6 +1,6 @@
 ---
 title: Type VS Interface
-showMetadata: false
+showMetadata: true
 editable: true
 showToc: true
 order: 2
