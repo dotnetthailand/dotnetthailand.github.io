@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import styled from '@emotion/styled';
-import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment, Authors } from '../components';
+import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment, PageMetadata } from '../components';
 import config from 'config';
 import emoji from '../utils/emoji';
 import { onMobile, onTablet, isMobile} from '../styles/responsive';
@@ -76,13 +76,6 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const ReadingTime = styled(({ className, time }) => (
-  <span className={className}>Reading time: {time} min</span>
-))`
-  font-style: italic;
-  font-size: 12px;
-`;
-
 export default class MDXRuntimeTest extends React.Component {
   componentDidMount() {
     if (window.location.hash) {
@@ -130,15 +123,15 @@ export default class MDXRuntimeTest extends React.Component {
           {(config.features.showMetadata === true && mdx.frontmatter.showMetadata !== false) ||
             mdx.frontmatter.showMetadata === true ? (
             <div css={{ display: 'block' }}>
-              {mdx.parent.relativePath && docsRepo && docsLocationType && contentRootPath &&
-                <Authors 
+              {mdx.parent.relativePath && docsRepo && docsLocationType && contentRootPath && 
+                <PageMetadata 
                   path={mdx.parent.relativePath}
                   repo={docsRepo}
                   repoType={docsLocationType}
                   contentRootPath={contentRootPath}
                   locationPathname={this.props.location.pathname}
+                  timeToRead={mdx.timeToRead * 2} 
                   />}
-              <ReadingTime time={mdx.timeToRead * 2} />
             </div>
           ) : (
             ''

@@ -1,7 +1,7 @@
 export * from './Buttons';
 export { default as DarkModeSwitch } from './DarkModeSwitch';
 export { default as EditOnRepo } from './EditOnRepo';
-export { default as Authors } from './Authors';
+export { default as PageMetadata } from './PageMetadata';
 export { default as Header } from './Header';
 export { default as Layout } from './Layout';
 export { default as Link } from './Link';
