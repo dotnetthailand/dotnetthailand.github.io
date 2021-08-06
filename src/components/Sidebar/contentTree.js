@@ -6,6 +6,7 @@ import { Link } from "gatsby"
 import { Nav } from '@fluentui/react/lib/Nav';
 import { initializeIcons } from '@fluentui/react/lib/Icons';
 import emoji from '../../utils/emoji';
+import { syncFunction } from '../../utils/utils';
 import { onMobile } from '../../styles/responsive';
 
 // initialize Icons for Fluent UI
@@ -158,10 +159,10 @@ const ContentTree = ({ edges, location, menuOpen }) => {
     if(!navClickStatus) {
       // This active should be executed only other event route path changed, such as clicking item on search result.
       // Make sure every time that the route path is changed, then go to the active Nav button.
-      setTreeData(calculateNavigationFluentUI(memoizedCalculatedNavigation, location.pathname));
-      setTimeout(() => goToActiveNav(), 200);
+      syncFunction(() => setTreeData(calculateNavigationFluentUI(memoizedCalculatedNavigation, location.pathname)))
+        .then(() => goToActiveNav());
     }
-    
+
     // When the route path is changed, scroll the content to top, such as clicking item on search result, clicking on nav menu.
     document.getElementById('scroll-to-top-main-content')?.scrollTo(0,0);
   },[location.pathname]);

@@ -13,4 +13,9 @@ const arraysEqual = (a, b) => {
   return true;
 };
 
-export { sleep, arraysEqual };
+const syncFunction = (func) => (
+  new Promise((resolve, reject) => typeof func === 'function'? resolve(func()): reject('Function is required!'))
+);
+
+export { sleep, arraysEqual, syncFunction };
+
