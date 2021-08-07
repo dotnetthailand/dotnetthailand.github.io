@@ -16,23 +16,24 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 function createFacebookSDK() {
   return {
     __html: stripIndent`
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '${config.features.facebookSDK.appId}',
-            xfbml      : true,
-            version    : 'v11.0'
-          });
-          FB.AppEvents.logPageView();
-          console.log('fb loaded');
-        };
+        document.addEventListener("DOMContentLoaded",function() {
+          window.fbAsyncInit = function() {
+            FB.init({
+              appId      : '${config.features.facebookSDK.appId}',
+              xfbml      : true,
+              version    : 'v11.0'
+            });
+            console.log('FB SDK loaded');
+          };
 
-        (function(d, s, id){
-          var js, fjs = d.getElementsByTagName(s)[0];
-          if (d.getElementById(id)) {return;}
-          js = d.createElement(s); js.id = id;
-          js.src = "https://connect.facebook.net/en_US/sdk.js";
-          fjs.parentNode.insertBefore(js, fjs);
-        }(document, 'script', 'facebook-jssdk'));
+          (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+      });
       `
   };
 }
