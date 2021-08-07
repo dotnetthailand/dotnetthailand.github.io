@@ -4,6 +4,7 @@ import { format } from 'date-fns';
 import styled from '@emotion/styled';
 import axios from 'axios';
 import Person from './Person';
+import { onMobile } from '../../styles/responsive';
 
 /*
 Require: config.features.editOnRepo.editable = true
@@ -28,6 +29,7 @@ export interface IAuthorInfo {
   avatarUrl: string;
 }
 
+const authorMargin = 3;
 const initAuthorList: IAuthorInfo[] = [];
 
 const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath, locationPathname, timeToRead }: IAuthorsProps) => {
@@ -37,13 +39,16 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
   const contributorsGithubAPI = `https://api.github.com/repos/${repo}/commits?path=/${contentRootPath}/${path}`;
 
   const fetchContributors = async () => {
-
     const axiosConfig = {
       headers: {
         'Accept': 'application/vnd.github.v3+json'
       }
     }
     const response = await axios.get(contributorsGithubAPI, axiosConfig);
+    // Last update
+    const lastCommitDate = response.data[0].commit.author.date;
+    setLastUpdate(format(new Date(lastCommitDate), 'MMM dd, yyyy'));
+
     const allAuthors: IAuthorInfo[] = response.data
       // Map all commit to duplicated authors.
       .map(commit => {
@@ -56,7 +61,7 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
           commitsCount: 1, // default to 1
         };
       })
-      // Remove author if username is undefined 
+      // Remove author if username is undefined
       .filter(currentAuthor => currentAuthor.username);
 
     // Create a unique author and increase commits count if an author has more than one commit.
@@ -79,10 +84,6 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
 
     // Set to React state
     setAuthorList(sortedByCommitsCountAuthors);
-
-    // Last update
-    const lastCommitDate = response.data[0].commit.author.date;
-    setLastUpdate(format(new Date(lastCommitDate), 'MMM dd, yyyy'));
   }
 
   useEffect(() => {
@@ -92,11 +93,18 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
 
   return (
     <span className={className}>
-      <div className='page-metadata'>{lastUpdate}</div>
-      {timeToRead !== 0 && <div className='page-metadata'>{timeToRead} minutes to read</div>}
-      <Stack horizontal wrap>
-        {authorList.map(author => <Person author={author} />)}
-      </Stack>
+      <Wrapper>
+        <div className='page-metadata'>{lastUpdate}</div>
+        {timeToRead !== 0 && <div className='page-metadata center-metadata'>{timeToRead} minutes to read</div>}
+      </Wrapper>
+      <AuthorsWrapper>
+        {authorList.map(author =>
+          <Person
+            author={author}
+            margin={authorMargin}
+          />
+        )}
+      </AuthorsWrapper>
     </span>
   );
 
@@ -104,8 +112,16 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
   font-size: 16px;
   display: flex;
   align-items:center;
+  // Preserve height space for PersonaSize.size40 = 40px
+  min-height: calc(40px + ${authorMargin * 2}px);
 
-  a, a:active, a:visited { 
+  ${onMobile} {
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  a, a:active, a:visited {
     color: ${(props) => props.theme.colors.primary}
   }
 
@@ -117,6 +133,25 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
     padding-left: 6px;
     padding-right: 6px;
     content: "•";
+  }
+
+  ${onMobile} {
+    .center-metadata:after{
+      content: "";
+    }
+  }
+`;
+
+const Wrapper = styled.span`
+  display: flex;
+`;
+
+const AuthorsWrapper = styled.span`
+  display: flex;
+  ${onMobile} {
+    margin-top: 10px;
+    // Preserve height space for PersonaSize.size32 = 32px
+    min-height: calc(32px + ${authorMargin * 2}px);
   }
 `;
 

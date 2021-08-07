@@ -2,12 +2,13 @@ import { Persona, PersonaSize } from '@fluentui/react/lib/Persona';
 import { TooltipHost, ITooltipHostStyles } from '@fluentui/react/lib/Tooltip';
 import { useId } from '@fluentui/react-hooks';
 import { IAuthorInfo } from './PageMetadata';
-
+import { isMobile } from '../../styles/responsive';
 interface IPersonProps {
-  author: IAuthorInfo
+  author: IAuthorInfo;
+  margin: number;
 }
 
-const Person = ({ author }: IPersonProps) => {
+const Person = ({ author, margin }: IPersonProps) => {
   const tooltipId = useId(author.username);
   const calloutProps = { gapSpace: 0 };
   const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
@@ -22,13 +23,11 @@ const Person = ({ author }: IPersonProps) => {
       >
         <Persona
           styles={{
-            root: {
-              margin: 3
-            },
+            root: { margin }
           }}
           imageUrl={author.avatarUrl}
           text={author.name}
-          size={PersonaSize.size40}
+          size={isMobile() ? PersonaSize.size32 : PersonaSize.size40}
           hidePersonaDetails={true}
           imageAlt={author.name}
         />
