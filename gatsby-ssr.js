@@ -16,7 +16,7 @@ export const onRenderBody = ({ setPreBodyComponents }) => {
 function createFacebookSDK() {
   return {
     __html: stripIndent`
-        document.addEventListener("DOMContentLoaded",function() {
+        const domContentLoadedCallback = function() {
           window.fbAsyncInit = function() {
             FB.init({
               appId      : '${config.features.facebookSDK.appId}',
@@ -33,7 +33,13 @@ function createFacebookSDK() {
             js.src = "https://connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
-      });
+        }; // end callback
+
+        if (document.readyState === "complete" || (document.readyState !== "loading" && !document.documentElement.doScroll)) {
+          domContentLoadedCallback();
+        } else {
+          document.addEventListener("DOMContentLoaded", domContentLoadedCallback);
+        }
       `
   };
 }
