@@ -52,3 +52,9 @@
 - name: .NET Bangkok Meetup
   url: https://www.meetup.com/dotnet-bkk
   about: Monthly meetup about .NET in Bangkok.
+
+- name: Babel Coder
+  url: https://www.babelcoder.com/
+  about: >-
+    เพราะนักพัฒนาไม่ได้สื่อสารแค่ภาษาเดียว Babel Coder จึงรวบรวมบทความและคอร์สอบรมอันหลากหลาย
+    เพื่อตอบสนองการเขียนโปรแกรมในแต่ละภาษา พร้อมหลักการที่สำคัญเช่น คณิตศาสตร์และอัลกอริทึม
