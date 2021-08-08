@@ -137,7 +137,9 @@ const ContentTree = ({ edges, location, menuOpen }) => {
 
   }
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (ev, link) => {
+    // Expand nav on clicking link
+    link.isExpanded = true;
     // Debounce click nav state to prevent unnecessarily moving to active nav button
     setNavClickStatus(true);
     setTimeout(() => setNavClickStatus(false), 200);
@@ -177,6 +179,7 @@ const ContentTree = ({ edges, location, menuOpen }) => {
           linkAs={linkAs}
           onRenderLink={onRenderLink}
           onLinkClick={handleLinkClick}
+          componentRef={navRef}
           selectedKey={location.pathname.replace(/\/$/, '')}
         />
       </div>
