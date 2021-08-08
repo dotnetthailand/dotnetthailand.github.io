@@ -179,7 +179,6 @@ const ContentTree = ({ edges, location, menuOpen }) => {
           linkAs={linkAs}
           onRenderLink={onRenderLink}
           onLinkClick={handleLinkClick}
-          componentRef={navRef}
           selectedKey={location.pathname.replace(/\/$/, '')}
         />
       </div>
