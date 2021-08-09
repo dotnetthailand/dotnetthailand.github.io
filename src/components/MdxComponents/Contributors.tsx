@@ -1,15 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
-import axios from 'axios';
-import { useEffect } from 'react';
-
-const axiosConfig = {
-  headers: {
-    'Accept': 'application/vnd.github.v3+json'
-  }
-}
+import ContributorsDetail from './ContributorsDetail';
 
 const style = theme => css`
   display: flex;
@@ -46,11 +39,8 @@ const query = typeof window !== 'undefined' ? window.location.search.replace(/^\
 
 const Contributors = () => {
 
-  const [commitList, setCommitList] = useState([]);
   const theme = useTheme();
   var searchParams = new URLSearchParams(query);
-
-
   const { allContributor } = useStaticQuery(graphql`
     query queryContributors {
       allContributor {
@@ -65,36 +55,13 @@ const Contributors = () => {
     }
   `);
 
-
   const contributors = allContributor.nodes;
 
   if (searchParams.has('author')) {
     const username = searchParams.get('author');
-    console.log('Rerender');
-
-    useEffect(()=> {
-      const fetch = async () => {
-        const data = (await axios.get(`https://api.github.com/repos/dotnetthailand/dotnetthailand.github.io/commits?author=${username}`, axiosConfig)).data;
-        const commitListTmp = data.map(commit => ({
-          date: commit?.commit?.author?.date,
-          message: commit?.commit?.message,
-          url: commit?.url,
-        }))
-        setCommitList(commitListTmp);
-      }
-  
-      fetch();
-    }, []);
-
-
-    return (
-      <div>
-        {commitList.map(commit => (
-          <div key={commit.url}>{commit.date}, {commit.message}</div>
-        ))}
-      </div>
-    )
+    return <ContributorsDetail username={username} />
   }
+
   return (
     <div css={style(theme)}>
       {contributors.map(contributor => {
