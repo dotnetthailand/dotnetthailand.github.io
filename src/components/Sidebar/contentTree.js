@@ -137,7 +137,9 @@ const ContentTree = ({ edges, location, menuOpen }) => {
 
   }
 
-  const handleLinkClick = () => {
+  const handleLinkClick = (ev, link) => {
+    // Expand nav on clicking link
+    link.isExpanded = true;
     // Debounce click nav state to prevent unnecessarily moving to active nav button
     setNavClickStatus(true);
     setTimeout(() => setNavClickStatus(false), 200);
