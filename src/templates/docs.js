@@ -105,12 +105,9 @@ export default class MDXRuntimeTest extends React.Component {
     const docTitle = emoji.emojify(mdx.fields.title);
     const headTitle = metaTitle ? metaTitle : emoji.clean(docTitle);
 
-    // Get full URL of the current page at build time.
-    // https://css-tricks.com/how-to-the-get-current-page-url-in-gatsby/#method-3-generate-the-current-page-url-with-the-pathname-property-from-location-data
-    const absolutePageUrl = `${siteUrl}${this.props.location.pathname}`;
     return (
       <Layout {...this.props}>
-        <Seo frontmatter={mdx.frontmatter} url={absolutePageUrl} title={headTitle} />
+        <Seo frontmatter={mdx.frontmatter} url={this.props.location.href} title={headTitle} />
         <PageTitle>
           <TitleWrapper>
             <Title>{docTitle}</Title>
@@ -155,7 +152,7 @@ export default class MDXRuntimeTest extends React.Component {
         ) : (
           ''
         )}
-        <FacebookComment url={absolutePageUrl} />
+        <FacebookComment siteUrl={siteUrl} location={this.props.location} />
       </Layout>
     );
   }
