@@ -9,6 +9,9 @@ import emoji from '../../utils/emoji';
 import { syncFunction } from '../../utils/utils';
 import { onMobile } from '../../styles/responsive';
 
+// Maximum Deep level of render Nav menu (Start with 0)
+const limitDeepLevel = 3;
+
 // initialize Icons for Fluent UI
 // Load Font Icons from locally, not from MS Cdn
 // By fix issue: failed load font icon on production
@@ -82,6 +85,9 @@ const style = theme => css`
 const extractLevelGroupID = pathname => pathname.replace(/(^\/|\/$)/g, '').split('/');
 
 const getDeepNavigation = (navItemGroup, navLinkGroup, pathname, deepLevel) => {
+    if(deepLevel > limitDeepLevel) 
+      return [];
+
     // Exit recursive when children.length = 0
     navItemGroup.children.map( childNavItemGroup => {
      const isAccessByUrl = childNavItemGroup.url.indexOf(extractLevelGroupID(pathname)[deepLevel]) > 0;
