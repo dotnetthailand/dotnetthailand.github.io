@@ -1,15 +1,25 @@
-export default function FacebookComment({ siteUrl, location }) {
-  // Get full URL of the current page at build time.
-  // https://css-tricks.com/how-to-the-get-current-page-url-in-gatsby/#method-3-generate-the-current-page-url-with-the-pathname-property-from-location-data
-  const absolutePageUrl = `${siteUrl}${location.pathname}`;
+declare const FB: any;
+import { useEffect } from 'react';
 
+export default function FacebookComment({ url }) {
+  // Component will be re-rendered because url will be changed when every we click a new link.
+  useEffect(() => {
+    setTimeout(() => {
+      FB.XFBML.parse(); // Delay Render facebook comment for some about of time.
+    }, 300);
+  }); // Always render when component rendered.
+
+  // We return div placeholder for FB Facebook comment only when there is URL value.
   return (
-    <div
-      className='fb-comments'
-      data-href={absolutePageUrl}
-      data-width='100%'
-      data-numposts='10'
-      data-order-by='reverse_time'
-    />
+    url ?
+      <div
+        className='fb-comments'
+        data-href={url}
+        data-width='100%'
+        data-numposts='10'
+        data-order-by='reverse_time'
+      />
+      :
+      ''
   );
 }

@@ -95,7 +95,7 @@ export default class MDXRuntimeTest extends React.Component {
     const {
       mdx,
       site: {
-        siteMetadata: { docsLocation, docsLocationType, editable, docsRepo, contentRootPath, siteUrl },
+        siteMetadata: { docsLocation, docsLocationType, editable, docsRepo, contentRootPath },
       },
       gitBranch,
     } = data;
@@ -105,9 +105,13 @@ export default class MDXRuntimeTest extends React.Component {
     const docTitle = emoji.emojify(mdx.fields.title);
     const headTitle = metaTitle ? metaTitle : emoji.clean(docTitle);
 
+    // Get full URL of the current page at build time & runtime.
+    // https://css-tricks.com/how-to-the-get-current-page-url-in-gatsby
+    const absolutePageUrl = this.props.location.href;
+
     return (
       <Layout {...this.props}>
-        <Seo frontmatter={mdx.frontmatter} url={this.props.location.href} title={headTitle} />
+        <Seo frontmatter={mdx.frontmatter} url={absolutePageUrl} title={headTitle} />
         <PageTitle>
           <TitleWrapper>
             <Title>{docTitle}</Title>
@@ -152,7 +156,7 @@ export default class MDXRuntimeTest extends React.Component {
         ) : (
           ''
         )}
-        <FacebookComment siteUrl={siteUrl} location={this.props.location} />
+        <FacebookComment url={absolutePageUrl} />
       </Layout>
     );
   }

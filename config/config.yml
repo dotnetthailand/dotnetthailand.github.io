@@ -120,7 +120,7 @@ features:
     prependToBody: false
     color: "#A05EB5"
   previousNext:
-    enabled: true
+    enabled: false
     arrowKeyNavigation: true
   propagateNetlifyEnv: true
   rss:
