@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import ContributorsDetail from './ContributorsDetail';
-import { useState } from 'react';
-import { useEffect } from 'react';
 
 const style = theme => css`
   .wrapper {
@@ -55,7 +53,6 @@ const style = theme => css`
 const query = typeof window !== 'undefined' ? window.location.search.replace(/^\?/, '') : '';
 
 const Contributors = () => {
-
   const [selectedAuthor, setSelectedAuthor] = useState('');
 
   const theme = useTheme();
@@ -76,43 +73,34 @@ const Contributors = () => {
 
   const contributors = allContributor.nodes;
 
-  // For accessing author by URL
-  if (searchParams.has('author')) {
-    const username = searchParams.get('author');
-    return <ContributorsDetail username={username} />
-  }
+  useEffect( ()=> {
+    // For accessing author by URL
+    if (searchParams.has('author')) {
+      const username = searchParams.get('author');
+      setSelectedAuthor(username);
+    }else {
+      setSelectedAuthor('');
+    }
+  },[]);
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, username) => {
-    event.preventDefault();
-    setSelectedAuthor(username);
-  };
-
-  const handleBack = () => {
-    setSelectedAuthor('');
-  }
 
   return (
     <div css={style(theme)}>
-      <div>
-        {selectedAuthor !== '' && <button className="back-button" onClick={() => handleBack()} >Back</button>}
-      </div>
       <div className="wrapper">
-
-        {selectedAuthor === '' ?
-          contributors.map(contributor => {
-            return (
-              // eslint-disable-next-line react/jsx-no-target-blank
-              <button className="author-button" key={contributor.id} onClick={(e) => handleClick(e, contributor.login)} >
-                <img
-                  alt={contributor.login}
-                  src={contributor.avatar_url}
-                />
-                <span>{contributor.login}</span>
-              </button>
-            );
-          })
-          :
-          <ContributorsDetail username={selectedAuthor} />}
+        {selectedAuthor === '' ? contributors.map(contributor => {
+          return (
+            // eslint-disable-next-line react/jsx-no-target-blank
+            <a className="author-button" key={contributor.id}  href={`?author=${contributor.login}`} >
+              <img
+                alt={contributor.login}
+                src={contributor.avatar_url}
+              />
+              <span>{contributor.login}</span>
+            </a>
+          );
+        })
+       : 
+       <ContributorsDetail username={selectedAuthor} /> }
       </div>
     </div>
   )

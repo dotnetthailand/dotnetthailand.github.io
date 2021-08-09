@@ -28,10 +28,10 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
   return (
     <div>
-        {commitList.map(commit => (
-          <div key={commit.url}>{commit.date}, {commit.message}</div>
-        ))}
-      </div>
+      {commitList.map(commit => (
+        <div key={commit.url}>{commit.date}, {commit.message}</div>
+      ))}
+    </div>
   )
 };
 
