@@ -44,6 +44,7 @@ const Content = styled('main')`
   flex-grow: 1;
   flex-direction: column;
   padding: 50px 70px;
+  min-height: 20vh;
 
   ${onTablet} {
     padding: 30px;

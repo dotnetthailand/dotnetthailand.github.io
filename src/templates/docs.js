@@ -46,7 +46,6 @@ const TitleWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   color: ${(props) => props.theme.content.font};
-  flex: 1;
   code {
     background: ${(props) => props.theme.content.code.background};
     border: 1px solid ${(props) => props.theme.content.code.border};
@@ -54,11 +53,12 @@ const ContentWrapper = styled.div`
     padding: 2px 6px;
     font-size: 0.9375em;
     color: ${(props) => props.theme.content.code.font};
-    // overflow-wrap: break-word;
   }
+
   section {
     margin: 24px 0;
   }
+
   ul,
   ol {
     -webkit-padding-start: 40px;
