@@ -111,7 +111,7 @@ const plugins = [
   {
     resolve: `gatsby-plugin-canonical-urls`,
     options: {
-      siteUrl: config.metadata.url,
+      siteUrl: config.metadata.siteUrl,
       stripQueryString: true,
     },
   },
@@ -251,7 +251,7 @@ module.exports = {
     headerTitle: config.metadata.name,
     helpUrl: config.header.helpUrl,
     headerLinks: config.header.links,
-    siteUrl: config.metadata.url,
+    siteUrl: config.metadata.siteUrl,
   },
   plugins: plugins,
 };

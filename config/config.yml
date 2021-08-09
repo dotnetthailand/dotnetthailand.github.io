@@ -9,6 +9,7 @@ metadata:
   favicon: "/assets/favicon.png"
   themeColor: "#ff0000"
   uaTrackingId: UA-204153201-1
+  siteUrl: https://www.dotnetthailand.com/
 header:
   enabled: true
   logo: "/assets/code.svg"

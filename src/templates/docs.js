@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import { Layout, EditOnRepo, PreviousNext, Seo, FacebookComment, PageMetadata } from '../components';
 import config from 'config';
 import emoji from '../utils/emoji';
-import { onMobile, onTablet, isMobile} from '../styles/responsive';
+import { onMobile, onTablet, isMobile } from '../styles/responsive';
 
 const Title = styled.h1`
   font-size: 24pt
@@ -85,14 +85,17 @@ export default class MDXRuntimeTest extends React.Component {
   }
 
   render() {
+    // The data prop contains the results of the page GraphQL query.
+    // https://www.gatsbyjs.com/docs/how-to/querying-data/page-query/#use-the-query-result-in-the-homepage--component
     const { data } = this.props;
     if (!data) {
       return null;
     }
+
     const {
       mdx,
       site: {
-        siteMetadata: { docsLocation, docsLocationType, editable, docsRepo, contentRootPath },
+        siteMetadata: { docsLocation, docsLocationType, editable, docsRepo, contentRootPath, siteUrl },
       },
       gitBranch,
     } = data;
@@ -101,10 +104,13 @@ export default class MDXRuntimeTest extends React.Component {
     const metaTitle = mdx.frontmatter.metaTitle;
     const docTitle = emoji.emojify(mdx.fields.title);
     const headTitle = metaTitle ? metaTitle : emoji.clean(docTitle);
-    console.log(mdx.parent.relativePath ,docsRepo , docsLocationType , contentRootPath);
+
+    // Get full URL of the current page at build time.
+    // https://css-tricks.com/how-to-the-get-current-page-url-in-gatsby/#method-3-generate-the-current-page-url-with-the-pathname-property-from-location-data
+    const absolutePageUrl = `${siteUrl}${this.props.location.pathname}`;
     return (
       <Layout {...this.props}>
-        <Seo frontmatter={mdx.frontmatter} url={this.props.location.href} title={headTitle} />
+        <Seo frontmatter={mdx.frontmatter} url={absolutePageUrl} title={headTitle} />
         <PageTitle>
           <TitleWrapper>
             <Title>{docTitle}</Title>
@@ -123,15 +129,15 @@ export default class MDXRuntimeTest extends React.Component {
           {(config.features.showMetadata === true && mdx.frontmatter.showMetadata !== false) ||
             mdx.frontmatter.showMetadata === true ? (
             <div css={{ display: 'block' }}>
-              {mdx.parent.relativePath && docsRepo && docsLocationType && contentRootPath && 
-                <PageMetadata 
+              {mdx.parent.relativePath && docsRepo && docsLocationType && contentRootPath &&
+                <PageMetadata
                   path={mdx.parent.relativePath}
                   repo={docsRepo}
                   repoType={docsLocationType}
                   contentRootPath={contentRootPath}
                   locationPathname={this.props.location.pathname}
-                  timeToRead={mdx.timeToRead * 2} 
-                  />}
+                  timeToRead={mdx.timeToRead * 2}
+                />}
             </div>
           ) : (
             ''
@@ -140,7 +146,6 @@ export default class MDXRuntimeTest extends React.Component {
         <ContentWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </ContentWrapper>
-        <FacebookComment url={this.props.location.href} />
         {(config.features.previousNext.enabled === true &&
           mdx.frontmatter.showPreviousNext !== false) ||
           mdx.frontmatter.showPreviousNext ? (
@@ -150,6 +155,7 @@ export default class MDXRuntimeTest extends React.Component {
         ) : (
           ''
         )}
+        <FacebookComment url={absolutePageUrl} />
       </Layout>
     );
   }
@@ -165,6 +171,7 @@ export const pageQuery = graphql`
         docsLocationType
         editable
         contentRootPath
+        siteUrl
       }
     }
     mdx(fields: { id: { eq: $id } }) {
