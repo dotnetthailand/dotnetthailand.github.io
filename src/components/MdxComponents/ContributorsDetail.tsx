@@ -4,6 +4,12 @@ import { useEffect } from 'react';
 
 import { css } from '@emotion/core';
 
+// Feature Toggle
+const feature = {
+  ignoreMergePullRequest: true,
+  ignoreFilesExtension: true,
+}
+
 const style = theme => css`
 
   .profile {
@@ -75,6 +81,10 @@ const isIgnoreFile = (filename: string) => {
   return false;
 }
 
+const isMergePullRequest = (commitMessage: string) => {
+  return /^Merge pull request #\d+/.test(commitMessage);
+}
+
 const getTitle = async (rssData: string, path: string) => {
   const absolutePath = `https://www.dotnetthailand.com/${path.replace(/^\//, '')}`;
   let xmlDoc = new DOMParser().parseFromString(rssData, "text/xml");
@@ -116,7 +126,9 @@ const ContributorsDetail = ({ username }: { username: string }) => {
         const commitFiles = (await fetchRetry(commitData?.url, 3, 3)).data;
         for (const commitFile of commitFiles.files) {
 
-          if (isIgnoreFile(commitFile.filename)) continue;
+          if (isIgnoreFile(commitFile.filename) && feature.ignoreFilesExtension) continue;
+          if (isMergePullRequest(commitData.message) && feature.ignoreMergePullRequest) continue;
+          
           const contentUrl = commitFile.filename.replace(/^content/, '').replace(/\..+$/, '');
           const absolutePath = `https://www.dotnetthailand.com/${contentUrl.replace(/^\//, '')}`;
           const title = await getTitle(rssData, contentUrl);
