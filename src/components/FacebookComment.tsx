@@ -4,32 +4,39 @@ import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 
 const containerStyle = css`
-  position: relative;
+  // Make it stick at the bottom.
   margin-top: auto;
-  min-height: 100px;
+  min-height: 150px;
+  position: relative;
 `;
 
-const loadingStyle = (theme, showLoading) => css`
-   position:absolute;
-   z-index: 9999;
-   top: 0;
-   left: 0;
-   right: 0;
-   margin: 0 auto;
-   display: ${showLoading ? 'flex' : 'none'};
-   flex-direction: column;
-   align-items: center;
-   gap: 20px;
-   color: ${theme.colors.primary};
+const loadingStyle = (theme, showElement) => css`
+  position:absolute;
+  z-index: 9999;
+  // Align an absolute item center.
+  left: 0;
+  right: 0;
+  display: ${showElement ? 'flex' : 'none'};
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  color: ${theme.colors.primary};
 
-   >:nth-child(2) {
-     border-right-color: ${theme.colors.primary};
-   }
+  > :nth-child(2) {
+    border-right-color: ${theme.colors.primary};
+  }
  `;
 
+const commentPlaceHolderStyle = showElement => css`
+  margin-top: 25px;
+  width: 100%;
+  display: ${showElement ? 'block' : 'none'};
+`;
+
+const delayRenderFacebookCommentInMilliseconds = 2000;
 export default function FacebookComment({ url }) {
   const theme = useTheme();
-  // Component will be re-rendered because url always change when clicking a new link.
+  // Component will be re-rendered because URL is always changed when clicking a new link.
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
@@ -38,9 +45,10 @@ export default function FacebookComment({ url }) {
 
   useEffect(() => {
     setTimeout(() => {
-      FB.XFBML.parse();
+      FB.XFBML.parse(); // Explicity render Facebook comment.
+      // TODO we can improve this by checking if we have a Facebook comment class to make sure if it's loaded already.
       setShowLoading(false);
-    }, 1500);  // Delay Render facebook comment for some about of time.
+    }, delayRenderFacebookCommentInMilliseconds);  // Delay Render facebook comment for some about of time.
   }, [url]);
 
   return (
@@ -50,7 +58,7 @@ export default function FacebookComment({ url }) {
         <div className={'loading ldgRing'}></div>
       </div>
       <div
-        style={{ display: `${!showLoading ? 'block' : 'none'}` }}
+        css={commentPlaceHolderStyle(!showLoading)}
         className='fb-comments'
         data-href={url}
         data-width='100%'

@@ -29,12 +29,12 @@ const MainContentWrapper = styled.div`
   margin-top: 81px;
   display: flex;
   overflow-y: auto;
+  flex: 1 1 auto;
+  height: calc(100vh - 81px);
   ${onMobile} {
     margin-top: 61px;
     height: calc(100vh - 61px);
   }
-  flex: 1 1 auto;
-  height: calc(100vh - 81px);
 `;
 
 // We add min-width 1% to make flex-item not expand if it's child content wider than available space
@@ -44,11 +44,11 @@ const Content = styled('main')`
   flex-grow: 1;
   flex-direction: column;
   padding: 50px 70px;
-  min-height: 20vh;
 
   ${onTablet} {
     padding: 30px;
   }
+
   ${onMobile} {
     padding: 15px;
   }
@@ -138,6 +138,7 @@ const Layout = ({ children, location }) => {
             ''
           )}
           <MainContentWrapper id="scroll-to-top-main-content">
+            {/* parent of main content */}
             <Content>{children}</Content>
             <TableOfContents
               show={!(config.features.fullScreenMode.hideToc && fullscreenMode)}
