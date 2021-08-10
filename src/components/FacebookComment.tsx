@@ -2,6 +2,7 @@ declare const FB: any;
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
+import { sleep } from './../utils/utils';
 
 const containerStyle = css`
   // Make it stick at the bottom.
@@ -34,19 +35,22 @@ const commentPlaceHolderStyle = showElement => css`
 `;
 
 const delayRenderFacebookCommentInMilliseconds = 2000;
+
 export default function FacebookComment({ url }) {
   const theme = useTheme();
   // Component will be re-rendered because URL is always changed when clicking a new link.
   const [showLoading, setShowLoading] = useState(true);
 
+  const renderFacebookComment = async () => {
+    await sleep(delayRenderFacebookCommentInMilliseconds) // Delay rendering Facebook comment for some amount of time.
+    // TODO, we can improve this by checking if we have a Facebook comment class to make sure if it's loaded already.
+    setShowLoading(false);
+    FB.XFBML.parse(); // Explicity render Facebook comment.
+  };
+
   useEffect(() => {
     setShowLoading(true);
-
-    setTimeout(() => {
-      FB.XFBML.parse(); // Explicity render Facebook comment.
-      // TODO we can improve this by checking if we have a Facebook comment class to make sure if it's loaded already.
-      setShowLoading(false);
-    }, delayRenderFacebookCommentInMilliseconds);  // Delay Render facebook comment for some about of time.
+    renderFacebookComment();
   }, [url]);
 
   return (
