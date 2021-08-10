@@ -41,9 +41,7 @@ export default function FacebookComment({ url }) {
 
   useEffect(() => {
     setShowLoading(true);
-  }, [url])
 
-  useEffect(() => {
     setTimeout(() => {
       FB.XFBML.parse(); // Explicity render Facebook comment.
       // TODO we can improve this by checking if we have a Facebook comment class to make sure if it's loaded already.
