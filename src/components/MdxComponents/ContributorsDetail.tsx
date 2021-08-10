@@ -47,15 +47,12 @@ const style = theme => css`
 
 `;
 
-
 const repo = 'dotnetthailand/dotnetthailand.github.io';
 const axiosConfig = {
   headers: {
     'Accept': 'application/vnd.github.v3+json'
   }
 }
-
-// TODO: ignore font extension. woff
 
 const ignoreFilesExtension: RegExp[] = [
   /\.woff$/,
@@ -177,7 +174,6 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
       for (let i = 0; i < commitListTmp.length; i++) {
         const commitData = commitListTmp[i];
-        console.log(isMergePullRequest(commitData.message), commitData.message)
         if (isMergePullRequest(commitData.message)) {
           const newFile: IFile = {
             key: commitData.sha,
@@ -189,7 +185,6 @@ const ContributorsDetail = ({ username }: { username: string }) => {
             logUrl: commitData.html_url,
           }
           mergePrFileDictionary[commitData.sha] = newFile;
-          console.log(mergePrFileDictionary)
           const serializedMergePrFileList = Object.entries(mergePrFileDictionary)
             .map(([, file]) => file);
           setMergePrFiles(serializedMergePrFileList);
@@ -285,13 +280,6 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
       <h4>{loading && <ProgressIndicator label="Extracting git commit history" percentComplete={percentComplete} />}</h4>
       
-      {/* {contentFiles.map((file: IFile) => (
-        <div key={file.filename}>
-          {file.title ? <a href={file.contentUrl} target='_blank' rel='noreferrer'>{file.title}</a> : <a href={file.contentUrl} target='_blank' rel='noreferrer'>{file.filename}</a>}
-          ({file.commitCount})
-          <a href={`https://github.com/${repo}/commits/main/${file.filename}`} target='_blank' rel='noreferrer'>Commit History</a>
-        </div>
-      ))} */}
       {contentFiles.length > 0 && 
         <>
           <RoleHeader>Content</RoleHeader>

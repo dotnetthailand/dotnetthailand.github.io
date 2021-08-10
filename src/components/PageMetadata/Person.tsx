@@ -14,7 +14,7 @@ const Person = ({ author, margin }: IPersonProps) => {
   const hostStyles: Partial<ITooltipHostStyles> = { root: { display: 'inline-block' } };
 
   return (
-    <a key={author.username} href={author.profileUrl} target="_blank" rel="noreferrer">
+    <a key={author.username} href={`/contributors?author=${author.username}`} target="_blank" rel="noreferrer">
       <TooltipHost
         content={author.name}
         id={tooltipId}
