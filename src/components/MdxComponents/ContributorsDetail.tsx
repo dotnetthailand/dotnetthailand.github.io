@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useTheme } from 'emotion-theming';
 import { useEffect } from 'react';
-
 import { css } from '@emotion/core';
+import { DefaultButton } from '@fluentui/react/lib/Button';
+import styled from '@emotion/styled';
+import { Persona, PersonaSize } from '@fluentui/react/lib/Persona';
+import { ProgressIndicator } from '@fluentui/react/lib/ProgressIndicator';
 
 // Feature Toggle
 const feature = {
@@ -10,7 +14,15 @@ const feature = {
   ignoreFilesExtension: true,
 }
 
+const GithubProfile = styled.div`
+  margin: 40px 0px;
+`;
+
+
 const style = theme => css`
+
+  width: 100%;
+  margin-top: 40px;
 
   .profile {
     & > img {
@@ -54,6 +66,10 @@ interface IGithubUser {
 const setTimeoutPromise = (timeout: number) => new Promise(resolve => {
   setTimeout(resolve, timeout);
 });
+
+const getUserRole = () => {
+  return "Content Editor, Maintainer, Developer"
+}
 
 
 const fetchRetry = async (url: string, delayTime: number, limit: number): Promise<any> => {
@@ -101,11 +117,12 @@ const getTitle = async (rssData: string, path: string) => {
 const initFiles = [];
 
 const ContributorsDetail = ({ username }: { username: string }) => {
-
+  const theme = useTheme();
   const [files, setFiles] = useState(initFiles);
   const [contentFiles, setContentFiles] = useState(initFiles);
   const [loading, setLoading] = useState(false);
   const [githubUser, setGithubUser] = useState({} as IGithubUser);
+  const [percentComplete, setPercentComplete] = useState(0);
 
   useEffect(() => {
     const fetch = async () => {
@@ -120,15 +137,14 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
       const fileDictionary: Record<string, IFile> = {};
       const contentFileDictionary: Record<string, IFile> = {};
-
-      for (const commitData of commitListTmp) {
-
+      for (let i = 0; i < commitListTmp.length; i++) {
+        const commitData = commitListTmp[i];
         const commitFiles = (await fetchRetry(commitData?.url, 3, 3)).data;
         for (const commitFile of commitFiles.files) {
 
           if (isIgnoreFile(commitFile.filename) && feature.ignoreFilesExtension) continue;
           if (isMergePullRequest(commitData.message) && feature.ignoreMergePullRequest) continue;
-          
+
           const contentUrl = commitFile.filename.replace(/^content/, '').replace(/\..+$/, '');
           const absolutePath = `https://www.dotnetthailand.com/${contentUrl.replace(/^\//, '')}`;
           const title = await getTitle(rssData, contentUrl);
@@ -165,6 +181,7 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
         setFiles(serializedFileList);
         setContentFiles(serializedContentFileList);
+        setPercentComplete(Math.ceil((i+1)/commitListTmp.length));
       }
 
       setLoading(false);
@@ -184,15 +201,25 @@ const ContributorsDetail = ({ username }: { username: string }) => {
   }, []);
 
   return (
-    <div>
-      <h2><a href={githubUser.profileUrl} target='_blank' rel='noreferrer' >{githubUser.name}</a></h2>
-      <div className="profile">
-        <img
-          alt={username}
-          src={githubUser.avatarUrl}
-        />
-      </div>
-      <h4>{loading && `Loading....... `}</h4>
+    <div css={style(theme)}>
+      <DefaultButton text="Back" href="/contributors" />
+
+      <GithubProfile>
+        <a href={githubUser.profileUrl} target='_blank' rel='noreferrer' >
+          <Persona
+            imageUrl={githubUser.avatarUrl}
+            imageInitials={githubUser.name}
+            text={githubUser.name}
+            secondaryText={getUserRole()}
+            tertiaryText={`@${username}`}
+            size={PersonaSize.size72}
+            hidePersonaDetails={false}
+            imageAlt={username}
+          />
+        </a>
+      </GithubProfile>
+
+      <h4>{loading && <ProgressIndicator label="Extracting git commit history" percentComplete={percentComplete} />}</h4>
       <h2>Content</h2>
       {contentFiles.map((file: IFile) => (
         <div key={file.filename}>

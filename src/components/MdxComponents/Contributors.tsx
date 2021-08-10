@@ -4,6 +4,19 @@ import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
 import { Remark } from 'react-remark';
 import ContributorsDetail from './ContributorsDetail';
+import styled from '@emotion/styled';
+
+const ThankyouWrapper = styled.div`
+  display: block;
+  margin: 40px 0;
+  width: 100%;
+`;
+
+const NoteWrapper = styled.div`
+  display: block;
+  margin: 60px 0 50px 0;
+  width: 100%;
+`;
 
 const style = theme => css`
   .wrapper {
@@ -84,7 +97,6 @@ const Contributors = () => {
     }
   },[]);
 
-
   return (
     <>
 
@@ -92,11 +104,10 @@ const Contributors = () => {
         <div className="wrapper">
           {selectedAuthor === '' ? 
             <>
-              <Remark>{`
-> Give credit where credit's due
-
-**Thank you so much to these contributors. Without you, .NET Thailand would not have happened.**
-              `}</Remark>
+             <ThankyouWrapper >
+              <div><b>{`Give credit where credit's due`}</b></div> 
+              <div>Thank you so much to these contributors. Without you, .NET Thailand would not have happened.</div> 
+             </ThankyouWrapper>
               
               {contributors.map(contributor => {
                 return (
@@ -111,12 +122,14 @@ const Contributors = () => {
                 );
               })}
 
+            <NoteWrapper>
               <Remark>{`
 # My profile does not show here after my PR got merged.
 - If you profile does not show here, it is possible that your email in a commit does not match an email of your GitHub profile.
 - https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/why-are-my-contributions-not-showing-up-on-my-profile#your-local-git-commit-email-isnt-connected-to-your-account
 - https://www.quora.com/Why-doesnt-GitHub-include-my-name-as-a-contributor-even-after-I-contributed
           `}</Remark>
+            </NoteWrapper>
             </>
         : 
         <ContributorsDetail username={selectedAuthor} /> }
