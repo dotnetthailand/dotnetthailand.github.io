@@ -92,6 +92,7 @@
     "react-instantsearch-dom": "6.7.0",
     "react-live": "2.2.2",
     "react-loadable": "5.5.0",
+    "react-remark": "^2.0.3",
     "react-reveal": "1.2.2",
     "react-scrollspy": "3.4.3",
     "react-use-flexsearch": "^0.1.1",

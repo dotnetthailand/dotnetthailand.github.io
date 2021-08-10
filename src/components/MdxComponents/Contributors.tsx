@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
+import { Remark } from 'react-remark';
 import ContributorsDetail from './ContributorsDetail';
 
 const style = theme => css`
@@ -85,24 +86,43 @@ const Contributors = () => {
 
 
   return (
-    <div css={style(theme)}>
-      <div className="wrapper">
-        {selectedAuthor === '' ? contributors.map(contributor => {
-          return (
-            // eslint-disable-next-line react/jsx-no-target-blank
-            <a className="author-button" key={contributor.id}  href={`?author=${contributor.login}`} >
-              <img
-                alt={contributor.login}
-                src={contributor.avatar_url}
-              />
-              <span>{contributor.login}</span>
-            </a>
-          );
-        })
-       : 
-       <ContributorsDetail username={selectedAuthor} /> }
+    <>
+
+      <div css={style(theme)}>
+        <div className="wrapper">
+          {selectedAuthor === '' ? 
+            <>
+              <Remark>{`
+> Give credit where credit's due
+
+**Thank you so much to these contributors. Without you, .NET Thailand would not have happened.**
+              `}</Remark>
+              
+              {contributors.map(contributor => {
+                return (
+                  // eslint-disable-next-line react/jsx-no-target-blank
+                  <a className="author-button" key={contributor.id}  href={`?author=${contributor.login}`} >
+                    <img
+                      alt={contributor.login}
+                      src={contributor.avatar_url}
+                    />
+                    <span>{contributor.login}</span>
+                  </a>
+                );
+              })}
+
+              <Remark>{`
+# My profile does not show here after my PR got merged.
+- If you profile does not show here, it is possible that your email in a commit does not match an email of your GitHub profile.
+- https://docs.github.com/en/github/setting-up-and-managing-your-github-profile/why-are-my-contributions-not-showing-up-on-my-profile#your-local-git-commit-email-isnt-connected-to-your-account
+- https://www.quora.com/Why-doesnt-GitHub-include-my-name-as-a-contributor-even-after-I-contributed
+          `}</Remark>
+            </>
+        : 
+        <ContributorsDetail username={selectedAuthor} /> }
+        </div>
       </div>
-    </div>
+    </>
   )
 };
 
