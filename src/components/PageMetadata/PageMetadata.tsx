@@ -46,8 +46,9 @@ const PageMetadata = styled(({ className, path, repoType, repo, contentRootPath,
     }
     const response = await axios.get(contributorsGithubAPI, axiosConfig);
     // Last update
-    const lastCommitDate = response.data[0].commit.author.date;
-    setLastUpdate(format(new Date(lastCommitDate), 'MMM dd, yyyy'));
+    const lastCommitDateString = response.data[0]?.commit?.author?.date;
+    const lastCommitDate = lastCommitDateString ? new Date(lastCommitDateString) : new Date();
+    setLastUpdate(format(lastCommitDate, 'MMM dd, yyyy'));
 
     const allAuthors: IAuthorInfo[] = response.data
       // Map all commit to duplicated authors.

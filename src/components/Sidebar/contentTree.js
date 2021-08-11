@@ -9,6 +9,9 @@ import emoji from '../../utils/emoji';
 import { syncFunction } from '../../utils/utils';
 import { onMobile } from '../../styles/responsive';
 
+// Maximum Deep level of render Nav menu (Start with 0)
+const limitDeepLevel = 3;
+
 // initialize Icons for Fluent UI
 // Load Font Icons from locally, not from MS Cdn
 // By fix issue: failed load font icon on production
@@ -35,9 +38,8 @@ const style = theme => css`
   margin-bottom: 30px;
   margin-right: 10px;
 
-  .ms-Nav-compositeLink{
+  .ms-Nav-compositeLink {
     background: none;
-
     a, a:visited{
       color: ${theme.navigationSidebar.font.base};
     }
@@ -61,6 +63,10 @@ const style = theme => css`
     &.is-group{
       border-bottom: 1px solid ${theme.navigationSidebar.divider};
     }
+
+    &:after{
+      border: none !important;
+    }
   }
 
   .ms-Nav-groupContent{
@@ -78,6 +84,30 @@ const style = theme => css`
 
 const extractLevelGroupID = pathname => pathname.replace(/(^\/|\/$)/g, '').split('/');
 
+const getDeepNavigation = (navItemGroup, navLinkGroup, pathname, deepLevel) => {
+    if(deepLevel > limitDeepLevel){ 
+      return [];
+    }
+    // Exit recursive when children.length = 0
+    navItemGroup.children.map( childNavItemGroup => {
+     const isAccessByUrl = childNavItemGroup.url.indexOf(extractLevelGroupID(pathname)[deepLevel]) > 0;
+      const navLinkGroupTmp = {
+        name: childNavItemGroup.title,
+        url: childNavItemGroup.url,
+        key: childNavItemGroup.url,
+        isExpanded: isAccessByUrl
+      }
+
+      const deepNavigationLinks = getDeepNavigation(childNavItemGroup, [], pathname, deepLevel + 1);
+      if(deepNavigationLinks.length > 0) {
+        navLinkGroupTmp.links = deepNavigationLinks;
+      }
+      navLinkGroup.push(navLinkGroupTmp);
+
+    });
+    return navLinkGroup;
+}
+
 const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
   const navLinkGroups = [];
   calculatedNavigation.children.map(sourceNavGroup => {
@@ -93,26 +123,7 @@ const calculateNavigationFluentUI = (calculatedNavigation, pathname) => {
       key: sourceNavGroup.id,
     }
 
-    sourceNavGroup.children.map( sourceNav => {
-     const isAccessByUrl = sourceNav.url.indexOf(extractLevelGroupID(pathname)[1]) > 0;
-      const navLinkGroupTmp = {
-        name: sourceNav.title,
-        url: sourceNav.url,
-        key: sourceNav.url,
-        links: [],
-        isExpanded: isAccessByUrl
-      }
-      
-      sourceNav.children.map( sourceNavChild => {
-        navLinkGroupTmp.links.push({
-          name: sourceNavChild.title,
-          url: sourceNavChild.url,
-          key: sourceNavChild.url,
-        });
-      });
-
-      navLinkGroup.links.push(navLinkGroupTmp);
-    });
+    navLinkGroup.links = getDeepNavigation(sourceNavGroup, [], pathname, 1);
     navLinkGroups.push(navLinkGroup);
   });
   return navLinkGroups;
