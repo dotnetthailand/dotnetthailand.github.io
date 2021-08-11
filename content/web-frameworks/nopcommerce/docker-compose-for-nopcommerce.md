@@ -2,6 +2,7 @@
 title: Docker compose for nopCommerce
 showMetadata: true
 editable: true
+showToc: true
 ---
 
 To use nopCommerce Docker compose, we need to create required files and add contents to them.

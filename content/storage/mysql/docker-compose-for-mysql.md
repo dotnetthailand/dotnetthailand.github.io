@@ -75,7 +75,6 @@ services:
 volumes:
   mysql-data:
   mysql-logs:
-  mongodb-data:
 
 # https://docs.docker.com/compose/compose-file/compose-file-v3/#network-configuration-reference
 # Full document https://docs.docker.com/compose/networking/
@@ -120,6 +119,7 @@ INSERT INTO users VALUES (NULL, 'Jose', 'Realman', '2018-01-01');
 - The user is created by defining in docker-compose.yml.
 
 ```SQL
+-- set-database-permission.sql
 USE mysql;
 
 GRANT ALL PRIVILEGES ON `my-database`.* TO 'my-user'@'%';
@@ -141,5 +141,6 @@ COMPOSE_PROJECT_NAME = my_project
 
 ```
 
-Useful resources
+# Useful resources
 - [My SQL Docker image on Docker hub](https://hub.docker.com/_/mysql )
+- [What is the difference between utf8mb4 and utf8 charsets in MySQL?](https://stackoverflow.com/a/30074553/1872200)
