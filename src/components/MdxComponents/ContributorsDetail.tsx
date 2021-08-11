@@ -169,84 +169,88 @@ const ContributorsDetail = ({ username }: { username: string }) => {
 
   const fetchCommits = async (page: number) => {
     setLoading(true);
-    const rssData = (await fetchRetry(`https://www.dotnetthailand.com/rss.xml`, 3, 3)).data;
-    const data = (await fetchRetry(`https://api.github.com/repos/${repo}/commits?author=${username}&page=${page}`, 3, 3)).data;
-    const nextPageData = (await fetchRetry(`https://api.github.com/repos/${repo}/commits?author=${username}&page=${page + 1}`, 3, 3)).data;
-    setIsNextPage(nextPageData.length !== 0)
-    setTotalCommit(totalCommit + data.length);
-    const commitListTmp = data.map(commitData => ({
-      sha: commitData?.sha,
-      date: commitData?.commit?.author?.date,
-      message: commitData?.commit?.message,
-      url: commitData?.url,
-      html_url: commitData?.html_url,
-    }));
+    try{
+      const rssData = (await fetchRetry(`https://www.dotnetthailand.com/rss.xml`, 3, 3)).data;
+      const data = (await fetchRetry(`https://api.github.com/repos/${repo}/commits?author=${username}&page=${page}`, 3, 3)).data;
+      const nextPageData = (await fetchRetry(`https://api.github.com/repos/${repo}/commits?author=${username}&page=${page + 1}`, 3, 3)).data;
+      setIsNextPage(nextPageData.length !== 0)
+      setTotalCommit(totalCommit + data.length);
+      const commitListTmp = data.map(commitData => ({
+        sha: commitData?.sha,
+        date: commitData?.commit?.author?.date,
+        message: commitData?.commit?.message,
+        url: commitData?.url,
+        html_url: commitData?.html_url,
+      }));
 
-    for (let i = 0; i < commitListTmp.length; i++) {
-      const commitData = commitListTmp[i];
-      if (isMergePullRequest(commitData.message)) {
-        const newFile: IFile = {
-          key: commitData.sha,
-          commitCount: 1,
-          filename: '',
-          contentUrl: '',
-          title: commitData.message,
-          isContent: false,
-          logUrl: commitData.html_url,
+      for (let i = 0; i < commitListTmp.length; i++) {
+        const commitData = commitListTmp[i];
+        if (isMergePullRequest(commitData.message)) {
+          const newFile: IFile = {
+            key: commitData.sha,
+            commitCount: 1,
+            filename: '',
+            contentUrl: '',
+            title: commitData.message,
+            isContent: false,
+            logUrl: commitData.html_url,
+          }
+          mergePrFileDictionary[commitData.sha] = newFile;
+          const serializedMergePrFileList = Object.entries(mergePrFileDictionary)
+            .map(([, file]) => file);
+          setMergePrFiles(serializedMergePrFileList);
+          setPercentComplete((i+1)/commitListTmp.length);
+          continue;
+        } 
+
+        const commitFiles = (await fetchRetry(commitData?.url, 3, 3)).data;
+        for (const commitFile of commitFiles.files) {
+
+          if (isIgnoreFile(commitFile.filename) && feature.ignoreFilesExtension) continue;
+          // if (isMergePullRequest(commitData.message) && feature.ignoreMergePullRequest) continue;
+
+          const contentUrl = commitFile.filename.replace(/^content/, '').replace(/\..+$/, '');
+          const absolutePath = `https://www.dotnetthailand.com/${contentUrl.replace(/^\//, '')}`;
+          const title = await getTitle(rssData, contentUrl);
+          const newFile: IFile = {
+            key: commitFile.filename,
+            commitCount: 1,
+            filename: commitFile.filename,
+            contentUrl: title ? absolutePath : commitFile.blob_url,
+            title: title || commitFile.filename,
+            isContent: isContent(commitFile.filename),
+            logUrl: `https://github.com/${repo}/commits/main/${commitFile.filename}`
+          }
+          
+          if(isContent(commitFile.filename)) {
+            if (contentFileDictionary[commitFile.filename])
+              contentFileDictionary[commitFile.filename].commitCount++;
+            else
+              contentFileDictionary[commitFile.filename] = newFile;
+          } else {
+            if (fileDictionary[commitFile.filename])
+              fileDictionary[commitFile.filename].commitCount++;
+            else
+              fileDictionary[commitFile.filename] = newFile;
+          }
         }
-        mergePrFileDictionary[commitData.sha] = newFile;
-        const serializedMergePrFileList = Object.entries(mergePrFileDictionary)
-          .map(([, file]) => file);
-        setMergePrFiles(serializedMergePrFileList);
+
+        const serializedFileList = Object.entries(fileDictionary)
+          .map(([, file]) => file)
+          .sort((a, b) => (a.title && !b.title) ? 1 : -1)
+          .sort((a, b) => (a.commitCount < b.commitCount) ? 1 : -1);
+        const serializedContentFileList = Object.entries(contentFileDictionary)
+          .map(([, file]) => file)
+          .sort((a, b) => (a.title && !b.title) ? 1 : -1)
+          .sort((a, b) => (a.commitCount < b.commitCount) ? 1 : -1);
+
+        setFiles(serializedFileList);
+        setContentFiles(serializedContentFileList);
         setPercentComplete((i+1)/commitListTmp.length);
-        continue;
-      } 
-
-      const commitFiles = (await fetchRetry(commitData?.url, 3, 3)).data;
-      for (const commitFile of commitFiles.files) {
-
-        if (isIgnoreFile(commitFile.filename) && feature.ignoreFilesExtension) continue;
-        // if (isMergePullRequest(commitData.message) && feature.ignoreMergePullRequest) continue;
-
-        const contentUrl = commitFile.filename.replace(/^content/, '').replace(/\..+$/, '');
-        const absolutePath = `https://www.dotnetthailand.com/${contentUrl.replace(/^\//, '')}`;
-        const title = await getTitle(rssData, contentUrl);
-        const newFile: IFile = {
-          key: commitFile.filename,
-          commitCount: 1,
-          filename: commitFile.filename,
-          contentUrl: title ? absolutePath : commitFile.blob_url,
-          title: title || commitFile.filename,
-          isContent: isContent(commitFile.filename),
-          logUrl: `https://github.com/${repo}/commits/main/${commitFile.filename}`
-        }
         
-        if(isContent(commitFile.filename)) {
-          if (contentFileDictionary[commitFile.filename])
-            contentFileDictionary[commitFile.filename].commitCount++;
-          else
-            contentFileDictionary[commitFile.filename] = newFile;
-        } else {
-          if (fileDictionary[commitFile.filename])
-            fileDictionary[commitFile.filename].commitCount++;
-          else
-            fileDictionary[commitFile.filename] = newFile;
-        }
       }
-
-      const serializedFileList = Object.entries(fileDictionary)
-        .map(([, file]) => file)
-        .sort((a, b) => (a.title && !b.title) ? 1 : -1)
-        .sort((a, b) => (a.commitCount < b.commitCount) ? 1 : -1);
-      const serializedContentFileList = Object.entries(contentFileDictionary)
-        .map(([, file]) => file)
-        .sort((a, b) => (a.title && !b.title) ? 1 : -1)
-        .sort((a, b) => (a.commitCount < b.commitCount) ? 1 : -1);
-
-      setFiles(serializedFileList);
-      setContentFiles(serializedContentFileList);
-      setPercentComplete((i+1)/commitListTmp.length);
-      
+    } catch(e){
+      console.error(e);
     }
     setPercentComplete(1);
     setLoading(false);
