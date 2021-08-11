@@ -85,9 +85,9 @@ const style = theme => css`
 const extractLevelGroupID = pathname => pathname.replace(/(^\/|\/$)/g, '').split('/');
 
 const getDeepNavigation = (navItemGroup, navLinkGroup, pathname, deepLevel) => {
-    if(deepLevel > limitDeepLevel) 
+    if(deepLevel > limitDeepLevel){ 
       return [];
-
+    }
     // Exit recursive when children.length = 0
     navItemGroup.children.map( childNavItemGroup => {
      const isAccessByUrl = childNavItemGroup.url.indexOf(extractLevelGroupID(pathname)[deepLevel]) > 0;
