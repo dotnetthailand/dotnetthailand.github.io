@@ -8,6 +8,7 @@ import styled from '@emotion/styled';
 import { Persona, PersonaSize } from '@fluentui/react/lib/Persona';
 import { ProgressIndicator } from '@fluentui/react/lib/ProgressIndicator';
 import { DetailsList, DetailsListLayoutMode, SelectionMode } from '@fluentui/react/lib/DetailsList';
+import { sleep } from '../../utils/utils';
 
 // Feature Toggle
 const feature = {
@@ -80,10 +81,6 @@ interface IGithubUser {
   name?: string,
 }
 
-const setTimeoutPromise = (timeout: number) => new Promise(resolve => {
-  setTimeout(resolve, timeout);
-});
-
 const getUserRole = (filesLength: number, contentFilesLength: number, mergePrFilesLength: number) => {
   let roles = [];
   if(contentFilesLength > 0)
@@ -105,7 +102,7 @@ const fetchRetry = async (url: string, delayTime: number, limit: number): Promis
     return axios.get(url, axiosConfig);
   } catch (e) {
     console.warn(`Something wrong: ${e}`);
-    await setTimeoutPromise(delayTime * 1000);
+    await sleep(delayTime * 1000);
     return fetchRetry(url, delayTime, limit - 1);
   }
 }

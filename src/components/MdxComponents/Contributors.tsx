@@ -98,8 +98,6 @@ const Contributors = () => {
   },[]);
 
   return (
-    <>
-
       <div css={style(theme)}>
         <div className="wrapper">
           {selectedAuthor === '' ? 
@@ -135,7 +133,6 @@ const Contributors = () => {
         <ContributorsDetail username={selectedAuthor} /> }
         </div>
       </div>
-    </>
   )
 };
 
