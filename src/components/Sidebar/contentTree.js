@@ -99,8 +99,9 @@ const getDeepNavigation = (navItemGroup, navLinkGroup, pathname, deepLevel) => {
       }
 
       const deepNavigationLinks = getDeepNavigation(childNavItemGroup, [], pathname, deepLevel + 1);
-      if(deepNavigationLinks.length > 0) 
+      if(deepNavigationLinks.length > 0) {
         navLinkGroupTmp.links = deepNavigationLinks;
+      }
       navLinkGroup.push(navLinkGroupTmp);
 
     });
