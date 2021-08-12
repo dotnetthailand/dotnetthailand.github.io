@@ -1,72 +1,67 @@
----
 metadata:
   name: .NET Thailand
   short_name: .NET Thailand
   description: .NET Thailand community
   language: en
-  pathPrefix: "/" # https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/
-  siteImage: "/assets/dotnetthailand-ogimage-dark.png"
-  favicon: "/assets/favicon.png"
-  themeColor: "#ff0000"
+  pathPrefix: / # https://www.gatsbyjs.com/docs/how-to/previews-deploys-hosting/path-prefix/
+  siteImage: /assets/dotnetthailand-ogimage-dark.png
+  favicon: /assets/favicon.png
+  themeColor: '#ff0000'
   uaTrackingId: UA-204153201-1
   siteUrl: https://www.dotnetthailand.com/
 header:
   enabled: true
-  logo: "/assets/code.svg"
-  logoLink: "/"
-  helpUrl: ""
+  logo: /assets/code.svg
+  logoLink: /
+  helpUrl: ''
   links:
     - text: Home
-      link: "/"
+      link: /
       external: false
     - text: .NET Thailand group
       link: https://www.facebook.com/groups/dotnetthailand
       external: true
     - text: Credit to our contributors
-      link: "/credit"
+      link: /contributors
       external: false
 sidebar:
   enabled: true
-  # forcedNavOrder:
-  #   - "/introduction"
-  #   - "/configuration/basic"
-  #   - "/configuration/advanced"
   expanded: false
 
   # Table of content
   groups:
     - order: 0
       path: /faq
-      # https://emojipedia.org/github/
-      title: ":question: .NET FAQ"
+      # Get emoji from https://emojipedia.org/github/
+      title: ':question: .NET FAQ'
 
     - order: 1
       path: /web-frameworks
-      title: ":fire: Web Frameworks"
+      title: ':fire: Web Frameworks'
 
     - order: 2
       path: /storage
-      title: ":floppy_disk: storage"
+      title: ':floppy_disk: storage'
 
     - order: 3
       path: /testing
-      title: ":heavy_check_mark: Testing"
+      title: ':heavy_check_mark: Testing'
 
     - order: 4
       path: /frontend-web
-      title: ":iphone: Front-end Web"
+      title: ':iphone: Front-end Web'
 
     - order: 5
       path: /cloud-hosting
-      title: ":globe_with_meridians: Cloud & Hosting"
+      title: ':globe_with_meridians: Cloud & Hosting'
 
     - order: 6
       path: /programming-cookbook
-      title: ":blue_book: Programming cookbook"
+      title: ':blue_book: Programming cookbook'
 
     - order: 7
       path: /to-other-languages
-      title: ":bicyclist: To other languages"
+      title: ':bicyclist: To other languages'
 
   links:
     - text: .NET Thailand
@@ -76,7 +71,7 @@ sidebar:
 
   ignoreIndex: false
   poweredBy:
-    trademark: "/assets/gatsby.png"
+    trademark: /assets/gatsby.png
     name: GatsbyJS
     link: https://www.gatsbyjs.org
 pwa:
@@ -84,7 +79,7 @@ pwa:
   manifest:
     display: standalone
     crossOrigin: anonymous
-    icon: "/assets/favicon.png"
+    icon: /assets/favicon.png
     name: .NET Thailand
     short_name: .NET Thailand
 
@@ -105,7 +100,7 @@ features:
     repo: dotnetthailand/dotnetthailand.github.io
   mermaid:
     language: mermaid
-    # Supported theme are "dark", "neutral", "forrest", or "default"
+    # Supported theme are 'dark', 'neutral', 'forrest', or 'default'
     theme: default
     options:
     width: 400
@@ -113,36 +108,36 @@ features:
   pageProgress:
     enabled: true
     includePaths:
-      - "/configuration/settingup/features"
+      - /configuration/settingup/features
     excludePaths:
-      - "/"
+      - /
     height: 3
     prependToBody: false
-    color: "#A05EB5"
+    color: '#A05EB5'
   previousNext:
     enabled: false
     arrowKeyNavigation: true
   propagateNetlifyEnv: true
   rss:
-    enabled: true
+    enabled: false
     title: BooGi Docs
     showIcon: false
-    copyright: "2020, Mateusz Filipowicz"
-    webMaster: "Mateusz Filipowicz"
-    managingEditor: "Mateusz Filipowicz"
+    copyright: 2020, Mateusz Filipowicz
+    webMaster: Mateusz Filipowicz
+    managingEditor: Mateusz Filipowicz
     categories:
       - Docs as Code
       - GatsbyJS
     ttl: 60
-    matchRegex: "^/"
-    outputPath: "/rss.xml"
-    generator: "boogi"
+    matchRegex: ^/
+    outputPath: /rss.xml
+    generator: boogi
   scrollTop: true
   search:
     enabled: true
-    engine: 'algolia'
-    placeholder: 'Search'
-    startComponent: 'icon' # icon
+    engine: algolia
+    placeholder: Search
+    startComponent: icon
     excerptSize: 20000
     debounceTime: 450
     snippetLength: 23
