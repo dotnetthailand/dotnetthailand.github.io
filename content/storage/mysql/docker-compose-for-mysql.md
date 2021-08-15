@@ -52,7 +52,7 @@ services:
       - mysql_root_password
       - mysql_password
     healthcheck:
-      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$(cat /run/secrets/mysql_password)
       timeout: 10s
       retries: 10
     volumes:
