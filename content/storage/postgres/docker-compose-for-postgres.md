@@ -111,18 +111,21 @@ volumes:
 #  Useful Docker compose commands
 - To launch a container
 ```sh
-docker-compose up
+docker-compose up # docker compose up # if you use compose v2
 ```
 
 - To launch a container as a background process
 ```sh
-docker-compose up -d
+docker-compose up -d # docker compose up -d # if you use compose v2
 ```
 
 - To remove a container with its volumes
 ```sh
-docker-compose down --volumes
+docker-compose down --volumes # docker compose down --volumes # if you use compose v2
 ```
+
+# Further Reading
+- [Compose v2](https://github.com/docker/compose-cli)
 
 # Connect to a database server
 - Use these values to connect to a database server (Postgres):
