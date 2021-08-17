@@ -16,7 +16,7 @@ To use Django and MySQL Docker compose, we need to create these required files a
 - Example content of `Dockerfile`
 ```sh
 # Dockerfile
-FROM python:3
+FROM python:alpine3.14
 
 # Set Python output is sent straight to terminal to see the output in realtime.
 ENV PYTHONUNBUFFERED=1
@@ -59,18 +59,20 @@ services:
 
   db:
     container_name: mysql-server
-    image: mysql:latest
+    image: mysql:8.0
     restart: always
     environment:
-      # TODO move password to a secret file
-      MYSQL_ROOT_PASSWORD: MySQL123!
+      MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql_root_password"
       MYSQL_USER: my-user
-      MYSQL_PASSWORD: passw@rd
+      MYSQL_PASSWORD_FILE: "/run/secrets/mysql_password"
       MYSQL_DATABASE: my-db
     ports:
       - 3306:3306
+    secrets:
+      - mysql_root_password
+      - mysql_password
     healthcheck:
-      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$(cat /run/secrets/mysql_password)
       timeout: 10s
       retries: 10
     volumes:
@@ -92,9 +94,24 @@ volumes:
   mysql-data:
   mysql-logs:
 
+# https://serverfault.com/questions/871090/how-to-use-docker-secrets-without-a-swarm-cluster
+secrets:
+  mysql_root_password:
+    file: ./mysql_root_password.txt
+  mysql_password:
+    file: ./mysql_password.txt
+
 networks:
   compose_network:
 
+```
+
+# docker secrets
+- Create docker secret files to be used for database passwords
+
+```shell
+echo "MySQL1234\!" > mysql_root_password.txt
+echo "pa\$\$w@rd"  > mysql_password.txt
 ```
 
 # .env file
@@ -121,7 +138,7 @@ $ tree . -a
 - Launch a web container and run `django-admin` to create a new Django project by running the following commands:
 ```
 $ projectName=my_django_site
-$ docker-compose run web django-admin startproject $projectName .
+$ docker-compose run web django-admin startproject $projectName . // docker compose run if you use compose v2
 
 ```
 - This will create a new Django project to a current working directory
@@ -159,7 +176,7 @@ DATABASES = {
 # Launch a website
 - Run the following command to launch web and db containers.
 ```sh
-$ docker-compose up
+$ docker-compose up # docker compose up if you use compose v2
 ```
 - Open a browser and navigate to http://localhost:8000
 - You should find a welcome page of Django site.
@@ -167,8 +184,9 @@ $ docker-compose up
 
 # Stop and remove containers
 - To stop containers, press `ctrl + c`.
-- To remove containers and all volumes, run `docker-compose down ---volumes`
+- To remove containers and all volumes, run `docker-compose down ---volumes or docker compose down ---volumes if you use compose v2`
 
 # Useful resources
+- [Compose v2](https://github.com/docker/compose-cli)
 - [Quickstart: Compose and Django](https://docs.docker.com/samples/django/)
 - [What is the use of PYTHONUNBUFFERED in docker file?](https://stackoverflow.com/a/59812588/1872200)
