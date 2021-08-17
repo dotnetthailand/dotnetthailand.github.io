@@ -20,7 +20,7 @@ docker-compose.yml
 ```
 
 # docker-compose.yml
-- Use MySQL latest version image with tag '8.0.26'
+- Use MySQL latest version image with tag '8.0'
 - Create additional database user
 - Create docker secret files to be used for database passwords
 - Configure health checking
@@ -37,7 +37,7 @@ version: '3.8'
 services:
   mysql-server:
     container_name: mysql-server
-    image: mysql:8.0.26
+    image: mysql:8.0
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql_root_password"
