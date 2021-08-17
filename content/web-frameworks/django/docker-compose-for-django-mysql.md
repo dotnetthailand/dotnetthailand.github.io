@@ -16,7 +16,7 @@ To use Django and MySQL Docker compose, we need to create these required files a
 - Example content of `Dockerfile`
 ```sh
 # Dockerfile
-FROM python:alpine3.14
+FROM python:3.9-alpine3.14
 
 # Set Python output is sent straight to terminal to see the output in realtime.
 ENV PYTHONUNBUFFERED=1
