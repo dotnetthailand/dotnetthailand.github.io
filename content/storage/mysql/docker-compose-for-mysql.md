@@ -10,24 +10,25 @@ showToc: true
 
 ```shell
 config/
-  lower-case-table-names.cnf
+- lower-case-table-names.cnf
 init/
-  init-database.sql
-  set-database-permission.sql
+- init-database.sql
+- set-database-permission.sql
 .env
 docker-compose.yml
 
 ```
 
 # docker-compose.yml
-- Use MySQL latest version image with tag latest.
-- Create additional database user.
-- Configure health checking.
-- Use name volumes to not loss data when remove container.
-- Use initialize database script.
-- Use custom configuration to use lower case table name.
-- Use commands to set database character.
-- Create a bridge network name that can used by other containers.
+- Use MySQL latest version image with tag '8.0'
+- Create additional database user
+- Create docker secret files to be used for database passwords
+- Configure health checking
+- Use name volumes to not loss data when remove container
+- Use initialize database script
+- Use custom configuration to use lower case table name
+- Use commands to set database character
+- Create a bridge network name that can used by other containers
   This can be useful when using `docker run` to launch a container and attach a compose network.
 
 ```YAML
@@ -36,21 +37,22 @@ version: '3.8'
 services:
   mysql-server:
     container_name: mysql-server
-    image: mysql:latest
+    image: mysql:8.0
     restart: always
     environment:
-      # TODO move password to a secret file
-      MYSQL_ROOT_PASSWORD: MySQL1234!
-
+      MYSQL_ROOT_PASSWORD_FILE: "/run/secrets/mysql_root_password"
       # Set permission of this user in "set-database-permission.sql"
       MYSQL_USER: my-user
-      MYSQL_PASSWORD: 'pa$$w@rd'
+      MYSQL_PASSWORD_FILE: "/run/secrets/mysql_password"
       MYSQL_DATABASE: my-database
 
     ports:
       - 3306:3306
+    secrets:
+      - mysql_root_password
+      - mysql_password
     healthcheck:
-      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$MYSQL_PASSWORD
+      test: mysqladmin ping -h localhost -u $$MYSQL_USER --password=$$(cat /run/secrets/mysql_password)
       timeout: 10s
       retries: 10
     volumes:
@@ -71,6 +73,13 @@ services:
     networks:
       - compose_network
 
+# https://serverfault.com/questions/871090/how-to-use-docker-secrets-without-a-swarm-cluster
+secrets:
+  mysql_root_password:
+    file: ./mysql_root_password.txt
+  mysql_password:
+    file: ./mysql_password.txt
+
 # https://docs.docker.com/compose/compose-file/compose-file-v3/#external-1
 volumes:
   mysql-data:
@@ -80,7 +89,14 @@ volumes:
 # Full document https://docs.docker.com/compose/networking/
 networks:
   compose_network:
+```
 
+# docker secrets
+- Create docker secret files to be used for database passwords
+
+```shell
+echo "MySQL1234\!" > mysql_root_password.txt
+echo "pa\$\$w@rd"  > mysql_password.txt
 ```
 
 # lower-case-table-names.cnf
@@ -143,4 +159,5 @@ COMPOSE_PROJECT_NAME = my_project
 
 # Useful resources
 - [My SQL Docker image on Docker hub](https://hub.docker.com/_/mysql )
+- [Manage sensitive data with Docker secrets](https://serverfault.com/questions/871090/how-to-use-docker-secrets-without-a-swarm-cluster)
 - [What is the difference between utf8mb4 and utf8 charsets in MySQL?](https://stackoverflow.com/a/30074553/1872200)
