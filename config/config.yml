@@ -65,7 +65,7 @@ sidebar:
 
     - order: 8
       path: /projects
-      title: ':package: Projects'
+      title: ':package: Awesome .NET Thailand Projects'
 
   links:
     - text: .NET Thailand
