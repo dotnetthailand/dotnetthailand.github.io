@@ -63,6 +63,10 @@ sidebar:
       path: /to-other-languages
       title: ':bicyclist: To other languages'
 
+    - order: 8
+      path: /projects
+      title: ':package: Awesome .NET Thailand Projects'
+
   links:
     - text: .NET Thailand
       link: https://www.facebook.com/groups/dotnetthailand
