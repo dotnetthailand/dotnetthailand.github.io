@@ -1,5 +1,5 @@
 ---
-title: Deploy Previews When Creating Pull Request using Vercel
+title: Deploy and Preview Your Pull Request using Vercel
 showMetadata: true
 editable: true
 showToc: true
@@ -19,7 +19,7 @@ author: mildronize
 2. You should link Github Project with vercel. You can link on vercel dashboard or [locally](https://github.com/marketplace/actions/vercel-action#project-linking)
 3. Define Github Actions
 
-  ```yml
+  ```yaml
   # https://github.com/marketplace/actions/vercel-action
   name: Preview deploy
   on:
@@ -44,12 +44,16 @@ author: mildronize
             echo ${{ steps.vercel-action.outputs.preview-url }}
   ```
 
-4. กำหนดค่าที่ต้องใช้
-     - `github-token` ต้องกำหนด **repo** access
-     - `vercel-token` ต้องสร้างจาก https://vercel.com/account/tokens
-     - `vercel-project-id` เอามาจาก Project ID ใน Project Setting
-     - `vercel-org-id` ID ของ team ที่เราใช้ แต่ถ้าใช้ Personal ให้เอาจาก [account setting](https://vercel.com/account) ใน Your ID
+4. กำหนดค่าที่ต้องใช้ ทั้ง GitHub Secrets และ Vercel
+
+  | Secret key               | Secret value                                                                                         |
+  |--------------------------|------------------------------------------------------------------------------------------------------|
+  | VERCEL_TOKEN             | ต้องสร้างจาก https://vercel.com/account/tokens                                                         |
+  | PUBLIC_REPO_ACCESS_TOKEN | ต้องกำหนด **repo** access โดยกำหนด Token ของ github [read more](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)               |
+  | VERCEL_ORG_ID            | ID ของ team ที่เราใช้ แต่ถ้าใช้ Personal ให้เอาจาก [account setting](https://vercel.com/account) ใน Your ID |
+  | VERCEL_PROJECT_ID        | เอามาจาก Project ID ใน Project Setting                                                               |
+
+สำหรับการตั้งค่าอื่นๆ เพิ่มเติมที่ [Vercel Action - GitHub Action](https://github.com/amondnet/vercel-action)
 
 # Read More
-- [Vercel Action - GitHub Action](https://github.com/amondnet/vercel-action)
 - [Deploy your pull requests with GitHub Actions and GitHub Deployments](https://sanderknape.com/2020/05/deploy-pull-requests-github-actions-deployments/)
