@@ -7,16 +7,13 @@ order: 1
 author: mildronize
 ---
 
-# Preview deploy using vercel
-
-[Pull request example](https://github.com/mildronize/mildronize.github.io/pull/29)
-
 ![](images/deploy-preview-when-pr.png)
 
-
+[ตัวอย่าง Pull request](https://github.com/mildronize/mildronize.github.io/pull/29)
 ## How to use
-1. You should disable Vercel for GitHub
-2. You should link Github Project with vercel. You can link on vercel dashboard or [locally](https://github.com/marketplace/actions/vercel-action#project-linking)
+1. ถ้ามีการเชื่อมต่อ Vercel กับ Github ให้ปิดการเชื่อมต่อก่อน
+เพราะว่าเราต้องการให้ github actions build and deploy แทนที่ Vercel (ซึ่งโดยปกติ Vercel จะ build และ deploy ให้อัตโนมัติ) [Read More](https://github.com/marketplace/actions/vercel-action#disable-vercel-for-github)
+2. You should link Github Project with Vercel [locally](https://github.com/marketplace/actions/vercel-action#project-linking) (For Vercel CLI 17)
 3. Define Github Actions
 
   ```yaml
