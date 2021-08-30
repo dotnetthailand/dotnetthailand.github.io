@@ -33,7 +33,7 @@ $ az login
 - Log in with your Azure account.
 - Wait for a while and you will get your subscription in JSON format and a shell is read to enter a new command.
 
-# List all subscription you have
+# List all subscription you have and check a default subscription
 ```
 $ az account list --output table
 ```
@@ -48,6 +48,6 @@ $ az account set --subscription <subscription name or id>
 ```sh
 $ az group create --location <location-name> --name <resource-group-name>
 ```
-- To list all locations, use `az account list-locations`.
+- To list all locations, use `az account list-locations --output table`.
 - To list all existing resource groups of the default subscription, use `az group list --output table`.
 - [More details for Azure resource group](https://docs.microsoft.com/en-us/cli/azure/group?view=azure-cli-latest)
