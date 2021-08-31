@@ -92,3 +92,6 @@ However, you can create an empty static app by setting empty values to required 
 - After deployment has finished, check your website in a browser.
 - Open a browser and navigate to your static app URL.
 - You should now see a homepage from your source code.
+
+# Useful resources
+- [Deploy Gatsby to Azure Static Web Apps](/programming-cookbook/github-actions/deploy-gatsby-to-azure-static-web-apps)
