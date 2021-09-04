@@ -61,4 +61,10 @@
 
 - name: Firebase Thailand
   url: https://medium.com/firebasethailand
-  about: บทความเกี่ยวกับ Firebase ในประเทศไทย 
+  about: บทความเกี่ยวกับ Firebase ในประเทศไทย
+
+- name: T.T.Software Solution CO.,Ltd
+  url: http://www.tt-ss.net
+  about: >-
+    บริษัท ที.ที.ซอฟแวร์ โซลูชั่น จำกัด ให้บริการรับเขียนโปรแกรม Web Application ด้วย ASP.NET, ASP.NET Core และ C#
+    และให้คำปรึกษาการ Implement Microsoft Azure โดยทีมงานผู้ได้รับ Certificate จาก Microsoft
