@@ -3,7 +3,7 @@ title: Privacy Policy
 showMetadata: false
 editable: true
 showToc: true
-order: 4
+order: 5
 ---
 
 
