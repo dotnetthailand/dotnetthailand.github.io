@@ -52,3 +52,7 @@ showToc: true
 ## Re
 - re run คำสั่ง command line เมื่อ file change
 - https://github.com/AnuchitO/re
+
+## Spotify Github Profile
+- Repository สำหรับ generate รูปว่าเรากำลังฟังเพลงอะไรอยู่ใน Spotify แล้วเอาไปแปะในหน้า Github profile ของเรา (อยากให้เพิ่ม theme)
+- https://github.com/kittinan/spotify-github-profile
