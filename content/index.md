@@ -7,7 +7,7 @@ order: 0
 ---
 
 .NET Thailand (https://www.dotnetthailand.com) เป็น website ที่เกิดขึ้นจากการรวบรวม FAQ คำถามที่ถามบ่อยๆ
-และคำตอบที่เป็นประโยชน์จากจากเพื่อนสมาชิกในกลุ่ม [.NET Thailand](https://www.facebook.com/groups/dotnetthailand)
+และคำตอบที่เป็นประโยชน์จากเพื่อนสมาชิกในกลุ่ม [.NET Thailand](https://www.facebook.com/groups/dotnetthailand)
 
 ตัว website เป็น open source project ที่ทุกท่านสามารถช่วยกัน contribute และสร้าง PR ได้ https://github.com/dotnetthailand/dotnetthailand.github.io
 

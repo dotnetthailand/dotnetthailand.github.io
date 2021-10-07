@@ -64,7 +64,7 @@ sidebar:
       title: ':bicyclist: To other languages'
 
     - order: 8
-      path: /projects
+      path: /awesome-dotnet-thailand-projects
       title: ':package: Awesome .NET Thailand Projects'
 
   links:
