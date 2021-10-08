@@ -56,3 +56,11 @@ showToc: true
 ## Spotify Github Profile
 - Repository สำหรับ generate รูปว่าเรากำลังฟังเพลงอะไรอยู่ใน Spotify แล้วเอาไปแปะในหน้า Github profile ของเรา (อยากให้เพิ่ม theme)
 - https://github.com/kittinan/spotify-github-profile
+
+## TorPleng (ต่อเพลง)
+- การต่อเพลงไทยที่ยาวที่สุดในประวัติศาสตร์
+- https://github.com/narze/torpleng
+
+## Coffee to Code
+- Developers converting coffee to code in many ways possible
+- https://github.com/narze/coffee-to-code
