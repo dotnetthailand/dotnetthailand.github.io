@@ -8,7 +8,7 @@ showToc: true
 # Learn how to create a pull request
 - สำหรับใครที่ยังไม่เคยสร้าง PR มาก่อน สามารถเรียนรู้จาก video นี้ได้เลยนะครับ
 - https://www.youtube.com/watch?v=c6b6B9oN4Vg
-- เป็น Video จาก Facebook Open Source เข้าใจได้ง่ายมาก
+- เป็นวิดีโอจาก Facebook Open Source เข้าใจได้ง่ายมาก
 
 # Interesting projects to contribute
   ใครที่มองหา projects เพื่อทำ PR ในช่วง Hacktoberfest admin ได้รวบรวม open source repositories ของคนไทยใน GitHub ที่น่าสนใจมาไว้ให้แล้วครับ
@@ -46,8 +46,8 @@ showToc: true
 - https://github.com/codesanook/Codesanook.SqlGenerator
 
 ## Go Tour
-- เรียนรู้ Go lang ภาษาไทย https://go-tour-th.appspot.com/
-- https://github.com/zkan/tour
+- เรียนรู้ Go lang ด้วยเนื้อหาภาษาไทย https://go-tour-th.appspot.com/
+- https://github.com/pallat/tour
 
 ## Re
 - re run คำสั่ง command line เมื่อ file change
