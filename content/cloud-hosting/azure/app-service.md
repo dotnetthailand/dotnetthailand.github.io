@@ -19,7 +19,7 @@ order: 1
 ## Create an App Service plan
 - Command:
   ```sh
-  $ az appservice plan create \
+  appservice plan create \
       --name <APP_SERVICE_PLAN_NAME> \
       --resource-group <RESOURCE_GROUP_NAME>
       --sku FREE
@@ -29,7 +29,7 @@ order: 1
 - [More details for App Service plan](https://docs.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest)
 - Example code to create a free app service plan:
   ```sh
-  $ az appservice plan create \
+  az appservice plan create \
     --name codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
     --is-linux \
@@ -39,7 +39,7 @@ order: 1
 ## Create an App Service for deploying with source code
 - Command:
   ```sh
-  $ az webapp create \
+  az webapp create \
     --name <APP_SERVICE_NAME> \
     --plan <APP_SERVICE_PLAN_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
@@ -53,7 +53,7 @@ order: 1
 - [More details for App Service](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
 - Example code to create an app service:
   ```sh
-  $ az webapp create \
+  az webapp create \
     --name codesanook-example-app-service \
     --plan codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
@@ -68,14 +68,14 @@ order: 1
 ## Update Azure App Service configuration
 - Command:
   ```sh
-  $ az webapp config appsettings set \
+  az webapp config appsettings set \
     --name <APP_SERVICE_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
     --settings @<CONFIGURATION_JSON_FILE>
   ```
 - Example code to update Azure App Service configuration:
   ```sh
-  $ az webapp config appsettings set \
+  az webapp config appsettings set \
     --name codesanook-example-app-service \
     --resource-group codesanook-example-resource-group \
     --settings @app-service-configuration.json
@@ -94,14 +94,14 @@ order: 1
 ## Get Azure App Service publish profile
 - Command:
   ```sh
-  $ az webapp deployment list-publishing-profiles \
+  az webapp deployment list-publishing-profiles \
     --name <APP_SERVICE_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
     --xml
   ```
 - Example code to get Azure App Service publish profile:
   ```sh
-  $ az webapp deployment list-publishing-profiles \
+  az webapp deployment list-publishing-profiles \
     --name codesanook-example-app-service \
     --resource-group codesanook-example-resource-group \
     --xml
@@ -115,3 +115,19 @@ order: 1
   - FTPS endpoint
   - Username
   - Password
+
+# Other useful commands
+
+## Delete an existing Azure App Service
+- Command:
+  ```sh
+  az webapp delete \
+    --name <APP_SERVICE_NAME> \
+    --resource-group <RESOURCE_GROUP_NAME>
+  ```
+- Example code to delete an existing App Service:
+  ```sh
+  az webapp delete \
+    --name codesanook-example-app-service \
+    --resource-group codesanook-example-resource-group
+  ```

@@ -1,5 +1,5 @@
 ---
-title: Create Azure SQL Server and Database
+title: Manage Azure SQL Database with Azure CLI
 showMetadata: true
 editable: true
 showToc: true
@@ -41,15 +41,15 @@ showToc: true
     --resource-group codesanook-example-resource-group \
     --location southeastasia \
     --admin-user codesanook-example-sa \
-    --admin-password 'u$nynEi#UY%jchGm6NmjzdcciiCiegqR^^#9RMv*AE9Ujix8am@!agCr7En%v9jh'
+    --admin-password 'very-secured-password'
   ```
 - **Note** Do not forget to always generate a new strong password for admin password.
 
-## Allow Azure services and resources to connect to Azure SQL Server
+## Allow Azure services and other Azure resources to connect to Azure SQL Server
 - Command:
   ```sh
   az sql server firewall-rule create \
-    --resource-group <RESOURCE_GROUP> \
+    --resource-group <RESOURCE_GROUP_NAME> \
     --server <DATABASE_SERVER_NAME> \
     --name AllowAllWindowsAzureIps \
     --start-ip-address 0.0.0.0 \
@@ -71,7 +71,7 @@ showToc: true
   az sql db create \
     --name <DATABASE_NAME> \
     --server <DATABASE_SERVER_NAME> \
-    --resource-group <RESOURCE_GROUP> \
+    --resource-group <RESOURCE_GROUP_NAME> \
     --catalog-collation <COLLATION_OF_A_METADATA_CATALOG> \
     --collation <COLLATION_OF_A_DATABASE> \
     --edition <EDITION_OF_SKU> \
@@ -92,7 +92,7 @@ showToc: true
     --server codesanook-example-db-server \
     --resource-group codesanook-example-resource-group \
     --catalog-collation SQL_Latin1_General_CP1_CI_AS \
-    --collation Thai_CI_AS \
+    --collation Latin1_General_CI_AS \
     --edition Free \
     --capacity 5 \
     --max-size 32MB \
@@ -118,7 +118,8 @@ showToc: true
     --max-size 2GB \
     --backup-storage-redundancy Zone
   ```
-- This will create the cheapest Azure SQL database which costs $4.90 a month and has 2GB of database size.
+- This will create the cheapest Azure SQL database which costs **$4.90** a month and has 2GB of database size.
+- Use Thai case insensitive and accent sensitive database collation.
 
 # Other useful commands
 
@@ -127,7 +128,7 @@ showToc: true
   ```sh
   az sql db list \
     --server <DATABASE_SERVER_NAME> \
-    --resource-group <resource-group> \
+    --resource-group <RESOURCE_GROUP_NAME> \
     --output table
   ```
 - Example code to list all existing databases on a specific server.
@@ -143,7 +144,7 @@ showToc: true
   ```sh
   az sql server delete \
     --name <DATABASE_SERVER_NAME> \
-    --resource-group <RESOURCE_GROUP> \
+    --resource-group <RESOURCE_GROUP_NAME> \
     --yes
   ```
 - Example code to delete a database server:
@@ -153,3 +154,38 @@ showToc: true
     --resource-group codesanook-example-resource-group \
     --yes
   ```
+
+## Delete a database
+- Command:
+  ```sh
+  az sql db delete \
+    --name <DATABASE_NAME> \
+    --server <DATABASE_SERVER_NAME>
+    --resource-group <RESOURCE_GROUP_NAME> \
+    --yes
+  ```
+- Example code to delete a database:
+  ```sh
+  az sql db delete \
+    --name codesanok-example-db \
+    --server codesanok-example-db-server \
+    --resource-group codesanook-example-resource-group \
+    --yes
+  ```
+
+# Update an admin password
+- Command:
+  ```sh
+  az sql server update \
+    --name <DATABASE_SERVER_NAME> \
+    --admin-password <ADMIN_PASSWORD> \
+    --resource-group <RESOURCE_GROUP_NAME>
+  ```
+- Example code to update an admin password:
+  ```sh
+  az sql server update \
+    --name codesanook-example-db-server \
+    --admin-password 'very-secured-password' \
+    --resource-group codesanook-example-resource-group
+  ```
+
