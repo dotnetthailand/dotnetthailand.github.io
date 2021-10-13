@@ -40,9 +40,10 @@ order: 1
 - After you have configured all options, execute the command and wait until deployment has finish.
 
 # Create an empty static app
-- As mentioned in this issue (https://github.com/Azure/static-web-apps/issues/446) setting up DevOps is not currently supported.
-  However, you can create an empty static app by setting empty values to required options.
-- For example:
+- Azure Static Web Apps does not currently support deploying a website
+  from an existing source code with Azure CLI as mentioned in this issue (https://github.com/Azure/static-web-apps/issues/446).
+  However, you can create an empty static web app with some empty required options.
+- An example code to create an empty static web app:
   ```sh
   az staticwebapp create \
     --name codesanook-example-static-web-app \
