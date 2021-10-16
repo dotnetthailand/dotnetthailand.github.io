@@ -77,3 +77,8 @@ order: 0
 - เกมดนตรีบนเว็บ พัฒนาด้วย React, PixiJS และ TypeScript
 - มี Automated tests และ CI & CD pipeline
 - ตัว project มีโครงสร้างแบบ Monorepo
+
+## Baht.js
+- https://github.com/narze/baht.js
+- Convert number to Thai Baht format, but faster [O(n)] & fully typed.
+

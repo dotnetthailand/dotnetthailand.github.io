@@ -1,5 +1,5 @@
 ---
-title: Howire VS Jamstack
+title: Hotwire VS Jamstack
 showMetadata: true
 editable: true
 showToc: true
@@ -7,6 +7,7 @@ showToc: true
 
 ![](images/hotwire-vs-jamestack.png)
 
+# Hotwire VS Jamstack
 [เว็บไม่ได้เปลี่ยน นายนั่นแหละที่เปลี่ยน]
 บล็อกคุณ Remy Sharp บอกว่า เว็บมันก็คือ HTML+CSS มาแต่ไหนแต่ไร แต่ผู้คนกลับทำให้มันยาก สร้าง Framework มาสารพัด อ้อมโลกผ่าน API ต่างๆ เพื่อมาทำเรื่องง่ายๆ อย่างการแสดงผลข้อความ
 ลิงก์: https://remysharp.com/2021/02/11/the-web-didnt-change-you-did
