@@ -5,35 +5,55 @@ editable: true
 showToc: true
 ---
 
-# To list all container 
-```
+# Tips
+
+Your can use container id or container name replace \<container\> argument.
+
+# To list all containers
+
+```sh
 docker container ls or docker ps
 ```
-# To remove container
+
+# To remove a container
+
+```sh
+docker rm <container>
 ```
-docker rm <container_id>
+
+# To fetch logs
+
+```sh
+docker logs <container>
 ```
-# To fetch the logs
+
+# To run a command in a container
+
+```sh
+docker exec [OPTIONS] <container> command [ARG...]
 ```
-docker logs <container_id>
+
+### frequently example:
+
+```sh
+docker exec -it <container> sh
 ```
-# To run command in container
+
+# To start a container
+
+```sh
+docker start <container>
 ```
-docker exec <container_id>
+
+# To stop a container
+
+```sh
+docker stop <container>
 ```
-# To start container
-```
-docker start <container_id>
-```
-# To stop container
-```
-docker stop <container_id>
-```
-# To run command in container 
-```
-docker exec <container_id>
-```
-# To copy files/folders between container and local filesytem
-```
-docker cp
+
+# To copy files/folders between a container and a local filesystem
+
+```sh
+docker cp [OPTIONS] <container>:<src_path> <dest_path>
+docker cp [OPTIONS] <src_path> <container>:<dest_path>
 ```
