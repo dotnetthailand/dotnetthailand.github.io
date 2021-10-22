@@ -82,7 +82,6 @@
     "lodash": "4.17.20",
     "lodash.flatten": "4.4.0",
     "lodash.startcase": "4.4.0",
-    "node-sass": "4.14.1",
     "puppeteer": "^8.0.0",
     "react": "16.13.1",
     "react-collapsible": "^2.8.0",
@@ -101,6 +100,7 @@
     "remark-abbr": "1.4.0",
     "remark-emoji": "2.1.0",
     "remark-grid-tables": "^2.1.2",
+    "sass": "^1.43.3",
     "unist-util-find-after": "3.0.0"
   },
   "license": "MIT",
