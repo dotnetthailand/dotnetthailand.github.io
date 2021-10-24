@@ -60,4 +60,6 @@ function Message({ greet = "Hello", who }) {
 
 ### Props ในรูปแบบ Spread syntax
 ```
+const messageObj = { greet: "Hi", who: "Poppy" };
+<Message {...messageObj} />
 ```
