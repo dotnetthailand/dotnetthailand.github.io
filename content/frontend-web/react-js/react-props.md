@@ -39,6 +39,11 @@ Array literals
 ```
 <Hello who={['pobx', 'poppy']} />
 ```
+Function
+```
+const fn = () => alert(1);
+<Hello fn={fn} />
+```
 
 ### Props สามารถทำ Optional ได้
 ```
