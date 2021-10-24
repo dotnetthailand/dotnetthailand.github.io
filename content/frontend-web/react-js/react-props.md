@@ -78,4 +78,17 @@ function MyChildren({children}) {
 
 ### Props Key
 ```
+const todos = [
+  { id: 1, name: "Pobx 1" },
+  { id: 2, name: "Pobx 2" },
+  { id: 3, name: "Pobx 3" },
+];
+
+function Card({todo}) {
+  return <div>{todo.name}</div>
+}
+
+{todos.map((todo, index) => (
+  <Card todo={todo} key={index} />
+))}
 ```
