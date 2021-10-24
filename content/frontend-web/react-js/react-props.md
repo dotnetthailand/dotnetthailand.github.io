@@ -77,6 +77,7 @@ function MyChildren({children}) {
 ```
 
 ### Props Key
+เวลาที่เราต้องการ Loop element จาก list เราจะต้อง assign value ให้กับ key attribute เสมอ
 ```
 const todos = [
   { id: 1, name: "Pobx 1" },
