@@ -66,4 +66,12 @@ const messageObj = { greet: "Hi", who: "Poppy" };
 
 ### Props Children
 ```
+function MyChildren({children}) {
+  console.log(children)
+  return <>{children}</>
+}
+
+<MyChildren>
+  <h1>Hello Pobx !</h1>
+</MyChildren>
 ```
