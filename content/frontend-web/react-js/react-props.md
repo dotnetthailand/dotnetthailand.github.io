@@ -39,3 +39,7 @@ Array literals
 ```
 <Hello who={['pobx', 'poppy']} />
 ```
+
+### Props สามารถทำ Optional ได้
+```
+```
