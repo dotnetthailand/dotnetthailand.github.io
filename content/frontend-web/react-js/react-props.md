@@ -57,3 +57,7 @@ function Message({ greet = "Hello", who }) {
 
 <Message who="Pobx" />
 ```
+
+### Props ในรูปแบบ Spread syntax
+```
+```
