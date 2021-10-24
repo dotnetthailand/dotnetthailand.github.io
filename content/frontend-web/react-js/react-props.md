@@ -63,3 +63,7 @@ function Message({ greet = "Hello", who }) {
 const messageObj = { greet: "Hi", who: "Poppy" };
 <Message {...messageObj} />
 ```
+
+### Props Children
+```
+```
