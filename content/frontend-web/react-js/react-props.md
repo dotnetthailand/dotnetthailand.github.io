@@ -47,4 +47,13 @@ const fn = () => alert(1);
 
 ### Props สามารถทำ Optional ได้
 ```
+function Message({ greet = "Hello", who }) {
+  return (
+    <div>
+      {greet}, {who}
+    </div>
+  );
+}
+
+<Message who="Pobx" />
 ```
