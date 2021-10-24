@@ -93,3 +93,5 @@ function Card({todo}) {
   <Card todo={todo} key={index} />
 ))}
 ```
+
+Credit Image: https://www.techdiagonal.com/wp-content/uploads/2019/09/react-props-blog-image-design.jpg
