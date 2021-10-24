@@ -15,31 +15,31 @@ showToc: true
 ![](https://www.techdiagonal.com/wp-content/uploads/2019/09/react-props-blog-image-design.jpg)
 
 ### ข้อมูลที่สามารถส่งผ่าน Props ได้
-String literals
+#### String literals
 ```
 <Hello who='Pobx' />
 ```
-Template literals with variables
+#### Template literals with variables
 ```
 <Hello who={`My Name is ${name}`} />
 ```
-Number literals
+#### Number literals
 ```
 <Hello who={88} />
 ```
-Boolean literals
+#### Boolean literals
 ```
 <Hello who={true} />
 ```
-Plain object literals
+#### Plain object literals
 ```
 <Hello who={{name: 'pobx'}} />
 ```
-Array literals
+#### Array literals
 ```
 <Hello who={['pobx', 'poppy']} />
 ```
-Function
+#### Function
 ```
 const fn = () => alert(1);
 <Hello fn={fn} />
