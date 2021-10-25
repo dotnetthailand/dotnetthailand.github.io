@@ -21,88 +21,126 @@ showToc: true
 - GitHub Integration
 - Cypress is built for scale, No matter how big (or small) your project
 
-### How it works
+## How it works
 - Setup to record tests, See how many tests failed or passed - and how healthy they are. Get the entire stack trace of failed tests. View screenshots taken on test failure.
 - Run in CI, Easily integrate Cypress with your current CI provider. Such as Jenkins, Travis CI, Circle CI, Docker
 - Optimize tests
 
-### To install Cypress
+## How to use Cypress
+### Install Cypress
 
-```cs
-$ npm install cypress 
+```sh
+$npm install cypress 
 ```
 or
-```cs
-$ yarn add cypress
+```sh
+$yarn add cypress
 ```
 
-#### Try to use
-```cs
+### Run a Cypress project
+// shell command
+```sh
 $npx cypress open
-
 $vi package.json
-//package.json
+```
+
+// package.json
+```js
 "scripts": {
-     "cypress:open": "cypress open",
-     "test": "echo \"Error: no test specified\" && exit 1"
-},
+  "cypress:open": "cypress open",
+  "test": "echo \"Error: no test specified\" && exit 1"
+}
+```
+// shell command
+```sh
 $npm run cypress:open
 ```
+or
+```sh
+$yarn run cypress open
+```
 
-#### Try to visit cypress web
-```cs
+### Example code to visit Cypress website
+Create a new file and edit content:
+```sh
 $touch cypress/integration/example.spec.js
+```
 
+// example.spec.js
+```js
 describe('My First Test', function() {
-     it('Visits the Kitchen Sink', function()
-          cy.visit('https://example.cypress.io')
-     })
+  it('Visits the Kitchen Sink', function()
+    cy.visit('https://example.cypress.io')
+  })
 })
-
-$npm run cypress:open
 ```
 
-#### Try to visit and click something
-```cs
-$touch cypress/integration/example.spec.js
+Run Cypress with command:
+```sh
+$npm run cypress:open
+```
+or
+```sh
+$yarn run cypress open
+```
 
+### Example code to visit a website and click something
+Create a new file and edit content:
+```sh
+$touch cypress/integration/example.spec.js
+```
+
+// example.spec.js
+```js
 describe('My First Test', function() {
-     it('Visits the Kitchen Sink', function()
-          cy.visit('https://example.cypress.io')
-          cy.contains('type').click()
-     })
+  it('Visits the Kitchen Sink', function()
+    cy.visit('https://example.cypress.io')
+    cy.contains('type').click()
+  })
 })
-
-$npm run cypress:open
 ```
 
-#### Try to visit and type an email to input box then assert
-```cs
-$touch cypress/integration/example.spec.js
+Run Cypress with command:
+```sh
+$npm run cypress:open
+```
+or
+```sh
+$yarn run cypress open
+```
 
+### Example code to visit a website, enter an email and do assertion
+```sh
+$touch cypress/integration/example.spec.js
+```
+
+// example.spec.js
+```js
 describe('My First Test', function() {   
-     it('Gets, types and asserts', function() {    
-          cy.visit('https://example.cypress.io')     
-          cy.contains('type').click()      
-          // Should be on a new URL which includes '/commands/actions'     
-          cy.url().should('include', '/commands/actions')
-          // Get an input, type into it and verify that the value has been updated
-          cy.get('.action-email')       
-               .type('fake@email.com')       
-               .should('have.value', 'fake@email.com')   
-     }) 
+  it('Gets, types and asserts', function() {    
+    cy.visit('https://example.cypress.io')     
+    cy.contains('type').click()      
+    // Should be on a new URL which includes '/commands/actions'     
+    cy.url().should('include', '/commands/actions')
+    // Get an input, type into it and verify that the value has been updated
+    cy.get('.action-email')       
+      .type('fake@email.com')       
+      .should('have.value', 'fake@email.com')   
+  })
 })
-
+```
+// shell command
+```sh
 $npm run cypress:open
 ```
 
-### Support Browser
+## Support browsers
 - Chrome
 - Firefox
 - Edge
 - Electron
 - Brave
 
-### Link and Example
+## Useful resources and more examples
 - [Cypress.io](https://www.cypress.io/dashboard)
 - [มาเขียน End-to-End Testing ด้วย Cypress.io และ ลองทำ Login Facebook กันเถอะ](https://medium.com/cypress-io-thailand/มาเขียน-end-to-end-testing-ด้วย-cypress-io-และ-ลองทำ-login-facebook-กันเถอะ-8eb0431ff96f)
