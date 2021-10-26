@@ -14,6 +14,16 @@ editable: true
 
 ซึ่งหลังจากปล่อย Cognitive Service ออกมาได้พอสมควร ทาง Microsoft ก็เอา feedback จากผู้ใช้งานอย่างเราๆ (พลก็มีเสนอเข้าไปไม่น้อย) มาสร้างเป็น Solution ที่เจาะจงกับการใช้งานมากขึ้น และเรียกว่า Azure Applied AI Service นั่นเอง
 
+## บริการต่างๆ ของ Azure Applied AI Service
 
+Microsoft ได้แบ่งประเภทของบริการออกจากลักษณะการนำไปใช้งานในธุรกิจ ดังรายการด้านล่าง 
 
+1. Conversation - Azure Bot Service
+2. Documents - Azure Form Recognizer
+3. Search - Azure Cognitive Search
+4. Monitoring - Azure Metrics Advisor
+5. Videos - Azure Video Analyzer
+6. Accessibility - Azure Immersive Reader
+
+ซึ่งปัจจุบันที่เขียนแนะนำอยู่นี่มี 6 ตัวที่สามารถนำไปใช้ได้อย่างเป็นทางการแล้ว แต่มีอีก 2 ตัวที่กำลังจะถูกเพิ่มเข้ามา ซึ่งเดี๋ยวจะเล่าแยกไว้ต่างหากครับ
 
