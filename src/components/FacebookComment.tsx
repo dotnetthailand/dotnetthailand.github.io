@@ -28,16 +28,21 @@ const loadingStyle = (theme, showElement) => css`
   }
  `;
 
-const commentPlaceHolderStyle = showElement => css`
-  margin-top: 25px;
-  width: 100%;
-  display: ${showElement ? 'block' : 'none'};
+ const commentPlaceHolderStyle = showElement => css`
+    margin-top: 10px;
+    width: 100%;
+    background: rgba(254, 254, 254, 0.9);
+    border: 1px solid #fefefe;
+    padding: 10px;
+    border-radius: 20px;
+    display: ${showElement ? 'block' : 'none'};
 `;
 
 const delayRenderFacebookCommentInMilliseconds = 2000;
 
 export default function FacebookComment({ url }) {
   const theme = useTheme();
+
   // Component will be re-rendered because URL is always changed when clicking a new link.
   const [showLoading, setShowLoading] = useState(true);
 
