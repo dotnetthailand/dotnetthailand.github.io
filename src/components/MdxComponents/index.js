@@ -22,6 +22,7 @@ import FriendsWebsites from './FriendsWebsites';
 import FeatureAsRowComparisonTable from './FeatureAsRowComparisonTable';
 import LimitTextToNumberOfLines from './LimitTextToNumberOfLines';
 import FixingFloatingFooterToBottom from './FixingFloatingFooterToBottom';
+import TextTransformExample from './TextTransformExample'
 
 const idFromHeader = (props) => {
   let name = props.children;
@@ -103,5 +104,6 @@ export default {
   FeatureAsRowComparisonTable,
   LimitTextToNumberOfLines,
   FixingFloatingFooterToBottom,
+  TextTransformExample,
   ...Highlights,
 };
