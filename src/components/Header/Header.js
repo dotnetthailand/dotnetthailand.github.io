@@ -63,7 +63,11 @@ const TopNavigation = styled.div`
   -webkit-transition: top 0.5s, bottom 0.5s;
   transition: top 0.5s, bottom 0.5s;
   margin-left: 55px;
-  margin-right: 30px;
+
+  @media only screen and (min-width: 1280px) {
+    margin-right: 30px;
+  }
+
   flex: 1 1 auto;
   padding: 10px 0;
   ${onTablet} {

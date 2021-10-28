@@ -70,11 +70,11 @@ const Navigation = styled(({ className, links }) => {
       font-family: 'Roboto';
       position: relative;
       color: ${(props) => props.theme.header.font.base};
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 500;
       line-height: 1em;
       opacity: 1;
-      padding: 6px 8px;
+      padding: 3px 4px;
 
       @media only screen and (min-width: 1280px) {
         font-size: 16px;

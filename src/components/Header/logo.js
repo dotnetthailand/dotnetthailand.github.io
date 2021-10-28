@@ -17,10 +17,8 @@ const logoStyle = (theme) => css`
     height: 40px;
     margin-right: 16px;
     display: inline-block;
+
     ${onTablet} {
-      height: 40px;
-    }
-    ${onMobile} {
       margin-right: 8px;
       height: 32px;
     }
@@ -66,10 +64,14 @@ const Logo = styled(({ className, link, img, title }) => {
     </div>
   );
 })`
-  min-width: ${(props) => props.theme.layout.leftWidth};
   display: flex;
   align-items: center;
-  padding-right: 80px;
+
+  @media only screen and (min-width: 1280px) {
+    min-width: ${(props) => props.theme.layout.leftWidth};
+    padding-right: 80px;
+  }
+
   ${onMobile} {
     border-right: none;
     min-width: auto;
