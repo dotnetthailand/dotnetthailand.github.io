@@ -125,7 +125,7 @@ namespace OwnScheduler.BackgroundTask
 }
 
 ```
-ซึ่งตัว CRON Expression ผม cinfigure ที่ appsettings.json ดังนี้ 
+ซึ่งตัว CRON Expression ผม configure ที่ appsettings.json ดังนี้ 
 ```json
 {
   "Logging": {
