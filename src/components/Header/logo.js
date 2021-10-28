@@ -14,13 +14,13 @@ const logoStyle = (theme) => css`
     min-height: 40px;
   }
   img {
-    height: 40px;
+    height: 32px;
+    margin-right: 8px
     margin-right: 16px;
     display: inline-block;
 
-    ${onTablet} {
-      margin-right: 8px;
-      height: 32px;
+    @media only screen and (min-width: 1024px) {
+      height: 40px;
     }
   }
 
@@ -57,8 +57,8 @@ const Logo = styled(({ className, link, img, title }) => {
     <div className={className}>
       <LogoWrapper>
         <Link to={link} css={logoStyle(theme)}>
-          <img css={{display: 'inline-block'}} src={img} alt={'logo'} loading={'lazy'} />
-          <span css={{display: 'inline-block'}} dangerouslySetInnerHTML={{ __html: title }} />
+          <img css={{ display: 'inline-block' }} src={img} alt={'logo'} loading={'lazy'} />
+          <span css={{ display: 'inline-block' }} dangerouslySetInnerHTML={{ __html: title }} />
         </Link>
       </LogoWrapper>
     </div>
@@ -67,7 +67,7 @@ const Logo = styled(({ className, link, img, title }) => {
   display: flex;
   align-items: center;
 
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: 1024px) {
     min-width: ${(props) => props.theme.layout.leftWidth};
     padding-right: 80px;
   }

@@ -64,7 +64,7 @@ const TopNavigation = styled.div`
   transition: top 0.5s, bottom 0.5s;
   margin-left: 55px;
 
-  @media only screen and (min-width: 1280px) {
+  @media only screen and (min-width: 1024px) {
     margin-right: 30px;
   }
 
@@ -186,8 +186,8 @@ const MobileMenuToggle = styled(({ open, toggle, className, ...props }) => {
         background={theme.header.icons.background}
         hoverStroke={theme.header.icons.hover}
         fill={'transparent'}
-        stroke={open? theme.header.icons.hover : theme.header.icons.stroke}
-        icon={open? X: Menu}
+        stroke={open ? theme.header.icons.hover : theme.header.icons.stroke}
+        icon={open ? X : Menu}
         onClick={toggle}
         {...props}
       />
@@ -277,7 +277,7 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
       return (
         <>
           {config.features.fullScreenMode.enabled &&
-          config.features.fullScreenMode.enabled === true ? (
+            config.features.fullScreenMode.enabled === true ? (
             <FullScreenHeader show={!show} css={hiddenMobile}>
               <FullScreenClose toggle={toggleFullscreenMode} />
               {DarkModeButton}
@@ -307,7 +307,7 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
               </SocialButtonsWrapper>
               <RssIcon {...iconBaseProps} />
               {config.features.fullScreenMode.enabled &&
-              config.features.fullScreenMode.enabled === true ? (
+                config.features.fullScreenMode.enabled === true ? (
                 <FullScreenEnter toggle={toggleFullscreenMode} css={hiddenMobile} />
               ) : (
                 ''
@@ -319,7 +319,7 @@ const Header = ({ setShowSearch, location, themeProvider, show, toggleFullscreen
 
           {isMobile() ? (
             <MobileNavigation css={visibleMobile} show={menuOpen}>
-              <Sidebar location={location} show={true} menuOpen={menuOpen}/>
+              <Sidebar location={location} show={true} menuOpen={menuOpen} />
               <Navigation links={headerLinks} />
 
               <SocialButtonsWrapper css={visibleMobile}>

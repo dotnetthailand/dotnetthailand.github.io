@@ -76,6 +76,11 @@ const Navigation = styled(({ className, links }) => {
       opacity: 1;
       padding: 3px 4px;
 
+      @media only screen and (min-width: 1024px) {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
       @media only screen and (min-width: 1280px) {
         font-size: 16px;
         padding: 10px 15px;
