@@ -133,7 +133,7 @@ using (var connection = new SqlConnection(connectionString))
 ```
 
 ## Bulk-Operations
-นทางกลับกัน การดำเนินการจำนวนมากใช้ (bulk-operations) ที่ ADO.NET ให้บริการ ตามค่าเริ่มต้น ไลบรารีกำลังใช้คลาส SqlBulkCopy เพื่อดำเนินการ bulk-insert ไปยัง Database ลองดูตัวอย่างด้านล่าง
+ในทางกลับกัน การดำเนินการจำนวนมากใช้ (bulk-operations) ที่ ADO.NET ให้บริการ ตามค่าเริ่มต้น ไลบรารีกำลังใช้คลาส SqlBulkCopy เพื่อดำเนินการ bulk-insert ไปยัง Database ลองดูตัวอย่างด้านล่าง
 
 ```cs
 // Create the list
