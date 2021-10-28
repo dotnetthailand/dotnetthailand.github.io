@@ -31,3 +31,48 @@ notepad ./global.json
 ```
 
 จากนั้น ทุกไดเรกทอรีที่เป็นไดเรกทอรีย่อยทั้งหมดจะใช้เวอร์ชันของ dotnet sdk เป็น 5.0.400 หรือจนกว่าจะเจอ global.json ใหม่
+
+
+# การกำหนดประเภทของ Authentication ให้กับโปรเจค MVC
+
+สำหรับโปรเจค MVC นั้น ผู้ใช้งานสามารถกำหนดการ Authentication เริ่มต้นของโปรเจคได้ เนื่องจากหากผู้อ่านใช้คำสั่ง 
+
+```sh
+dotnet new mvc
+```
+
+โปรแกรม dotnet cli จะสร้างเฉพาะตัวอย่างของเว็บ MVC ที่ไม่มีการ Authentication หากต้องการระบุให้มีการ Authentication สามารถใช้คำสั่งด้วยพารามิเตอร์ --auth เช่น
+
+```sh
+dotnet new mvc --auth Individual
+```
+
+จากตัวอย่างคำสั่ง จะสร้างระบบ Authentication ด้วย ASP.NET Identity ที่ใช้ local database ซึ่งหากสร้างโปรเจคนี้ใน Visual Studio โปรแกรม Visual Studio จะเลือกใช้ฐานข้อมูล SQL Server LocalDB ให้อัตโนมัติ แต่ว่าหากพิมพ์คำสั่งนี้ผ่าน dotnet cli โปรแกมรจะเลือกใช้ฐานข้อมูล SQLLite ให้อัตโนมัติ ดังนั้น ในกรณีที่ต้องการใช้ SQL Server LocalDB ผู้อ่านสามารถใช้คำสั่ง
+
+```sh
+dotnet new mvc --auth Individual --use-local-db
+```
+
+แต่เมื่อสร้างโปรแกรมโดยเริ่มต้น โปรเจคจะไม่สนับสนุน Razor runtime compilation หมายความว่าหากเราแก้ไขหน้า View แล้วจะต้อง compile โปรเจคใหม่อีกครั้งจึงจะเห็นการเปลี่ยนแปลง เราสามารถกำหนดให้ติดตั้งแพ็คเกจ  Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation  ผ่าน nuget หลังการสร้างโปรเจค ด้วยคำสั่ง
+
+```sh
+dotnet add package Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation
+```
+
+หรือใช้พารามิเตอร์ --razor-runtime-compilation เมื่อตอนสร้างโปรเจค เช่น
+
+```sh
+dotnet new mvc --auth Individual --use-local-db --razor-runtime-compilation
+```
+
+จากนั้นเปิด Startup.cs
+แล้วแก้ไข
+
+```csharp
+    services.AddControllersWithViews();
+```
+เป็น
+```csharp
+    services.AddControllersWithViews()
+            .AddRazorRuntimeCompilation();
+```
