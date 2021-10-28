@@ -4,24 +4,24 @@ import { onMobile } from '../../styles/responsive';
 
 const Navigation = styled(({ className, links }) => {
   return (
-    <nav css={{display: 'flex'}}>
+    <nav css={{ display: 'flex' }}>
       <ul className={className}>
         {links
           ? links.map((link, key) => {
-              const openRule = link.external ? '_blank' : '_self';
-              if (link.link !== '' && link.text !== '') {
-                return (
-                  <li key={key}>
-                    <a
-                      href={link.link}
-                      target={openRule}
-                      rel="noopener"
-                      dangerouslySetInnerHTML={{ __html: link.text }}
-                    />
-                  </li>
-                );
-              }
-            })
+            const openRule = link.external ? '_blank' : '_self';
+            if (link.link !== '' && link.text !== '') {
+              return (
+                <li key={key}>
+                  <a
+                    href={link.link}
+                    target={openRule}
+                    rel="noopener"
+                    dangerouslySetInnerHTML={{ __html: link.text }}
+                  />
+                </li>
+              );
+            }
+          })
           : null}
       </ul>
     </nav>
