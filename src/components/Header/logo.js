@@ -14,15 +14,13 @@ const logoStyle = (theme) => css`
     min-height: 40px;
   }
   img {
-    height: 40px;
+    height: 32px;
+    margin-right: 8px
     margin-right: 16px;
     display: inline-block;
-    ${onTablet} {
+
+    @media only screen and (min-width: 1024px) {
       height: 40px;
-    }
-    ${onMobile} {
-      margin-right: 8px;
-      height: 32px;
     }
   }
 
@@ -59,17 +57,21 @@ const Logo = styled(({ className, link, img, title }) => {
     <div className={className}>
       <LogoWrapper>
         <Link to={link} css={logoStyle(theme)}>
-          <img css={{display: 'inline-block'}} src={img} alt={'logo'} loading={'lazy'} />
-          <span css={{display: 'inline-block'}} dangerouslySetInnerHTML={{ __html: title }} />
+          <img css={{ display: 'inline-block' }} src={img} alt={'logo'} loading={'lazy'} />
+          <span css={{ display: 'inline-block' }} dangerouslySetInnerHTML={{ __html: title }} />
         </Link>
       </LogoWrapper>
     </div>
   );
 })`
-  min-width: ${(props) => props.theme.layout.leftWidth};
   display: flex;
   align-items: center;
-  padding-right: 80px;
+
+  @media only screen and (min-width: 1024px) {
+    min-width: ${(props) => props.theme.layout.leftWidth};
+    padding-right: 80px;
+  }
+
   ${onMobile} {
     border-right: none;
     min-width: auto;

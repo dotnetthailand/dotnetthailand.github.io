@@ -4,24 +4,24 @@ import { onMobile } from '../../styles/responsive';
 
 const Navigation = styled(({ className, links }) => {
   return (
-    <nav css={{display: 'flex'}}>
+    <nav css={{ display: 'flex' }}>
       <ul className={className}>
         {links
           ? links.map((link, key) => {
-              const openRule = link.external ? '_blank' : '_self';
-              if (link.link !== '' && link.text !== '') {
-                return (
-                  <li key={key}>
-                    <a
-                      href={link.link}
-                      target={openRule}
-                      rel="noopener"
-                      dangerouslySetInnerHTML={{ __html: link.text }}
-                    />
-                  </li>
-                );
-              }
-            })
+            const openRule = link.external ? '_blank' : '_self';
+            if (link.link !== '' && link.text !== '') {
+              return (
+                <li key={key}>
+                  <a
+                    href={link.link}
+                    target={openRule}
+                    rel="noopener"
+                    dangerouslySetInnerHTML={{ __html: link.text }}
+                  />
+                </li>
+              );
+            }
+          })
           : null}
       </ul>
     </nav>
@@ -70,11 +70,22 @@ const Navigation = styled(({ className, links }) => {
       font-family: 'Roboto';
       position: relative;
       color: ${(props) => props.theme.header.font.base};
-      font-size: 16px;
+      font-size: 12px;
       font-weight: 500;
       line-height: 1em;
       opacity: 1;
-      padding: 10px 15px;
+      padding: 3px 4px;
+
+      @media only screen and (min-width: 1024px) {
+        font-size: 14px;
+        padding: 6px 8px;
+      }
+
+      @media only screen and (min-width: 1280px) {
+        font-size: 16px;
+        padding: 10px 15px;
+      }
+
       &:hover {
         color: ${(props) => props.theme.header.font.hover};
       }
