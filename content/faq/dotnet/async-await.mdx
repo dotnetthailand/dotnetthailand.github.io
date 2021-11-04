@@ -10,7 +10,40 @@ showToc: false
 Make sure you have done these items when working with asynchronous programming.
 
 <CheckListItem>
+การใช้ async/await เมื่อคอมไพล์โค้ดจะสร้าง method นั้นเป็น class ที่ implement อินเตอร์เฟซ IAsyncStateMachine
+</CheckListItem>
 
+<CheckListItem>
+การใช้ async/await จะสร้าง Handler exception ที่ถูกขว้างออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป
+</CheckListItem>
+
+<CheckListItem>
+ใช้ Task.WaitAll() ก็ต่อเมื่อต้องการควบคุมการทำของของ Task เอง เช่น สร้าง Task มาหลาย Task ใน array แล้วต้องการให้รอทุก Task เสร็จพร้อมกันก่อน แล้วจึงไปต่อแทนการ await ทุก Task ด้วยตัวเอง
+</CheckListItem>
+
+<CheckListItem>
+เมื่อใช้ async/await ไม่จำเป็นต้องเกิด Threads ใหม่เสมอ
+</CheckListItem>
+
+
+<CheckListItem>
+หาก Implement อินเตอร์เฟซที่ส่งผลลัพธ์เป็น Task<Result> แต่ว่าใน method ไม่มี async/await เราสามารถคืนค่าด้วยการใช้ Task.FromResult(return_value);
+</CheckListItem>
+
+<CheckListItem>
+Task.WaitAll() จะรอทุกงานให้เสร็จก่อน แล้วจึงดำเนินการต่อ แต่ว่า Task.WhenAll() จะคืนค่าเป็น Task ที่ทำทุกอย่างเสร็จ สามารถไปสั่ง await ที่อื่นได้อีกที
+</CheckListItem>
+
+<CheckListItem>
+การรัน Task โดยไม่ await ในบางแอปพลิเคชัน เช่น ASP.NET Core จะไม่นำไปสู่ Fire and Forget คือสั่งแล้วลืมไปได้เลยเดี๋ยวงานก็เสร็จ แต่จะได้ผลลัพธ์เป็น สั่งแล้วงานหายไปเลย
+</CheckListItem>
+
+<CheckListItem>
+หาก Task ที่สั่งมีระยะเวลาในการทำงานที่ยาว และไม่ต้องการไปแย่ง Thread จาก pool เราสามารถบอก Scheduler ได้ว่างานนี้จะทำงานยาวๆ ด้วยพารามิเตอร์ TaskCreationOptions.LongRunning จากคำสั่ง Task.Factory.StartNew(Func<>(), TaskCreationOptions.LongRunning);
+</CheckListItem>
+
+
+<CheckListItem>
 Use async/await all the ways.
 
 </CheckListItem>
