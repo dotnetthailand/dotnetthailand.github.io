@@ -2,7 +2,7 @@
 title: Testing Thai langauge on Azure Content Moderator
 showMetadata: true
 editable: true
-order: 0
+order: 1
 ---
 
 # ทดสอบการใช้งานภาษาไทยกับ Azure Content Moderator 
