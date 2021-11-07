@@ -1,5 +1,5 @@
 ---
-title: replacement inside visual selection
+title: Replacement inside visual selection
 showMetadata: true
 editable: true
 ---
@@ -23,6 +23,11 @@ for (let key in obj) {
 
 - `shift + v` select what ever line do you want to
 - then `:s/let/var/g <CR>`
+
+### Explaination
+
+- `:s/let/var/g <CR>`
+  Search word "let" then replace with "var" global scope
 
 ```js
 //Example
