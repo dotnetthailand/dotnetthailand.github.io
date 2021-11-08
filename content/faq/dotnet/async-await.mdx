@@ -10,43 +10,79 @@ showToc: false
 Make sure you have done these items when working with asynchronous programming.
 
 <CheckListItem>
+
 การใช้ async/await เมื่อคอมไพล์โค้ดจะสร้าง method นั้นเป็น class ที่ implement อินเตอร์เฟซ IAsyncStateMachine
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
-การใช้ async/await จะสร้าง Handler exception ที่ถูกขว้างออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป
+
+การใช้ async/await จะสร้าง Handler exception ที่ถูก throw ออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
-ใช้ Task.WaitAll() ก็ต่อเมื่อต้องการควบคุมการทำของของ Task เอง เช่น สร้าง Task มาหลาย Task ใน array แล้วต้องการให้รอทุก Task เสร็จพร้อมกันก่อน แล้วจึงไปต่อแทนการ await ทุก Task ด้วยตัวเอง
+
+ใช้ Task.WaitAll() ก็ต่อเมื่อต้องการควบคุมการทำของของ Task เอง เช่น สร้าง Task มาหลาย Task ใน array
+แล้วต้องการให้รอทุก Task เสร็จพร้อมกันก่อน แล้วจึงไปต่อแทนการ await ทุก Task ด้วยตัวเอง
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
-เมื่อใช้ async/await ไม่จำเป็นต้องเกิด Threads ใหม่เสมอ
+
+เมื่อใช้ async/await ไม่จำเป็นต้องเกิด thread ใหม่เสมอ
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
-หาก Implement อินเตอร์เฟซที่ส่งผลลัพธ์เป็น Task<Result> แต่ว่าใน method ไม่มี async/await เราสามารถคืนค่าด้วยการใช้ Task.FromResult(return_value);
+
+หาก Implement อินเตอร์เฟซที่ส่งผลลัพธ์เป็น `Task<Result>` แต่ว่าใน method ไม่มี async/await เราสามารถคืนค่าด้วยการใช้ Task.FromResult(return_value);
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
+
 Task.WaitAll() จะรอทุกงานให้เสร็จก่อน แล้วจึงดำเนินการต่อ แต่ว่า Task.WhenAll() จะคืนค่าเป็น Task ที่ทำทุกอย่างเสร็จ สามารถไปสั่ง await ที่อื่นได้อีกที
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
+
 การรัน Task โดยไม่ await ในบางแอปพลิเคชัน เช่น ASP.NET Core จะไม่นำไปสู่ Fire and Forget คือสั่งแล้วลืมไปได้เลยเดี๋ยวงานก็เสร็จ แต่จะได้ผลลัพธ์เป็น สั่งแล้วงานหายไปเลย
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
-หาก Task ที่สั่งมีระยะเวลาในการทำงานที่ยาว และไม่ต้องการไปแย่ง Thread จาก pool เราสามารถบอก Scheduler ได้ว่างานนี้จะทำงานยาวๆ ด้วยพารามิเตอร์ TaskCreationOptions.LongRunning จากคำสั่ง Task.Factory.StartNew(Func<>(), TaskCreationOptions.LongRunning);
+
+หาก Task ที่สั่งมีระยะเวลาในการทำงานที่ยาว และไม่ต้องการไปแย่ง Thread จาก pool
+เราสามารถบอก Scheduler ได้ว่างานนี้จะทำงานยาวๆ ด้วยพารามิเตอร์ TaskCreationOptions.LongRunning
+จากคำสั่ง `Task.Factory.StartNew(Func<>(), TaskCreationOptions.LongRunning);`
+
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
+
 Use async/await all the ways.
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -55,17 +91,23 @@ Don't use blocking method e.g. `Task.WaitAll()`, `.Result`, `.Wait()`.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use `async Task` for a method that does not return a value.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use `async Task<TResult>` for a method that returns a value.
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -74,11 +116,15 @@ Use **async void** only for an event handler e.g in Windows App.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Add **Async** suffix to async method's name.
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -87,12 +133,16 @@ Use `configureAwait(false)` for a class library.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Avoid unnecessary use of async modifier if we don't need to resume a main thread/UI thread to do anything after a task is complete, just return a task and don't await.
 Do not wrap a task in try/catch block because it has never thrown an exception. [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/avoid-unnecessary-async.md)
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -101,6 +151,8 @@ Read more [REF](https://stackoverflow.com/a/19103343/1872200) and [REF](http://w
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use await when you want to do stuff in a UI thread after getting a result.
@@ -108,11 +160,15 @@ With await you can handle an exception as usual.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Lambda expression supports async keyword, you can put async before Lambda parameters and put await in Lambda body.
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -122,12 +178,16 @@ Prefer `Task.Run` over `Task.Factory.StartNew` and over `new Task()`
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use async for IO bound. It is good for scalability and does not require extra thread so you don't use a thread just for waiting a long-running IO process.
 [Read more](https://app.pluralsight.com/guides/using-task-run-async-await)
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -136,12 +196,16 @@ Avoid mixing synchronous and asynchronous code.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Avoid race conditions with proper synchronization.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/avoid-race-conditions.md)
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
 
@@ -150,6 +214,8 @@ When you develop interfaces do not expose both sync and async versions of method
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use await instead of `Task.ContinueWith`.
@@ -157,9 +223,13 @@ Use await instead of `Task.ContinueWith`.
 
 </CheckListItem>
 
+<!-- ******************** end of an item ******************** -->
+
 <CheckListItem>
 
 Use `await Task.WhenAny/All` instead of `Task.WaitAny/All`.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/when-any-all.md)
 
 </CheckListItem>
+
+<!-- ******************** end of an item ******************** -->
