@@ -123,6 +123,20 @@ showToc: true
 
 # Other useful commands
 
+## List all existing servers
+- Command:
+  ```sh
+  az sql server list \
+    --resource-group <RESOURCE_GROUP_NAME> \
+    --output table
+  ```
+- Example code to list all existing databases on a specific server.
+  ```sh
+  az sql server list \
+    --resource-group codesanook-example-resource-group \
+    --output table
+  ```
+
 ## List all existing databases on a specific server
 - Command:
   ```sh
@@ -131,7 +145,7 @@ showToc: true
     --resource-group <RESOURCE_GROUP_NAME> \
     --output table
   ```
-- Example code to list all existing databases on a specific server.
+- Example code to list all existing servers in a specific resource group.
   ```sh
   az sql db list \
     --server codesanook-example-db-server \
