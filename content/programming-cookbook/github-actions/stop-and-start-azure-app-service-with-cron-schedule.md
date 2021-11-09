@@ -6,10 +6,19 @@ showToc: true
 order: 1
 ---
 
+# Prerequisite
+- Create an Azure account.
+- Setup Azure CLI.
+- Log in with Azure CLI.
+- Create a resource group.
+- To learn how to create all requirement step by step, please check [Azure CLI content](/cloud-hosting/azure/azure-cli).
+
+# Overview
 - We can set a cron schedule to trigger a GitHub Actions workflow to stop and start Azure App Service.
 - Simply set Azure CLI commands to stop and start Azure App Service in separated workflows.
 - For example, we can have `Stop Azure App Service` workflow which runs every midnight (UTC+7)
   and `Start Azure App Service` workflow which runs at 6AM everyday (UTC+7).
+- Follow [this instruction](/cloud-hosting/azure/azure-cli#getazurecredentialsforazure/loginaction) to get Azure Credentials.
 
 
 # Example workflow to stop Azure App Service

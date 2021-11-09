@@ -227,9 +227,9 @@ $ dotnet-sdk.dotnet run
   - Use http://localhost:5000/todos/{id} with HTTP PUT to update an existing todo item.
   - Use http://localhost:5000/todos/{id} with HTTP DELETE to delete an existing todo item.
 
-
 # Useful information and credit
 - Jose Barbosa for his amazing repository https://github.com/kidchenko/dot-net-min-api.
+- [.NET 6 installation instructions for Linux from .NET repository](https://github.com/dotnet/core/blob/main/release-notes/6.0/install-linux.md)
 - Pre-installed Snapd distributions https://snapcraft.io/docs/installing-snapd#heading--pre-installed
 - ubuntu-wsl2-systemd-script https://github.com/DamionGans/ubuntu-wsl2-systemd-script
 - Unmask Snapd https://askubuntu.com/a/1258139

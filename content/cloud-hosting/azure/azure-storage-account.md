@@ -14,7 +14,6 @@ order: 1
 - Create a resource group.
 - To learn how to create all requirement step by step, please check [Azure CLI content](/cloud-hosting/azure/azure-cli).
 
-
 # Create Azure Storage Account
 ```sh
 $ az storage account create \
@@ -65,4 +64,3 @@ $ az storage account show-connection-string \
 --name <STORAGE_ACCOUNT_NAME> \
 --resource-group <RESOURCE_GROUP_NAME>
 ```
-
