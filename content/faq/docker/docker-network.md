@@ -44,3 +44,4 @@ docker run --rm -d --network host --name my_nginx nginx
 
 - Access Nginx by browsing to http://locahost:80/.
 - More details https://docs.docker.com/network/network-tutorial-host/
+- เอกสารภาษาไทยตำรา [รายวิชา การประมวลผลกลุ่มเมฆ โดย ผศ.ดร.อุทาน บูรณศักดิ์ศรี](https://www.scribd.com/document/478584064/%E0%B8%95%E0%B8%B3%E0%B8%A3%E0%B8%B2%E0%B8%81%E0%B8%B2%E0%B8%A3%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%A1%E0%B8%A7%E0%B8%A5%E0%B8%9C%E0%B8%A5%E0%B8%81%E0%B8%A5%E0%B8%B8-%E0%B8%A1%E0%B9%80%E0%B8%A1%E0%B8%86-Cloud-Computing)
