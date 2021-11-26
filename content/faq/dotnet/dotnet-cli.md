@@ -47,7 +47,7 @@ dotnet new mvc
 dotnet new mvc --auth Individual
 ```
 
-จากตัวอย่างคำสั่ง จะสร้างระบบ Authentication ด้วย ASP.NET Identity ที่ใช้ local database ซึ่งหากสร้างโปรเจคนี้ใน Visual Studio โปรแกรม Visual Studio จะเลือกใช้ฐานข้อมูล SQL Server LocalDB ให้อัตโนมัติ แต่ว่าหากพิมพ์คำสั่งนี้ผ่าน dotnet cli โปรแกมรจะเลือกใช้ฐานข้อมูล SQLLite ให้อัตโนมัติ ดังนั้น ในกรณีที่ต้องการใช้ SQL Server LocalDB ผู้อ่านสามารถใช้คำสั่ง
+จากตัวอย่างคำสั่ง จะสร้างระบบ Authentication ด้วย ASP.NET Identity ที่ใช้ local database ซึ่งหากสร้างโปรเจคนี้ใน Visual Studio โปรแกรม Visual Studio จะเลือกใช้ฐานข้อมูล SQL Server LocalDB ให้อัตโนมัติ แต่ว่าหากพิมพ์คำสั่งนี้ผ่าน dotnet cli โปรแกรมจะเลือกใช้ฐานข้อมูล SQLLite ให้อัตโนมัติ ดังนั้น ในกรณีที่ต้องการใช้ SQL Server LocalDB ผู้อ่านสามารถใช้คำสั่ง
 
 ```sh
 dotnet new mvc --auth Individual --use-local-db
