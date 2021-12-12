@@ -81,13 +81,11 @@ Autoroute, Title, HtmlBody are existing content parts in Orchard CMS.
 They are in OrchardCore.Autoroute, OrchardCore.Title, OrchardCore.Html projects (modules) respectively.
 However, we don't have a built-in Map part so we need create a new one.
 
-
 ![](images/content-components.drawio.png)
 
 ---
 
-## Create a new module project from dotnet tool
-
+## Create new projects from dotnet tool
 Let's create a new module for Map part.
 
 - A module is a set of extensions for Orchard that are grouped under a single sub-folder of the **OrchardCore.Modules.Cms** directory.
@@ -95,103 +93,91 @@ Let's create a new module for Map part.
 - We don't need to create it manually, we can use **dotnet tool** to create a module with a scaffold content part for us.
 - We will create a new module by following steps.
 
-### Install .NET 5
-- Launch a new shell.
-- Use the following commands to install .NET 5 on Ubuntu Linux.
-
-```sh
-wget https://packages.microsoft.com/config/ubuntu/18.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-
-sudo apt-get update; \
-  sudo apt-get install -y apt-transport-https && \
-  sudo apt-get update && \
-  sudo apt-get install -y dotnet-sdk-5.0
-```
-- For other platform, https://docs.microsoft.com/en-us/dotnet/core/install/
-- Check .NET SDK version
-```
-dotnet --list-sdks
-```
-- It should return `5.0.202 [/usr/share/dotnet/sdk]` or new version of .NET 5
+### Install the latest version of .NET
+- Follow [this instruction](/programming-cookbook/wsl-powershell-useful-scripts/install-dotnet) to install .NET.
 - Then, use the following command to install a new project template.
-```sh
-dotnet new -i OrchardCore.ProjectTemplates::1.0.0-rc2-* --nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json
-```
+  ```sh
+  dotnet new -i OrchardCore.ProjectTemplates::1.1.0
+  ```
+- **Note** Use `--nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json` if a template is from preview source.
+
+### Create the main project from a template
 - Create a folder that you want to save OrchardCore CMS source code and CD to it.
-- In this example, I will use `orchard-examples` to store all source code.
-- Then, use dotnet command to create Orchard Core CMS project with name `Codesanook.Web`.
-```sh
-mkdir orchard-examples
-cd orchard-examples
-dotnet new occms --name Codesanook.Web
-```
-*Note* Codesanook.Web is our main web project and it references `OrchardCore.Application.Cms.Targets` package.
+- In this example, I will use `orchard-example/src` to store all source code.
+- Then, use dotnet command to create Orchard Core CMS project with name `OrchardExample.Cms`.
+  ```sh
+  mkdir orchard-example/src -p
+  cd orchard-example/src
+  dotnet new occms --name OrchardExample.Cms
+  ```
+- *Note* `OrchardExample.Cms` is our main web project and it references `OrchardCore.Application.Cms.Targets` package.
 
-- Next, create a folder name `Modules` for adding a new module and CD to it.
+### Create the module project from a template
+- Next, create a folder name `Modules` inside `orchard-example/src` for adding a new module and CD to it.
 - Then, create a custom module with dotnet tool.
-- You can a new module with any name that represents a feature that you are going to create.
-- In this example, we are going to create `Codesanook.Map` module for providing Map part which can be used in event content type.
-```sh
-mkdir Modules
-cd Modules
-dotnet new ocmodulecms --name Codesanook.Map --AddPart True --PartName Map
-```
-*Note* **Part** suffix is appended automatically to the end of the supplied PartName.
+- You can create a new module with any name that represents a feature that you are going to build.
+- In this example, we are going to create `OrchardExample.Map` module for providing Map part which can be used in event content type.
+  ```sh
+  cd orchard-example/src
+  mkdir Modules
+  cd Modules
+  dotnet new ocmodulecms --name OrchardExample.Map --AddPart True --PartName Map
+  ```
+- *Note* **Part** suffix is appended automatically to the end of the supplied PartName.
 
-### Reference Codesanook.Map to Codesanook.Web project
-- CD back to `Codesanook.Web` folder.
-- Then reference Codesanook.Map with dotnet command.
-```sh
-cd ../Codesanook.Web
-dotnet add reference ../Modules/Codesanook.Map/Codesanook.Map.csproj
-```
+### Reference OrchardExample.Map to OrchardExample.Cms project
+- CD back to `OrchardExample.Cms` folder.
+- Then reference `OrchardExample.Map` with dotnet command.
+  ```sh
+  cd ../OrchardExample.Cms
+  dotnet add reference ../Modules/OrchardExample.Map/OrchardExample.Map.csproj
+  ```
 ---
 
-## Use IDE and Build the project
+## Use IDE and build the project
 
 ### Open a project with VS Code
-- CD to the root of the project which contains `Codesanook.Web` and `Modules` folders.
+- CD to the root of the project which contains `OrchardExample.Cms` and `Modules` folders.
 - Open the project with VS Code.
-```sh
-code .
-```
-- Current project's file structure
-```
-orchard-examples/
-|--Codesanook.Web/
-|--Modules/
-  |--Codesanook.Map/
-```
+  ```sh
+  code .
+  ```
+- Current project's file structure:
+  ```
+  orchard-example/
+  |--OrchardExample.Cms/
+  |--Modules/
+    |--OrchardExample.Map/
+  ```
 
 ### Add preview package source
 - At root of the project create `nuget.config` file.
 - Add the following code to the file.
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <clear />
-    <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
-    <add key="OrchardCorePreview" value="https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json" />
-  </packageSources>
-  <disabledPackageSources />
-</configuration>
-```
+  ```xml
+  <?xml version="1.0" encoding="utf-8"?>
+  <configuration>
+    <packageSources>
+      <clear />
+      <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
+      <add key="OrchardCorePreview" value="https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json" />
+    </packageSources>
+    <disabledPackageSources />
+  </configuration>
+  ```
 - *Waring* We do not suggest you to use the dev packages in production.
 
 ### Restore all Nuget packages and run a website
 - Use VS Code integrated terminal by typing **ctrl+`**
-- CD to `Codesanook.Web` and run the following command.
-```
-dotnet restore
-```
-*Note* Please make sure you save all changes before running the command.
+- CD to `OrchardExample.Cms` and run the following command.
+  ```
+  dotnet restore
+  ```
+- *Note* Please make sure you save all changes before running the command.
 - Wait until we have restored all packages successfully.
 - Then run:
-```
-dotnet watch run
-```
+  ```
+  dotnet watch run
+  ```
 ---
 
 ## Set up new Orchard CMS website
@@ -208,7 +194,7 @@ dotnet watch run
 - You will be redirected to home page.
 - Go to admin panel by navigating to http://localhost:5000/admin and log in with your admin's username and password.
 - On the left-hand side menu of admin panel, go to `Configuration` > `Features`.
-- Search for **map** and you will find `Codesanook.Map` has not been enabled yet.
+- Search for **map** and you will find `OrchardExample.Map` has not been enabled yet.
 - We will be back to enable it later after we have updated our module and our Map part is ready to use.
 
 ![a module not enable yet](./images/a-module-not-enabled-yet.png)
@@ -218,29 +204,29 @@ dotnet watch run
 ## Update Map part
 
 - You can update a manifest file as you like. I will only change an author and website URL.
-- Edit `Manifest.cs` in Codesanook.Map project to:
+- Edit `Manifest.cs` in OrchardExample.Map project to:
 ```cs
 using OrchardCore.Modules.Manifest;
 
 [assembly: Module(
-    Name = "Codesanook.Map",
-    Author = "Codesanook Team",
-    Website = "https://www.codesanook.com",
+    Name = "OrchardExample.Map",
+    Author = "OrchardExample Team",
+    Website = "https://www.OrchardExample.com",
     Version = "0.0.1",
-    Description = "Codesanook.Map",
+    Description = "OrchardExample.Map",
     Dependencies = new[] { "OrchardCore.Contents" },
     Category = "Content Management"
 )]
 ```
 
-- Go to the Models folder in Codesanook.Map project `Modules/Codesanook.Map/Modules`, you will find that we have the generated `MapPart.cs` file.
+- Go to the Models folder in OrchardExample.Map project `(Modules/OrchardExample.Map/Models)`, you will find that we have the generated `MapPart.cs` file.
 - This file is our main model.
 - It is a content part that we will add new features.
 - Add new properties to the model and it will look like this.
 ```cs
 using OrchardCore.ContentManagement;
 
-namespace Codesanook.Map.Models
+namespace OrchardExample.Map.Models
 {
     public class MapPart : ContentPart
     {
@@ -298,13 +284,13 @@ public override IDisplayResult Display(MapPart part, BuildPartDisplayContext con
 ---
 
 ## Update MapPartViewModel
-- Open MapPartViewModel.cs in `Modules/Codesanook.Map/ViewModels/MapPartViewModel.cs` and update the content as following:
+- Open MapPartViewModel.cs in `Modules/OrchardExample.Map/ViewModels/MapPartViewModel.cs` and update the content as following:
 ```cs
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OrchardCore.ContentManagement;
-using Codesanook.Map.Models;
+using OrchardExample.Map.Models;
 
-namespace Codesanook.Map.ViewModels
+namespace OrchardExample.Map.ViewModels
 {
     public class MapPartViewModel
     {
@@ -349,7 +335,7 @@ public override IDisplayResult Display(MapPart part, BuildPartDisplayContext con
 
 ## Edit MapPart.cshtml
 - We will use MapPart.cshtml as view template of a shape in details page.
-- Rename MapPart.liquid in `Modules/Codesanook.Map/Views` to MapPart.cshtml.
+- Rename MapPart.liquid in `Modules/OrchardExample.Map/Views` to MapPart.cshtml.
 - We use Razor instead of Liquid template.
 - Update the content of MapPart.cshtml to:
 ```html
@@ -466,11 +452,11 @@ using OrchardCore.ContentManagement.Display.Models;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.DisplayManagement.ModelBinding;
 using OrchardCore.DisplayManagement.Views;
-using Codesanook.Map.Models;
-using Codesanook.Map.Settings;
-using Codesanook.Map.ViewModels;
+using OrchardExample.Map.Models;
+using OrchardExample.Map.Settings;
+using OrchardExample.Map.ViewModels;
 
-namespace Codesanook.Map.Drivers
+namespace OrchardExample.Map.Drivers
 {
     public class MapPartDisplayDriver : ContentPartDisplayDriver<MapPart>
     {
@@ -520,18 +506,18 @@ namespace Codesanook.Map.Drivers
 
 ```
 
-## Update a Startup.cs of Codesanook.Map project
-- Update `Modules/Codesanook.Map/Startup.cs` as the following code to simplify our Startup class:
+## Update a Startup.cs of OrchardExample.Map project
+- Update `Modules/OrchardExample.Map/Startup.cs` as the following code to simplify our Startup class:
 ```cs
 using Microsoft.Extensions.DependencyInjection;
 using OrchardCore.ContentManagement;
 using OrchardCore.ContentManagement.Display.ContentDisplay;
 using OrchardCore.Data.Migration;
-using Codesanook.Map.Drivers;
-using Codesanook.Map.Models;
+using OrchardExample.Map.Drivers;
+using OrchardExample.Map.Models;
 using OrchardCore.Modules;
 
-namespace Codesanook.Map
+namespace OrchardExample.Map
 {
     public class Startup : StartupBase
     {
@@ -555,9 +541,9 @@ namespace Codesanook.Map
 using OrchardCore.ContentManagement.Metadata.Settings;
 using OrchardCore.ContentManagement.Metadata;
 using OrchardCore.Data.Migration;
-using Codesanook.Map.Models;
+using OrchardExample.Map.Models;
 
-namespace Codesanook.Map
+namespace OrchardExample.Map
 {
     public class Migrations : DataMigration
     {
@@ -580,7 +566,7 @@ namespace Codesanook.Map
 }
 ```
 
-## Remove unused files from Codesanook.Map project
+## Remove unused files from OrchardExample.Map project
 
 - Remove Handlers folder and files inside, we don't need them for our project.
 - Remove MapPartDisplayDriver.GetMapPartSettings method.
@@ -599,7 +585,7 @@ screenshot of the current project structure
 - In our example, we are going to create the Event content type.
 - We can attach the Map content part to the content type via code or UI in the admin panel.
 - To simplify our example, we will start by using admin panel.
-- Before using Map part, we need to enable Codesanook.Map module.
+- Before using Map part, we need to enable OrchardExample.Map module.
 - Go to admin panel, on left-hand side menu:
   1. Click Configuration.
   2. Click Features.
@@ -660,7 +646,7 @@ I hope this tutorial will help you understand how to create a custom OrchardCore
 Thanks.
 
 ## Full source code
-- [https://github.com/codesanook/orchard-examples](https://github.com/codesanook/orchard-examples)
+- [https://github.com/codesanook/orchard-example](https://github.com/codesanook/orchard-example)
 
 ## References & useful links
 - Content adjusted from https://docs.orchardproject.net/en/latest/Documentation/Writing-a-content-part

@@ -28,7 +28,6 @@ But most modules that expose front-end views need to use shapes in order to allo
 
 Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issues/4121#issuecomment-539608731) & credit to Sébastien Ros
 
-
 # Dynamically create a shape in a view
 - In any cshtml page, create a new shape with `New` property which holding a ShapeFactory reference.
 - Display a shape with `DisplayAsync`.
@@ -85,6 +84,17 @@ return Factory(
     async context => await context.New.FooPart()
 ).Location("Detail", "Content");
 ```
+
+# Override a template
+- https://docs.orchardcore.net/en/dev/docs/reference/modules/Templates/
+- Display Type
+  - Detail
+  - Summary
+  - DetailAdmin
+  - SummaryAdmin
+- Useful template names to override
+  - Content_[DisplayType]__[ContentType] => Content-Book.Summary.cshtml
+  - [ContentType]_[DisplayType]__[PartType] => ContentType-TitlePart.Summary.cshtml
 
 # Useful code reference
 - https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore.Modules/OrchardCore.Demo/ContentElementDisplays/TestContentElementDisplayDriver.cs
