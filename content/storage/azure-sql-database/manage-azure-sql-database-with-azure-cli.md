@@ -27,6 +27,7 @@ showToc: true
     --admin-user <ADMIN_USERNAME> \
     --admin-password <ADMIN_PASSWORD>
   ```
+- Name must be unique and we cannot use an existing server name in Azure cloud.
 - If your ADMIN_PASSWORD has special characters you need to wrap it with single quotes.
 - To list all available locations, run `az account list-locations --output table`.
 - To list all exiting servers, use `az sql server list --output table`.
@@ -55,7 +56,7 @@ showToc: true
     --start-ip-address 0.0.0.0 \
     --end-ip-address 0.0.0.0
   ```
-  - Example code to create a firewall rule that allows all Azure services:
+- Example code to create a firewall rule that allows all Azure services:
   ```sh
     az sql server firewall-rule create \
       --server codesanok-example-db-server \
@@ -64,6 +65,7 @@ showToc: true
       --start-ip-address 0.0.0.0 \
       --end-ip-address 0.0.0.0
   ```
+- REF https://docs.azure.cn/zh-cn/cli/sql/server/firewall-rule?view=azure-cli-latest#az_sql_server_firewall_rule_create
 
 ## Create Azure SQL Database
 - Command:
@@ -151,6 +153,19 @@ showToc: true
     --server codesanook-example-db-server \
     --resource-group codesanook-example-resource-group \
     --output table
+  ```
+## Show details of a server
+- Command:
+  ```sh
+  az sql server show \
+    --name <DATABASE_SERVER_NAME> \
+    --resource-group <RESOURCE_GROUP_NAME>
+  ```
+- Example:
+  ```sh
+  az sql server show \
+    --name codesanook-example-db-server \
+    --resource-group codesanook-example-resource-group
   ```
 
 ## Delete a server
