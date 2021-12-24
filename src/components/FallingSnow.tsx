@@ -1,5 +1,4 @@
-import React, { useEffect, useRef } from 'react';
-import { css } from '@emotion/core';
+import { useEffect } from 'react';
 
 const isBrowser = typeof window !== "undefined"
 
@@ -14,17 +13,35 @@ function getBrowserHeight() {
 const MAX_SPEED = 10;
 const MIN_SPEED = 5;
 
-const MAX_PATH_WIDTH = 50;
+// amplitude
+const MAX_PATH_WIDTH = 30;
 const MIN_PATH_WIDTH = 20;
 
 const MAX_PATH_HEIGHT = getBrowserHeight();
-const MIN_PATH_HEIGHT = 100;
+const MIN_PATH_HEIGHT = 300;
 
-// Max and min size of snow
-const MAX_SIZE = 32;
-const MIN_SIZE = 15;
+// Max and min size of snowflake
+const MAX_SIZE = 16;
+const MIN_SIZE = 8;
 
 const NUMBER_OF_SNOW_FLAKES = 50;
+
+/**
+ * Returns a random number between min and max.
+ * @param number min The lower bound of the range.
+ * @param number max The upper bound of the range.
+ * @return random number between min (included) and max (not included):
+ */
+function random(min: number, max: number) {
+    // https://stackoverflow.com/a/24152886/1872200
+    return Math.random() * (max - min) + min;
+}
+
+// Equation x = h * sin((2PI/w)y)
+// Input y value and return x value
+function sinGraph(yValue: number, adjustedWaveHeight: number, adjustedWaveLength: number) {
+    return adjustedWaveHeight * Math.sin(((2 * Math.PI) / adjustedWaveLength) * yValue);
+}
 
 /**
  * Create a new snow flake object in the specified starting position
@@ -34,19 +51,16 @@ class SnowFlake {
     private interval: NodeJS.Timer = null;
 
     private x: number;
-
     private y: number;
 
     private startX: number;
-
     private speed: number;
 
     private pathWidth: number;
-
     private pathHeight: number;
 
     constructor(public imageElement: HTMLImageElement) {
-        this.imageElement.style.position = 'absolute';
+        this.imageElement.style.position = 'fixed';
         this.imageElement.style.zIndex = '1000';
         this.imageElement.src = '/assets/snowflake.png';
         this.reset();
@@ -108,36 +122,16 @@ class SnowFlake {
     }
 }
 
-/**
- * Returns a random number between min and max.
- * @param number min The lower bound of the range.
- * @param number max The upper bound of the range.
- * @return random number between min (included) and max (not included):
- */
-function random(min: number, max: number) {
-    // https://stackoverflow.com/a/24152886/1872200
-    return Math.random() * (max - min) + min;
-}
-
-// Equation x = h * sin((2PI/w)y)
-// Input y value and return x value
-function sinGraph(yValue: number, adjustedWaveHeight: number, adjustedWaveLength: number) {
-    return adjustedWaveHeight * Math.sin(((2 * Math.PI) / adjustedWaveLength) * yValue);
-}
-
 export default function FallingSnow() {
-    const elementRef = useRef<HTMLDivElement>();
-
     useEffect(() => {
 
         // Create some snow flakes.
         const snowFlakes = [...Array(NUMBER_OF_SNOW_FLAKES).keys()].map(() => {
-            const imageElement = document.createElement('img') as HTMLImageElement;
+            const imageElement = document.createElement('img');
             return new SnowFlake(imageElement);
         });
 
         const bodyElement = document.getElementsByTagName('body')[0];
-
         snowFlakes.forEach((snowFlake) => {
             bodyElement.appendChild(snowFlake.imageElement);
             snowFlake.startAnimation();
