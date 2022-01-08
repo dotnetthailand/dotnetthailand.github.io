@@ -24,20 +24,23 @@ To use SQL Server Docker compose, we need to create required files and add conte
   WORKDIR /app
 
   COPY ./entrypoint.sh ./
-  COPY ./initialize.sh ./
   COPY ./init-db.sql ./
 
+  # https://dbafromthecold.com/2019/11/18/using-volumes-in-sql-server-2019-non-root-containers/
   USER root
+
   RUN chmod +x ./entrypoint.sh
-  RUN chmod +x ./initialize.sh
+  RUN mkdir -p /var/opt/mssql/data && chown mssql /var/opt/mssql/data
+  RUN mkdir -p /var/opt/mssql/log && chown mssql /var/opt/mssql/log
+  RUN mkdir -p /var/opt/mssql/backup && chown mssql /var/opt/mssql/backup
 
+  USER mssql
   ENTRYPOINT ["./entrypoint.sh"]
-
   ```
 
 # entrypoint.sh
 - entrypoint.sh is any entry point script that will be run when we launch a container
-- This fill does two things, run `initialize.sh` script and start a SQL server instance.
+- This fill does two things, run `init_db local function` and start a SQL server instance.
   ```sh
   #!/bin/bash
   # entrypoint.sh
@@ -45,37 +48,31 @@ To use SQL Server Docker compose, we need to create required files and add conte
   # Exit immediately if a command exits with a non-zero status.
   set -e
 
-  # Run initialize.sh and start SQL Server
-  ./initialize.sh & /opt/mssql/bin/sqlservr
+  # if MSSQL_SA_PASSWORD_FILE is set or has value
+  # https://stackoverflow.com/a/13864829/1872200
+  # https://stackoverflow.com/a/16753536/1872200
+
+  init_db () {
+    INPUT_SQL_FILE="init-db.sql"
+
+    until /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U sa -P "$MSSQL_SA_PASSWORD" -i $INPUT_SQL_FILE > /dev/null 2>&1
+    do
+      echo -e "\033[31mSQL server is unavailable - sleeping"
+      sleep 1 # Sleep for a second....
+    done
+
+    echo -e "\033[31mDone initialize a database"
+  }
+
+  # Run init_db and start a SQL Server
+  init_db & /opt/mssql/bin/sqlservr
   ```
 
-# initialize.sh and init-db.sql
-- `initialize.sh` is a Bash script that runs sqlcmd Utility and use `init-db.sql` as a file input.
-- Example content of initialize.sh
-  ```sh
-  #!/bin/bash
-  # initialize.sh
-
-  # How to connect to SQL Server:
-  # https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15&pivots=cs1-bash#connect-to-sql-server
-  # sqlcmd Utility options: https://docs.microsoft.com/en-us/sql/tools/sqlcmd-utility?view=sql-server-ver15#syntax
-
-  INPUT_SQL_FILE="init-db.sql"
-
-  until /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U sa -P "$MSSQL_SA_PASSWORD" -i $INPUT_SQL_FILE > /dev/null 2>&1
-  do
-    echo -e "\n\033[31mSQL server is unavailable - sleeping."
-    sleep 1 # Sleep in a second
-  done
-
-  echo -e "\n\033[31mInitializing a database has done."
-
-  ```
-
+# init-db.sql
 - We use `init-db.sql` to store all SQL statements that will be executed after a SQL server instance is ready.
 - Example content of init-db.sql:
   ```sql
-  -- init-db.sql
+  /* init-db.sql */
 
   CREATE DATABASE [my-db];
   USE [my-db];
@@ -89,7 +86,6 @@ To use SQL Server Docker compose, we need to create required files and add conte
   );
 
   INSERT INTO [User] VALUES ('Jose', 'Realman', '2018-01-01');
-
   ```
 
 # docker-compose.yml
@@ -105,7 +101,7 @@ To use SQL Server Docker compose, we need to create required files and add conte
       build:
         context: .
         dockerfile: Dockerfile
-      image: custom-sql-server-2019
+      image: ${COMPOSE_PROJECT_NAME:?err}-mssql-2019
       container_name: ${COMPOSE_PROJECT_NAME:?err}_db
       ports:
         - 1433:1433
@@ -120,7 +116,7 @@ To use SQL Server Docker compose, we need to create required files and add conte
         # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-environment-variables?view=sql-server-ver15#environment-variables
         - ACCEPT_EULA=Y
         - MSSQL_PID=Express
-        - MSSQL_SA_PASSWORD=12345Abc$$ # Escape $ with $$
+        - MSSQL_SA_PASSWORD=12345Abc%
 
         - MSSQL_DATA_DIR=/var/opt/mssql/data
         - MSSQL_LOG_DIR=/var/opt/mssql/log
@@ -129,7 +125,7 @@ To use SQL Server Docker compose, we need to create required files and add conte
       networks:
         - compose_network
 
-  # Create name volumes managed by Docker to not lose data when remove a container
+  # Create name volumes managed by Docker to not lose data when remove a container.
   # https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
   volumes:
     mssql_data:
@@ -138,7 +134,6 @@ To use SQL Server Docker compose, we need to create required files and add conte
 
   networks:
     compose_network:
-
   ```
 - We set `MSSQL_PID=Express` to configure SQL Server to Express edition.
 
@@ -151,7 +146,6 @@ To use SQL Server Docker compose, we need to create required files and add conte
   # https://docs.docker.com/compose/reference/envvars/#compose_project_name
   # Explicitly set volume's prefix or use -P with a docker run command.
   COMPOSE_PROJECT_NAME=sql_server_compose
-
   ```
 
 # File structure of our SQL server Docker compose
@@ -163,7 +157,6 @@ tree . -a
 ├── docker-compose.yml
 ├── entrypoint.sh
 ├── init-db.sql
-└── initialize.sh
 ```
 
 # Connect to a database server
@@ -172,11 +165,107 @@ tree . -a
   - Port=1433 (default port number, you can ignore)
   - Database=my-db
   - Username=sa
-  - Password=12345Abc$
-- .NET connection string value: `Server=localhost,1433; Database=my-db; User Id=sa; Password=12345Abc$;`
+  - Password=12345Abc%
+- .NET connection string value: `Server=localhost,1433; Database=my-db; User Id=sa; Password=12345Abc%;`
 
 # Reference
 - [Microsoft SQL Server on Docker Hub](https://hub.docker.com/_/microsoft-mssql-server)
 - [all available tags for mssql/server](https://mcr.microsoft.com/v2/mssql/server/tags/list)
 
+---
 
+# Optionally, update scripts to support secret
+- Defined a secret key and set value to a file in a `docker-compose.yml` file.
+- Use it in a service.
+- Set secret path to an `MSSQL_SA_PASSWORD_FILE` environment variable.
+- Update `entrypoint.sh` to use the MSSQL_SA_PASSWORD_FILE variable.
+- Example code of docker-compose.yml after setting secret:
+  ```yml
+  # docker-compose.yml
+
+  # https://docs.docker.com/compose/compose-file/compose-file-v3/
+  version: "3.8"
+
+  services:
+    db:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      image: ${COMPOSE_PROJECT_NAME:?err}-mssql-2019
+      container_name: ${COMPOSE_PROJECT_NAME:?err}_db
+      ports:
+        - 1433:1433
+      volumes:
+        - mssql_data:/var/opt/mssql/data
+        - mssql_log:/var/opt/mssql/log
+        - mssql_backup:/var/opt/mssql/backup
+
+      # https://docs.docker.com/compose/compose-file/compose-file-v3/#environment
+      environment:
+        # List of all SQL Server environment variables:
+        # https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-environment-variables?view=sql-server-ver15#environment-variables
+        - ACCEPT_EULA=Y
+        - MSSQL_PID=Express
+        # We don't use MSSQL_SA_PASSWORD here because we will get a password from "MSSQL_SA_PASSWORD_FILE" in entrypoint.sh
+        - MSSQL_SA_PASSWORD_FILE=/run/secrets/sa_password
+        - MSSQL_DATA_DIR=/var/opt/mssql/data
+        - MSSQL_LOG_DIR=/var/opt/mssql/log
+        - MSSQL_BACKUP_DIR=/var/opt/mssql/backup
+
+      networks:
+        - compose_network
+
+      # Use the defined secret
+      secrets:
+        - sa_password
+
+  # Create name volumes managed by Docker to not lose data when remove a container
+  # https://docs.docker.com/compose/compose-file/compose-file-v3/#volumes
+  volumes:
+    mssql_data:
+    mssql_log:
+    mssql_backup:
+
+  networks:
+    compose_network:
+
+  # Define a secret at top level
+  # External secrets are not available to containers created by docker-compose.
+  secrets:
+    sa_password:
+      file: ./sa_password.secret # Add this file in .gitignore to ignore from a repository.
+  ```
+  - Example code of entrypoint.sh after setting secret:
+  ```sh
+  #!/bin/bash
+  # entrypoint.sh
+
+  # Exit immediately if a command exits with a non-zero status.
+  set -e
+
+  # if MSSQL_SA_PASSWORD_FILE is set or has value
+  # https://stackoverflow.com/a/13864829/1872200
+  # https://stackoverflow.com/a/16753536/1872200
+
+  if [ ! -z ${MSSQL_SA_PASSWORD_FILE+x} ]
+  then
+    SA_PASSWORD=$(cat ${MSSQL_SA_PASSWORD_FILE})
+  else
+    SA_PASSWORD=${MSSQL_SA_PASSWORD}
+  fi
+
+  init_db () {
+    INPUT_SQL_FILE="init-db.sql"
+
+    until /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U sa -P "$SA_PASSWORD" -i $INPUT_SQL_FILE > /dev/null 2>&1
+    do
+      echo -e "\033[31mSQL server is unavailable - sleeping"
+      sleep 1 # Sleep for a second....
+    done
+
+    echo -e "\033[31mDone initialize a database"
+  }
+
+  # Run init_db and start a SQL Server
+  init_db & /opt/mssql/bin/sqlservr
+  ```
