@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { ChronoUnit, Duration, LocalDate } from '@js-joda/core';
 
 const isBrowser = typeof window !== "undefined"
 
@@ -123,8 +124,24 @@ class SnowFlake {
   }
 }
 
+// A LocalDate represents a date with no time and no time zone in the ISO-8601 calendar system, such as 2007-12-24.
+// obtain the current date in the system default time zone, e.g. 2016-02-23
+const today = LocalDate.now();
+// const today = LocalDate.parse('2022-01-10'); // for debugging
+const showFallingSnowBeforeAfterInDays = 15;
+
+const currentChristmasDay = LocalDate.of(today.year(), 12, 25);
+const lastChristmasDay = LocalDate.of(today.year() - 1, 12, 25);
+const shouldShowFallingShow =
+  getDistanceInDays(today, lastChristmasDay) <= showFallingSnowBeforeAfterInDays ||
+  getDistanceInDays(today, currentChristmasDay) <= showFallingSnowBeforeAfterInDays;
+
 export default function FallingSnow() {
+
   useEffect(() => {
+    if (!shouldShowFallingShow) {
+      return;
+    }
 
     // Create some snow flakes.
     const snowFlakes = [...Array(NUMBER_OF_SNOW_FLAKES).keys()].map(() => {
@@ -141,4 +158,8 @@ export default function FallingSnow() {
 
   // https://stackoverflow.com/a/22105413/1872200
   return null;
+}
+
+function getDistanceInDays(date1: LocalDate, date2: LocalDate) {
+  return Math.abs(date1.until(date2, ChronoUnit.DAYS));
 }
