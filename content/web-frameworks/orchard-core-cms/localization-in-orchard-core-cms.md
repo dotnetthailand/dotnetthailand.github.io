@@ -34,7 +34,7 @@ orchard-example
 # Create a PO file
 - Orchard Core CMS uses PO (portable object) file to store translation data.
 - We can create a PO file in multiple locations which are module, theme, tenant, App_Data and the root of the main project.
-- [Learn more about OP file locations](https://docs.orchardcore.net/en/dev/docs/reference/modules/Localize/#po-files-locations).
+- [Learn more about PO file locations](https://docs.orchardcore.net/en/dev/docs/reference/modules/Localize/#po-files-locations).
 - In this example, we will create a PO file in the root folder of the main project with a file path `/Localization/[CultureName].po`.
 - Culture name is `<language-code>-<country-code/region-code>` pattern e.g. `th-TH`, `en-US`.
 - [Learn more about globalization and localization terms](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/localization?view=aspnetcore-5.0#globalization-and-localization-terms-2)
