@@ -5,76 +5,9 @@ editable: true
 showToc: false
 ---
 
-## Async/Await checklist
+# Async/Await checklist
 
-Make sure you have done these items when working with asynchronous programming.
-
-<CheckListItem>
-
-การใช้ async/await เมื่อคอมไพล์โค้ดจะสร้าง method นั้นเป็น class ที่ implement อินเตอร์เฟซ IAsyncStateMachine
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-การใช้ async/await จะสร้าง Handler exception ที่ถูก throw ออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-ใช้ Task.WaitAll() ก็ต่อเมื่อต้องการควบคุมการทำของของ Task เอง เช่น สร้าง Task มาหลาย Task ใน array
-แล้วต้องการให้รอทุก Task เสร็จพร้อมกันก่อน แล้วจึงไปต่อแทนการ await ทุก Task ด้วยตัวเอง
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-เมื่อใช้ async/await ไม่จำเป็นต้องเกิด thread ใหม่เสมอ
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-หาก Implement อินเตอร์เฟซที่ส่งผลลัพธ์เป็น `Task<Result>` แต่ว่าใน method ไม่มี async/await เราสามารถคืนค่าด้วยการใช้ Task.FromResult(return_value);
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-Task.WaitAll() จะรอทุกงานให้เสร็จก่อน แล้วจึงดำเนินการต่อ แต่ว่า Task.WhenAll() จะคืนค่าเป็น Task ที่ทำทุกอย่างเสร็จ สามารถไปสั่ง await ที่อื่นได้อีกที
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-การรัน Task โดยไม่ await ในบางแอปพลิเคชัน เช่น ASP.NET Core จะไม่นำไปสู่ Fire and Forget คือสั่งแล้วลืมไปได้เลยเดี๋ยวงานก็เสร็จ แต่จะได้ผลลัพธ์เป็น สั่งแล้วงานหายไปเลย
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
-
-<CheckListItem>
-
-หาก Task ที่สั่งมีระยะเวลาในการทำงานที่ยาว และไม่ต้องการไปแย่ง Thread จาก pool
-เราสามารถบอก Scheduler ได้ว่างานนี้จะทำงานยาวๆ ด้วยพารามิเตอร์ TaskCreationOptions.LongRunning
-จากคำสั่ง `Task.Factory.StartNew(Func<>(), TaskCreationOptions.LongRunning);`
-
-</CheckListItem>
-
-<!-- ******************** end of an item ******************** -->
+## Please make sure you have done these checklist items when working with asynchronous programming.
 
 <CheckListItem>
 
@@ -86,7 +19,7 @@ Use async/await all the ways.
 
 <CheckListItem>
 
-Don't use blocking method e.g. `Task.WaitAll()`, `.Result`, `.Wait()`.
+Don't use blocking methods e.g. `Task.WaitAll()`, `.Result`, `.Wait()`.
 [Read more](https://blog.stephencleary.com/2012/07/dont-block-on-async-code.html)
 
 </CheckListItem>
@@ -233,3 +166,18 @@ Use `await Task.WhenAny/All` instead of `Task.WaitAny/All`.
 </CheckListItem>
 
 <!-- ******************** end of an item ******************** -->
+
+
+# Async/Await basic knowledge
+
+- การใช้ async/await เมื่อคอมไพล์โค้ดจะสร้าง method นั้นเป็น class ที่ implement อินเตอร์เฟซ IAsyncStateMachine
+- การใช้ async/await จะสร้าง Handler exception ที่ถูก throw ออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป
+- ใช้ await Task.WhenAll() ก็ต่อเมื่อต้องการควบคุมการทำของของ Task เอง เช่น สร้าง Task มาหลาย Task ใน array
+  แล้วต้องการให้รอทุก Task เสร็จพร้อมกันก่อน แล้วจึงไปต่อแทนการ await ทุก Task ด้วยตัวเอง
+- เมื่อใช้ async/await ไม่จำเป็นต้องเกิด thread ใหม่เสมอ
+- หาก Implement อินเตอร์เฟซที่ส่งผลลัพธ์เป็น `Task<Result>` แต่ว่าใน method ไม่มี async/await เราสามารถคืนค่าด้วยการใช้ Task.FromResult(return_value);
+- Task.WaitAll() จะรอทุกงานให้เสร็จก่อน (block context thread) แล้วจึงดำเนินการต่อ แต่ว่า Task.WhenAll() จะคืนค่าเป็น Task สามารถไปสั่ง await ที่อื่นได้อีกที
+- การรัน Task โดยไม่ await ในบางแอปพลิเคชัน เช่น ASP.NET Core จะไม่นำไปสู่ Fire and Forget คือสั่งแล้วลืมไปได้เลยเดี๋ยวงานก็เสร็จ แต่จะได้ผลลัพธ์เป็น สั่งแล้วงานหายไปเลย
+เพราะตัว ASP.NET Core MVC's controller จะถูก dispose หลังจากที่ได้ process HTTP response เรียบร้อยแล้ว ดังนั้น Task ที่ยังทำงานไม่เสร็จก็จะหายไปด้วย
+- หาก Task ที่สั่งมีระยะเวลาในการทำงานที่ยาว และไม่ต้องการไปแย่ง Thread จาก pool เราสามารถบอก Scheduler ได้ว่างานนี้จะทำงานยาวๆ ด้วยพารามิเตอร์ TaskCreationOptions.LongRunning
+จากคำสั่ง `Task.Factory.StartNew(Func<>(), TaskCreationOptions.LongRunning);`
