@@ -45,5 +45,16 @@ showToc: true
   6.0.100 [/usr/share/dotnet/sdk]
   ```
 
+# Opitionally install .NET preview with Snap
+- Run the following command to install the latest .NET Core SDK:
+```sh
+  sudo snap install dotnet-sdk --channel=6.0/beta --classic
+```
+- Wait several minutes until installation has finished.
+- The default .NET Core command is `dotnet-sdk.dotnet` to not conflict with a globally installed .NET Core version you may have.
+- Optionally, you can set an alias to `dotnet` with `sudo snap alias dotnet-sdk.dotnet dotnet` and remove with `sudo snap unalias dotnet`.
+- Run `dotnet-sdk.dotnet --version`, you should find `6.0.100-preview.5.21302.13` or a newer version of .NET 6.
+- You can now use .NET 6 project.
+
 # More for installation document
 - https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
