@@ -10,168 +10,150 @@ showToc: true
 # How to setup and use Playwright (minimum setup)
 
 ## Creating Node.js project
-
 - Install Node.js
 - Install Yarn
 - Create a new empty folder.
-
-```
-mkdir playwright-getting-started
-cd playwright-getting-started
-```
-
+  ```sh
+    mkdir playwright-getting-started
+    cd playwright-getting-started
+  ```
 - Create a new Node.js project with a default configuration.
-
-```
-yarn init -y
-```
-
+  ```sh
+    yarn init -y
+  ```
 - Install required Node packages. We will use TypeScript and ts-jest in this project.
-
-```
-yarn add -D \
-  @types/jest \
-  add \
-  jest \
-  playwright \
-  ts-jest \
-  typescript \
-
-```
-
+  ```sh
+    yarn add -D \
+      @types/jest \
+      add \
+      jest \
+      playwright \
+      ts-jest \
+      typescript
+  ```
 - Open package.json with your favorite text editor and you will find the content like this.
-
-```json
-{
-  "name": "playwright-getting-started",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^26.0.22",
-    "jest": "^26.6.3",
-    "playwright": "^1.10.0",
-    "ts-jest": "^26.5.4",
-    "typescript": "^4.2.3"
-  }
-}
-```
-
-- Please be informed that you may get a newer version of this packages.
+  ```json
+    {
+      "name": "playwright-getting-started",
+      "version": "1.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "devDependencies": {
+        "@types/jest": "^26.0.22",
+        "jest": "^26.6.3",
+        "playwright": "^1.10.0",
+        "ts-jest": "^26.5.4",
+        "typescript": "^4.2.3"
+      }
+    }
+  ```
+- Please be informed that you may get a newer version of these packages.
 
 ## Configure Jest
-
-- Create `jest.config.js` at root of your project and configure to use `ts-jest` preset.
-
-```js
-// jest.config.js
-module.exports = {
-  preset: 'ts-jest',
-  testEnvironment: 'node',
-};
-```
+- Create `jest.config.js` at root folder of your project and configure it to use `ts-jest` preset
+  with the following code:
+  ```js
+    // jest.config.js
+    module.exports = {
+      preset: 'ts-jest',
+      testEnvironment: 'node',
+    };
+  ```
 
 ## Writing your first test case
+- Create a folder `src/__tests__` and add `homepage.test.ts` inside this folder.
+- Add test contents to `homepage.test.ts` with the following code:
+  ```ts
+    import { chromium } from 'playwright';
 
-- Create folder `src/__tests__` and add `homepage.test.ts` in it.
-- Add test content to `homepage.test.ts` as the following code:
+    // Uppercase name for a test suite
+    describe('Homepage', () => {
 
-```ts
-import { webkit } from 'playwright';
+      // Lowercase name for a test case
+      test('should launch homepage with expected title', async () => {
+        const browser = await chromium.launch();
+        const context = await browser.newContext();
 
-// Uppercase name for a test suite
-describe('Homepage', () => {
+        const page = await context.newPage();
+        await page.goto('https://todomvc.com');
 
-  // Lowercase name for a test case
-  test('should launch homepage with expected title', async () => {
-    const browser = await webkit.launch();
-    const context = await browser.newContext();
-
-    const page = await context.newPage();
-    await page.goto('https://todomvc.com');
-
-    const pageTitle = await page.title();
-    expect(pageTitle).toBe('TodoMVC');
-    await browser.close();
-  });
-});
-
-```
-
-- This test will launch `http://todomvc.com` with Webkit (Safari engine).
-- Verify if page's title matches TodoMVC.
-- By default Playwright will launch in headless mode so you won't see UI of a browser.
-- You can make Playwright launch your browser by use this option `webkit.launch({ headless: false })`.
+        const pageTitle = await page.title();
+        expect(pageTitle).toBe('TodoMVC');
+        await browser.close();
+      });
+    });
+  ```
+- This test will launch `http://todomvc.com` with headless Chromium (Safari engine).
+- Verify if page's title matches `TodoMVC` value.
+- By default, Playwright will launch in headless mode so you won't see UI of a browser.
+- You can make Playwright launch a UI browser by setting `chromium.launch({ headless: false })` option.
 
 ## Adding custom script to your package.json
-
-- Add a custom script with the following content to to your package.json
-
-```json
-  "scripts": {
-    "test": "jest"
-  },
-```
-
-- Then you will find you latest package.json will look like this.
-
-```json
-{
-  "name": "playwright-getting-started",
-  "version": "1.0.0",
-  "main": "index.js",
-  "license": "MIT",
-  "scripts": {
-    "test": "jest"
-  },
-  "devDependencies": {
-    "@types/jest": "^26.0.22",
-    "jest": "^26.6.3",
-    "playwright": "^1.10.0",
-    "ts-jest": "^26.5.4",
-    "typescript": "^4.2.3"
-  }
-}
-```
+- Add a custom script with the following content to to your `package.json`.
+  ```json
+    "scripts": {
+      "test": "jest"
+    },
+  ```
+- Then you will find you latest package.json will look like this:
+  ```json
+    {
+      "name": "playwright-getting-started",
+      "version": "1.0.0",
+      "main": "index.js",
+      "license": "MIT",
+      "scripts": {
+        "test": "jest"
+      },
+      "devDependencies": {
+        "@types/jest": "^26.0.22",
+        "jest": "^26.6.3",
+        "playwright": "^1.10.0",
+        "ts-jest": "^26.5.4",
+        "typescript": "^4.2.3"
+      }
+    }
+  ```
 
 ## Checking the project file structure
 - Here is the file structure in our project.
+```sh
+  playwright-getting-started/
+  ├── node_modules
+  ├── src/__tests__/homepage.test.ts
+  ├── jest.config.js
+  ├── package.json
+  └── yarn.lock
 ```
-playwright-getting-started/
-├── node_modules
-├── src/__tests__/homepage.test.ts
-├── jest.config.js
-├── package.json
-└── yarn.lock
-```
-## Running our test case.
-- In terminal at root level of the project, run the following command.
-```
-$ yarn test
-```
-- Then you will find pass result in a console.
-```
-yarn run v1.22.5
-$ jest
- PASS  src/__tests__/homepage.test.ts (6.782 s)
-  Homepage
-    √ should launch homepage with expected title (4101 ms)
 
-Test Suites: 1 passed, 1 total
-Tests:       1 passed, 1 total
-Snapshots:   0 total
-Time:        6.878 s, estimated 7 s
-Ran all test suites.
-Done in 8.15s.
-```
+## Running our test case.
+- In a terminal at root level of the project, run the following command:
+  ```sh
+    yarn test
+  ```
+- Then you will find a passed result in a terminal as following:
+  ```sh
+    yarn run v1.22.5
+    $ jest
+    PASS  src/__tests__/homepage.test.ts (6.782 s)
+      Homepage
+        √ should launch homepage with expected title (4101 ms)
+
+    Test Suites: 1 passed, 1 total
+    Tests:       1 passed, 1 total
+    Snapshots:   0 total
+    Time:        6.878 s, estimated 7 s
+    Ran all test suites.
+    Done in 8.15s.
+  ```
 
 ## Note
-- This code should work cross platform, Windows, Mac, Linux
-- I tested this code on Windows and it works well for built-in Webkit that is bundled with Playwright.
-- If the code does not work on your computer, please configure the code to use `chromiume` or `firefox`.
+- This code should work cross platforms, Windows, Mac and Linux (Of course WSL2).
+- I also tested this code on Windows and it works well for built-in Webkit (Safari)
+  `(import { webkit } from 'playwright';)` which is bundled with Playwright.
+- If Webkit engine does not work on your computer, please change the code to use `chromiume` or `firefox` instead.
 
-
-# Use React component name as a selector
+# Use a React component name as a selector
 Normally, we prefer to use CSS selector when getting an element to perform a action.
 However, for we sometimes use CSS in React component e.g. style-components, emotion libraries.
 Therefore, out CSS class name is auto-generated and we can't use it as a selector.
@@ -194,81 +176,81 @@ Here are overview of how we use `data-test-id` and `component name` selector.
 
 ## Code example
 - Given, we have React component name like this:
-```ts
-import { useState } from 'react';
-import { css } from '@emotion/react'
+  ```ts
+    import { useState } from 'react';
+    import { css } from '@emotion/react'
 
-function App() {
-  const [counter, setCounter] = useState(0);
+    function App() {
+      const [counter, setCounter] = useState(0);
 
-  const handleButtonClick = () => {
-    const valueToAdd = 1;
-    setCounter(previous => previous + valueToAdd);
-  }
+      const handleButtonClick = () => {
+        const valueToAdd = 1;
+        setCounter(previous => previous + valueToAdd);
+      }
 
-  const style = css`
-    border: 1px solid #ccc;
-  `;
+      const style = css`
+        border: 1px solid #ccc;
+      `;
 
-  return (
-    <div css={style}>
-      <p>
-        counter value:  <span>{counter}</span>
-      </p>
-      <button onClick={handleButtonClick}>Click me</button>
-    </div>
-  );
-}
+      return (
+        <div css={style}>
+          <p>
+            counter value:  <span>{counter}</span>
+          </p>
+          <button onClick={handleButtonClick}>Click me</button>
+        </div>
+      );
+    }
 
-export default App;
-```
+    export default App;
+  ```
 
 - The example of that script to click a button and assert counter value
-```ts
-import { chromium } from 'playwright';
-import { RESQNode } from 'resq';
+  ```ts
+    import { chromium } from 'playwright';
+    import { RESQNode } from 'resq';
 
-declare global {
-  interface Window {
-    resq: {
-      resq$: (componentName: string, element: HTMLElement) => RESQNode
+    declare global {
+      interface Window {
+        resq: {
+          resq$: (componentName: string, element: HTMLElement) => RESQNode
+        }
+      }
     }
-  }
-}
 
-// Uppercase name for a test suite
-describe('Page with React component', () => {
-  test('should get correct value after click button inside React component', async () => {
-    // Arrange
-    const browser = await chromium.launch();
-    const context = await browser.newContext();
-    const page = await context.newPage();
-    await page.goto('http://localhost:3000');
+    // Uppercase name for a test suite
+    describe('Page with React component', () => {
+      test('should get correct value after click button inside React component', async () => {
+        // Arrange
+        const browser = await chromium.launch();
+        const context = await browser.newContext();
+        const page = await context.newPage();
+        await page.goto('http://localhost:3000');
 
-    // React Element Selector Query (RESQ) helps us query React components and children by component name or HTML selector.
-    // We need to have it on a page that we are going to test.
-    // Therefore, we add req script to that page.
-    // More info https://github.com/baruchvlz/resq
-    await page.addScriptTag({ path: require.resolve('resq') });
+        // React Element Selector Query (RESQ) helps us query React components and children by component name or HTML selector.
+        // We need to have it on a page that we are going to test.
+        // Therefore, we add req script to that page.
+        // More info https://github.com/baruchvlz/resq
+        await page.addScriptTag({ path: require.resolve('resq') });
 
-    const reactComponentName = 'App';
-    const rootElementHandle = await page.waitForSelector('#root');
+        const reactComponentName = 'App';
+        const rootElementHandle = await page.waitForSelector('#root');
 
-    const result = await rootElementHandle.evaluateHandle((node: HTMLElement, componentName) => {
-      const component = window.resq.resq$(componentName, node);
-      return component.node; // div with CSS prop node
-    }, reactComponentName);
-    const tag = result.asElement();
-    const button = await tag.$('button');
+        const result = await rootElementHandle.evaluateHandle((node: HTMLElement, componentName) => {
+          const component = window.resq.resq$(componentName, node);
+          return component.node; // div with CSS prop node
+        }, reactComponentName);
+        const tag = result.asElement();
+        const button = await tag.$('button');
 
-    // Actual
-    await button.click();
+        // Actual
+        await button.click();
 
-    // Assert
-    const counter = await tag.$('span');
-    const value = await counter.evaluate(element => element.innerText);
-    expect(Number(value)).toBe(1);
-    await browser.close();
-  });
-});
-```
+        // Assert
+        const counter = await tag.$('span');
+        const value = await counter.evaluate(element => element.innerText);
+        expect(Number(value)).toBe(1);
+        await browser.close();
+      });
+    });
+  ```
