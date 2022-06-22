@@ -125,6 +125,47 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
   ```cs
       services.AddScoped<IContentDisplayDriver, ProductContentDisplayDriver>();
   ```
+  - You can also use `Combine(params IDisplayResult[] results)` method to return multiple shapes from `ContentDisplayDriver`.
+
+# placement.json tip
+- We can control how to place our shape with placement.json which is added to the root of a module.
+- Here are code examples of how to use placement.json:
+  - Hide an existing shape of a specific content type:
+    ```json
+      // placement.json
+      {
+        "ContentPreview_Button": [
+          {
+            "contentType": [
+              "Blog"
+            ],
+            "place": "-"
+          }
+        ]
+      }
+    ```
+  - Change a local zone position of an existing shape only an frontend summary page (list item page):
+    ```json
+      // placement.json
+      {
+        "TaxonomyField_Display__Tags": [
+          {
+            "contentType": ["BlogPost"],
+            "displayType": "Summary",
+            "place": "Footer:0"
+          }
+        ]
+      }
+    ```
+- Orchard can parse `placement.json` with a comment, so we can enable VS Code to support JSON comment by adding the following code to a settings.json in your `.vscode` folder at the root level of your project.
+  ```json
+    {
+      "files.associations": {
+        "*.json": "jsonc"
+      }
+    }
+  ```
+- To learn more about placement.json, please check [placement document](https://docs.orchardcore.net/en/dev/docs/reference/core/Placement/).
 
 # Useful source code for referencing
 - https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore.Modules/OrchardCore.Demo/ContentElementDisplays/TestContentElementDisplayDriver.cs
