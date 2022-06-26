@@ -127,7 +127,7 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
   ```
   - You can also use `Combine(params IDisplayResult[] results)` method to return multiple shapes from `ContentDisplayDriver`.
 
-# placement.json tip
+# placement.json tips
 - We can control how to place our shape with placement.json which is added to the root of a module.
 - Here are code examples of how to use placement.json:
   - Hide an existing shape of a specific content type:
@@ -166,6 +166,8 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
     }
   ```
 - To learn more about placement.json, please check [placement document](https://docs.orchardcore.net/en/dev/docs/reference/core/Placement/).
+
+# Add a local zone without editing Content.cshtml
 
 # Useful source code for referencing
 - https://github.com/OrchardCMS/OrchardCore/blob/dev/src/OrchardCore.Modules/OrchardCore.Demo/ContentElementDisplays/TestContentElementDisplayDriver.cs
