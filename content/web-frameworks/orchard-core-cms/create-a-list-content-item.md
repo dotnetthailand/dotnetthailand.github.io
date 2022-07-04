@@ -165,8 +165,8 @@ We need to pass `ListPart.ContainerId` and `ListPart.ContentType` as query strin
   - `ListPart.ContentType` is used by the driver to check if the current content item matches its value to make sure we don't apply `ContainedPart` to unintended type. This is because the driver is always called by any content item whenever we display/edit/update a content item.
 
 # Why we can't attach ContainedPart when we defined a child type (UserGame) in Migrations.cs
-- If we defined a new item with ContentedPart in its' definition, we will get a new content item with ContainedPart which has ContainerId's value equal to 0.
-- When ContainedPartDisplayDriver finds a content item has ContainedPart, it will render `ListPart_ContainerId` shape which set hidden input field with name to `ListPart.ContainerId` and value to `0` in [ListPart.ContainerId.cshtml](https://github.com/OrchardCMS/OrchardCore/blob/main/src/OrchardCore.Modules/OrchardCore.Lists/Views/ListPart.ContainerId.cshtml) template.
+- If we defined a new item with ContentedPart in its' definition, we will get a new content item with ContainedPart which has ContainerId's value equal to null.
+- When ContainedPartDisplayDriver finds a content item has ContainedPart, it will render `ListPart_ContainerId` shape which set hidden input field with name to `ListPart.ContainerId` and value to `null` in [ListPart.ContainerId.cshtml](https://github.com/OrchardCMS/OrchardCore/blob/main/src/OrchardCore.Modules/OrchardCore.Lists/Views/ListPart.ContainerId.cshtml) template.
 - Even thought we send `ListPart.ContainerId` as query string, it can't override value of `ListPart.ContainerId` which is passed as hidden input field because ASP.NET Core MVC model binding will take a value of form field before query string as [mentioned in this document](https://docs.microsoft.com/en-us/aspnet/core/mvc/models/model-binding?view=aspnetcore-6.0#sources). This results in a child item can't associate to its parent.
 
 # Render a list content item
