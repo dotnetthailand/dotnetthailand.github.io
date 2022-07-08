@@ -29,7 +29,7 @@ But most modules that expose front-end views need to use shapes in order to allo
 Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issues/4121#issuecomment-539608731) & credit to `Sébastien Ros`
 
 # Dynamically create a shape in a view
-- In any cshtml page, we can create a new shape with `New` property of the current view which holds a `ShapeFactory` object reference and use `DisplayAsync` method to display a shape.
+- In any `*.cshtml` page, we can create a new shape with `New` property of the current view which holds a `ShapeFactory` object reference and use `DisplayAsync` method to display a shape.
   ```html
     @* Views/Home/Index.cshtml *@
     @{
@@ -42,15 +42,14 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
       @await DisplayAsync(shape)
     </h1>
   ```
-- The shape `Foo` will use `Foo.cshtml` as a template and pass a model with Message property to it.
+- The shape `Foo` will use `Foo.cshtml` as a template and pass a model with Message property to the template.
 - Then we can access `Model.Message` in `Foo.cshtml`.
   ```html
     @* Foo.cshtml *@
     <span>@Model.Message</span>
   ```
 - We can create any shape for our requirement, e.g. `header`, `branding`.
-
-## Example file structure of Foo shape
+## Example of file structure of a Foo shape
   ```sh
     $ tree Views
     Views
@@ -58,6 +57,7 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
     └── Home
         └── Index.cshtml
   ```
+- **Note** to get a template loaded property, you may need to restart an application.
 
 # Create a shape without ViewModel in a DisplayDriver class
 - We usually use `DisplayDriverBase.Initialize<TModel>` to create a ShapeResult for a content part.
@@ -116,7 +116,7 @@ Content from [GitHub Discussion](https://github.com/OrchardCMS/OrchardCore/issue
                   }
 
                   // It uses Content.SaveButton.cshtml template in a Views folder of the current module.
-                  return Dynamic("Content_SaveButton").Location("DetailAdmin", "Action:0");
+                  return Dynamic("Content_SaveButton").Location("Edit", "Action:0");
               }
           }
       }
