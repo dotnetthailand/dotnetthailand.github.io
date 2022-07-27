@@ -30,8 +30,8 @@ showToc: true
 - Follow [this document](https://github.com/ingydotnet/git-subrepo#installation) to install git-subrepo.
 - Execute `git subrepo --version` to verify if you have successfully installed git-subrepo.
   ```sh
-  $ git subrepo --version
-  0.4.3
+    $ git subrepo --version
+    0.4.3
   ```
 
 ## Clone a custom module to the main project
@@ -55,12 +55,12 @@ showToc: true
 - Before cloning a module project with git-subrepo, please make sure your main project is under git repository and you have committed all changes.
 - CD to the root of your Orchard Core CMS project and run the following command:
   ```sh
-    $ git subrepo clone <your-custom-module-remote-url> <your-custom-module-path>
+    $ git subrepo clone <your-custom-module-remote-url> <your-custom-module-path> -b <branch-name>
   ```
-- Please note that the tool does not create another subdirectory with the name of the subrepo that you are adding.
-- Example command to clone `Codesanook.OrganizationProfile` to the main project.
+- **Please note the tool does not create another subdirectory with the name of the subrepo that you are using.**
+- Example command to clone `develop branch of Codesanook.OrganizationProfile` to the main project.
   ```sh
-    $ git subrepo clone git@github.com:codesanook/Codesanook.OrganizationProfile.git src/Modules/Codesanook.OrganizationProfile
+    $ git subrepo clone git@github.com:codesanook/Codesanook.OrganizationProfile.git src/Modules/Codesanook.OrganizationProfile -b develop
   ```
 
 ## Generate code for a custom module
@@ -125,6 +125,11 @@ showToc: true
     $ git subrepo pull src/Modules/Codesanook.OrganizationProfile
   ```
 
+# Turn an existing subdirectory into a subrepo.
+```sh
+  $ git subrepo init <subdir> [-r <remote>] [-b <branch>] [--method <merge|rebase>]
+```
+
 ## Other consideration to distribute your custom module.
 - You can also make your open source custom module as Nuget package and let other projects consume your Nuget package instead of cloning it by git-subrepo.
 - This is good if a consumer that doesn't make any changes to your custom module.
@@ -134,3 +139,4 @@ showToc: true
 - [git-subrepo's repository](https://github.com/ingydotnet/git-subrepo/)
 - [git-subrepo tutorial](https://blog.s-schoener.com/2019-04-20-git-subrepo/)
 - [git-subrepo basic guide](https://github.com/ingydotnet/git-subrepo/wiki/Basics)
+
