@@ -35,45 +35,45 @@ order: 1
 - Create a new folder with name `orchard-example` as a root folder of your project.
 - Inside the root folder, create a folder `src` to store the project's source code.
 - CD To `orchard-example/src`.
-- Use `dotnet new occms` command to create OrchardCore CMS project with name `Orchard.Web`.
+- Use `dotnet new occms` command to create OrchardCore CMS project with name `OrchardExample.Cms`.
 - You can change a project's name to any name that you want.
   ```sh
     mkdir -p orchard-example/src
     cd orchard-example/src
-    dotnet new occms --name Orchard.Web
+    dotnet new occms --name OrchardExample.Cms
   ```
 # Open the project with VS Code
-- CD the root folder (`codesanook-example`).
+- CD back to the root folder (`codesanook-example`).
 - Launch VS Code.
   ```sh
-    cd orchard-example
-    code .
+    $ cd orchard-example
+    $ code .
   ```
 # Add preview package source
 - At root of the project, create `nuget.config` file.
 - Add the following code to the file.
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <clear />
-    <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
-    <add key="OrchardCorePreview" value="https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json" />
-  </packageSources>
-  <disabledPackageSources />
-</configuration>
-```
-- *Waring*, we do not suggest you to use the dev packages in production.
+  ```xml
+    <?xml version="1.0" encoding="utf-8"?>
+    <configuration>
+      <packageSources>
+        <clear />
+        <add key="NuGet" value="https://api.nuget.org/v3/index.json" />
+        <add key="OrchardCorePreview" value="https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json" />
+      </packageSources>
+      <disabledPackageSources />
+    </configuration>
+  ```
+- *Warning*, we do not suggest you to use the dev packages in production.
 
 # Project file structure
   ```sh
-    tree -I "bin|obj" orchard-example
+    $ tree -I "bin|obj" orchard-example
     orchard-example
     ├── nuget.config
     └── src
-        └── Orchard.Web
+        └── OrchardExample.Cms
             ├── NLog.config
-            ├── Orchard.Web.csproj
+            ├── OrchardExample.Cms.csproj
             ├── Program.cs
             ├── Properties
             │   └── launchSettings.json
@@ -82,14 +82,14 @@ order: 1
             └── wwwroot
   ```
 # Launch a website
-- Use VS Code integrated terminal by pressing **ctrl+`**
-- CD to `src/Orchard.Web` folder.
+- Use VS Code integrated terminal by pressing **ctrl + `**
+- CD to `src/OrchardExample.Cms` folder.
 - Run the project with the following command:
   ```sh
-  cd src/Orchard.Web
-  dotnet run
+    $ cd src/OrchardExample.Cms
+    $ dotnet run
   ```
-*Note* Please make sure you've saved all changes before running the command.
+*Note*, please make sure you've saved all changes before running the command.
 - FYI, `dotnet run` automatically download all Nuget packages so you don't need to explicitly run `dotnet restore`.
 - Please refer to https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-run#implicit-restore for more information.
 
@@ -133,7 +133,7 @@ Orchard Core Mvc Web App                      ocmvc           [C#]        Web/Or
 ```
 
 For example:
-**Orchard Core Cms Web App**:  to create a new Orchard Core CMS website project.
-```
-dotnet new occms --name [PROJECT_NAME]
+**Orchard Core Cms Web App Template** to create a new Orchard Core CMS website project.
+```sh
+  $ dotnet new occms --name [PROJECT_NAME]
 ```
