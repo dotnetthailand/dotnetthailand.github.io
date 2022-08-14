@@ -32,7 +32,7 @@ https://github.com/nakornttss/azureservicebusrabmitmqamqp
 
 จากนั้น ผมก็ทดสอบ เอามาใช้งาน ปรากฏว่า ติดปัญหาเพิ่มอีกนิดหน่อย คือว่า Azure Service Bus ใช้ protocal version 1.0 แต่ RabbitMQ ใช้ protocal version 0.9.x ซึ่ง พอไม่ตรงกัน เลยต้องมีการ configure ให้ RabbitMQ สามารถใช้ 1.0 ได้ด้วย ซึ่งผมได้จัดการ สร้าง dockerfile ขึ้นมา โดย inherit ต่อมาจาก official 3.9 และได้จัดแจงเปิด service เพิ่มเติม เพื่อให้ RabbitMQ ของผม สามารถดู dashboard ใน local ได้ด้วย จึงได้ผล ออกมาเป็น dockerfile และ docker compose ดังนี้
 
-# dockerfile
+dockerfile
 
  ```dockerfile
 FROM rabbitmq:3.9
@@ -54,7 +54,7 @@ EXPOSE 5672
 EXPOSE 5671
   ```
 
-# docker-compose.yaml
+docker-compose.yaml
 
  ```yaml
 version: "3.2"
