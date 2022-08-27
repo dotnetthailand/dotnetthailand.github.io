@@ -5,29 +5,26 @@ editable: true
 showToc: true
 ---
 
-# Install on WSL2 (Ubuntu)
+# Install Azure CLI on WSL2 (Ubuntu)
 
-## How to install with one command
+## Install with one command
   ```sh
-  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+    $ curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
   ```
 
 ## Update to the latest version
   ```sh
-  az upgrade
+    $ az upgrade
   ```
 - Learn more https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#update
 
-## How to uninstall
+## Uninstall Azure CLI
 - https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt#uninstall
 
-## REF
-- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
-
-# Log in with Azure CLI
+# Log in Azure CLI
 - Execute the following command
   ```sh
-  az login
+    $ az login
   ```
 - A browser will be opened.
 - Log in with your Azure account.
@@ -73,3 +70,6 @@ showToc: true
 ```
 - Store the above JSON object as the value of a GitHub secret with a name, for example `AZURE_CREDENTIALS`
 - Then use a secret in your GitHub Actions workflow script,  for example `${{ secrets.AZURE_CREDENTIALS }}`
+
+## REF
+- https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt
