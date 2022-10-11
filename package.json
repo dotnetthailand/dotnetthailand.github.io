@@ -16,6 +16,7 @@
   ],
   "version": "1.0.1",
   "scripts": {
+    "dev": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build --prefix-paths",
     "serve": "gatsby serve",
