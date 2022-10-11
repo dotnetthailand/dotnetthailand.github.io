@@ -9,6 +9,14 @@ const style = css`
   h1{
     font-size: 1em;
   }
+
+  a {
+    color: #4193EC;
+  }
+
+  a:hover {
+    color: #3773db;
+  }
 `;
 
 const FriendsWebsites = () => {

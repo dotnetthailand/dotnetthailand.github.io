@@ -10,17 +10,23 @@
 See [CONTRIBUTING](./CONTRIBUTING.md).
 
 ## How to run this project locally
-- Install `Yarn` and `Gatsby` as global tools.
+- Install `Yarn`.
 - Clone the repository to your local machine.
-- CD to the root folder of the project.
-- Install all dependencies by executing the following command.
-  ```sh
-    yarn
-  ```
-- Run the project and enable hot-reload with:
-  ```
-    yarn start
-  ```
+- CD to the root of project folder.
+- Install all dependencies.
+
+## Running on localhost
+
+- To install the dependencies you need to run:
+
+```
+$ yarn
+```
+- If is the first time you are installing the dependencies it may take few minutes, get a coffee and relax ;)
+- To run the project with hot-reload enabled you can.
+```
+yarn start
+```
 - Open a browser and navigate to http://localhost:8000.
 - Change some contents of `content/index.mdx` and you will find a browser reload and show what you have changed automatically.
 
