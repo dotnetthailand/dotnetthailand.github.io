@@ -4,6 +4,7 @@ showMetadata: true
 editable: true
 showToc: true
 ---
+
 # RepoDb, a hybrid-ORM library for .NET - Part II
 บทความแรกเราได้พูดจบถึงเรื่อง Executing a Stored Procedure ตามไปอ่านกันได้ที่ Part I นะครับ :point_up:
 
@@ -19,7 +20,7 @@ using (var connection = new SqlConnection(connectionString))
           "SELECT * FROM [dbo].[Order] WHERE CustomerId = @CustomerId; " +
           "SELECT GETUTCDATE() AS RetrievedDateTimeUtc;",
           new { CustomerId = 10045 });
-          
+
      // Extract the results
      var customer = extractor.Extract<Customer>().FirstOrDefault();
      var orders = extractor.Extract<Order>().ToList();
@@ -35,7 +36,7 @@ using (var connection = new SqlConnection(connectionString))
           "EXEC [dbo].[sp_get_customer_orders] @CustomerId; " +
           "SELECT GETUTCDATE() AS RetrievedDateTimeUtc;",
           new { CustomerId = 10045 });
-          
+
      // Extract the results
      var customer = extractor.Extract<Customer>().FirstOrDefault();
      var orders = extractor.Extract<Order>().ToList();
@@ -45,18 +46,18 @@ using (var connection = new SqlConnection(connectionString))
 ## QueryMultiple<T1, T2>
 QueryMultiple<T1, T2> วิธีทำงานก็จะคล้ายกับวิธี ExecuteQueryMultiple ยกเว้นว่านักพัฒนาจำเป็นต้องส่งประเภท type ในระหว่างการเรียก
 และยังต้องส่งอาร์กิวเมนต์ query expressions ตามไปด้วย แล้วสิ่งที่ return  ออกมาจะเป็น Tuple ของผมลัพธ์
-```cs 
+```cs
 using (var connection = new SqlConnection(connectionString))
 {
      // Call the method, returns Tuple<T1, T2>
      var tuple = connection.QueryMultiple<Customer, Order>(c => c.Id == customerId, o => o.CustomerId = customerId);
-     
+
      // Get each item from the Tuple
      var customer = tuple.Item1.FirstOrDefault();
      var orders = tuple.Item2.ToList();
 }
 ```
-**Note:** ทั้งวิธี ExecuteQueryMultiple และ QueryMultiple รองรับจนถึง 7 Tuples 
+**Note:** ทั้งวิธี ExecuteQueryMultiple และ QueryMultiple รองรับจนถึง 7 Tuples
 
 ## Dynamic Objects
 การที่จะรองรับ dynamic objects สำหรับ RepoDb นั้นถือว่ายากและแพงมากแต่ RepoDb นั้นก็รองรับ ทั้ง dynamic Object และ ExpandoObject สำหรับ arguments ลองดู code ด้านล่าง
@@ -73,10 +74,10 @@ using (var connection = new SqlConnection(connectionString))
 ## Repositories
 การทำ  Repository Pattern สำหรับ Database นั้น  RepoDb ได้ provide class ให้เรา 2 ตัวคือ
 1. DbRepository
-1. BaseRepository 
+1. BaseRepository
 
-### DbRepository<TDbConnection>
-มาดูกันที่ตัวแรกกันก่อน **DbRepository** โดยตัวนี้จะใช้ได้แบบ higher-level คือให้นึกว่าเป็น  extension ของ DbConnection ที่สามารถทำงานกับ Table ไหนก้ได้เลย เราแค่ส่ง connection string ให้ base class
+### DbRepository
+มาดูกันที่ตัวแรกกันก่อน `DbRepository<TDbConnection>` โดยตัวนี้จะใช้ได้แบบ higher-level คือให้นึกว่าเป็น  extension ของ DbConnection ที่สามารถทำงานกับ Table ไหนก้ได้เลย เราแค่ส่ง connection string ให้ base class
 
 ```cs
 public class NorthwindDbRepository : DbRepository<SqlConnection>
@@ -84,24 +85,24 @@ public class NorthwindDbRepository : DbRepository<SqlConnection>
      public NorthwindDbRepository(string connectionString) :
           base(connectionString)
      { }
-     
+
      public IEnumerable<Order> GetCustomerOrders(int customerId)
      {
           return Query<Order>(o => o.CustomerId == customerId);
      }
-     
+
      public IEnumerable<Customer> GetAllActiveCustomers()
      {
           return Query<Customer>(c => c.IsActive == true };
      }
-     
+
      public void AllowIdentityInsert<TEntity>() where TEntity : class
      {
           return ExecuteNonQuery($"SET IDENTITY_INSERT {typeof(TEntity).Name} ON");
      }
 }
 ```
-โดยเวลาเรียกใช้ก็ง่ายๆเลย 
+โดยเวลาเรียกใช้ก็ง่ายๆเลย
 ```cs
 using (var repository = new NorthwindDbRepository(connectionString))
 {
@@ -123,15 +124,15 @@ public class CustomerRepository : BaseCustomer<Customer, SqlConnection>
 {
      public CustomerRepository(string connectionString) :
           base(connectionString)
-     { 
+     {
 
      }
-     
+
      public IEnumerable<Customer> GetAllActiveCustomers()
      {
           return Query(c => c.IsActive == true);
      }
-     
+
      public IEnumerable<Customer> GetCustomersByCountry(string country)
      {
           return Query(c => c.Country == country && c.IsActive == true);
@@ -153,14 +154,14 @@ Note: [The official results.](https://github.com/FransBouma/RawDataAccessBencher
 ## Caching
 คุณลักษณะนี้ช่วยให้นักพัฒนาสามารถแคชผลลัพธ์ของการดำเนินการ Query และ QueryAll โดยค่าเริ่มต้นของ MemoryCache คือ 180 นาที.
 
-ในการแคชผลลัพธ์เราแค่ส่งค่าไปยังอาร์กิวเมนต์ cacheKey ของการดำเนินการ Query หรือ QueryAll ดูตัวอย่างโค้ดด้านล่าง 
+ในการแคชผลลัพธ์เราแค่ส่งค่าไปยังอาร์กิวเมนต์ cacheKey ของการดำเนินการ Query หรือ QueryAll ดูตัวอย่างโค้ดด้านล่าง
 ```cs
 using (var connection = new SqlConnection(connectionString))
 {
      var products = connection.QueryAll<Product>(cacheKey: "AllProducts");
 }
 ```
-การเรียกครั้งต่อไปผลลัพธ์จะมากจาก cache ไม่ใช่จาก  Database เป็นเวลา 3 ชั่วโมง :) 
+การเรียกครั้งต่อไปผลลัพธ์จะมากจาก cache ไม่ใช่จาก  Database เป็นเวลา 3 ชั่วโมง :)
 
 Note: [cache document.](https://repodb.net/feature/caching).
 
