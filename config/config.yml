@@ -53,7 +53,7 @@ sidebar:
 
     - order: 5
       path: /cloud-hosting
-      title: ':globe_with_meridians: Cloud & Hosting'
+      title: ':cloud: Cloud & Hosting'
 
     - order: 6
       path: /programming-cookbook
@@ -66,6 +66,10 @@ sidebar:
     - order: 8
       path: /awesome-dotnet-thailand-projects
       title: ':package: Awesome .NET Thailand Projects'
+
+    - order: 9
+      path: /3rd-party-api
+      title: ':briefcase: 3rd party API'
 
   links:
     - text: .NET Thailand
