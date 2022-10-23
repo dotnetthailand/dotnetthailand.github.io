@@ -3,9 +3,10 @@ title: F# Overview for C# developers
 showMetadata: true
 editable: true
 showToc: true
+order: 1
 ---
 
-This page intends to overview F# features to you. Once you finish this, you should be able to write simple F# code with functions :)
+This chapter intends to overview F# features to you. Once you finish this, you should be able to write simple F# code with functions :)
 
 # F# Introduction #
 
@@ -20,7 +21,7 @@ Let's start from the high-level view...
 Here's the list of F# file extensions:
 
 | File Extension | Description     |
-| ----           | ----            |
+|----------------|-----------------|
 | .fs            | F# source file  |
 | .fsx           | F# script file  |
 | .fsproj        | F# project file |
@@ -155,5 +156,29 @@ Those statements have the same output.  But `printfn` may look odd to ones who n
 
 ## Multi-variable Function (C# style) ##
 
-## C# Data Types Mappings ##
+# Curry Function #
 
+You can think of a Curry function as a function that returns another function.  Before get into the detail, let's discuss about data type of function.
+
+## Function's Data Type ##
+
+In Functional Programming paradigm, a function always takes one parameter and returns one value (yes, one in, one out). When I was first reading about this,
+I immediately question about functions that take multiple parameters, and they are quite common, why in the world functions in FP only take one parameter??
+
+...
+
+# C# Data Types Mappings #
+
+| C# Types         | C# Value                  | F# Types        | F# Value                      | Note                                                              |
+|------------------|---------------------------|-----------------|-------------------------------|-------------------------------------------------------------------|
+| int              | 123                       | int             | 123                           |                                                                   |
+| float            | 123.45f                   | float32         | 123.45f                       |                                                                   |
+| double           | 123.45                    | float or double | 123.45                        |                                                                   |
+| Action           | () => Console.WriteLine() | unit -> unit    | fun () -> Console.WriteLine() | F# lambda is implicitly converted to `System.Action` delegate.    |
+| Func<int,string> | n => n.ToString()         | int -> string   | fun n -> n.ToString()         |                                                                   |
+| (int X, int Y)   | (123, 456)                | int * int       | 123, 456                      | F# Tuple cannot be named like C#. But it doesn't need parathesis. |
+| int[]            | new [] { 123, 456 }       | int[]           | [\| 123, 456 \|]              |                                                                   |
+| Object           | new Object()              | obj             | obj()                         |                                                                   |
+| Exception        | new Exception()           | exn             | exn()                         |                                                                   |
+
+## Mutablility ##
