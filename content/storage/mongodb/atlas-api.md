@@ -59,7 +59,7 @@ curl -s -u "{ATLAS_PUBLIC_API}:{ATLAS_PRIVATE_API}"  \
         }'
 ```
 
-# Delete MongoDB Atlas Cluster
+# Deleting MongoDB Atlas Cluster
 ```shell
 curl -s -u "{ATLAS_PUBLIC_API}:{ATLAS_PRIVATE_API}"  \
         --digest --header 'Content-Type: application/json' \
