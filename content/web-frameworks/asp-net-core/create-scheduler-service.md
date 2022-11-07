@@ -3,15 +3,16 @@ title: Scheduler using .NET Background service
 showMetadata: true
 editable: true
 ---
+
 # เขียน Scheduler using .NET Background service ด้วยตัวเอง
 การตั้งเวลาเพื่อทำงานบ้างอย่างเป็นสิ่งที่พบได้บ่อย และเป็นการทำงานพื้นฐานของหลายๆระบบ และหลายๆภาษาก็ให้ทางเลือกในการที่จะ implement ที่แตกต่างกัน
 
-สำหรับชาว .NET เราก็มี  libraries มากมาย ยกตัวอย่างเช่น TopSelf, Quartz, Hangfire เป็นต้น แต่อย่างไงก็ต่างเราสามารถ implement เองในทางที่ง่ายและหลีกเลี่ยง external dependency 
+สำหรับชาว .NET เราก็มี libraries มากมาย ยกตัวอย่างเช่น TopSelf, Quartz, Hangfire เป็นต้น แต่อย่างไงก็ต่างเราสามารถ implement เองในทางที่ง่ายและหลีกเลี่ยง external dependency
 
 โดยเนื้อหานี้เราจะให้ .NET [BackgroundService](/dotnet/api/microsoft.extensions.hosting.backgroundservice?view=dotnet-plat-ext-5.0) ในการ implement โค้ดกัน
 
 ## SOURCE CODE
-เพื่อนๆสามารถตามไปที่ [Github repository](https://github.com/execution/OwnScheduler) นี้สำหรับ source code ที่เขียนในบทความนี้ครับ 
+เพื่อนๆสามารถตามไปที่ [Github repository](https://github.com/execution/OwnScheduler) นี้สำหรับ source code ที่เขียนในบทความนี้ครับ
 
 ## เริ่มกันเลย
 เรามาเริ่มจาก code การทำ worker ปกติกันก่อนสำหรับ BackgroundService
@@ -47,7 +48,7 @@ namespace OwnScheduler.BackgroundTask
     }
 }
 ```
-เมื่อเรา run เราจะเห็นผลลัพธ์ตามนี้ 
+เมื่อเรา run เราจะเห็นผลลัพธ์ตามนี้
 
 ![output](images/worker.png "result")
 
@@ -98,11 +99,11 @@ namespace OwnScheduler.BackgroundTask
         /// <summary>
         ///                                           Allowed values    Allowed special characters Comment
         ///
-        ///    ┌───────────── second(optional)        0-59              * , - /                      
-        ///    │ ┌───────────── minute                0-59              * , - /                      
-        ///    │ │ ┌───────────── hour                0-23              * , - /                      
-        ///    │ │ │ ┌───────────── day of month      1-31              * , - / L W ?                
-        ///    │ │ │ │ ┌───────────── month           1-12 or JAN-DEC* , - /                      
+        ///    ┌───────────── second(optional)        0-59              * , - /
+        ///    │ ┌───────────── minute                0-59              * , - /
+        ///    │ │ ┌───────────── hour                0-23              * , - /
+        ///    │ │ │ ┌───────────── day of month      1-31              * , - / L W ?
+        ///    │ │ │ │ ┌───────────── month           1-12 or JAN-DEC* , - /
         ///    │ │ │ │ │ ┌───────────── day of week   0-6  or SUN-SAT* , - / # L ?                Both 0 and 7 means SUN
         ///    │ │ │ │ │ │
         ///    * * * * * *
@@ -125,7 +126,7 @@ namespace OwnScheduler.BackgroundTask
 }
 
 ```
-ซึ่งตัว CRON Expression ผม configure ที่ appsettings.json ดังนี้ 
+ซึ่งตัว CRON Expression ผม configure ที่ appsettings.json ดังนี้
 ```json
 {
   "Logging": {
@@ -142,7 +143,7 @@ namespace OwnScheduler.BackgroundTask
 ```
 โดยจะ load ค่าด้วย  `var cronExpression = _configuration.GetValue<string>("cronExpression");`
 
-ได้ผลลัพธ์ตามภาพ 
+ได้ผลลัพธ์ตามภาพ
 ![output](images/cron.png "result")
 
 ## WRAPPING UP

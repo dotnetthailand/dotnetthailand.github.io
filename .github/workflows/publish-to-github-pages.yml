@@ -7,7 +7,7 @@ on:
     branches:
       - main
 jobs:
-  build:
+  build_and_deploy_job:
     runs-on: ubuntu-latest
     env:
       ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
@@ -17,7 +17,10 @@ jobs:
       - uses: actions/checkout@master
 
       - uses: enriikke/gatsby-gh-pages-action@v2
+      # https://github.com/enriikke/gatsby-gh-pages-action/releases
+      # source https://github.com/enriikke/gatsby-gh-pages-action/blob/main/index.ts
         with:
           # access-token is a GitHub Personal access token with the "repo" scope
           access-token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
           deploy-branch: gh-pages
+
