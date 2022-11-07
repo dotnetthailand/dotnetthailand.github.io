@@ -34,17 +34,6 @@ Microsoft ได้แบ่งประเภทของการใช้ง�
 
 ### Language
 
-- Language Understanding
-- QnA Maker
-- Text Analytics
-- Translator
-
-### Speech
-
-- Speech to Text
-- Text to Speech
-- Speech Translation
-- Speaker Recognition
 
 ### Vision
 
@@ -60,4 +49,3 @@ Microsoft ได้แบ่งประเภทของการใช้ง�
 - [Azure Cognitive Service](https://nextflow.in.th/2020/azure-content-moderator-with-thai-language/)
 - [Azure Applied AI Service](https://nextflow.in.th/tag/azure-applied-ai/)
 
-หรือติดตามอัพเดตได้[ที่แฟนเพจของพล](https://www.facebook.com/nextflow/) แต่ก็จะมาเขียนใน .NET Thailand บ่อยขึ้น ถ้ายังไงฝากติชมด้วยนะครับ :)
