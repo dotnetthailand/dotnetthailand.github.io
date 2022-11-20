@@ -9,16 +9,16 @@ showToc: true
 
 - Open a terminal and run the following commands:
   ```sh
-    wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
-    sudo dpkg -i packages-microsoft-prod.deb
-    rm packages-microsoft-prod.deb
+  $ wget https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+  $ sudo dpkg -i packages-microsoft-prod.deb
+  $ rm packages-microsoft-prod.deb
   ```
 - Then run:
   ```sh
-    sudo apt update; \
-      sudo apt install -y apt-transport-https && \
-      sudo apt update && \
-      sudo apt install -y dotnet-sdk-6.0
+  $ sudo apt update; \
+    sudo apt install -y apt-transport-https && \
+    sudo apt update && \
+    sudo apt install -y dotnet-sdk-6.0
   ```
 
 # Install other versions
@@ -30,25 +30,26 @@ showToc: true
 
 - To install .NET Core 3.1 SDK, use the following command:
   ```sh
-    sudo apt install -y dotnet-sdk-3.1
+  $ sudo apt install -y dotnet-sdk-3.1
   ```
 
 # Check all installed .NET
 - To list all installed .NET SDK on your computer, run:
   ```sh
-    dotnet --list-sdks
-  ```
-- Example output:
-  ```sh
-    3.1.407 [/usr/share/dotnet/sdk]
-    5.0.101 [/usr/share/dotnet/sdk]
-    6.0.100 [/usr/share/dotnet/sdk]
+  $ dotnet --list-sdks
   ```
 
-# Optionally install .NET preview with Snap
+- Example output:
+  ```sh
+  3.1.407 [/usr/share/dotnet/sdk]
+  5.0.101 [/usr/share/dotnet/sdk]
+  6.0.100 [/usr/share/dotnet/sdk]
+  ```
+
+# Optionally install .NET preview version with Snap tool
 - Run the following command to install the latest .NET Core SDK:
   ```sh
-    sudo snap install dotnet-sdk --channel=6.0/beta --classic
+  $ sudo snap install dotnet-sdk --channel=6.0/beta --classic
   ```
 - Wait several minutes until the installation has finished.
 - The default .NET Core command is `dotnet-sdk.dotnet` for not conflict with a globally installed .NET Core version that you may have.
@@ -56,5 +57,5 @@ showToc: true
 - Run `dotnet-sdk.dotnet --version`, you should find `6.0.100-preview.5.21302.13` or a newer version of .NET.
 - You can now use .NET project which installed with Snap.
 
-# More for installation document
+# More information for installation document
 - https://docs.microsoft.com/en-us/dotnet/core/install/linux-ubuntu
