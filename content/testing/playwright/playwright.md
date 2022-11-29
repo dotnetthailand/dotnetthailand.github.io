@@ -14,143 +14,145 @@ showToc: true
 - Install Yarn
 - Create a new empty folder.
   ```sh
-    mkdir playwright-getting-started
-    cd playwright-getting-started
+  $ mkdir playwright-getting-started
+  $ cd playwright-getting-started
   ```
-- Create a new Node.js project with a default configuration.
+- Create a new Node.js project with default configuration.
   ```sh
-    yarn init -y
+  $ yarn init -y
   ```
-- Install required Node packages. We will use TypeScript and ts-jest in this project.
+- Install required Node packages. We will use `TypeScript` and `ts-jest` in this project.
   ```sh
-    yarn add -D \
-      @types/jest \
-      add \
-      jest \
-      playwright \
-      ts-jest \
-      typescript
+  $ yarn add -D \
+    @types/jest \
+    add \
+    jest \
+    playwright \
+    ts-jest \
+    typescript
   ```
-- Open package.json with your favorite text editor and you will find the content like this.
+- Open `package.json` with your favorite text editor and you will find the content like as following code.
   ```json
-    {
-      "name": "playwright-getting-started",
-      "version": "1.0.0",
-      "main": "index.js",
-      "license": "MIT",
-      "devDependencies": {
-        "@types/jest": "^26.0.22",
-        "jest": "^26.6.3",
-        "playwright": "^1.10.0",
-        "ts-jest": "^26.5.4",
-        "typescript": "^4.2.3"
-      }
+  {
+    "name": "playwright-getting-started",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "devDependencies": {
+      "@types/jest": "^26.0.22",
+      "jest": "^26.6.3",
+      "playwright": "^1.10.0",
+      "ts-jest": "^26.5.4",
+      "typescript": "^4.2.3"
     }
+  }
   ```
-- Please be informed that you may get a newer version of these packages.
+- Please be informed that you may get a newer version of NPM packages.
 
 ## Configure Jest
-- Create `jest.config.js` at root folder of your project and configure it to use `ts-jest` preset
-  with the following code:
+- Create `jest.config.js` at the root folder of your project and configure it to use `ts-jest` preset with the following code:
   ```js
-    // jest.config.js
-    module.exports = {
-      preset: 'ts-jest',
-      testEnvironment: 'node',
-    };
+  // jest.config.js
+  module.exports = {
+    preset: 'ts-jest',
+    testEnvironment: 'node',
+  };
   ```
 
 ## Writing your first test case
-- Create a folder `src/__tests__` and add `homepage.test.ts` inside this folder.
+- Create a folder `src/__tests__` and add `homepage.test.ts` to the folder.
 - Add test contents to `homepage.test.ts` with the following code:
   ```ts
-    import { chromium } from 'playwright';
+  // src/__tests__/homepage.test.ts
+  import { chromium } from 'playwright';
 
-    // Uppercase name for a test suite
-    describe('Homepage', () => {
+  // Use uppercase name for a test suite.
+  describe('Homepage', () => {
 
-      // Lowercase name for a test case
-      test('should launch homepage with expected title', async () => {
-        const browser = await chromium.launch();
-        const context = await browser.newContext();
+    // Use lowercase name for a test case.
+    test('should launch homepage with expected title', async () => {
+      const browser = await chromium.launch();
+      const context = await browser.newContext();
 
-        const page = await context.newPage();
-        await page.goto('https://todomvc.com');
+      const page = await context.newPage();
+      await page.goto('https://todomvc.com');
 
-        const pageTitle = await page.title();
-        expect(pageTitle).toBe('TodoMVC');
-        await browser.close();
-      });
+      const pageTitle = await page.title();
+      expect(pageTitle).toBe('TodoMVC');
+      await browser.close();
     });
+  });
   ```
-- This test will launch `http://todomvc.com` with headless Chromium (Safari engine).
-- Verify if page's title matches `TodoMVC` value.
+- This test will launch `http://todomvc.com` with a headless Chromium.
+- Verify if a page's title matches `TodoMVC` value.
 - By default, Playwright will launch in headless mode so you won't see UI of a browser.
 - You can make Playwright launch a UI browser by setting `chromium.launch({ headless: false })` option.
 
 ## Adding custom script to your package.json
 - Add a custom script with the following content to to your `package.json`.
   ```json
+  "scripts": {
+    "test": "jest"
+  },
+  ```
+- Then you will find the latest package.json looks like this:
+  ```json
+  {
+    "name": "playwright-getting-started",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
     "scripts": {
       "test": "jest"
     },
-  ```
-- Then you will find you latest package.json will look like this:
-  ```json
-    {
-      "name": "playwright-getting-started",
-      "version": "1.0.0",
-      "main": "index.js",
-      "license": "MIT",
-      "scripts": {
-        "test": "jest"
-      },
-      "devDependencies": {
-        "@types/jest": "^26.0.22",
-        "jest": "^26.6.3",
-        "playwright": "^1.10.0",
-        "ts-jest": "^26.5.4",
-        "typescript": "^4.2.3"
-      }
+    "devDependencies": {
+      "@types/jest": "^26.0.22",
+      "jest": "^26.6.3",
+      "playwright": "^1.10.0",
+      "ts-jest": "^26.5.4",
+      "typescript": "^4.2.3"
     }
+  }
   ```
 
 ## Checking the project file structure
 - Here is the file structure in our project.
-```sh
+  ```sh
+  $ tree -I "node_modules" playwright-getting-started/
   playwright-getting-started/
-  ├── node_modules
-  ├── src/__tests__/homepage.test.ts
   ├── jest.config.js
   ├── package.json
+  ├── src
+  │   └── __tests__
+  │       └── homepage.test.ts
   └── yarn.lock
-```
+  ```
 
 ## Running our test case.
-- In a terminal at root level of the project, run the following command:
+- In a terminal at the root level of the project, run the following command:
   ```sh
-    yarn test
+  $ yarn test
   ```
 - Then you will find a passed result in a terminal as following:
   ```sh
-    yarn run v1.22.5
-    $ jest
-    PASS  src/__tests__/homepage.test.ts (6.782 s)
-      Homepage
-        √ should launch homepage with expected title (4101 ms)
+  yarn run v1.22.5
+  $ jest
+  PASS  src/__tests__/homepage.test.ts (6.782 s)
+    Homepage
+      √ should launch homepage with expected title (4101 ms)
 
-    Test Suites: 1 passed, 1 total
-    Tests:       1 passed, 1 total
-    Snapshots:   0 total
-    Time:        6.878 s, estimated 7 s
-    Ran all test suites.
-    Done in 8.15s.
+  Test Suites: 1 passed, 1 total
+  Tests:       1 passed, 1 total
+  Snapshots:   0 total
+  Time:        6.878 s, estimated 7 s
+  Ran all test suites.
+  Done in 8.15s.
   ```
 
 ## Note
-- This code should work cross platforms, Windows, Mac and Linux (Of course WSL2).
-- I also tested this code on Windows and it works well for built-in Webkit (Safari)
-  `(import { webkit } from 'playwright';)` which is bundled with Playwright.
+- This code should work cross platforms, Windows, Mac and Linux (of course WSL2).
+- I also tested this code on Windows and it worked well for built-in Webkit (Safari)
+  `(import { webkit } from 'playwright';)` which is bundled with Playwright package.
 - If Webkit engine does not work on your computer, please change the code to use `chromiume` or `firefox` instead.
 
 # Use a React component name as a selector

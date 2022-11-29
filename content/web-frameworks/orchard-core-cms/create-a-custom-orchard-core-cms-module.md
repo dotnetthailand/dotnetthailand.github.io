@@ -95,33 +95,33 @@ Let's create a new module for Map part.
 
 ### Install the latest version of .NET
 - Follow [this instruction](/programming-cookbook/wsl-powershell-useful-scripts/install-dotnet) to install .NET.
-- Then, use the following command to install a new project template.
+- Then, use the following command to install Orchard Core CMS project template.
   ```sh
-  dotnet new -i OrchardCore.ProjectTemplates::1.1.0
+  $ dotnet new -i OrchardCore.ProjectTemplates::1.5.0
   ```
-- **Note** Use `--nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json` if a template is from preview source.
+- **Note** Add `--nuget-source https://nuget.cloudsmith.io/orchardcore/preview/v3/index.json` option, if a template is from preview source.
 
 ### Create the main project from a template
 - Create a folder that you want to save OrchardCore CMS source code and CD to it.
 - In this example, I will use `orchard-example/src` to store all source code.
 - Then, use dotnet command to create Orchard Core CMS project with name `OrchardExample.Cms`.
   ```sh
-  mkdir orchard-example/src -p
-  cd orchard-example/src
-  dotnet new occms --name OrchardExample.Cms
+  $ mkdir -p orchard-example/src
+  $ cd orchard-example/src
+  $ dotnet new occms --name OrchardExample.Cms --framework net6.0
   ```
 - *Note* `OrchardExample.Cms` is our main web project and it references `OrchardCore.Application.Cms.Targets` package.
 
 ### Create the module project from a template
-- Next, create a folder name `Modules` inside `orchard-example/src` for adding a new module and CD to it.
-- Then, create a custom module with dotnet tool.
+- Next, create a folder name `Modules` inside `orchard-example/src` for adding a new module. Then CD to inside the folder that we have just created.
+- Create a custom module with dotnet tool.
 - You can create a new module with any name that represents a feature that you are going to build.
-- In this example, we are going to create `OrchardExample.Map` module for providing Map part which can be used in event content type.
+- In this example, we are going to create `OrchardExample.Map` module for providing `Map part` which can be used in an event content type.
   ```sh
-  cd orchard-example/src
-  mkdir Modules
-  cd Modules
-  dotnet new ocmodulecms --name OrchardExample.Map --AddPart True --PartName Map
+  $ cd orchard-example/src
+  $ mkdir Modules
+  $ cd Modules
+  $ dotnet new ocmodulecms --name OrchardExample.Map --AddPart True --PartName Map
   ```
 - *Note* **Part** suffix is appended automatically to the end of the supplied PartName.
 
@@ -129,8 +129,8 @@ Let's create a new module for Map part.
 - CD back to `OrchardExample.Cms` folder.
 - Then reference `OrchardExample.Map` with dotnet command.
   ```sh
-  cd ../OrchardExample.Cms
-  dotnet add reference ../Modules/OrchardExample.Map/OrchardExample.Map.csproj
+  $ cd ../OrchardExample.Cms
+  $ dotnet add reference ../Modules/OrchardExample.Map/OrchardExample.Map.csproj
   ```
 ---
 
