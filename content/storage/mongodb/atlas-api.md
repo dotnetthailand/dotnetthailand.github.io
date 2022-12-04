@@ -9,11 +9,11 @@ showToc: true
 - [Public and Private of API Keys](https://www.mongodb.com/docs/atlas/configure-api-access/)
 - [cURL command tools](https://curl.se/download.html)
 
-# Creating MongoDB Cluster
+# Creating MongoDB Atlas Cluster
 ```shell
-curl -s -u "$ATLAS_PUBLIC_API:$ATLAS_PRIVATE_API"  \
+curl -s -u "{ATLAS_PUBLIC_API}:{ATLAS_PRIVATE_API}"  \
         --digest --header 'Content-Type: application/json' \
-        --request POST "https://cloud.mongodb.com/api/atlas/v1.0/groups/62fcb131d7a0bc63619f5c7c/clusters/?pretty=true" \
+        --request POST "https://cloud.mongodb.com/api/atlas/v1.0/groups/{project_id}/clusters/?pretty=true" \
     --data '{
             "autoScaling": 
             {
@@ -34,11 +34,11 @@ curl -s -u "$ATLAS_PUBLIC_API:$ATLAS_PRIVATE_API"  \
                 }
             ],
             "mongoDBMajorVersion": "4.2",
-            "name": "mdb42",
+            "name": "cluster01",
             "providerSettings": 
             {
                 "providerName": "AWS",
-                "instanceSizeName": "M30"
+                "instanceSizeName": "M10"
             },
             "replicationSpecs": [
                 {
@@ -57,4 +57,11 @@ curl -s -u "$ATLAS_PUBLIC_API:$ATLAS_PRIVATE_API"  \
                 }
             ]
         }'
+```
+
+# Deleting MongoDB Atlas Cluster
+```shell
+curl -s -u "{ATLAS_PUBLIC_API}:{ATLAS_PRIVATE_API}"  \
+        --digest --header 'Content-Type: application/json' \
+        --request DELETE "https://cloud.mongodb.com/api/atlas/v1.0/groups/{project_id}/clusters/?pretty=true"
 ```
