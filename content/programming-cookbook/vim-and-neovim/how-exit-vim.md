@@ -14,7 +14,7 @@ Well it be like the meme above, Loll
 > Don't worry We'll tell you the way how to exit vim like a charm!!
 
 * Basically you should be `Normal Mode` then press colon + q `:q`
-  * wait... if you exit vim with `:q` it not be saved what you edit.
+  * Wait... if you exit vim with `:q` it not be saved what you edit.
   * Incase you would like to save and exit so just do this way `:wq`
   * Incase you would like to **discard** everything of change type `:q!`
   * It's have alternative way of `:wq` is `:x`
