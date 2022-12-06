@@ -9,12 +9,12 @@ showToc: true
 
 ### Split Horizontally
 
-you can use `<Ctrl-w> + s` or `:sp` colon and type sp to split the window horizontally
+* You use `<Ctrl-w> + s` or `:sp` colon and type sp to split the window horizontally.
 
-you can also do `:sp somefile.txt` to split window and open file in split window
+* You also do `:sp somefile.txt` to split window and open file in split window.
 
 ### Split Vertically
 
-you can use `<Ctrl-w> + v` or `:vsp` colon and type sp to split the window horizontally
+* Use `<Ctrl-w> + v` or `:vsp` colon and type sp to split the window horizontally.
 
-you can also do `:vsp somefile.txt` to split window and open file in split window
+* You also do `:vsp somefile.txt` to split window and open file in split window.
