@@ -19,21 +19,31 @@ order: 1
 ## Create an App Service plan
 - Command:
   ```sh
-  appservice plan create \
-      --name <APP_SERVICE_PLAN_NAME> \
-      --resource-group <RESOURCE_GROUP_NAME>
-      --sku FREE
+  $ az appservice plan create \
+    --name <APP_SERVICE_PLAN_NAME> \
+    --resource-group <RESOURCE_GROUP_NAME>
+    --sku FREE
   ```
 - To list all existing service plans, use `az appservice plan list --output table`.
 - SKU value are `B1, B2, B3, D1, F1, FREE, I1, I1v2, I2, I2v2, I3, I3v2, P1V2, P1V3, P2V2, P2V3, P3V2, P3V3, PC2, PC3, PC4, S1, S2, S3, SHARED`.
+  - **Free** SKU is for free pricing tier.
+  - **B1** SKU is for the cheapest pricing tier for Linux OS.
 - [More details for App Service plan](https://docs.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest)
-- Example code to create a free app service plan:
+- Example code to create a free app service plan with free pricing tier:
   ```sh
-  az appservice plan create \
+  $ az appservice plan create \
     --name codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
     --is-linux \
     --sku FREE
+  ```
+- Example code to create a free app service plan with the cheapest pricing tier:
+  ```sh
+  $ az appservice plan create \
+    --name codesanook-example-app-service-plan \
+    --resource-group codesanook-example-resource-group \
+    --is-linux \
+    --sku B1
   ```
 
 ## Create an App Service for deploying with source code

@@ -51,7 +51,7 @@ showToc: true
       --name codesanook-example-db-server \
       --database-name codesanook-example-db \
       --resource-group codesanook-example-resource-group \
-      --location southeastasia \
+      --location eastus \
       --admin-user codesanook_example_sa \
       --admin-password 'very-secured-password' \
       --public-access 0.0.0.0 \
@@ -63,6 +63,7 @@ showToc: true
   ```
  - **Note** Do not forget to always generate a new strong password for admin password.
  - High availability is not supported for `Burstable` tier.
+ - Some SKUs may not be supported by all locations.
 
 
 
