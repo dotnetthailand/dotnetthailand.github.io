@@ -1,4 +1,6 @@
 {
   "editor.minimap.enabled": false,
-  "workbench.settings.editor": "json"
+  "workbench.settings.editor": "json",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true
 }

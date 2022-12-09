@@ -33,4 +33,10 @@ order: 2
   ```sh
   $ func azure functionapp logstream <APP_NAME>
   ```
-- By default, log message in a function does not show on log stream, you need to login to Azure portal and check message from Monitor > Invocations tab page and a function app must has **enabled Application Insights**.
+- By default, your log messages does not show with `func azure functionapp logstream command`, you need to login to Azure portal.
+  Then navigate to `Log stream > Change to Application Insights Logs` and a function app must has **enabled Application Insights**.
+  ![](images/azure-functions-timer-trigger-log.png)
+
+
+# Useful resources
+- [Azure Functions Core Tools reference](https://learn.microsoft.com/en-us/azure/azure-functions/functions-core-tools-reference?tabs=v2)

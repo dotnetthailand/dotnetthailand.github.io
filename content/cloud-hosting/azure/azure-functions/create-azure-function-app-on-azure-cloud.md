@@ -28,8 +28,12 @@ order: 1
 - For `APP_SERVICE_PLAN`, you can use an existing plan or create a new one by following [this document](/cloud-hosting/azure/app-service).
 - For `RUNTIME` and `RUNTIME_VERSION`, use `az functionapp list-runtimes` to list supported runtimes and versions.
 - For `FUNCTIONS_VERSION`, follow [this link](https://learn.microsoft.com/en-us/azure/azure-functions/migrate-version-3-version-4?tabs=net6-in-proc%2Cazure-cli%2Cwindows&pivots=programming-language-csharp) to check Azure Function App version.
-- We have disable Application Insight because this is an example app and we don't want to pay for Application Insights.
-- Example code to create new function app (.NET) in Azure App Service plan:
+- We have disable Application Insights because this is an example app and we don't want to pay for Application Insights.
+- If you want to use Application Insights, use the following options to configuration Application Insights when creating function app:
+  - --disable-app-insights false
+  - --app-insights <APP_INSIGHTS_NAME>
+  - --app-insights-key <APP_INSIGHTS_GUID_KEY>
+- Example code to create new function app **(NET)** in Azure App Service plan:
   ```sh
   $ az functionapp create \
     --name codesanook-example-function-app \
@@ -41,11 +45,25 @@ order: 1
     --functions-version 4 \
     --disable-app-insights true
   ```
+- Example code to create new function app **(NET)** in Azure App Service plan with Application Insights:
+  ```sh
+  $ az functionapp create \
+    --name codesanook-example-function-app \
+    --storage-account csexamplestorageaccount \
+    --plan codesanook-example-app-service-plan \
+    --resource-group codesanook-example-resource-group \
+    --runtime dotnet \
+    --runtime-version 6 \
+    --functions-version 4 \
+    --disable-app-insights false
+    --app-insights codesanook-example-app-insights \
+    --app-insights-key <APP_INSIGHTS_GUID_KEY> \
+  ```
 
 ## Create Azure Function App in an consumption plan
 - Change `--plan` option to `--consumption-plan-location southeastasia`.
 - Use `az functionapp list-consumption-locations --output table` to show all available locations for Azure Functions.
-- Example code to create new function app (Node.js) in consumption plan:
+- Example code to create new function app **(Node.js)** in consumption plan:
   ```sh
   $ az functionapp create \
     --name codesanook-example-function-app \
