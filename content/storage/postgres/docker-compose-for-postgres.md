@@ -4,13 +4,13 @@ showMetadata: true
 editable: true
 ---
 
-To use Postgres Docker compose, we need to create required files and add contents to them.
+To use Postgres Docker compose, we need to create the following required files and add contents to them.
 - main docker-compose.[yml/yaml]
-- initialize a database file
-- .env file
+- initialize a database (*.sql)
+- `.env` file
 
 # docker-compose.[yml/yaml]
-- Example content of docker-compose.[yml/yaml]
+- Example content of `docker-compose.[yml/yaml]`:
   ```yml
   # docker-compose.[yml/yaml]
 
@@ -20,7 +20,7 @@ To use Postgres Docker compose, we need to create required files and add content
   services:
     postgres:
       # https://hub.docker.com/_/postgres
-      image: postgres:13
+      image: postgres:15-alpine
       restart: always
       container_name: postgres-db
       environment:
@@ -31,7 +31,7 @@ To use Postgres Docker compose, we need to create required files and add content
         - 5432:5432
       volumes:
         - pgdata:/var/lib/postgresql/data
-        - ./init:/docker-entrypoint-initdb.d # Files will be executed in alphabetical order.
+        - ./init:/docker-entrypoint-initdb.d # Files in "docker-entrypoint-initdb.d" folder will be executed in alphabetical order.
       networks:
         - compose_network
 
@@ -47,7 +47,8 @@ To use Postgres Docker compose, we need to create required files and add content
 # Initialize a database
 - Put SQL files in `init` folder.
 - Files will be executed in alphabetical order.
-- Example content of `init/1.create-user-table.sql`
+- The init folder is mounted to `/docker-entrypoint-initdb.d` folder of a container.
+- Example content of `init/1.create-user-table.sql`:
   ```sql
   -- init/1.create-user-table.sql
 
@@ -73,8 +74,8 @@ To use Postgres Docker compose, we need to create required files and add content
   ```
 
 # .env file
-- We can control prefix of our volumes/networks by specific a value of COMPOSE_PROJECT_NAME
-- Example content of .env file
+- We can control prefix of our volumes/networks by specifying a value of COMPOSE_PROJECT_NAME
+- Example content of `.env` file:
   ```
   # .env
 
@@ -108,21 +109,18 @@ To use Postgres Docker compose, we need to create required files and add content
   ```
 
 #  Useful Docker compose commands
-- To launch a container
+- To launch a container:
   ```sh
-  $ docker-compose up # docker compose up # if you use compose v2
+  $ docker compose up
   ```
-- To launch a container as a background process
+- To launch a container as a background process:
   ```sh
-  $ docker-compose up -d # docker compose up -d # if you use compose v2
+  $ docker compose up -d
   ```
-- To remove a container with its volumes
+- To remove a container with its volumes:
   ```sh
-  $ docker-compose down --volumes # docker compose down --volumes # if you use compose v2
+  $ docker compose down --volumes
   ```
-
-# Further Reading
-- [Compose v2](https://github.com/docker/compose-cli)
 
 # Connect to a database server
 - Use these values to connect to a database server (Postgres):
@@ -132,3 +130,6 @@ To use Postgres Docker compose, we need to create required files and add content
   - Username: `postgres`
   - Password: `12345Abc%`
 - .NET connection string value: `Host=localhost;Port=5432;Database=my-db;Username=postgres;Password=12345Abc%`
+
+# Further Reading
+- [Compose v2](https://github.com/docker/compose-cli)
