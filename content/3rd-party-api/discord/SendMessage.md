@@ -10,7 +10,6 @@ showToc: true
 - You have create a new bot and add it to your Discord server.
 - Please check ["Making Your First Bot with Discord.Net"](https://discordnet.dev/guides/getting_started/first-bot.html) document for more information.
 
-
 # Setup .NET project and add required Nuget package
 - Create a .NET Console app project with the following command:
   ```sh

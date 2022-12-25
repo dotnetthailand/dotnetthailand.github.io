@@ -21,27 +21,32 @@ order: 1
   ```sh
   $ az appservice plan create \
     --name <APP_SERVICE_PLAN_NAME> \
-    --resource-group <RESOURCE_GROUP_NAME>
-    --sku FREE
+    --resource-group <RESOURCE_GROUP_NAME> \
+    --location <LOCATION> \
+    --is-linux \
+    --sku <SKU>
   ```
 - To list all existing service plans, use `az appservice plan list --output table`.
+- To list all locations, use `az account list-locations --output table`.
 - SKU value are `B1, B2, B3, D1, F1, FREE, I1, I1v2, I2, I2v2, I3, I3v2, P1V2, P1V3, P2V2, P2V3, P3V2, P3V3, PC2, PC3, PC4, S1, S2, S3, SHARED`.
   - **Free** SKU is for free pricing tier.
   - **B1** SKU is for the cheapest pricing tier for Linux OS.
 - [More details for App Service plan](https://docs.microsoft.com/en-us/cli/azure/appservice/plan?view=azure-cli-latest)
-- Example code to create a free app service plan with free pricing tier:
+- Example code to create an app service plan with **free pricing tier**:
   ```sh
   $ az appservice plan create \
     --name codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
+    --location southeastasia \
     --is-linux \
     --sku FREE
   ```
-- Example code to create a free app service plan with the cheapest pricing tier:
+- Example code to create an app service plan with **the cheapest pricing tier**:
   ```sh
   $ az appservice plan create \
     --name codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
+    --location southeastasia \
     --is-linux \
     --sku B1
   ```
@@ -49,7 +54,7 @@ order: 1
 ## Create an App Service for deploying with source code
 - Command:
   ```sh
-  az webapp create \
+  $ az webapp create \
     --name <APP_SERVICE_NAME> \
     --plan <APP_SERVICE_PLAN_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
@@ -57,17 +62,17 @@ order: 1
   ```
 - Access a website as `https://APP_SERVICE_NAME.azurewebsites.net`.
 - To list all existing App Service, use `az webapp list --output table`.
-- To list all supported runtime, use `az webapp list-runtimes --output table`.
+- To list all supported runtime, use `az webapp list-runtimes`.
 - **Note**, you need to wrap double quote to a runtime value.
 - After your App Service is ready, it will deploy your source code from a Git server. You can log in to Azure portable to check deployment status.
 - [More details for App Service](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
 - Example code to create an app service:
   ```sh
-  az webapp create \
+  $ az webapp create \
     --name codesanook-example-app-service \
     --plan codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
-    --runtime "DOTNET|5.0"
+    --runtime "DOTNETCORE:6.0"
   ```
 
 ## Deploy a project with GitHub Actions
@@ -78,20 +83,21 @@ order: 1
 ## Update Azure App Service configuration
 - Command:
   ```sh
-  az webapp config appsettings set \
+  $ az webapp config appsettings set \
     --name <APP_SERVICE_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
     --settings @<CONFIGURATION_JSON_FILE>
   ```
 - Example code to update Azure App Service configuration:
   ```sh
-  az webapp config appsettings set \
+  $ az webapp config appsettings set \
     --name codesanook-example-app-service \
     --resource-group codesanook-example-resource-group \
     --settings @app-service-configuration.json
   ```
 - Example content of a configuration JSON file:
   ```json
+  // app-service-configuration.json
   [
     {
       "name": "WEBSITE_WEBDEPLOY_USE_SCM",
@@ -104,14 +110,14 @@ order: 1
 ## Get Azure App Service publish profile
 - Command:
   ```sh
-  az webapp deployment list-publishing-profiles \
+  $ az webapp deployment list-publishing-profiles \
     --name <APP_SERVICE_NAME> \
     --resource-group <RESOURCE_GROUP_NAME> \
     --xml
   ```
 - Example code to get Azure App Service publish profile:
   ```sh
-  az webapp deployment list-publishing-profiles \
+  $ az webapp deployment list-publishing-profiles \
     --name codesanook-example-app-service \
     --resource-group codesanook-example-resource-group \
     --xml
@@ -131,13 +137,17 @@ order: 1
 ## Delete an existing Azure App Service
 - Command:
   ```sh
-  az webapp delete \
+  $ az webapp delete \
     --name <APP_SERVICE_NAME> \
     --resource-group <RESOURCE_GROUP_NAME>
   ```
 - Example code to delete an existing App Service:
   ```sh
-  az webapp delete \
+  $ az webapp delete \
     --name codesanook-example-app-service \
     --resource-group codesanook-example-resource-group
   ```
+
+# Useful resources
+- [App Service CLI](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
+- [Run background tasks with WebJobs in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create)

@@ -5,7 +5,6 @@ editable: true
 order: 0
 ---
 
-
 # Develop Azure function app
 
 ## Prerequisite
@@ -114,6 +113,12 @@ order: 0
 # Credit & Reference
 - [Quickstart: Create a TypeScript function in Azure from the command line](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-typescript)
 - [Quickstart: Create a C# function in Azure from the command line](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=azure-cli%2Cin-process)
+- [Azure Functions Core Tools reference](https://learn.microsoft.com/en-us/azure/azure-functions/functions-core-tools-reference?tabs=v2)
 - [Timer trigger for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer?tabs=in-process&pivots=programming-language-csharp)
-- [https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function)
+- [Create a function in the Azure portal that runs on a schedule](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-scheduled-function)
 - [Use the Azurite emulator for local Azure Storage development](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=docker-hub)
+- [Use dependency injection in .NET Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-dotnet-dependency-injection)
+- [How to do Azure Functions Logging with DI](https://www.cazzulino.com/azure-functions-logging.html)
+- [Custom logging concept](https://github.com/Azure/azure-functions-host/issues/4689#issuecomment-533195224)
+- [Custom logging implementation](https://github.com/Azure/azure-functions-host/issues/4689#issuecomment-1064472477)
+- [Why no logging when connect to log stream from a local host](https://github.com/Azure/Azure-Functions/issues/1256#issuecomment-609825424)

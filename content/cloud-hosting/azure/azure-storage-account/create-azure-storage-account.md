@@ -27,9 +27,11 @@ az storage account create \
 ```
 - For `STORAGE_ACCOUNT_NAME`, it can contain only lowercase letters and numbers and must be between 3 and 24 characters.
 - For `LOCATION_NAME`, use `az account list-locations --output table`.  It is default to a location of a resource group if not specify.
-- For `STORAGE_ACCOUNT_SKU`, accepted values are: Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, Standard_LRS, Standard_RAGRS, Standard_RAGZRS and Standard_ZRS. LRS stands for locally redundant storage.
-- For `STORAGE_ACCOUNT_KIND`, accepted values are: BlobStorage, BlockBlobStorage, FileStorage, Storage, StorageV2
-- For `ACCESS_TIER`, accepted values for access tier: Cool, Hot
+- For `STORAGE_ACCOUNT_SKU`, accepted values are: Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, Standard_LRS, Standard_RAGRS, Standard_RAGZRS and Standard_ZRS.
+  - LRS stands for locally redundant storage.
+  - ZRS stands for zone redundant storage.
+- For `STORAGE_ACCOUNT_KIND`, accepted values are: BlobStorage, BlockBlobStorage, FileStorage, Storage, StorageV2.
+- For `ACCESS_TIER`, accepted values for access tier: Cool, Hot.
 - To learn more how to create storage account with CLI, please refer to [Create a storage account document](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-cli)
 
 # Example code to create a standard general-purpose v2 storage account
