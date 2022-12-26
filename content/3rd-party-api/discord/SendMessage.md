@@ -103,8 +103,26 @@ showToc: true
   await channel!.SendFileAsync(stream: memoryStream, filename: fileName, embed: embed);
   ```
 
-# Reference
+## Send a colored message.
+- You can send colored text within ANSI code blocks by using ANSI escape code.
+- Here is the syntax `\u001b + "[" + <zero or more numbers, separated by ";"> + <a letter>`
+- The number between `[` and `m` represent text format, foreground and background color. e.g 1:bold, 31:red foreground, 47:white background.
+- *Note* for the escape, using `\u0001` does not work for me. I need to copy ESC () unicode and use it directly.
+- Use the following code to send a bold text with red color and white background.
+~~~
+```ansi
+[1;31;47m Hello World [0m
+```
+~~~
+- We use `[0m\n` at the end to reset color back to normal.
 
+# Reference
+- [Discord.Net repository](https://github.com/discord-net/Discord.Net)
 - [Making Your First Bot with Discord.Net](https://discordnet.dev/guides/getting_started/first-bot.html)
 - [Where can I find my User/Server/Message ID?](https://support.discord.com/hc/en-us/articles/206346498-Where-can-I-find-my-User-Server-Message-ID-)
 - [Using a local image with EmbedBuilder](https://stackoverflow.com/a/63462663/1872200)
+- [Discord ANSI text](https://www.pythondiscord.com/pages/guides/python-guides/discord-messages-with-colors/)
+- [Discussion Discord on ANSI text](https://gist.github.com/kkrypt0nn/a02506f3712ff2d1c8ca7c9e0aed7c06)
+- [String in C# and .NET](https://csharpindepth.com/articles/Strings)
+- [Everything you never wanted to know about ANSI escape codes](https://notes.burke.libbey.me/ansi-escape-codes/)
+- [List of ANSI color escape sequences](https://stackoverflow.com/a/33206814/1872200)

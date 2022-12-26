@@ -57,6 +57,7 @@ To use SQL Server Docker compose, we need to create required files and add conte
 
     until /opt/mssql-tools/bin/sqlcmd -S localhost,1433 -U sa -P "$MSSQL_SA_PASSWORD" -i $INPUT_SQL_FILE > /dev/null 2>&1
     do
+      # echo -e,  use -e to enable interpretation of backslash-escaped characters
       echo -e "\033[31mSQL server is unavailable - sleeping"
       sleep 1 # Sleep for a second....
     done
