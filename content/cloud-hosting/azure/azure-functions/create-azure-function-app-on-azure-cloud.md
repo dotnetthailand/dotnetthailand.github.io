@@ -55,6 +55,7 @@ order: 1
     --storage-account csexamplestorageaccount \
     --consumption-plan-location southeastasia \
     --resource-group codesanook-example-resource-group \
+    --os-type Linux
     --runtime node \
     --runtime-version 14 \
     --functions-version 4 \
@@ -88,10 +89,13 @@ order: 1
   ```sh
   $ az functionapp delete \
     --name codesanook-example-function-app \
-    --resource-group codesanook-example-resource-group \
-    --yes
+    --resource-group codesanook-example-resource-group
   ```
 
 # Useful resources
 - [az functionapp CLI reference](https://learn.microsoft.com/en-us/cli/azure/functionapp?view=azure-cli-latest)
 - [Create a Function App in an App Service plan](https://learn.microsoft.com/en-us/azure/azure-functions/scripts/functions-cli-create-app-service-plan)
+
+
+eastus only?
+

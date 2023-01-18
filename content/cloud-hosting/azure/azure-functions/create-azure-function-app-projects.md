@@ -50,7 +50,7 @@ order: 0
   $ yarn start
   ```
 - You should now see some output messages in a terminal showing the application is running at a URL and a port number.
-- Copy the URL of http-example function, e.g. http://localhost:7071/api/http-example to a browser address and append query string `?name=<YOUR_NAME>`.
+- Copy the URL of http-example function, e.g. http://localhost:7071/api/http-example to a browser address bar and append query string `?name=<YOUR_NAME>`.
 - Press enter to navigate to that URL and execute the function.
 - You should see a message as `Hello <YOUR_NAME>` in a browser.
 
@@ -110,6 +110,30 @@ order: 0
   ```
 - You should now see some output messages as `C# Timer trigger function executed at: ...` in your terminal every 5 seconds
 
+# Azure Function App with C# Isolated process with Docker Linux
+
+## Create a C# Azure Function App with timer trigger
+- Create a new C# Azure Function App project with `func` command.
+  ```sh
+  $ func init CodesanookAzureFunctionApp --worker-runtime dotnet-isolated --docker
+  ```
+- You can change a project name to what is appropriate for you.
+- CD to the project folder.
+  ```sh
+  $ cd TimerFunctionApp
+  ```
+- Add a new HTTP Trigger function to the project.
+  ```sh
+  $ func new --name HttpExample --template "HTTP trigger" --authlevel anonymous
+  ```
+- To list all available templates for C#, use `func templates list -l c#`.
+- You can change a function name to what is appropriate for you.
+- You should now see some output messages in a terminal showing the application is running at a URL and a port number.
+- Copy the URL of http-example function, e.g. http://localhost:7071/api/HttpExample to a browser address bar.
+- Press enter to navigate to that URL and execute the function.
+- You should see a message as `Welcome to Azure Functions` in a browser.
+- To publish your custom Docker image, please continue with [this document](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-function-linux-custom-image?tabs=isolated-process%2Cbash%2Cazure-cli&pivots=programming-language-csharp).
+
 # Credit & Reference
 - [Quickstart: Create a TypeScript function in Azure from the command line](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-typescript)
 - [Quickstart: Create a C# function in Azure from the command line](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-cli-csharp?tabs=azure-cli%2Cin-process)
@@ -122,3 +146,4 @@ order: 0
 - [Custom logging concept](https://github.com/Azure/azure-functions-host/issues/4689#issuecomment-533195224)
 - [Custom logging implementation](https://github.com/Azure/azure-functions-host/issues/4689#issuecomment-1064472477)
 - [Why no logging when connect to log stream from a local host](https://github.com/Azure/Azure-Functions/issues/1256#issuecomment-609825424)
+- [Create a function on Linux using a custom container](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-function-linux-custom-image?tabs=isolated-process%2Cbash%2Cazure-cli&pivots=programming-language-csharp)
