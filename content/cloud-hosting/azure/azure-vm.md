@@ -36,7 +36,7 @@ order: 1
 - To list all VM sizes, use `az vm list-sizes --location <LOCATION> --output table`
 - The `--generate-ssh-keys` parameter is used to automatically generate an SSH key, and put it in the default key location `(~/.ssh)`. To use a specific set of keys instead, use the `--ssh-key-values` option.
 
-# Example code to create Azure VM
+# Example code to create Azure VM with Ubuntu LTS OS
   ```sh
   $ az vm create \
     --resource-group codesanook-example-resource-group \
@@ -44,8 +44,23 @@ order: 1
     --public-ip-address-dns-name codesanook-example-vm \
     --image UbuntuLTS \
     --admin-username codesanook-example-vm-admin \
-    --location japanwest \
+    --location japaneast \
     --size Standard_B1ls \
     --public-ip-sku Standard \
     --generate-ssh-keys
   ```
+
+# Example code to create Azure VM with Windows 10 OS
+  ```
+  $ az vm create \
+    --resource-group codesanook-example-resource-group \
+    --name cs-example-vm \
+    --public-ip-address-dns-name cs-example-vm \
+    --image MicrosoftWindowsDesktop:windows10preview:win10-22h2-pro:19045.2130.221006 \
+    --admin-username codesanook-example-vm-admin \
+    --admin-password 'very-strong-password' \
+    --location japaneast \
+    --size Standard_B2s \
+    --public-ip-sku Standard
+  ```
+# Useful resources
