@@ -13,8 +13,19 @@ jobs:
       ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
       ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
       ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+      NODE_VERSION: 14.x
     steps:
       - uses: actions/checkout@master
+
+      # https://github.com/actions/setup-node
+      - name: Use Node.js version ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Bypass Open SSL issue
+        run: |
+          export NODE_OPTIONS=--openssl-legacy-provider
 
       - uses: enriikke/gatsby-gh-pages-action@v2
       # https://github.com/enriikke/gatsby-gh-pages-action/releases
@@ -23,4 +34,3 @@ jobs:
           # access-token is a GitHub Personal access token with the "repo" scope
           access-token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
           deploy-branch: gh-pages
-
