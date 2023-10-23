@@ -3,6 +3,7 @@ title: Dockerfile
 showMetadata: true
 editable: true
 showToc: true
+order: 5
 ---
 
 # โครงสร้างของ Dockerfile

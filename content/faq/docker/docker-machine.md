@@ -3,6 +3,7 @@ title: Docker Machine
 showMetadata: true
 editable: true
 showToc: true
+order: 10
 ---
 
 # The Docker Machine for AWS.

@@ -3,6 +3,7 @@ title: Docker CMD VS ENTRYPOINT
 showMetadata: true
 editable: true
 showToc: true
+order: 4
 ---
 
 # Definition
