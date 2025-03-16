@@ -6,16 +6,31 @@ on:
   push:
     branches:
       - main
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+env:
+  ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
+  ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
+  ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+  GITHUB_ACCESS_TOKEN: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
+  NODE_VERSION: 14.x
+
 jobs:
   build_and_deploy_job:
+    environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+
     runs-on: ubuntu-22.04
-    env:
-      ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
-      ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
-      ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
-      NODE_VERSION: 14.x
     steps:
-      - uses: actions/checkout@master
+      # https://github.com/actions/checkout/releases/tag/v4.2.2
+      - name: Checkout the latest source source
+        uses: actions/checkout@v4
 
       # https://github.com/actions/setup-node
       - name: Use Node.js version ${{ env.NODE_VERSION }}
@@ -23,19 +38,26 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Bypass Open SSL issue
-        run: |
-          export NODE_OPTIONS=--openssl-legacy-provider
+      # - name: Bypass Open SSL issue
+      #   run: |
+      #     export NODE_OPTIONS=--openssl-legacy-provider
 
-      - uses: enriikke/gatsby-gh-pages-action@v2.2.0
-      # https://github.com/enriikke/gatsby-gh-pages-action/releases
-      # source https://github.com/enriikke/gatsby-gh-pages-action/blob/main/index.ts
-      # https://github.com/settings/tokens/new
-      # Access public repositories
-      # repo
-      # public_repo
+      # Yarn has already installed https://github.com/actions/runner-images/blob/main/images/ubuntu/Ubuntu2204-Readme.md
+      - name: Build the project to a public folder
+        run: |
+          yarn install
+          yarn run build
+
+      - name: Upload artifact
+        # https://github.com/actions/upload-pages-artifact/releases
+        uses: actions/upload-pages-artifact@v3
         with:
-          # access-token is a GitHub Personal access token with the "repo" scope
-          # Please make sure you have valid and not expired token
-          access-token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
-          deploy-branch: gh-pages
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        # https://github.com/actions/deploy-pages/releases
+        uses: actions/deploy-pages@v4
+        env:
+          name: github-pages
+          url: ${{ steps.deployment.outputs.page_url }}
