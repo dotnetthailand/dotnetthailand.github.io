@@ -8,7 +8,7 @@ on:
       - main
 jobs:
   build_and_deploy_job:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     env:
       ALGOLIA_APP_ID: ${{ secrets.ALGOLIA_APP_ID }}
       ALGOLIA_SEARCH_KEY: ${{ secrets.ALGOLIA_SEARCH_KEY }}
@@ -19,7 +19,7 @@ jobs:
 
       # https://github.com/actions/setup-node
       - name: Use Node.js version ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
 
@@ -27,9 +27,13 @@ jobs:
         run: |
           export NODE_OPTIONS=--openssl-legacy-provider
 
-      - uses: enriikke/gatsby-gh-pages-action@v2
+      - uses: enriikke/gatsby-gh-pages-action@v2.2.0
       # https://github.com/enriikke/gatsby-gh-pages-action/releases
       # source https://github.com/enriikke/gatsby-gh-pages-action/blob/main/index.ts
+      # https://github.com/settings/tokens/new
+      # Access public repositories
+      # repo
+      # public_repo
         with:
           # access-token is a GitHub Personal access token with the "repo" scope
           access-token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
