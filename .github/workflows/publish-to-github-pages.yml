@@ -36,5 +36,6 @@ jobs:
       # public_repo
         with:
           # access-token is a GitHub Personal access token with the "repo" scope
+          # Please make sure you have valid and not expired token
           access-token: ${{ secrets.PUBLIC_REPO_ACCESS_TOKEN }}
           deploy-branch: gh-pages

@@ -24,7 +24,7 @@ order: 1
     --location <LOCATION_NAME> \
     --source <GITHUB_REPOSITORY_URL_OF_STATIC_SITE> \
     --branch <REPOSITORY_BRANCH_TO_DEPLOY> \
-    --token <GITHUB_PERSONAL_ACCESS_TOKEN>
+    --token <GITHUB_PERSONAL_ACCESS_TOKEN> \
     --sku Free
   ```
 - For RESOURCE_GROUP_NAME, use `az group list --output table`.
