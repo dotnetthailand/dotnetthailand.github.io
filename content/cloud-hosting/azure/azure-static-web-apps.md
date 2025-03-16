@@ -13,7 +13,7 @@ order: 1
 - Log in with Azure CLI.
 - Create a resource group.
 - If you haven't done these requirements, please refer to [Azure CLI content](/cloud-hosting/azure/azure-cli).
-- GitHub repository with source code that consists of an HTML page (index.html) or an output from static site generator, e.g. Gatsby, Jekyll.
+- GitHub repository with source code that containts an HTML page (index.html) or an output from static site generator, e.g. Gatsby, Jekyll.
 
 # Create a static app from existing source code
 - Use the following command to create Azure static web app with a free plan.
@@ -25,30 +25,28 @@ order: 1
     --source <GITHUB_REPOSITORY_URL_OF_STATIC_SITE> \
     --branch <REPOSITORY_BRANCH_TO_DEPLOY> \
     --token <GITHUB_PERSONAL_ACCESS_TOKEN>
+    --sku Free
   ```
 - For RESOURCE_GROUP_NAME, use `az group list --output table`.
-- Available regions for the location are westus2, centralus, eastus2, westeurope, eastasia.
+- Supported regions for the location option are: `centralus, eastasia, eastus2, westeurope, westus2`.
 - To list all locations, use `az account list-locations --output table`.
--
 - For GITHUB_REPOSITORY_URL_OF_STATIC_SITE, use `https://github.com/account-name/repository-name` pattern.
-- For REPOSITORY_BRANCH_TO_DEPLOY, use a branch that you want to deploy source code to a static app, e.g. main, develop.
+- For REPOSITORY_BRANCH_TO_DEPLOY, use a branch that you want to deploy source code to a static app, e.g. `main, develop`.
 - For GITHUB_PERSONAL_ACCESS_TOKEN, please refer to
   ["Creating a personal access token"](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token) document.
-  Get only repo (full control of private repo) permission.
-- Learn more about `az staticwebapp create` command, please refer to
+  Get only repo permission.(full control of a private repo)
+- Learn more about `az staticwebapp create` command, please refer to:
   https://docs.microsoft.com/en-us/cli/azure/staticwebapp?view=azure-cli-latest#az_staticwebapp_create
 - After you have configured all options, execute the command and wait until deployment has finish.
 
 # Create an empty static app
-- Azure Static Web Apps does not currently support deploying a website
-  from an existing source code with Azure CLI as mentioned in this issue (https://github.com/Azure/static-web-apps/issues/446).
-  However, you can create an empty static web app with some empty required options.
 - An example code to create an empty static web app:
   ```sh
   az staticwebapp create \
     --name codesanook-example-static-web-app \
     --resource-group codesanook-example-resource-group \
     --location eastasia \
+    --sku Free
     --source "" \
     --branch "" \
     --token dummy
@@ -56,40 +54,45 @@ order: 1
 
 # Testing a website
 - You should get `defaultHostname` value as a result from `az staticwebapp create` command.
-- Copy a value of `defaultHostname` and paste it into an address bar of your browser and press enter.
-- You should see an HTML page with message `Your Azure Static Web App is live and waiting for your content`.
+- Use the value of `defaultHostname` and navigate to that URL with your browser.
+- You should see an HTML page with message: `Congratulations on your new site!  Your site will be ready soon—please check back later.`
 
 # Deploy website's source code with GitHub Action
-- In a root of you project folder, create `.github/workflows/build-and-deploy-to-azure-static-web-apps.yml` file.
+- In a root of you project folder, create `.github/workflows/deploy-to-azure-static-web-apps.yml` file.
 - Add the following content to the workflow file to deploy a main branch to Azure Static Web Apps.
 
   ```yaml
-  # .github/workflows/build-and-deploy-to-azure-static-web-apps.yml
+  # file name:
+  # .github/workflows/deploy-to-azure-static-web-apps.yml
 
-  # Learn more about Azure/static-web-apps-deploy https://docs.microsoft.com/en-us/azure/static-web-apps/github-actions-workflow
-  name: Build and deploy to Azure Static Web Apps
+  # Learn more about Azure/static-web-apps-deploy
+  # https://docs.microsoft.com/en-us/azure/static-web-apps/github-actions-workflow
+  name: Deploy to Azure Static Web Apps
   on:
     push:
       branches:
         - main
-
   jobs:
-    deploy_job:
+    build_and_deploy_job:
       runs-on: ubuntu-latest
       steps:
         - name: Checkout the latest source code from ${{ github.sha }} commit
-          uses: actions/checkout@v2
+          # https://github.com/actions/checkout/releases
+          uses: actions/checkout@v4
 
-        - name: Deploy to Azure Static Web Apps
+        - name: Skip building and deploy files in dist folder
+          # https://github.com/Azure/static-web-apps-deploy/releases
           uses: Azure/static-web-apps-deploy@v1
           with:
             azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-            action: upload
+            action: 'upload'
+            skip_app_build: true
+            app_location: dist
 
   ```
-- Create GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN` and set a value which we can get from `Deployment Token` in Azure portal.
+- Create GitHub secret `AZURE_STATIC_WEB_APPS_API_TOKEN` and set to a value which we can get from `Deployment Token` in Azure portal.
   ![](images/get-azure-static-web-apps-deployment-token.png)
-- Commit your code and push to a main branch.
+- Commit your code and push to the main branch.
 - In GitHub's Actions tab, you should see your deployment log and status.
   ![](images/azure-static-web-app-actions-log.png)
 - After deployment has finished, check your website in a browser.
@@ -103,7 +106,9 @@ order: 1
     --name <STATIC_WEB_APP_NAME> \
     --resource-group <RESOURCE_GROUP_NAME>
   ```
-- Example code to get a deployment token:
+- Get the token from apiKey property.
+
+- Example code to get deployment token:
   ```sh
   az staticwebapp secrets list \
     --name codesanook-example-static-web-app \

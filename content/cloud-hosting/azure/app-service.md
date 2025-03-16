@@ -72,7 +72,7 @@ order: 1
     --name codesanook-example-app-service \
     --plan codesanook-example-app-service-plan \
     --resource-group codesanook-example-resource-group \
-    --runtime "DOTNETCORE:6.0"
+    --runtime "DOTNETCORE:8.0"
   ```
 
 ## Deploy a project with GitHub Actions

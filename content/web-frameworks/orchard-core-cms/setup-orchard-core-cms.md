@@ -11,19 +11,19 @@ order: 1
 
 # Install Orchard Template
 - Use the following command to install a new project template
-  It'll [release package](https://github.com/OrchardCMS/OrchardCore/releases).
+  To check the latest version, please refer to the [release package](https://github.com/OrchardCMS/OrchardCore/releases) page.
   ```sh
-  $ dotnet new -i "OrchardCore.ProjectTemplates::1.5.0"
+  $ dotnet new install "OrchardCore.ProjectTemplates::2.1.2"
   ```
 - Create a new folder with name `orchard-example`, we will use it as a root folder of our project.
-- Inside the root folder, create a folder `src` to store the project's source code.
+- Inside the root folder, create a folder named `src` to store the project's source code.
 - CD to `orchard-example/src`.
-- Use `dotnet new occms` command to create a new OrchardCore CMS project with name `OrchardExample.Cms`.
-- You can change a project's name to any name that you want.
+- Use `dotnet new occms` command to create a new OrchardCore CMS project named `OrchardExample.Cms`.
+- *You can change a project's name to any name that you want.*
   ```sh
   $ mkdir -p orchard-example/src
   $ cd orchard-example/src
-  $ dotnet new occms --name OrchardExample.Cms --framework net6.0
+  $ dotnet new occms --name OrchardExample.Cms --framework net8.0
   ```
 
 # Open the project with VS Code
@@ -34,7 +34,7 @@ order: 1
   $ code .
   ```
 
-# Optionally add preview package source
+# Optionally add preview package source. You dont' need to do this step.
 - At root of the project, create `nuget.config` file.
 - Add the following code to the file.
   ```xml
@@ -48,12 +48,13 @@ order: 1
       <disabledPackageSources />
     </configuration>
   ```
-- *Warning*, we do not suggest you to use the dev packages in production.
+- **Warning**, we do not suggest you to use the dev packages in production.
 
 # Explore the project's file structure
+- In VS Code integrated terminal, you can execute the following command to see the project structure.
   ```sh
-  $ tree -I "bin|obj" orchard-example
-  orchard-example
+  $ tree -I "bin|obj" .
+  .
   ├── nuget.config
   └── src
       └── OrchardExample.Cms
@@ -67,9 +68,8 @@ order: 1
   ```
 
 # Launch a website
-- Use VS Code integrated terminal by pressing **ctrl + `**
-- CD to `src/OrchardExample.Cms` folder.
-- Run the project with the following commands:
+- In VS Code, press **ctrl + `** to launch the integrated terminal.
+- Run the project with the following command:
   ```sh
   $ cd src/OrchardExample.Cms
   $ dotnet run

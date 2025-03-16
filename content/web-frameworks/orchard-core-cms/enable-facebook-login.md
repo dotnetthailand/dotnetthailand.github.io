@@ -1,5 +1,5 @@
 ---
-title: Enable Facebook Login in Orchard Core CMS
+title: Enable Facebook Login for Orchard Core CMS
 showMetadata: true
 editable: true
 showToc: true
@@ -7,21 +7,21 @@ order: 2
 ---
 
 Orchard Core CMS allows you to create a new user with Facebook Login.
-Here is the step by step to enable Facebook Login in Orchard Core CMS website.
+Here is the step by step to enable Facebook Login for Orchard Core CMS website.
 
 # Create a new Facebook App
 - Go to https://developers.facebook.com/apps/.
 - Create a new Facebook App with your personal information.
-- After a Facebook App has been created, add a new product, select Facebook Login.
+- After a Facebook App has been created, add a new product and select Facebook Login.
 - Then click **Settings** of Facebook Login product.
 - Verify if `Client OAuth login` and `Web OAuth login` are turned on
 - Set callback URL to https://your-domain.com/signin-facebook e.g. https://www.orchardexample.com/signin-facebook
   ![](images/facebook-app-login-settings.png)
 - Click **Save Changes** button to save your settings.
-- Go to the main Settings of Facebook App and click Basic.
-- Set App domain, Privacy Policy and Category.
+- Go to the main Settings page of Facebook App and click Basic.
+- Set App domain, Privacy Policy and Category URL.
   ![](images/facebook-app-basic-settings.png)
-- More information of how to create Facebook App, please refer to following links.
+- For more information of how to create Facebook App, please refer to following links.
   - https://www.loginradius.com/blog/engineering/login-with-facebook/
   - https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins
 
@@ -58,7 +58,7 @@ Here is the step by step to enable Facebook Login in Orchard Core CMS website.
 - Check `Do not ask email address`.
 - Check `Do not create local password for external users`.
 
-# Make a callback URL correct for a website under proxy server.
+# Make a callback URL correct for a website under a proxy server.
 - If your website runs under a proxy server, you may get incorrect generated callback URL.  Therefor, you need to enable `Reverse Proxy Configuration` module.
 - Go to `Configuration` > `Settings` >  `Reverse Proxy` >.
 - Enable these settings:

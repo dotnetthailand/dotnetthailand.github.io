@@ -35,36 +35,36 @@ az storage account create \
 - To learn more how to create storage account with CLI, please refer to [Create a storage account document](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-cli)
 
 # Example code to create a standard general-purpose v2 storage account
-  ```sh
-  $ az storage account create \
-    --name csexamplestorageaccount \
-    --resource-group codesanook-example-resource-group \
-    --location southeastasia \
-    --sku Standard_ZRS \
-    --kind StorageV2 \
-    --access-tier Hot
+```sh
+$ az storage account create \
+  --name csexamplestorageaccount \
+  --resource-group codesanook-example-resource-group \
+  --location southeastasia \
+  --sku Standard_ZRS \
+  --kind StorageV2 \
+  --access-tier Hot
   ```
 
 # List all existing storage accounts
-  ```sh
-  $ az storage account list \
-    --resource-group <RESOURCE_GROUP_NAME> \
-    --output table
-  ```
+```sh
+$ az storage account list \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --output table
+```
 
 # Delete a storage account
-  ```sh
-  $ az storage account delete \
-    --name <STORAGE_ACCOUNT_NAME> \
-    --resource-group <RESOURCE_GROUP_NAME>
-  ```
+```sh
+$ az storage account delete \
+  --name <STORAGE_ACCOUNT_NAME> \
+  --resource-group <RESOURCE_GROUP_NAME>
+```
 
 # Get connection string
-  ```sh
-  $ az storage account show-connection-string \
-    --name <STORAGE_ACCOUNT_NAME> \
-    --resource-group <RESOURCE_GROUP_NAME>
-  ```
+```sh
+$ az storage account show-connection-string \
+  --name <STORAGE_ACCOUNT_NAME> \
+  --resource-group <RESOURCE_GROUP_NAME>
+```
 
 # Useful resources
 - [Storage account overview](https://docs.microsoft.com/en-us/azure/storage/common/storage-account-overview)

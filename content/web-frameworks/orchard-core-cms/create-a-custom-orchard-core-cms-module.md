@@ -108,7 +108,7 @@ Let's create a new module for Map part.
   ```sh
   $ mkdir -p orchard-example/src
   $ cd orchard-example/src
-  $ dotnet new occms --name OrchardExample.Cms --framework net6.0
+  $ dotnet new occms --name OrchardExample.Cms --framework net8.0
   ```
 - *Note* `OrchardExample.Cms` is our main web project and it references `OrchardCore.Application.Cms.Targets` package.
 
