@@ -15,7 +15,7 @@ import LinkCard from './linkCard';
 import { blockquote, pre, table, list } from '../../styles';
 import { useTheme } from 'emotion-theming';
 import emoji from '../../utils/emoji';
-import CheckListItem from './CheckListItem';
+import CheckListItem from '../../../../src/components/react/CheckListItem';
 import FeatureAsColumnComparisonTable from './FeatureAsColumnComparisonTable';
 import Contributors from './Contributors';
 import FriendsWebsites from './FriendsWebsites';
@@ -23,7 +23,7 @@ import FeatureAsRowComparisonTable from './FeatureAsRowComparisonTable';
 import LimitTextToNumberOfLines from './LimitTextToNumberOfLines';
 import FixingFloatingFooterToBottom from './FixingFloatingFooterToBottom';
 import TextTransformExample from './TextTransformExample'
-import FallingSnow from '../FallingSnow';
+import FallingSnow from '../../../../src/components/react/FallingSnow';
 
 const idFromHeader = (props) => {
   let name = props.children;

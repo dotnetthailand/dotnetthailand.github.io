@@ -34,8 +34,15 @@ export default defineConfig({
           autogenerate: { directory: 'faq', collapsed: true },
         },
       ],
+      customCss: [
+        // Relative path to your custom CSS file
+        './src/styles/custom.scss',
+      ],
     }),
-    react(),
+    react({
+      include: ['**/react/*'],
+      experimentalReactChildren: true,
+    }),
     mdx(),
   ],
 });

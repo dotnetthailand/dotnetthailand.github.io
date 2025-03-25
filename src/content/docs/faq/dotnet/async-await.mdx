@@ -5,170 +5,100 @@ editable: true
 showToc: false
 ---
 
-# Async/Await checklist
+import CheckListItem from '../../../../components/react/CheckListItem';
 
-## Please make sure you have done these checklist items when working with asynchronous programming.
+## Async/Await checklist
+
+Please make sure you have done these checklist items when working with asynchronous programming.
 
 <CheckListItem>
-
-Use async/await all the ways.
-
+  Use async/await all the ways.
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Don't use blocking methods e.g. `Task.WaitAll()`, `.Result`, `.Wait()`.
 [Read more](https://blog.stephencleary.com/2012/07/dont-block-on-async-code.html)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use `async Task` for a method that does not return a value.
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
-Use `async Task<TResult>` for a method that returns a value.
-
+Use async Task `<<TResult>>` for a method that returns a value.
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use **async void** only for an event handler e.g in Windows App.
 [Read more](https://app.pluralsight.com/guides/returning-void-from-c-async-method)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Add **Async** suffix to async method's name.
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use `configureAwait(false)` for a class library.
 [Read more](https://app.pluralsight.com/guides/advanced-tips-using-task-run-async-wait#module-dontcontinueonthemainthreadunnecessarily)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Avoid unnecessary use of async modifier if we don't need to resume a main thread/UI thread to do anything after a task is complete, just return a task and don't await.
 Do not wrap a task in try/catch block because it has never thrown an exception. [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/avoid-unnecessary-async.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 In a using block, always await a task because we want to dispose a resource object after a task has been complete.
 Read more [REF](https://stackoverflow.com/a/19103343/1872200) and [REF](http://www.thebillwagner.com/blog/Item/2017-05-03-ThecuriouscaseofasyncawaitandIDisposable)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use await when you want to do stuff in a UI thread after getting a result.
 With await you can handle an exception as usual.
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Lambda expression supports async keyword, you can put async before Lambda parameters and put await in Lambda body.
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 `Task.Run` without `await` leads to **fire and forget** behavior. It will execute code in a thread of ThreadPool.
 Prefer `Task.Run` over `Task.Factory.StartNew` and over `new Task()`
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/task-run.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use async for IO bound. It is good for scalability and does not require extra thread so you don't use a thread just for waiting a long-running IO process.
 [Read more](https://app.pluralsight.com/guides/using-task-run-async-await)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Avoid mixing synchronous and asynchronous code.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/avoid-mixing-async-sync.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Avoid race conditions with proper synchronization.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/avoid-race-conditions.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 When you develop interfaces do not expose both sync and async versions of methods.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/expose-async-method.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
 <CheckListItem>
-
 Use await instead of `Task.ContinueWith`.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/never-task-continue-with.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
 
 <CheckListItem>
-
 Use `await Task.WhenAny/All` instead of `Task.WaitAny/All`.
 [Read more](https://github.com/agoda-com/standards-c-sharp/blob/master/docs/async/when-any-all.md)
-
 </CheckListItem>
 
-<!-- ******************** end of an item ******************** -->
-
-
-# Async/Await basic knowledge
+## Async/Await basic knowledge
 
 - การใช้ async/await เมื่อคอมไพล์โค้ดจะสร้าง method นั้นเป็น class ที่ implement อินเตอร์เฟซ IAsyncStateMachine
 - การใช้ async/await จะสร้าง Handler exception ที่ถูก throw ออกมาจาก method นั้นได้ หากไม่มี async/await เมื่อเกิดข้อผิดพลาด exception จะหายไป

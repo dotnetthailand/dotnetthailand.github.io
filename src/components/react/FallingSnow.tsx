@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ChronoUnit, Duration, LocalDate } from '@js-joda/core';
+import { ChronoUnit, LocalDate } from '@js-joda/core';
 
 const isBrowser = typeof window !== "undefined"
 
@@ -50,16 +50,16 @@ function sinGraph(yValue: number, adjustedWaveHeight: number, adjustedWaveLength
  * @param Image imageObj The image object to be used as a snow flake
  */
 class SnowFlake {
-  private interval: NodeJS.Timer = null;
+  private interval?: NodeJS.Timer;
 
-  private x: number;
-  private y: number;
+  private x: number = 0;
+  private y: number = 0;
 
-  private startX: number;
-  private speed: number;
+  private startX: number = 0;
+  private speed: number = 0;
 
-  private pathWidth: number;
-  private pathHeight: number;
+  private pathWidth: number = 0;
+  private pathHeight: number = 0;
 
   constructor(public imageElement: HTMLImageElement) {
     this.imageElement.style.position = 'fixed';

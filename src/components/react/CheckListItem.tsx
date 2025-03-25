@@ -1,11 +1,12 @@
-import React, { useState, FC } from 'react';
+import { useState } from 'react';
+import type { PropsWithChildren } from 'react';
 import { MDXProvider } from '@mdx-js/react'
 
 // TODO use emotion object style
 // import styled from '@emotion/styled';
 // import { css } from '@emotion/core';
 
-const CheckListItem: FC = (props) => {
+export default function CheckListItem(props: PropsWithChildren) {
 
   const [isChecked, setIsChecked] = useState(false);
 
@@ -15,7 +16,7 @@ const CheckListItem: FC = (props) => {
   };
 
   return (
-    <div style={{ margin: 0, lineHeight: 1.8 }}>
+    <div className='check-list-item'>
       <label>
         <input type="checkbox" onClick={handleCheckboxClick} style={{ display: 'inline-block', marginRight: '10px' }} />
         <MDXProvider
@@ -32,4 +33,3 @@ const CheckListItem: FC = (props) => {
   )
 };
 
-export default CheckListItem;
