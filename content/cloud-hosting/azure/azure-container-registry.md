@@ -16,5 +16,19 @@ order: 1
 
 # Create a new Container Registry
 
-
+az acr create --name
+  --resource-group
+  --sku {Basic, Premium, Standard}
+  [--admin-enabled {false, true}]
+  [--allow-exports {false, true}]
+  [--allow-metadata-search {false, true}]
+  [--allow-trusted-services {false, true}]
+  [--default-action {Allow, Deny}]
+  [--identity]
+  [--key-encryption-key]
+  [--location]
+  [--public-network-enabled {false, true}]
+  [--tags]
+  [--workspace]
+  [--zone-redundancy {Disabled, Enabled}]
 

@@ -66,7 +66,7 @@ order: 1
 - **Note**, you need to wrap double quote to a runtime value.
 - After your App Service is ready, it will deploy your source code from a Git server. You can log in to Azure portable to check deployment status.
 - [More details for App Service](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
-- Example code to create an app service:
+- Example code to create an empty app service that we will deploy with GitHub Actions:
   ```sh
   $ az webapp create \
     --name codesanook-example-app-service \
@@ -123,6 +123,9 @@ order: 1
     --xml
   ```
 
+- After you have App Service publish profile, you can use it in our custom GitHub workflow to deploy App Service with source code.
+- [Deploy .NET app to Azure App Service code](/programming-cookbook/github-actions/deploy-dotnet-app-to-azure-app-service#deploy.netapptoazureappservicecode)
+
 # Get FTPS Credentials
 - Go to Azure portal.
 - Select your app service.
@@ -148,6 +151,77 @@ order: 1
     --resource-group codesanook-example-resource-group
   ```
 
+Create for a container
+```sh
+az webapp create \
+  --name md-burner \
+  --plan codesanook-example-app-service-plan \
+  --resource-group codesaook-example-group \
+  --deployment-container-image-name mcr.microsoft.com/dotnet/samples:aspnetapp \
+  --debug
+```
+
+
+
+
 # Useful resources
 - [App Service CLI](https://docs.microsoft.com/en-us/cli/azure/webapp?view=azure-cli-latest)
 - [Run background tasks with WebJobs in Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create)
+
+# Add a custom domain
+
+- Command:
+```sh
+az webapp config hostname add \
+  --webapp-name <app-name> \
+  --resource-group <resource_group_name> \
+  --hostname <fully_qualified_domain_name>
+```
+- Example code to create a custom domain
+```sh
+az webapp config hostname add \
+  --webapp-name codesanook-example-app-service \
+  --resource-group codesanook-example-resource-group \
+  --hostname www.codesanook-example.com
+```
+
+# Delete a custom domain
+- Command:
+```sh
+az webapp config hostname delete \
+  --webapp-name <app-name> \
+  --resource-group <resource_group_name> \
+  --hostname <fully_qualified_domain_name>
+```
+- Example code to create a custom domain
+```sh
+az webapp config hostname delete \
+  --webapp-name codesanook-example-app-service \
+  --resource-group codesanook-example-resource-group \
+  --hostname www.codesanook-example.com
+```
+
+ref
+https://learn.microsoft.com/en-us/azure/app-service/app-service-web-tutorial-custom-domain?tabs=root%2Cazurecli
+
+- Get verification ID
+```sh
+# add extension to Azure CLI
+az extension add --name resource-graph
+
+# Run query
+az graph query -q "Resources | project name, properties.customDomainVerificationId, type | where type == 'microsoft.web/sites'"
+
+query="Resources"
+query+=" | project name, properties.customDomainVerificationId, type"
+query+=" | where type == 'microsoft.web/sites'"
+
+az graph query -q "$query"
+```
+
+Building on SupriyaGangineni's reply...
+
+The domain verification id is the same for all app services on the same subscription. the following query gives you a list of all subscriptions you have access to.
+```sh
+az graph query -q "Resources | join kind=leftouter (ResourceContainers | where type=='microsoft.resources/subscriptions' | project SubName=name, subscriptionId) on subscriptionId | where type == 'microsoft.web/sites'| project vid = tostring(properties.customDomainVerificationId), SubName | distinct *"
+```

@@ -19,14 +19,14 @@ showToc: true
 
 ## Create Azure SQL Server
 - Command:
-  ```sh
-  az sql server create \
-    --name <DATABASE_SERVER_NAME> \
-    --resource-group <RESOURCE_GROUP_NAME> \
-    --location <LOCATION> \
-    --admin-user <ADMIN_USERNAME> \
-    --admin-password <ADMIN_PASSWORD>
-  ```
+```sh
+az sql server create \
+  --name <DATABASE_SERVER_NAME> \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --location <LOCATION> \
+  --admin-user <ADMIN_USERNAME> \
+  --admin-password <ADMIN_PASSWORD>
+```
 - Name must be unique and we cannot use an existing server name in Azure cloud.
 - If your ADMIN_PASSWORD has special characters you need to wrap it with single quotes.
 - To list all available locations, run `az account list-locations --output table`.
@@ -36,51 +36,51 @@ showToc: true
 
 ### Example code to create Azure SQL Server instance:
 - Code:
-  ```sh
-  az sql server create \
-    --name codesanook-example-db-server \
-    --resource-group codesanook-example-resource-group \
-    --location southeastasia \
-    --admin-user codesanook-example-sa \
-    --admin-password 'very-secured-password'
-  ```
+```sh
+az sql server create \
+  --name codesanook-example-db-server \
+  --resource-group codesanook-example-resource-group \
+  --admin-user codesanook-example-sa \
+  --admin-password 'very-secured-password' \
+  --location southeastasia
+```
 - **Note** Do not forget to always generate a new strong password for admin password.
 
 ## Allow Azure services and other Azure resources to connect to Azure SQL Server
 - Command:
-  ```sh
-  az sql server firewall-rule create \
-    --resource-group <RESOURCE_GROUP_NAME> \
-    --server <DATABASE_SERVER_NAME> \
-    --name AllowAllWindowsAzureIps \
-    --start-ip-address 0.0.0.0 \
-    --end-ip-address 0.0.0.0
-  ```
+```sh
+az sql server firewall-rule create \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --server <DATABASE_SERVER_NAME> \
+  --name AllowAllWindowsAzureIps \
+  --start-ip-address 0.0.0.0 \
+  --end-ip-address 0.0.0.0
+```
 - Example code to create a firewall rule that allows all Azure services:
-  ```sh
-    az sql server firewall-rule create \
-      --server codesanok-example-db-server \
-      --resource-group codesanook-example-resource-group \
-      --name AllowAllWindowsAzureIps \
-      --start-ip-address 0.0.0.0 \
-      --end-ip-address 0.0.0.0
-  ```
+```sh
+az sql server firewall-rule create \
+  --server codesanok-example-db-server \
+  --resource-group codesanook-example-resource-group \
+  --name AllowAllWindowsAzureIps \
+  --start-ip-address 0.0.0.0 \
+  --end-ip-address 0.0.0.0
+```
 - REF https://docs.azure.cn/zh-cn/cli/sql/server/firewall-rule?view=azure-cli-latest#az_sql_server_firewall_rule_create
 
 ## Create Azure SQL Database
 - Command:
-  ```sh
-  az sql db create \
-    --name <DATABASE_NAME> \
-    --server <DATABASE_SERVER_NAME> \
-    --resource-group <RESOURCE_GROUP_NAME> \
-    --catalog-collation <COLLATION_OF_A_METADATA_CATALOG> \
-    --collation <COLLATION_OF_A_DATABASE> \
-    --edition <EDITION_OF_SKU> \
-    --capacity <CAPACITY_OF_SKU> \
-    --max-size <MAX_DATABASE_SIZE> \
-    --backup-storage-redundancy <BACKUP_REDUNDANCY_VALUE>
-  ```
+```sh
+az sql db create \
+  --name <DATABASE_NAME> \
+  --server <DATABASE_SERVER_NAME> \
+  --resource-group <RESOURCE_GROUP_NAME> \
+  --catalog-collation <COLLATION_OF_A_METADATA_CATALOG> \
+  --collation <COLLATION_OF_A_DATABASE> \
+  --edition <EDITION_OF_SKU> \
+  --capacity <CAPACITY_OF_SKU> \
+  --max-size <MAX_DATABASE_SIZE> \
+  --backup-storage-redundancy <BACKUP_REDUNDANCY_VALUE>
+```
 - To list all available database edition for a region, use `az sql db list-editions --location <location-name> --output table`.
 - For Southeast Asia location use `southeastasia`. To list all locations, use `az account list-locations --output table`.
 - Valid values of **--backup-storage-redundancy** are `Local, Zone and Geo`.
@@ -88,21 +88,21 @@ showToc: true
 
 ### Example code to create a free Azure SQL Database
 - Code:
-  ```sh
-  az sql db create \
-    --name codesanook-example-db \
-    --server codesanook-example-db-server \
-    --resource-group codesanook-example-resource-group \
-    --catalog-collation SQL_Latin1_General_CP1_CI_AS \
-    --collation Latin1_General_CI_AS \
-    --edition Free \
-    --capacity 5 \
-    --max-size 32MB \
-    --backup-storage-redundancy Zone
-  ```
+```sh
+az sql db create \
+  --name codesanook-example-db \
+  --server codesanook-example-db-server \
+  --resource-group codesanook-example-resource-group \
+  --catalog-collation SQL_Latin1_General_CP1_CI_AS \
+  --collation Latin1_General_CI_AS \
+  --edition Free \
+  --capacity 5 \
+  --max-size 32MB \
+  --backup-storage-redundancy Zone
+```
 - This will create a free Azure SQL database which has 32MB of database size and 5DTU.
 - To get more details of Free edition, run `az sql db list-editions --location southeastasia --edition Free`
-- Please note that subscription can have only one free database per region.
+- Please note that **each subscription can have only one free database per region**.
   - To provision another free database in same subscription, choose a different region.
   - To provision another free database in same region, use different subscription.
 
@@ -194,13 +194,13 @@ showToc: true
     --yes
   ```
 - Example code to delete a database:
-  ```sh
-  az sql db delete \
-    --name codesanok-example-db \
-    --server codesanok-example-db-server \
-    --resource-group codesanook-example-resource-group \
-    --yes
-  ```
+```sh
+az sql db delete \
+  --name codesanok-example-db \
+  --server codesanok-example-db-server \
+  --resource-group codesanook-example-resource-group \
+  --yes
+```
 
 # Update an admin password
 - Command:
