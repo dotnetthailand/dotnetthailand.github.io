@@ -2,7 +2,7 @@ declare const FB: any;
 import { useEffect, useState } from 'react';
 import { css } from '@emotion/core';
 import { useTheme } from 'emotion-theming';
-import { sleep } from './../utils/utils';
+import { sleep } from '../utils/utils';
 
 const containerStyle = css`
   // Make it stick at the bottom.

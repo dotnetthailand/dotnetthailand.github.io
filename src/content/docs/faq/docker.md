@@ -1,8 +1,6 @@
 ---
+# https://starlight.astro.build/reference/frontmatter/
 title: Docker
-showMetadata: true
-editable: true
-order: 1
 ---
 
 # Collection of Docker FAQ

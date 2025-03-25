@@ -43,3 +43,20 @@ If you have any following issues while running the project, please follow short 
 ## Useful information
 - This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes
 - [Responsive Solutions for Feature Comparison Tables](https://www.sitepoint.com/responsive-solutions-for-feature-comparison-tables/)
+
+# Add Integrations
+
+https://docs.astro.build/en/guides/integrations-guide/
+```sh
+yarn astro add react
+yarn astro add mdx
+```
+
+https://starlight.astro.build/getting-started/
+
+# Add content
+Starlight is ready for you to add new content, or bring your existing files!
+
+Add new pages to your site by creating Markdown files in the src/content/docs/ directory.
+
+Read more about file-based routing and support for MDX and Markdoc files in the “Pages” guide.
