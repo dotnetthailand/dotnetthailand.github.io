@@ -5,6 +5,8 @@ editable: true
 showToc: true
 ---
 
+import FixingFloatingFooterToBottom from '../../../../components/react/FixingFloatingFooterToBottom'
+
 - Given that we have a min height of the main container to make our page long enough.
 - Here is our HTML and CSS/SCSS code.
 
@@ -45,7 +47,7 @@ CSS/SCSS
 
 - If a content is long enough, it is okay.
 
-{/* <FixingFloatingFooterToBottom> */}
+<FixingFloatingFooterToBottom client:only='react'>
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
 voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
 dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
@@ -54,16 +56,16 @@ incidunt numquam quod fuga repudiandae voluptatem, dicta ullam doloremque maxime
 Non obcaecati culpa atque eos soluta incidunt alias cupiditate laboriosam voluptatum,
 dolores officiis iste, aliquam ea, ad natus eaque? Nesciunt asperiores beatae dicta minima placeat deleniti facilis,
 quas quisquam id ab labore dignissimos dolorem, accusamus corporis laborum necessitatibus aliquam.
-{/* </FixingFloatingFooterToBottom> */}
+</FixingFloatingFooterToBottom>
 
 - If your a content is short, a footer will be moved up and leave some empty space at the bottom.
 - This is not what we want.
 
-{/* <FixingFloatingFooterToBottom> */}
+<FixingFloatingFooterToBottom client:only='react' >
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
 voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
 dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
-{/* </FixingFloatingFooterToBottom> */}
+</FixingFloatingFooterToBottom>
 
 - We can fix a floating footer to always at the bottom by setting margin-top to auto
 - Add `margin-top: auto` to `footer` class.
@@ -77,11 +79,11 @@ dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, ha
 
 - After fixing, here is what it looks like.
 
-{/* <FixingFloatingFooterToBottom marginTopValue={'auto'}> */}
+<FixingFloatingFooterToBottom client:only='react' marginTopValue={'auto'}>
 Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
 voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
 dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
-{/* </FixingFloatingFooterToBottom> */}
+</FixingFloatingFooterToBottom>
 
 - The main key is: if we apply auto margin to a flex item, that item will automatically extend its specified margin
   to occupy the extra space in the flex container, depending on the direction in which the auto-margin is applied.

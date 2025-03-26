@@ -83,4 +83,8 @@ export default defineConfig({
     }),
     react(),
   ],
+  vite: {
+    ssr: { noExternal: ['styled-components'] },
+  },
+
 });

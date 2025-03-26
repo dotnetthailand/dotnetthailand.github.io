@@ -20,7 +20,8 @@
     "astro": "^5.5.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sharp": "^0.32.5"
+    "sharp": "^0.32.5",
+    "styled-components": "^6.1.16"
   },
   "devDependencies": {
     "sass-embedded": "^1.86.0"

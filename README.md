@@ -62,7 +62,7 @@ Read more about file-based routing and support for MDX and Markdoc files in the 
 - [ ] React components
   - [ ] Contributors
   - [ ] FriendsWebsites
-  - [ ] FixingFloatingFooterToBottom>
+  - [x] FixingFloatingFooterToBottom>
   - [ ] FeatureAsRowComparisonTable
   - [ ] LimitTextToNumberOfLines
   - [ ] TextTransformExample
@@ -71,3 +71,6 @@ Read more about file-based routing and support for MDX and Markdoc files in the 
   - [ ] replacement_within_a_single_line.gif
   - [ ] replacement_inside_visual_section.gif
   - [ ] taiko-repl.gif
+
+## Supporting CSS-in-JS #778
+https://github.com/withastro/roadmap/discussions/778

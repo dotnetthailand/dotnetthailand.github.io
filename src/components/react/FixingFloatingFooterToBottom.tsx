@@ -1,8 +1,25 @@
-import React from 'react';
-import { css } from '@emotion/core';
-import { useTheme } from 'emotion-theming';
+import type { PropsWithChildren } from 'react';
+import styled from 'styled-components';
 
-const mainContainer = theme => css`
+// https://www.dhiwise.com/post/understanding-react-propswithchildren-a-comprehensive-guide
+export default function FixingFloatingFooterToBottom(
+  { marginTopValue = 0, children }: PropsWithChildren<{ marginTopValue: number | string }>
+) {
+  return (
+    <MainContainer>
+      <MainContent>
+        <div>main-content</div>
+        {children}
+      </MainContent>
+      <Footer $marginTopValue={marginTopValue}>
+        <span>footer content...</span>
+      </Footer>
+    </MainContainer>
+  )
+};
+
+const MainContainer = styled.div`
+  border: 1px dotted var(--sl-color-white);
   max-width: 800px;
   margin: auto;
   min-height: 40vh;
@@ -12,42 +29,23 @@ const mainContainer = theme => css`
 
   display: flex;
   flex-direction: column;
-  border: 1px dotted ${theme.colors.font};
 `;
 
-const mainContent = theme => css`
-  color: ${theme.colors.font};
+const MainContent = styled.div`
+  color: var(--sl-color-white) ;
   padding: 10px;
-  //text-align: justify;
+
   > div {
     margin-bottom: 10px;
     text-align: center;
   }
 `;
 
-const footer = (theme, marginTopValue) => css`
+const Footer = styled.div<{ $marginTopValue: number | string }>`
+  border: 1px dotted var(--sl-color-white);
   height: 50px;
-  border: 1px dotted ${theme.colors.font};
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: ${marginTopValue};
+  margin-top: ${props => props.$marginTopValue} !important;
 `;
-
-const FixingFloatingFooterToBottom = ({ marginTopValue = 0, children }) => {
-  const theme = useTheme();
-
-  return (
-    <div css={mainContainer(theme)}>
-      <div css={mainContent(theme)}>
-        <div>main-content</div>
-        {children}
-      </div>
-      <div css={footer(theme, marginTopValue)}>
-        <span>footer</span>
-      </div>
-    </div>
-  )
-};
-
-export default FixingFloatingFooterToBottom;
