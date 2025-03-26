@@ -18,16 +18,15 @@ See [CONTRIBUTING](./CONTRIBUTING.md).
 ## Running on localhost
 
 - To install the dependencies you need to run:
-
+```sh
+yarn
 ```
-$ yarn
-```
-- If is the first time you are installing the dependencies it may take few minutes, get a coffee and relax ;)
+- If is the first time you are installing the dependencies it may take few minutes, get a coffee and relax :)
 - To run the project with hot-reload enabled you can.
-```
+```sh
 yarn start
 ```
-- Open a browser and navigate to http://localhost:8000.
+- Open a browser and navigate to http://localhost:4321.
 - Change some contents of `content/index.mdx` and you will find a browser reload and show what you have changed automatically.
 
 ## Troubleshooting
@@ -44,7 +43,7 @@ If you have any following issues while running the project, please follow short 
 - This project uses MDXProvider to not have to import a React component every MDX document. Read more https://www.gatsbyjs.com/docs/mdx/importing-and-using-components/#make-components-available-globally-as-shortcodes
 - [Responsive Solutions for Feature Comparison Tables](https://www.sitepoint.com/responsive-solutions-for-feature-comparison-tables/)
 
-# Add Integrations
+## Astro Integrations used in the project
 
 https://docs.astro.build/en/guides/integrations-guide/
 ```sh
@@ -54,9 +53,21 @@ yarn astro add mdx
 
 https://starlight.astro.build/getting-started/
 
-# Add content
+## How to add a new content/article to the website
 Starlight is ready for you to add new content, or bring your existing files!
-
 Add new pages to your site by creating Markdown files in the src/content/docs/ directory.
+Read more about file-based routing and support for MDX and Markdoc files in the "Pages" guide.
 
-Read more about file-based routing and support for MDX and Markdoc files in the “Pages” guide.
+## Migration from Gatsby to AStro checklist
+- [ ] React components
+  - [ ] Contributors
+  - [ ] FriendsWebsites
+  - [ ] FixingFloatingFooterToBottom>
+  - [ ] FeatureAsRowComparisonTable
+  - [ ] LimitTextToNumberOfLines
+  - [ ] TextTransformExample
+- Re-export images
+  - [ ] basic-search-in-vim.gif
+  - [ ] replacement_within_a_single_line.gif
+  - [ ] replacement_inside_visual_section.gif
+  - [ ] taiko-repl.gif

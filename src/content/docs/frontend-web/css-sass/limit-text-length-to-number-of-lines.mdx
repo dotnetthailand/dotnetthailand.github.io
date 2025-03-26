@@ -1,0 +1,38 @@
+---
+title: Limit text length to number of lines
+showMetadata: true
+editable: true
+showToc: true
+---
+
+# Limit text length to number of lines and add ellipsis at the end.
+
+- You can create a helper CSS class that you can reuse it later.
+
+```scss
+// Use RSCSS naming convention and SCSS
+._text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: box;
+  line-clamp: 2; // Number of lines to show
+  box-orient: vertical;
+}
+```
+
+- Then you can use it as:
+
+```html
+<div class="_text-ellipsis">
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam consectetur venenatis blandit. Praesent vehicula, libero non pretium vulputate, lacus arcu facilisis lectus, sed feugiat tellus nulla eu dolor. Nulla porta bibendum lectus quis euismod. Aliquam volutpat ultricies porttitor. Cras risus nisi, accumsan vel cursus ut, sollicitudin vitae dolor. Fusce scelerisque eleifend lectus in bibendum. Suspendisse lacinia egestas felis a volutpat.
+</div>
+```
+
+# Example result
+
+{/* <LimitTextToNumberOfLines /> */}
+
+# Reference and credit
+- [Saranyu Prakaikrong](https://www.facebook.com/you.saranyu)
+- https://stackoverflow.com/a/13924997/1872200
+- https://caniuse.com/?search=line-clamp

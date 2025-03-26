@@ -5,7 +5,7 @@ export { default as PageMetadata } from './PageMetadata';
 export { default as Header } from './Header';
 export { default as Layout } from './Layout';
 export { default as Link } from './Link';
-export { default as MdxComponents } from './MdxComponents';
+export { default as MdxComponents } from '../../../src/components/react';
 export * from './Navigation';
 export { default as PreviousNext } from './PreviousNext';
 export { default as ScrollTop } from './ScrollTop';
