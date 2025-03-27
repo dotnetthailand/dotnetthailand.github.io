@@ -5,7 +5,7 @@ editable: true
 showToc: true
 ---
 
-import FixingFloatingFooterToBottom from '../../../../components/react/FixingFloatingFooterToBottom'
+import FixingFloatingFooterToBottom from '../../../../components/FixingFloatingFooterToBottom.astro'
 
 - Given that we have a min height of the main container to make our page long enough.
 - Here is our HTML and CSS/SCSS code.
@@ -13,7 +13,7 @@ import FixingFloatingFooterToBottom from '../../../../components/react/FixingFlo
 HTML
 ```html
 <div class="main-container">
-  <div class="main-content">
+  <div class="content">
     Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
     voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
     dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
@@ -36,58 +36,57 @@ CSS/SCSS
   flex-direction: column;
 }
 
-.main-content {
+.content {
   padding: 10px;
 }
 
 .footer {
-  height: 100px;
+  background-color: #FF99FF;
 }
 ```
-
 - If a content is long enough, it is okay.
 
-<FixingFloatingFooterToBottom client:only='react'>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
-voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
-dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
-Facilis quidem voluptates cumque pariatur saepe ipsum qui molestiae debitis illo quia praesentium
-incidunt numquam quod fuga repudiandae voluptatem, dicta ullam doloremque maxime soluta eos illum!
-Non obcaecati culpa atque eos soluta incidunt alias cupiditate laboriosam voluptatum,
-dolores officiis iste, aliquam ea, ad natus eaque? Nesciunt asperiores beatae dicta minima placeat deleniti facilis,
-quas quisquam id ab labore dignissimos dolorem, accusamus corporis laborum necessitatibus aliquam.
+<FixingFloatingFooterToBottom>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
+  voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
+  dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
+  Facilis quidem voluptates cumque pariatur saepe ipsum qui molestiae debitis illo quia praesentium
+  incidunt numquam quod fuga repudiandae voluptatem, dicta ullam doloremque maxime soluta eos illum!
+  Non obcaecati culpa atque eos soluta incidunt alias cupiditate laboriosam voluptatum,
+  dolores officiis iste, aliquam ea, ad natus eaque? Nesciunt asperiores beatae dicta minima placeat deleniti facilis,
+  quas quisquam id ab labore dignissimos dolorem, accusamus corporis laborum necessitatibus aliquam.
 </FixingFloatingFooterToBottom>
 
 - If your a content is short, a footer will be moved up and leave some empty space at the bottom.
 - This is not what we want.
 
-<FixingFloatingFooterToBottom client:only='react' >
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
-voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
-dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
+<FixingFloatingFooterToBottom>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
+  voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
+  dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
 </FixingFloatingFooterToBottom>
 
 - We can fix a floating footer to always at the bottom by setting margin-top to auto
 - Add `margin-top: auto` to `footer` class.
 
-```scss
-.footer{
-  height: 100px;
+```scss ins={3}
+.footer {
+  background-color: #FF99FF;
   margin-top: auto;
 }
 ```
 
 - After fixing, here is what it looks like.
 
-<FixingFloatingFooterToBottom client:only='react' marginTopValue={'auto'}>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
-voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
-dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
+<FixingFloatingFooterToBottom topMarginValue={'auto'}>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem tempore unde ullam,
+  voluptatem accusamus perspiciatis laboriosam sapiente numquam dignissimos eaque cumque
+  dicta quod sed placeat adipisci ea iusto voluptates aspernatur veniam quidem, harum minus quam.
 </FixingFloatingFooterToBottom>
 
-- The main key is: if we apply auto margin to a flex item, that item will automatically extend its specified margin
-  to occupy the extra space in the flex container, depending on the direction in which the auto-margin is applied.
-- In our case, the margin value is set to all available space (column direction) in the flex container and then a footer is pushed to the bottom.
+  - The main key is: if we apply auto margin to a flex item, that item will automatically extend its specified margin
+    to occupy the extra space in the flex container, depending on the direction in which the auto-margin is applied.
+  - In our case, the margin value is set to all available space (column direction) in the flex container and then a footer is pushed to the bottom.
 
 # Reference and credit
 - [Flexbox’s Best-Kept Secret](https://hackernoon.com/flexbox-s-best-kept-secret-bd3d892826b6)

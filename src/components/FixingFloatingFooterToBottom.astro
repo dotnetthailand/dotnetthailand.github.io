@@ -1,0 +1,54 @@
+---
+interface Props {
+  topMarginValue?: number | string;
+}
+
+const { topMarginValue = 0 } = Astro.props;
+---
+
+<div class="main-container">
+  <div class="content">
+    <div>main content...</div>
+    <slot />
+  </div>
+  <div class="footer">
+    <span>footer content...</span>
+  </div>
+</div>
+
+<!-- https://docs.astro.build/en/guides/styling/#css-preprocessors -->
+<!-- https://docs.astro.build/en/guides/styling/#combining-classes-with-classlist -->
+<!-- https://docs.astro.build/en/guides/styling/#css-variables -->
+<style lang="scss" define:vars={{ topMarginValue }}>
+  .main-container {
+    display: flex;
+    flex-direction: column;
+
+    border: 1px dotted var(--sl-color-white);
+    max-width: 800px;
+    margin: auto;
+    min-height: 40vh;
+
+    @media (min-width: 576px) {
+      min-height: 30vh;
+    }
+  }
+
+  .content {
+    color: var(--sl-color-white);
+    padding: 10px;
+
+    > div {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+  }
+
+  .footer {
+    background-color: #ff99ff;
+    margin-top: var(--topMarginValue) !important;
+    text-align: center;
+    border: 1px dotted var(--sl-color-white);
+    padding: 1rem;
+  }
+</style>

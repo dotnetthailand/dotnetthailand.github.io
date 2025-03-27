@@ -74,3 +74,9 @@ Read more about file-based routing and support for MDX and Markdoc files in the 
 
 ## Supporting CSS-in-JS #778
 https://github.com/withastro/roadmap/discussions/778
+
+## What the FOUC is happening: Flash of Unstyled Content
+https://dev.to/lyqht/what-the-fouc-is-happening-flash-of-unstyled-content-413j
+
+## Do "dependencies" and "devDependencies" matter when using Webpack?
+https://jsramblings.com/do-dependencies-devdependencies-matter-when-using-webpack/
